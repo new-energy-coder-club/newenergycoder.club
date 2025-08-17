@@ -115,7 +115,7 @@ const mockProjects: Project[] = [
     id: '9',
     title: 'MICA关键性验证',
     description: '混合关键部署框架验证项目，研究和验证MICA框架在混合关键系统中的应用效果和性能表现。',
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop',
+    image: 'https://darrenpig.github.io/files/news10.jpg',
     category: 'research',
     technologies: ['MICA框架', '混合关键系统', '系统验证', '性能分析', '安全关键'],
     author: '新能源编程俱乐部',
@@ -244,7 +244,7 @@ export function ProjectsPage() {
                         </Button>
                       )}
                       {project.githubUrl && (
-                        <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
+                        <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30" onClick={() => window.open(project.githubUrl, '_blank')}>
                           <Github className="h-4 w-4 mr-2" />
                           {t.projects.viewCode}
                         </Button>
@@ -272,8 +272,7 @@ export function ProjectsPage() {
                     </div>
                   </div>
                   
-                  <div className="overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 aspect-[4/3] glass-card hover-lift">
-                  </div>
+
                   
                   <div className="bg-muted/50 rounded-lg p-3 text-sm">
                     <p className="text-muted-foreground">项目状态: 开发中</p>
