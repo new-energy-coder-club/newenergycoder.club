@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Zap, Mail, MapPin } from 'lucide-react'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 // Custom icon components
 const GiteeIcon = ({ className }: { className?: string }) => (
@@ -20,16 +21,18 @@ const WechatIcon = ({ className }: { className?: string }) => (
 )
 
 export function Footer() {
+  const { t } = useLanguage()
+  
   return (
     <footer className="bg-secondary mt-auto pt-10 pb-6">
       <div className="container grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            <span className="font-semibold">New Energy Coder Club</span>
+            <span className="font-semibold">{t.footer.clubName}</span>
           </div>
           <p className="text-muted-foreground text-sm mt-2">
-            Empowering the next generation of coders to build sustainable energy solutions
+            {t.footer.description}
           </p>
           <div className="flex items-center gap-4 mt-4">
             <a href="https://gitee.com/darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
@@ -45,30 +48,30 @@ export function Footer() {
         </div>
         
         <div>
-          <h3 className="font-medium mb-4">Navigation</h3>
+          <h3 className="font-medium mb-4">{t.footer.navigation}</h3>
           <ul className="space-y-2">
-            <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link></li>
-            <li><Link to="/about" className="text-sm text-muted-foreground hover:text-foreground">About</Link></li>
-            <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground">Projects</Link></li>
-            <li><Link to="/events" className="text-sm text-muted-foreground hover:text-foreground">Events</Link></li>
+            <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.home}</Link></li>
+            <li><Link to="/about" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.about}</Link></li>
+            <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.projects}</Link></li>
+            <li><Link to="/events" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.events}</Link></li>
           </ul>
         </div>
         
         <div>
-          <h3 className="font-medium mb-4">Resources</h3>
+          <h3 className="font-medium mb-4">{t.footer.resources}</h3>
           <ul className="space-y-2">
-            <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground">Learning Materials</Link></li>
-            <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground">Contact Us</Link></li>
-            <li><Link to="/join" className="text-sm text-muted-foreground hover:text-foreground">Join Club</Link></li>
+            <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.learningMaterials}</Link></li>
+            <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.contact}</Link></li>
+            <li><Link to="/join" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.joinClub}</Link></li>
           </ul>
         </div>
         
         <div>
-          <h3 className="font-medium mb-4">Contact</h3>
+          <h3 className="font-medium mb-4">{t.footer.contact}</h3>
           <div className="text-sm text-muted-foreground">
             <div className="flex items-start gap-2 mb-2">
               <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-              <span>Innovation Center, Tech University Campus, Beijing, China</span>
+              <span>{t.footer.address}</span>
             </div>
             <div className="flex items-start gap-2">
               <Mail className="h-4 w-4 mt-0.5 shrink-0" />
@@ -80,7 +83,7 @@ export function Footer() {
       
       <div className="container mt-10 pt-6 border-t border-border">
         <div className="text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} New Energy Coder Club. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t.footer.copyright}</p>
         </div>
       </div>
     </footer>
