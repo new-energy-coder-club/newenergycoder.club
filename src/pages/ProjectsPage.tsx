@@ -28,11 +28,11 @@ const mockProjects: Project[] = [
     title: '20250319流体工作站',
     description: '流体工作站监控系统，实现对流体设备的实时监控和数据采集，提供高精度的流体参数测量和控制功能。',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop',
-    category: 'iot',
+    category: 'ai',
     technologies: ['嵌入式系统', '传感器技术', 'C/C++', '数据采集', 'SCADA'],
     author: '新能源编程俱乐部',
     date: '2025-03-19',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站'
   },
   {
     id: '2',
@@ -43,7 +43,7 @@ const mockProjects: Project[] = [
     technologies: ['WS63', '星闪技术', 'NearLink', '嵌入式开发', '无线通信'],
     author: '新能源编程俱乐部',
     date: '2025-04-26',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄'
   },
   {
     id: '3',
@@ -54,7 +54,7 @@ const mockProjects: Project[] = [
     technologies: ['ROS', '运动控制', '计算机视觉', '深度学习', '传感器融合'],
     author: '新能源编程俱乐部',
     date: '2024-12-01',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/humanoid-robot/人形机器人主线'
   },
   {
     id: '4',
@@ -65,7 +65,7 @@ const mockProjects: Project[] = [
     technologies: ['飞控系统', '无线通信', 'MAVLink', '实时系统', '嵌入式开发'],
     author: '新能源编程俱乐部',
     date: '2024-11-15',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/250510飞控通讯'
   },
   {
     id: '5',
@@ -76,7 +76,7 @@ const mockProjects: Project[] = [
     technologies: ['产学研合作', '技术转化', '项目管理', '创新研发'],
     author: '新能源编程俱乐部',
     date: '2024-10-01',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」'
   },
   {
     id: '6',
@@ -87,7 +87,7 @@ const mockProjects: Project[] = [
     technologies: ['机械设计', '3D打印', '控制算法', '成本优化', 'UMI'],
     author: '新能源编程俱乐部',
     date: '2024-09-20',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/dexterous-hand'
   },
   {
     id: '7',
@@ -98,7 +98,7 @@ const mockProjects: Project[] = [
     technologies: ['气动控制', 'PLC', '精密控制', '自动化', '工业控制'],
     author: '新能源编程俱乐部',
     date: '2024-08-15',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/pneumatic-system'
   },
   {
     id: '8',
@@ -109,7 +109,7 @@ const mockProjects: Project[] = [
     technologies: ['3D打印', 'CAD设计', '材料科学', '快速成型', '后处理工艺'],
     author: '新能源编程俱乐部',
     date: '2024-07-10',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/3d-printing-team'
   },
   {
     id: '9',
@@ -120,7 +120,7 @@ const mockProjects: Project[] = [
     technologies: ['MICA框架', '混合关键系统', '系统验证', '性能分析', '安全关键'],
     author: '新能源编程俱乐部',
     date: '2024-06-25',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects'
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/mica-validation'
   }
 ]
 
