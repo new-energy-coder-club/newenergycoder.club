@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Zap } from 'lucide-react'
+import { Menu, X, Zap, Ratio } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { cn } from '@/lib/utils'
@@ -25,7 +25,6 @@ export function Header() {
     { label: t.nav.events, href: '/events' },
     { label: t.nav.resources, href: '/resources' },
     { label: t.nav.contact, href: '/contact' },
-    { label: '显示比例', href: '/display-ratio' },
   ]
   
   return (
@@ -56,6 +55,12 @@ export function Header() {
               </Link>
             ))}
             <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" className="gap-2" asChild>
+                <Link to="/display-ratio">
+                  <Ratio className="h-4 w-4" />
+                  <span className="hidden sm:inline">显示比例</span>
+                </Link>
+              </Button>
               <LanguageSwitcher />
               {isAuthenticated ? (
                 <UserMenu />
@@ -86,6 +91,12 @@ export function Header() {
             </Link>
           ))}
           <div className="flex items-center gap-2 mt-2">
+            <Button variant="ghost" size="sm" className="gap-2" asChild>
+              <Link to="/display-ratio" onClick={() => setMobileMenuOpen(false)}>
+                <Ratio className="h-4 w-4" />
+                <span>显示比例</span>
+              </Link>
+            </Button>
             <LanguageSwitcher />
           </div>
           {isAuthenticated ? (

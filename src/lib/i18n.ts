@@ -829,25 +829,25 @@ export const translations: Record<'en' | 'zh', Translations> = {
           name: '开发原子基金会',
           role: '金牌赞助商',
           bio: '致力于支持可持续技术发展的非营利组织。',
-          image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Logo.png?raw=true'
+          image: 'src/assets/openatom-logo.svg'
         },
         {
           name: '中国科学院计算技术研究所',
           role: '银牌赞助商',
           bio: '中国科学院计算技术研究所是中国科学院的一个研究机构，专注于计算技术的研究和应用。',
-          image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Logo.png?raw=true'
+          image: 'src/assets/ict-cas-logo.svg'
         },
         {
           name: 'openEuler社区',
           role: '铜牌赞助商',
           bio: 'openEuler是一个开源的Linux发行版，专注于国产操作系统。',
-          image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Logo.png?raw=true'
+          image: 'src/assets/openeuler-logo.svg'
         },
         {
           name: '嘉立创开源社区',
           role: '铜牌赞助商',
           bio: '国内顶尖的硬件社区，专注于硬件开源项目。',
-          image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Logo.png?raw=true'
+          image: 'src/assets/jlc-logo.svg'
         }
       ]
     },
