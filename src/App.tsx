@@ -8,6 +8,7 @@ import { EventsPage } from "@/pages/EventsPage";
 import { ResourcesPage } from "@/pages/ResourcesPage";
 import { ContactPage } from "@/pages/ContactPage";
 import { DisplayRatioPage } from "@/pages/DisplayRatioPage";
+import { TeamPage } from "@/pages/TeamPage";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -58,6 +59,7 @@ function App() {
           
           {/* Phase 2 Routes (currently placeholders) */}
           <Route path="/about" element={<PlaceholderPage title="About Us" />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/resources" element={<ResourcesPage />} />

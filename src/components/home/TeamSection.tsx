@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
+import { Button } from '@/components/ui/button'
+import { Link } from 'react-router-dom'
 
 interface TeamMember {
   name: string;
@@ -106,6 +108,16 @@ export function TeamSection() {
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* View Full Team Button */}
+        <div className="text-center mt-16">
+          <Button asChild size="lg" className="group">
+            <Link to="/team" className="flex items-center gap-2">
+              {t.team.viewFullTeam}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
