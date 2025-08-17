@@ -3,6 +3,10 @@ export interface TeamMember {
   role: string;
   bio: string;
   image: string;
+  tags?: string[];
+  github?: string;
+  linkedin?: string;
+  email?: string;
 }
 
 export interface Translations {

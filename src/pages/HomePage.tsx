@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/home/HeroSection'
 import { AboutSection } from '@/components/home/AboutSection'
 import { FeaturesSection } from '@/components/home/FeaturesSection'
 import { TeamSection } from '@/components/home/TeamSection'
+import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { CTASection } from '@/components/home/CTASection'
 import { useEffect } from 'react'
 
@@ -17,6 +18,7 @@ function HomePage() {
       <AboutSection />
       <FeaturesSection />
       <TeamSection />
+      <ProjectsSection />
       <CTASection />
     </PageLayout>
   )

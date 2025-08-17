@@ -12,6 +12,7 @@ interface TeamMemberCardProps {
     role: string
     bio: string
     image: string
+    tags?: string[]
     github?: string
     linkedin?: string
     email?: string
@@ -39,6 +40,24 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
         <p className="text-sm text-muted-foreground text-center mb-4 leading-relaxed">
           {member.bio}
         </p>
+        
+        {/* 技术栈标签 */}
+        {member.tags && member.tags.length > 0 && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-1 justify-center">
+              {member.tags.map((tag, index) => (
+                <Badge 
+                  key={index} 
+                  variant="outline" 
+                  className="text-xs px-2 py-1 bg-primary/5 hover:bg-primary/10 transition-colors"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+        
         <div className="flex justify-center gap-2">
           {member.github && (
             <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
