@@ -432,6 +432,12 @@ export const translations: Record<'en' | 'zh', Translations> = {
           role: '机器人算法工程师',
           bio: '专注于机器人算法研发部署以及业务逻辑设计。',
           image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/许珑译.jpg'
+        },
+        {
+          name: '张旺旺',
+          role: '机器人运行时工程师',
+          bio: '负责项目的核心技术攻坚，保障电控系统的稳定运行。',
+          image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg'
         }
       ],
       developers: [
@@ -502,6 +508,12 @@ export const translations: Record<'en' | 'zh', Translations> = {
           role: 'UX设计师',
           bio: '一直在探索技术与设计边界的路上，以用户为中心，以体验为驱动。',
           image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg'
+        },
+        {
+          name: '王彦君',
+          role: '工业/产品设计师',
+          bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
+          image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君.jpg'
         }
       ],
       contributors: [
@@ -534,6 +546,12 @@ export const translations: Record<'en' | 'zh', Translations> = {
           role: '产品经理',
           bio: '负责产品规划和需求分析，推动项目向正确方向发展。',
           image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/许子涵 2.png'
+        },
+        {
+          name: '吴罗斌',
+          role: '开源贡献者&气动自动化专家',
+          bio: '积极参与开源项目，为社区贡献代码商业化文档。',
+          image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴罗斌.jpeg'
         }
       ],
       sponsors: [
@@ -542,6 +560,12 @@ export const translations: Record<'en' | 'zh', Translations> = {
           role: 'Gold Sponsor',
           bio: 'Non-profit organization dedicated to supporting sustainable technology development.',
           image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/杨立涛.png'
+        },
+        {
+          name: '闻志伟',
+          role: 'Silver Sponsor',
+          bio: '致力于推动可持续技术发展的非营利组织。',
+          image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/闻志伟.png'
         }
       ]
     },
