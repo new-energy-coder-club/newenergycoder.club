@@ -38,5 +38,5 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
   },
   // GitHub Pages 部署配置
-  base: process.env.NODE_ENV === 'production' ? '/new_energy_coder_club/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Energy-Coder-Club-Website/' : '/'
 })
