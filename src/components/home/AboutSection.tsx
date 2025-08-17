@@ -39,16 +39,7 @@ export function AboutSection() {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4 lg:gap-8">
-            <div className="grid gap-4 lg:gap-8">
-              <div className="overflow-hidden rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 aspect-[3/4] h-full glass-card hover-lift"></div>
-              <div className="overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 aspect-[4/3] glass-card hover-lift"></div>
-            </div>
-            <div className="grid gap-4 lg:gap-8">
-              <div className="overflow-hidden rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 aspect-[4/3] glass-card hover-lift"></div>
-              <div className="overflow-hidden rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 aspect-[3/4] h-full glass-card hover-lift"></div>
-            </div>
-          </div>
+
         </div>
         
         {/* Project Origin Story */}
