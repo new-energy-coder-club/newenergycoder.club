@@ -6,7 +6,7 @@ export function JoinPage() {
   useEffect(() => {
     // Redirect to the join application page
     const redirectTimer = setTimeout(() => {
-      window.location.href = 'https://preview-ev8rcjrqf5kw.devv.app/join'
+      window.location.href = 'https://gitee.com/darrenpig/new_energy_coder_club/issues'
     }, 1500)
     
     return () => clearTimeout(redirectTimer)
@@ -23,7 +23,7 @@ export function JoinPage() {
           <p className="text-lg text-muted-foreground">
             If you are not automatically redirected, please{' '}
             <a 
-              href="https://preview-ev8rcjrqf5kw.devv.app/join" 
+              href="https://gitee.com/darrenpig/new_energy_coder_club/issues" 
               className="text-primary hover:underline"
               target="_blank"
               rel="noopener noreferrer"

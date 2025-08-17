@@ -18,7 +18,7 @@ export function FeishuForm({ eventId, eventTitle, children, className }: FeishuF
   const { user } = useAuthStore()
 
   // 飞书表单URL - 这里使用示例URL，实际使用时需要替换为真实的飞书表单链接
-  const feishuFormUrl = `https://example.feishu.cn/share/base/form/shrcnxxxxxxxxxxxxxx?prefill_event_id=${eventId}&prefill_event_title=${encodeURIComponent(eventTitle)}&prefill_user_name=${user?.name || ''}&prefill_user_email=${user?.email || ''}`
+  const feishuFormUrl = `https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh?prefill_event_id=${eventId}&prefill_event_title=${encodeURIComponent(eventTitle)}&prefill_user_name=${user?.name || ''}&prefill_user_email=${user?.email || ''}`
 
   const handleFormSubmit = async () => {
     setIsLoading(true)

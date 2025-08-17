@@ -38,7 +38,7 @@ const mockResources: Resource[] = [
     type: 'free',
     author: 'Tech Academy',
     rating: 4.8,
-    url: 'https://example.com/react-guide',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['React', 'JavaScript', 'Frontend', 'Hooks']
   },
   {
@@ -51,8 +51,8 @@ const mockResources: Resource[] = [
     type: 'free',
     author: 'DevTools Team',
     rating: 4.9,
-    url: 'https://example.com/vscode-extensions',
-    downloadUrl: 'https://example.com/download/extensions-pack',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
+    downloadUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['VS Code', 'Extensions', 'Development', 'Productivity']
   },
   {
@@ -65,7 +65,7 @@ const mockResources: Resource[] = [
     type: 'paid',
     author: 'Robert C. Martin',
     rating: 4.7,
-    url: 'https://example.com/clean-code-book',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Clean Code', 'Best Practices', 'Software Engineering']
   },
   {
@@ -78,7 +78,7 @@ const mockResources: Resource[] = [
     type: 'paid',
     author: 'Stanford Online',
     rating: 4.9,
-    url: 'https://example.com/ml-specialization',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Machine Learning', 'Python', 'AI', 'Data Science']
   },
   {
@@ -91,7 +91,7 @@ const mockResources: Resource[] = [
     type: 'free',
     author: 'Node.js Foundation',
     rating: 4.6,
-    url: 'https://example.com/nodejs-docs',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Node.js', 'Backend', 'JavaScript', 'API']
   },
   {
@@ -104,7 +104,7 @@ const mockResources: Resource[] = [
     type: 'free',
     author: 'Git Masters',
     rating: 4.5,
-    url: 'https://example.com/git-tutorial',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Git', 'Version Control', 'Collaboration', 'DevOps']
   },
   {
@@ -117,8 +117,8 @@ const mockResources: Resource[] = [
     type: 'free',
     author: 'Design Pro',
     rating: 4.4,
-    url: 'https://example.com/figma-kit',
-    downloadUrl: 'https://example.com/download/figma-kit',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
+    downloadUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Figma', 'Design System', 'UI/UX', 'Templates']
   },
   {
@@ -131,7 +131,7 @@ const mockResources: Resource[] = [
     type: 'paid',
     author: 'Web Dev Academy',
     rating: 4.8,
-    url: 'https://example.com/fullstack-course',
+    url: 'https://gitee.com/darrenpig/new_energy_coder_club/issues/IC9NDX',
     tags: ['Full Stack', 'Web Development', 'React', 'Node.js', 'MongoDB']
   }
 ]
