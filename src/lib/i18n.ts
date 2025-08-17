@@ -863,51 +863,51 @@ export const translations: Record<'en' | 'zh', Translations> = {
       developers: [
         {
           name: '刘英琪',
-          role: '前端开发工程师',
-          bio: '专注于现代前端技术栈，致力于构建高性能的用户界面。',
+          role: '机器人端边开发工程师',
+          bio: '专注于端边架构设计和API开发，为项目提供稳定的裸机支持。',
           image: 'src/image/developer/刘英琪.png'
         },
         {
           name: '单广志',
-          role: '后端开发工程师',
-          bio: '专注于服务端架构设计和API开发，为项目提供稳定的后端支持。',
+          role: '嵌入式硬件开发工程师',
+          bio: '机器人行业电控驱动开发以及硬件电路设计。',
           image: 'src/image/developer/单广志.png'
         },
         {
           name: '周志',
           role: '全栈机械工程师',
-          bio: '具备前后端开发能力，致力于端到端的解决方案开发。',
+          bio: '具备前后端机械开发能力，致力于端到端的解决方案开发。',
           image: 'src/image/developer/周志.png'
         },
         {
           name: '李硕',
-          role: '系统架构师',
+          role: '硬件架构师&嵌入式硬件开发',
           bio: '专注于系统架构设计和技术选型，为项目提供技术指导。',
           image: 'src/image/developer/李硕.png'
         },
         {
           name: '牛良旭',
-          role: 'DevOps工程师',
+          role: 'DevOps电源管理工程师',
           bio: '负责项目的持续集成和部署，保障开发流程的高效运行。',
           image: 'src/image/developer/牛良旭.png'
         },
         {
           name: '郑钦文',
-          role: '移动端开发工程师',
-          bio: '专注于移动应用开发，为用户提供优质的移动端体验。',
+          role: '机电开发工程师',
+          bio: '专注于机电系统开发，为项目提供专业的机电解决方案。',
           image: 'src/image/developer/郑钦文.jpg'
         }
       ],
       designers: [
         {
           name: 'Xiux',
-          role: 'UI/UX设计师',
+          role: '仓库团队需求分析',
           bio: '专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。',
           image: 'src/image/designer/xiux.jpg'
         },
         {
           name: '张若璐',
-          role: '视觉设计师',
+          role: '视觉设计师&财务分析',
           bio: '专注于品牌视觉设计和图形创意，为项目提供专业的视觉解决方案。',
           image: 'src/image/designer/张若璐.jpg'
         },
@@ -919,8 +919,8 @@ export const translations: Record<'en' | 'zh', Translations> = {
         },
         {
           name: '李一楠',
-          role: '产品设计师',
-          bio: '负责产品设计和用户体验优化，推动设计与技术的完美结合。',
+          role: '运营组长&产品设计师',
+          bio: '负责宣传触点设计和主持开发者会议，推动设计与技术的完美结合。',
           image: 'src/image/designer/李一楠.jpg'
         },
         {
@@ -933,14 +933,14 @@ export const translations: Record<'en' | 'zh', Translations> = {
       contributors: [
         {
           name: '卢永杰',
-          role: '开源贡献者',
-          bio: '积极参与开源项目，为社区贡献代码和文档。',
+          role: '机器人运控算法工程师',
+          bio: '专注算法部署优化及硬件底层逻辑协同设计。',
           image: 'src/image/contributer/卢永杰.jpg'
         },
         {
           name: '卢王淳',
           role: '赛期管理',
-          bio: '24新能源班，负责比赛期间的管理和协调工作。',
+          bio: '24新能源班，负责比赛期间的 R1 管理和协调工作。',
           image: 'src/image/contributer/卢王淳.png'
         },
         {
@@ -951,14 +951,14 @@ export const translations: Record<'en' | 'zh', Translations> = {
         },
         {
           name: '张旺旺',
-          role: '运维工程师',
-          bio: '负责项目的部署和运维工作，保障系统的稳定运行。',
+          role: '系统运维工程师',
+          bio: '负责项目的部署和高转电机和控制系统运维工作，保障系统的稳定运行。',
           image: 'src/image/contributer/张旺旺.jpg'
         },
         {
           name: '许子涵',
-          role: '产品经理',
-          bio: '负责产品规划和需求分析，推动项目向正确方向发展。',
+          role: '产品经理 PM',
+          bio: '负责产品规划和需求分析，推动 R2 项目向正确方向发展。',
           image: 'src/image/contributer/许子涵 2.png'
         }
       ],
