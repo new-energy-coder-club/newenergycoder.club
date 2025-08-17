@@ -29,7 +29,9 @@ export function Footer() {
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            <span className="font-semibold">{t.footer.clubName}</span>
+            <a href="https://gitee.com/darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-primary transition-colors">
+              {t.footer.clubName}
+            </a>
           </div>
           <p className="text-muted-foreground text-sm mt-2">
             {t.footer.description}

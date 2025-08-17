@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
+import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
 
 interface TeamMember {
   name: string;
@@ -40,6 +42,7 @@ const getTeamGroups = (t: any): TeamGroup[] => [
 export function TeamSection() {
   const t = useTranslation();
   const teamGroups = getTeamGroups(t);
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[4/3]');
   
   return (
     <section className="py-24 bg-gradient-to-br from-accent/10 to-secondary/20 relative overflow-hidden">
@@ -52,6 +55,15 @@ export function TeamSection() {
           <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t.team.description}
           </p>
+          
+          {/* Aspect Ratio Selector */}
+          <div className="mt-8 flex justify-center">
+            <AspectRatioSelector 
+              value={selectedRatio} 
+              onValueChange={setSelectedRatio}
+              className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
+            />
+          </div>
         </div>
         
         <div className="space-y-16">
@@ -62,7 +74,7 @@ export function TeamSection() {
                 <div className="flex gap-6 min-w-max px-4">
                   {group.members.map((member, memberIndex) => (
                     <Card key={memberIndex} className="glass-card hover-lift glow-hover group overflow-hidden flex-shrink-0 w-80">
-                      <div className="aspect-[4/3] overflow-hidden relative">
+                      <div className={`${selectedRatio} overflow-hidden relative`}>
                         <img 
                           src={member.image}
                           alt={member.name}

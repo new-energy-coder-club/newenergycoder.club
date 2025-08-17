@@ -3,10 +3,11 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react'
+import { Calendar, MapPin, Users, Clock, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { FeishuForm } from '@/components/forms/FeishuForm'
+import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
 
 type EventCategory = 'all' | 'workshop' | 'hackathon' | 'seminar' | 'competition' | 'networking'
 type EventStatus = 'upcoming' | 'past'
@@ -139,6 +140,8 @@ const getCategoryColor = (category: EventCategory) => {
 export function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState<EventCategory>('all')
   const [activeTab, setActiveTab] = useState<EventStatus>('upcoming')
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-video')
+  const [isFilterExpanded, setIsFilterExpanded] = useState(true)
   const t = useTranslation()
 
   const filterEvents = (status: EventStatus) => {
@@ -153,7 +156,7 @@ export function EventsPage() {
 
   const EventCard = ({ event }: { event: Event }) => (
     <Card className="glass-card hover-lift glow-hover group overflow-hidden">
-      <div className="aspect-video overflow-hidden relative">
+      <div className={`${selectedRatio} overflow-hidden relative`}>
         <img 
           src={event.image}
           alt={event.title}
@@ -246,20 +249,58 @@ export function EventsPage() {
         </section>
 
         {/* Filter Section */}
-        <section className="py-8 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
+        <section className="py-4 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
           <div className="container">
-            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6">
-              {categoryFilters.map((filter) => (
+            <div className="flex flex-col gap-4">
+              {/* Filter Toggle Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t.events.filterTitle}
+                </h3>
                 <Button
-                  key={filter.key}
-                  variant={selectedCategory === filter.key ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(filter.key)}
-                  className="hover-lift transition-all duration-200 text-xs sm:text-sm px-3 py-2"
+                  variant="ghost"
                   size="sm"
+                  onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t.events[filter.labelKey]}
+                  {isFilterExpanded ? t.events.collapseFilters : t.events.expandFilters}
+                  {isFilterExpanded ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
                 </Button>
-              ))}
+              </div>
+              
+              {/* Collapsible Filter Content */}
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                isFilterExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="flex flex-col gap-6 pb-2">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                    {categoryFilters.map((filter) => (
+                      <Button
+                        key={filter.key}
+                        variant={selectedCategory === filter.key ? 'default' : 'outline'}
+                        onClick={() => setSelectedCategory(filter.key)}
+                        className="hover-lift transition-all duration-200 text-xs sm:text-sm px-3 py-2"
+                        size="sm"
+                      >
+                        {t.events[filter.labelKey]}
+                      </Button>
+                    ))}
+                  </div>
+                  
+                  {/* Aspect Ratio Selector */}
+                  <div className="flex justify-center">
+                    <AspectRatioSelector 
+                      value={selectedRatio} 
+                      onValueChange={setSelectedRatio}
+                      className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

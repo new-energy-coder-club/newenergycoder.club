@@ -3,9 +3,10 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { ExternalLink, Download, Search, Star, BookOpen, Code, Wrench, GraduationCap, FileText } from 'lucide-react'
+import { ExternalLink, Download, Search, Star, BookOpen, Code, Wrench, GraduationCap, FileText, ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
+import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
 
 type ResourceCategory = 'all' | 'tutorials' | 'tools' | 'books' | 'courses' | 'documentation'
 type ResourceDifficulty = 'beginner' | 'intermediate' | 'advanced'
@@ -164,6 +165,8 @@ const getTypeColor = (type: ResourceType) => {
 export function ResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-video')
+  const [isFilterExpanded, setIsFilterExpanded] = useState(true)
   const t = useTranslation()
 
   const filteredResources = mockResources.filter(resource => {
@@ -221,23 +224,61 @@ export function ResourcesPage() {
         </section>
 
         {/* Filter Section */}
-        <section className="py-8 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
+        <section className="py-4 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
           <div className="container">
-            <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
-              {categoryFilters.map((filter) => {
-                const Icon = filter.icon
-                return (
-                  <Button
-                    key={filter.key}
-                    variant={selectedCategory === filter.key ? 'default' : 'outline'}
-                    onClick={() => setSelectedCategory(filter.key)}
-                    className="hover-lift transition-all duration-200 flex items-center gap-2"
-                  >
-                    <Icon className="h-4 w-4" />
-                    {t.resources[filter.labelKey]}
-                  </Button>
-                )
-              })}
+            <div className="flex flex-col gap-4">
+              {/* Filter Toggle Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t.resources.filterTitle}
+                </h3>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {isFilterExpanded ? t.resources.collapseFilters : t.resources.expandFilters}
+                  {isFilterExpanded ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+              
+              {/* Collapsible Filter Content */}
+              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                isFilterExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}>
+                <div className="flex flex-col gap-6 pb-2">
+                  <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
+                    {categoryFilters.map((filter) => {
+                      const Icon = filter.icon
+                      return (
+                        <Button
+                          key={filter.key}
+                          variant={selectedCategory === filter.key ? 'default' : 'outline'}
+                          onClick={() => setSelectedCategory(filter.key)}
+                          className="hover-lift transition-all duration-200 flex items-center gap-2"
+                        >
+                          <Icon className="h-4 w-4" />
+                          {t.resources[filter.labelKey]}
+                        </Button>
+                      )
+                    })}
+                  </div>
+                  
+                  {/* Aspect Ratio Selector */}
+                  <div className="flex justify-center">
+                    <AspectRatioSelector 
+                      value={selectedRatio} 
+                      onValueChange={setSelectedRatio}
+                      className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -249,7 +290,7 @@ export function ResourcesPage() {
               <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {filteredResources.map((resource) => (
                   <Card key={resource.id} className="glass-card hover-lift glow-hover group overflow-hidden">
-                    <div className="aspect-video overflow-hidden relative">
+                    <div className={`${selectedRatio} overflow-hidden relative`}>
                       <img 
                         src={resource.image}
                         alt={resource.title}
