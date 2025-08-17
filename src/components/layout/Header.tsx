@@ -25,6 +25,7 @@ export function Header() {
     { label: t.nav.events, href: '/events' },
     { label: t.nav.resources, href: '/resources' },
     { label: t.nav.contact, href: '/contact' },
+    { label: '显示比例', href: '/display-ratio' },
   ]
   
   return (
