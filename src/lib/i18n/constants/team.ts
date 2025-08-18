@@ -46,8 +46,8 @@ export const maintainers: TeamMember[] = [
 export const developers: TeamMember[] = [
   {
     name: '刘英琪',
-    role: '前端开发工程师',
-    bio: '专注于现代前端技术栈，致力于构建高性能的用户界面。',
+    role: '嵌入式开发工程师',
+    bio: '专注于现代机器人技术栈，致力于构建高性能的机器人界面。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/刘英琪.png',
     tags: ['React', 'TypeScript', 'Vue', '前端架构', 'UI/UX', 'Vite'],
     github: 'https://github.com/liuyingqi'
@@ -177,16 +177,16 @@ export const contributors: TeamMember[] = [
   },
   {
     name: '崔正阳',
-    role: '测试工程师',
-    bio: '专注于软件质量保证，确保项目的稳定性和可靠性。',
+    role: '上位机测试工程师',
+    bio: '专注于上位机软件质量保证，确保项目的稳定性和可靠性。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.png',
     tags: ['软件测试', '质量保证', 'Jest', 'Cypress', '自动化测试', '性能测试'],
     github: 'https://github.com/cuizhengyang'
   },
   {
     name: '张旺旺',
-    role: '运维工程师',
-    bio: '负责项目的部署和运维工作，保障系统的稳定运行。',
+    role: '新能源运维工程师',
+    bio: '负责核心项目的真机部署和运维工作，保障系统的稳定运行。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/张旺旺.jpg',
     tags: ['运维部署', 'Linux', '服务器管理', '监控告警', '故障排查', '系统优化'],
     github: 'https://github.com/zhangwangwang'
