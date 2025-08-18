@@ -110,8 +110,8 @@ export const developers: TeamMember[] = [
   },
   {
     name: '彭柯颖',
-    role: '新成员开发者',
-    bio: '新加入的开发团队成员，积极参与项目开发，学习新技术。',
+    role: '机械R1机器人开发者',
+    bio: '新加入的开发团队成员，积极参与机器人项目开发，学习新技术。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg',
     tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
     github: 'https://github.com/pengkeying'
@@ -121,9 +121,9 @@ export const developers: TeamMember[] = [
 export const designers: TeamMember[] = [
   {
     name: 'Xiux',
-    role: 'UI/UX设计师',
-    bio: '专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/Xiux.jpg',
+    role: 'UI/UX设计师 & 仓库PM',
+    bio: '专注于开发者体验设计和界面优化，为可持续技术产品创造美观易用的界面。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/xiux.jpg',
     tags: ['UI设计', 'UX设计', 'Figma', 'Sketch', '原型设计', '用户研究']
   },
   {
