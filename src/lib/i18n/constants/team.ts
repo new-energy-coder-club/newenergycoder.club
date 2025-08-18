@@ -107,13 +107,13 @@ export const designers: TeamMember[] = [
   {
     name: 'Xiux',
     role: 'UI/UX设计师 & 仓库PM',
-    bio: '专注于开发者体验设计和界面优化，为可持续技术产品创造美观易用的界面。',
+    bio: '专注于开发者体验设计和界面优化，为可持续仓库创造美观易用的界面。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/xiux.jpg',
     tags: ['UI设计', 'UX设计', 'Figma', 'Sketch', '原型设计', '用户研究']
   },
   {
     name: 'ikkOoOo',
-    role: '设计师',
+    role: '工业/产品设计师',
     bio: '专注于创意设计和视觉表达，为项目提供独特的设计视角。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/ikkOoOo.jpg',
     tags: ['创意设计', '视觉表达', '设计创新', '艺术指导', '品牌设计', '视觉传达']
@@ -121,9 +121,9 @@ export const designers: TeamMember[] = [
   {
     name: '张若璐',
     role: '视觉设计师&财务分析师',
-    bio: '专注于品牌视觉设计和图形创意，为项目提供专业的视觉和财务可行性解决方案。',
+    bio: '专注于品牌落地和财务分析，为项目提供专业的财务视角可行性落地设计。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张若璐.jpg',
-    tags: ['视觉设计', '品牌设计', 'Adobe Creative Suite', 'Logo设计', '平面设计', '色彩搭配']
+    tags: ['品牌设计', 'Power BI', 'Logo设计', '色彩搭配']
   },
   {
     name: '李想',
@@ -138,9 +138,9 @@ export const contributors: TeamMember[] = [
   {
     name: '卢永杰',
     role: '嵌入式&运控算法专家',
-    bio: '专注算法部署优化及硬件底层逻辑协同设计，在嵌入式和运控算法领域有深入研究。',
+    bio: '专注算法部署优化及BSP逻辑协同设计，在嵌入式和运控算法领域有深入研究。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢永杰.jpg',
-    tags: ['嵌入式开发', '运控算法', '算法部署', '硬件底层', '协同设计', '算法优化'],
+    tags: ['嵌入式开发', '运控算法', '算法部署', '协同设计', '算法优化'],
     github: 'https://github.com/luyongjie'
   },
   {
@@ -156,7 +156,7 @@ export const contributors: TeamMember[] = [
     role: '上位机测试工程师',
     bio: '专注于上位机软件质量保证，确保项目的稳定性和可靠性。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.png',
-    tags: ['软件测试', '质量保证', 'Jest', 'Cypress', '自动化测试', '性能测试'],
+    tags: ['海鸥派', 'Liunx', 'openEuler', '自动化测试', '性能测试'],
     github: 'https://github.com/cuizhengyang'
   },
   {
@@ -179,13 +179,13 @@ export const contributors: TeamMember[] = [
     role: '开源贡献者&气动自动化专家',
     bio: '积极参与开源项目，为社区贡献代码商业化文档。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴洛斌.jpg',
-    tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '传感器', '自动化系统'],
+    tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '自动化系统'],
     github: 'https://github.com/wuluobin'
   },
   {
     name: '余浩铭',
     role: 'Developer&文艺工作者',
-    bio: '机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。',
+    bio: '机器人日志运营编辑，专注于宣传和文字，让NEC的每一份理念都能被看见。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
     tags: ['文艺工作', '运营编辑', '宣传策划', '文字编辑', 'NEC理念', '内容创作'],
     github: 'https://github.com/yuhaoming'
@@ -203,7 +203,7 @@ export const contributors: TeamMember[] = [
     role: '嵌入式学习贡献者',
     bio: '嵌入式学习中，积极参与开源项目和社区建设。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卞乐凌.jpg',
-    tags: ['嵌入式学习', '开源贡献', '社区建设', 'STM32', '硬件开发', '学习分享'],
+    tags: ['嵌入式学习', '开源贡献', '社区建设', 'STM32', '硬件开发'],
     github: 'https://github.com/bianleiling'
   },
   {
