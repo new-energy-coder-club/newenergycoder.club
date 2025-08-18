@@ -301,7 +301,7 @@ export const enTranslations: Translations = {
     contact: 'Contact',
     learningMaterials: 'Learning Materials',
     joinClub: 'Join Club',
-    address: '123 Innovation Street, Tech City',
-    copyright: '© 2024 Energy Coder Club. All rights reserved.'
+    address: 'Yuheng A416 Warehouse Laboratory, Liaohai Road Campus, Changzhou Institute of Technology, No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
+    copyright: '© 2025 New Energy Coder Club. All rights reserved.'
   }
 };

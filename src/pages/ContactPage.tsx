@@ -37,7 +37,7 @@ const WechatIcon = ({ className }: { className?: string }) => (
 const socialLinks = [
   { icon: GiteeIcon, href: 'https://gitee.com/darrenpig/new_energy_coder_club', label: 'Gitee' },
   { icon: WechatIcon, href: '#', label: 'WeChat' },
-  { icon: Mail, href: 'mailto:contact@energycoderclub.org', label: 'Email' }
+  { icon: Mail, href: 'mailto:22230635@czu.cn', label: 'Email' }
 ]
 
 export function ContactPage() {
@@ -106,7 +106,7 @@ export function ContactPage() {
           <div className="container">
             <div className="grid gap-8 lg:gap-12 lg:grid-cols-2">
               {/* Contact Form */}
-              <div>
+              <div className="space-y-6 lg:space-y-8">
                 <Card className="glass-card">
                   <CardHeader>
                     <h2 className="text-2xl font-bold mb-2">{t.contact.getInTouch}</h2>
@@ -193,7 +193,34 @@ export function ContactPage() {
                     </form>
                   </CardContent>
                 </Card>
-              </div>
+
+                {/* NEC官网上线申请表 */}
+                <Card className="glass-card">
+                  <CardHeader>
+                    <h2 className="text-2xl font-bold mb-2">NEC官网上线申请</h2>
+                    <p className="text-muted-foreground">
+                      申请加入NEC官网，展示您的项目和成果。
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col items-center space-y-4">
+                      <img 
+                        src="/src/image/NEC官网上线申请表.png" 
+                        alt="NEC官网上线申请表" 
+                        className="w-full max-w-md rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                      />
+                      <a
+                        href="https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium"
+                      >
+                        立即申请
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+                </div>
 
               {/* Contact Information */}
               <div className="space-y-6 lg:space-y-8">
@@ -273,33 +300,6 @@ export function ContactPage() {
                           </a>
                         )
                       })}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* NEC官网上线申请表 */}
-                <Card className="glass-card">
-                  <CardHeader>
-                    <h2 className="text-2xl font-bold mb-2">NEC官网上线申请</h2>
-                    <p className="text-muted-foreground">
-                      申请加入NEC官网，展示您的项目和成果。
-                    </p>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-col items-center space-y-4">
-                      <img 
-                        src="/src/image/NEC官网上线申请表.png" 
-                        alt="NEC官网上线申请表" 
-                        className="w-full max-w-md rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-                      />
-                      <a
-                        href="https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium"
-                      >
-                        立即申请
-                      </a>
                     </div>
                   </CardContent>
                 </Card>
