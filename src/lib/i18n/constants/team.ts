@@ -184,8 +184,8 @@ export const contributors: TeamMember[] = [
   },
   {
     name: '余浩铭',
-    role: 'Developer&文艺工作者',
-    bio: '机器人日志运营编辑，专注于宣传和文字，让NEC的每一份理念都能被看见。',
+    role: '机器人日志运营编辑',
+    bio: '专注于宣传和文字，让NEC的每一份理念都能被看见。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
     tags: ['文艺工作', '运营编辑', '宣传策划', '文字编辑', 'NEC理念', '内容创作'],
     github: 'https://github.com/yuhaoming'
@@ -242,6 +242,14 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/杨鑫海.jpg',
     tags: ['Arduino', 'ESP32', '代码例程', '嵌入式开发', '物联网', '开发板'],
     github: 'https://github.com/yangxinhai'
+  },
+  {
+    name: '殷子豪',
+    role: 'Developer&文艺工作者',
+    bio: '运营宣传与文字编辑，负责团队内容创作和对外传播。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/殷子豪.jpg',
+    tags: ['运营宣传', '文字编辑', '内容创作', '团队传播', '文案策划', '品牌建设'],
+    github: 'https://github.com/yinzihao'
   },
 ];
 
