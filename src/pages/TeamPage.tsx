@@ -153,26 +153,7 @@ export function TeamPage() {
         <TeamSection title={t.team.contributorTitle} members={t.team.contributors} />
         <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} />
 
-        {/* Team Photo Section */}
-        <section className="mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{t.team.teamPhoto}</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
-          </div>
-          <div className="flex justify-center">
-            <div className="relative group max-w-4xl">
-              <img
-                src="/src/image/校门合照.jpg"
-                alt={t.team.teamPhoto}
-                className="w-full h-auto rounded-lg shadow-2xl group-hover:shadow-3xl transition-shadow duration-300 bg-card/90 backdrop-blur-sm border border-primary/20"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/src/image/横向项目合照.jpg'
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
-          </div>
-        </section>
+
       </div>
     </PageLayout>
   )

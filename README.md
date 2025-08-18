@@ -1,6 +1,21 @@
 # Energy Coder Club Website
 
-新能源编程俱乐部官方网站 - 一个现代化的 React + TypeScript 项目。
+[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.3.1-purple.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-cyan.svg)](https://tailwindcss.com/)
+
+**新能源编程俱乐部官方网站** - 一个旨在连接、启发和赋能新能源领域开发者和爱好者的现代化、功能丰富的平台。
+
+## ✨ 项目简介
+
+新能源编程俱乐部（Energy Coder Club）是一个致力于探索和推进软件技术在新能源领域应用的开发者社区。我们相信，通过代码和创新，可以为可持续发展的未来贡献力量。
+
+本网站作为俱乐部的官方门户，旨在：
+- **展示俱乐部形象**：分享我们的使命、愿景和团队成员。
+- **发布最新动态**：发布俱乐部活动、技术研讨会和项目更新。
+- **提供资源共享**：汇集学习资料、开发工具和行业报告。
+- **促进社区互动**：提供一个平台，让成员可以交流思想、协作项目。
 
 ## 🚀 快速启动
 
@@ -48,6 +63,15 @@ npm run build
 # 或 bun run build
 ```
 
+## 🌟 主要功能
+
+- **多语言支持**：内置国际化（i18n），支持中英文切换。
+- **主题切换**：支持明亮和暗黑模式，并能自动适应系统设置。
+- **响应式设计**：在桌面、平板和移动设备上均有良好体验。
+- **丰富的页面**：包括首页、关于我们、团队、活动、项目、资源和加入我们等。
+- **动态内容**：活动和项目可由后台动态更新。
+- **组件化开发**：基于 `shadcn/ui` 和 `Radix UI` 构建，易于维护和扩展。
+
 ## 🛠️ 技术栈
 
 - **前端框架：** React 18.2.0 + TypeScript 5.7.2
@@ -77,10 +101,25 @@ src/
 └── store/              # 状态管理
 ```
 
-## 🌐 开发信息
+## 🤝 贡献指南
 
-- **本地服务器：** http://localhost:5173
-- **构建输出：** `dist/` 目录
-- **代码检查：** ESLint + TypeScript
-- **样式：** Tailwind CSS + CSS Modules
-- **响应式设计：** 移动端优先
+我们欢迎任何形式的贡献！无论是报告错误、提交功能请求，还是直接贡献代码。
+
+1. **Fork 本仓库**
+2. **创建您的分支** (`git checkout -b feature/AmazingFeature`)
+3. **提交您的更改** (`git commit -m 'Add some AmazingFeature'`)
+4. **推送到分支** (`git push origin feature/AmazingFeature`)
+5. **提交 Pull Request**
+
+## 📜 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。
+
+## 📞 联系我们
+
+- **Gitee 仓库**: [https://gitee.com/darrenpig/new_energy_coder_club](https://gitee.com/darrenpig/new_energy_coder_club)
+- **项目负责人**: [DarrenPig](https://gitee.com/darrenpig)
+
+---
+
+*由 Energy Coder Club 驱动*

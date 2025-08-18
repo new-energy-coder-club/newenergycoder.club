@@ -28,93 +28,57 @@ interface Event {
   detailsUrl?: string
 }
 
-const mockEvents: Event[] = [
-  {
-    id: '1',
-    title: 'AI & Machine Learning Workshop',
-    description: 'Learn the fundamentals of AI and ML with hands-on projects using Python, TensorFlow, and real-world datasets.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
-    category: 'workshop',
-    date: '2024-04-15',
-    time: '14:00 - 17:00',
-    location: 'Computer Lab A',
-    participants: 25,
-    maxParticipants: 30,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/ai-workshop',
-    detailsUrl: 'https://example.com/events/ai-workshop'
-  },
-  {
-    id: '2',
-    title: 'Green Tech Hackathon 2024',
-    description: '48-hour hackathon focused on developing sustainable technology solutions for environmental challenges.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop',
-    category: 'hackathon',
-    date: '2024-05-20',
-    time: '09:00 - 18:00 (2 days)',
-    location: 'Innovation Hub',
-    participants: 45,
-    maxParticipants: 60,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/green-hackathon',
-    detailsUrl: 'https://example.com/events/green-hackathon'
-  },
-  {
-    id: '3',
-    title: 'Industry Leaders Seminar',
-    description: 'Meet and learn from successful tech entrepreneurs and industry leaders about career paths and innovation.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop',
-    category: 'seminar',
-    date: '2024-04-28',
-    time: '15:00 - 16:30',
-    location: 'Main Auditorium',
-    participants: 120,
-    maxParticipants: 150,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/industry-seminar',
-    detailsUrl: 'https://example.com/events/industry-seminar'
-  },
-  {
-    id: '4',
-    title: 'Web Development Bootcamp',
-    description: 'Intensive 3-day bootcamp covering modern web development with React, Node.js, and cloud deployment.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop',
-    category: 'workshop',
-    date: '2024-03-15',
-    time: '09:00 - 17:00',
-    location: 'Computer Lab B',
-    participants: 28,
-    maxParticipants: 30,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/web-bootcamp'
-  },
-  {
-    id: '5',
-    title: 'Coding Competition 2024',
-    description: 'Annual programming contest with algorithmic challenges and prizes for top performers.',
-    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=250&fit=crop',
-    category: 'competition',
-    date: '2024-02-28',
-    time: '10:00 - 16:00',
-    location: 'Main Hall',
-    participants: 85,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/coding-competition'
-  },
-  {
-    id: '6',
-    title: 'Tech Networking Night',
-    description: 'Casual networking event for students, alumni, and industry professionals to connect and share experiences.',
-    image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=250&fit=crop',
-    category: 'networking',
-    date: '2024-03-08',
-    time: '18:00 - 21:00',
-    location: 'Student Center',
-    participants: 65,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/networking-night'
-  }
-]
+const timeline = `
+241120 完成初期团队投票，创建群聊，进行了第一次线下成员会议
+241213 团队不断扩大，逐步进行底盘结构、战队经费、人员安排、采购环节等一系列问题的讨论 @7. 进行主持，@DarrenPig @Pony17 明确近期成果和下阶段任务，@郑绍恺 采购环节明确
+250111 离校前最后一次线下组会，完成开发板寄送
+250113 在手一块51单片机，一块RT-THREAD的RA6M3芯片 @Pony17
+250306 人形机器人底盘确定，A板和C板下单
+250311 接待江苏理工队长，系统展示Gitee仓库和实验室项目，江苏理工队长结合去年实战经验与今年技术进度提出创新解法，双方围绕技术互补、资源共享达成协作共识，共探赛事备战最优路径
+250317 416实验室线下组会，推进星闪手柄进度，采购情况汇总，讨论接下来与江理工的交流，机械组情况讨论，Gitee使用教学。冲刺接下来的RC中期检测
+250321 416实验室线下组会，讨论团队各组进程，汇报硬件采购情况，确定去江理工交流讨论的安排与人员，汇报软件代码运行进程
+250323 向机械学院老师和相关企业领导介绍了我们的产品并一同分析了发展趋势和风险，随后与机械学院彭柯尹等人详细的介绍了我们团队组成，任务与发展目标，争取机械学院的资金和人力支持、与其取得合作关系
+250323 赴江苏理工学院机器人团队交流，聚焦开源仓库设立，从机械、电控、上位机至运营多层面深入切磋
+250324 @DarrenPig @单广志 给机械组新人们配好了软件，硬件和机械的大家伙们一起赶时间深夜拧螺丝装底座
+250327 416实验室线下组会，迎接新面孔，交通NEC省赛完载，节能减排七人小组应召组成
+250330 周末线上组会，节能减排分支准备完赛，灵巧手方案调研，机械组发球机构讨论优化，与泰翔科技合作项目汇报，各组长进行进度汇报。
+250402 416实验室线下组会，就硬件问题开展讨论会，中期检测机械迎接4.10阶段性考核
+250406 进度大会，明确各组方向，分出供电负责人 @牛良旭 ，手柄负责人@崔正阳，电焊 @杨鑫海 ，运球实现
+250407 赶工中， @DarrenPig 安排详细计划，分工明确。
+250409 通宵赶工，完善小车结构，基本实现移动和发球功能。安排运营小组进行10号中期检测材料收集汇总，视频剪辑，准备材料提交。
+250410 中期检测材料提交完毕。
+250412-13 朱佩韦带队前往浙江杭州，参加了于萧山万怡酒店召开的openEuler Developer Day2025，期间拜访参观了浙江理工大学的团队@杨鑫海，收获颇丰
+250429 416线下组会进行项目进度的汇报， @单广志 提出实验室需要保持卫生整洁，物品使用后及时归位。同时提议大家在五一期间进行复习。
+250430 RC中期检测顺利通过！ @单广志 @Pony17 根据贡献点进行RC人员优化。 @DarrenPig 对各小组进行学习任务分配。
+250511 A416线下会议，人员区分优化 @Pony17 ，R1进度汇报 @彭柯尹 @郑钦文 ，R2介绍、苏州飞控项目合作介绍、项目推进思路，争取21日前完成R2机器人模型实物 @DarrenPig ，机械院会议陈述 @崔正阳
+250531 江理工、南理工交流 刘英琪带队判断【气动方案】需要独立出RC队伍，卢王淳带队判断【舵轮、气动方案、电控方案】有较大的差距，需要追赶进度；当晚完成小组会，确定【选型从采购任务中分离】领队确认【只添加Sponsor和财务同学】
+250608 南理工（南京）校区江苏队伍交流赛，进行设计交流，王加安院长带队和 @DarrenPig 主要就江理工和南理工方案进行调试与设计
+250611 A416 @吴洛斌 调通电磁阀气泵控制方案，当晚 @Pony17 组织选型组会，完成775高转选型，电调由 @许子涵涵 选择 ,电控方案C板(DJI) 由 @单广志 做选型 中较为重要的活动并替换
+`;
+
+const mockEvents: Event[] = timeline
+  .trim()
+  .split('\n')
+  .map((line, index) => {
+    const [date, ...rest] = line.trim().split(' ');
+    const title = rest.join(' ');
+    const year = "20" + date.substring(0, 2);
+    const month = date.substring(2, 4);
+    const day = date.substring(4, 6);
+
+    return {
+      id: String(index + 1),
+      title: title,
+      description: title,
+      image: `https://source.unsplash.com/random/400x250?sig=${index}`,
+      category: 'workshop' as EventCategory,
+      date: `${year}-${month}-${day}`,
+      time: 'N/A',
+      location: 'N/A',
+      participants: 0,
+      status: 'past' as EventStatus,
+    };
+  });
 
 const categoryFilters = [
   { key: 'all' as EventCategory, labelKey: 'filterAll' },
@@ -138,105 +102,30 @@ const getCategoryColor = (category: EventCategory) => {
 }
 
 export function EventsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<EventCategory>('all')
-  const [activeTab, setActiveTab] = useState<EventStatus>('upcoming')
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
-  const [isFilterExpanded, setIsFilterExpanded] = useState(true)
   const t = useTranslation()
+  const events = mockEvents.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const filterEvents = (status: EventStatus) => {
-    const statusFiltered = mockEvents.filter(event => event.status === status)
-    return selectedCategory === 'all' 
-      ? statusFiltered 
-      : statusFiltered.filter(event => event.category === selectedCategory)
-  }
-
-  const upcomingEvents = filterEvents('upcoming')
-  const pastEvents = filterEvents('past')
-
-  const EventCard = ({ event }: { event: Event }) => (
-    <Card className="glass-card hover-lift glow-hover group overflow-hidden">
-      <div className={`${selectedRatio} overflow-hidden relative`}>
-        <img 
-          src={event.image}
-          alt={event.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="absolute top-4 left-4">
-          <Badge className={`${getCategoryColor(event.category)} border`}>
-            {t.events[`filter${event.category.charAt(0).toUpperCase() + event.category.slice(1)}` as keyof typeof t.events] || event.category}
-          </Badge>
-        </div>
-        {event.status === 'upcoming' && (
-          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex gap-2">
-              {event.registrationUrl && (
-                <FeishuForm 
-                  eventId={event.id}
-                  eventTitle={event.title}
-                  className="bg-primary/90 backdrop-blur-sm hover:bg-primary text-sm h-8 px-3"
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  {t.events.registerNow}
-                </FeishuForm>
-              )}
-              {event.detailsUrl && (
-                <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
-                  {t.events.viewDetails}
-                </Button>
-              )}
-            </div>
-          </div>
-        )}
+  const TimelineEvent = ({ event, isLast }: { event: Event, isLast: boolean }) => (
+    <div className="relative pl-6 sm:pl-10">
+      {!isLast && <div className="absolute left-[9px] sm:left-[11px] top-4 h-full w-0.5 bg-border" />}
+      <div className="absolute left-0 top-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary ring-4 ring-background">
+        <Calendar className="h-2.5 w-2.5 sm:h-3 sm:h-3 text-primary-foreground" />
       </div>
-      
-      <CardHeader className="pb-3">
-        <h3 className="font-bold text-xl mb-2">{event.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {event.description}
-        </p>
-      </CardHeader>
-      
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
-          <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-primary" />
-            <div>
-              <div className="font-medium">{new Date(event.date).toLocaleDateString()}</div>
-              <div className="text-muted-foreground text-xs">{event.time}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-primary" />
-            <span className="font-medium">{event.location}</span>
-          </div>
+      <div className="ml-4">
+        <div className="font-bold text-base sm:text-lg">
+          {new Date(event.date).toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
         </div>
-        
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-3 border-t">
-          <div className="flex items-center gap-2 text-sm">
-            <Users className="h-4 w-4 text-primary" />
-            <span>
-              {event.participants} {t.events.participants}
-              {event.maxParticipants && ` / ${event.maxParticipants}`}
-            </span>
-          </div>
-          {event.status === 'past' && event.detailsUrl && (
-            <Button size="sm" variant="outline">
-              {t.events.viewDetails}
-            </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
-  )
+        <p className="mt-1 text-muted-foreground text-sm sm:text-base">{event.title}</p>
+      </div>
+    </div>
+  );
 
   return (
-    <PageLayout 
-      showAspectRatio={true}
-      aspectRatio={selectedRatio}
-      onAspectRatioChange={setSelectedRatio}
-    >
+    <PageLayout>
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -252,105 +141,14 @@ export function EventsPage() {
           </div>
         </section>
 
-        {/* Filter Section */}
-        <section className="py-4 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
-          <div className="container">
-            <div className="flex flex-col gap-4">
-              {/* Filter Toggle Header */}
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-foreground">
-                  {t.events.filterTitle}
-                </h3>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {isFilterExpanded ? t.events.collapseFilters : t.events.expandFilters}
-                  {isFilterExpanded ? (
-                    <ChevronUp className="h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
-              
-              {/* Collapsible Filter Content */}
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isFilterExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-              }`}>
-                <div className="flex flex-col gap-6 pb-2">
-                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                    {categoryFilters.map((filter) => (
-                      <Button
-                        key={filter.key}
-                        variant={selectedCategory === filter.key ? 'default' : 'outline'}
-                        onClick={() => setSelectedCategory(filter.key)}
-                        className="hover-lift transition-all duration-200 text-xs sm:text-sm px-3 py-2"
-                        size="sm"
-                      >
-                        {t.events[filter.labelKey]}
-                      </Button>
-                    ))}
-                  </div>
-                  
-
-                </div>
-              </div>
+        {/* Timeline Section */}
+        <section className="py-16 sm:py-24">
+          <div className="container max-w-3xl">
+            <div className="space-y-8">
+              {events.map((event, index) => (
+                <TimelineEvent key={event.id} event={event} isLast={index === events.length - 1} />
+              ))}
             </div>
-          </div>
-        </section>
-
-        {/* Events Tabs */}
-        <section className="py-16">
-          <div className="container">
-            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as EventStatus)} className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-                <TabsTrigger value="upcoming" className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  {t.events.upcoming}
-                </TabsTrigger>
-                <TabsTrigger value="past" className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  {t.events.past}
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="upcoming" className="mt-0">
-                {upcomingEvents.length > 0 ? (
-                  <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {upcomingEvents.map((event) => (
-                      <EventCard key={event.id} event={event} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-16">
-                    <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground text-lg">
-                      {t.events.noUpcoming}
-                    </p>
-                  </div>
-                )}
-              </TabsContent>
-              
-              <TabsContent value="past" className="mt-0">
-                {pastEvents.length > 0 ? (
-                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {pastEvents.map((event) => (
-                      <EventCard key={event.id} event={event} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-16">
-                    <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground text-lg">
-                      {t.events.noPast}
-                    </p>
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
           </div>
         </section>
       </div>

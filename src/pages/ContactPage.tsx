@@ -9,6 +9,8 @@ import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import NECApplicationForm from '@/image/NEC官网上线申请表.png'
+import TeamPhoto1 from '@/image/校门合照.jpg'
+import TeamPhoto2 from '@/image/横向项目合照.jpg'
 
 interface ContactFormData {
   name: string
@@ -317,6 +319,24 @@ export function ContactPage() {
                     </div>
                   </div>
                 </Card>
+
+                {/* Team Photo Section */}
+                <section className="mb-16">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{t.team.teamPhoto}</h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+                  </div>
+                  <div className="flex justify-center">
+                    <div className="relative group max-w-3xl">
+                      <img
+                        src={TeamPhoto2}
+                        alt={t.team.teamPhoto}
+                        className="w-full h-auto rounded-lg shadow-2xl group-hover:shadow-3xl transition-shadow duration-300 bg-card/90 backdrop-blur-sm border border-primary/20"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
           </div>

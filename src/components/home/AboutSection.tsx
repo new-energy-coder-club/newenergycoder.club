@@ -38,14 +38,17 @@ export function AboutSection() {
               </Button>
             </div>
           </div>
+          <div className="flex items-center justify-center">
+            <img src="https://gitee.com/jumuwa/new_energy_coder_club/raw/master/Nearlink_handle.jpg" alt="Team Photo" className="rounded-lg shadow-lg" />
+          </div>
           
 
         </div>
         
         {/* Project Origin Story */}
-        <div className="mt-24">
+        <div className="mt-16">
           <Card className="glass-card hover-lift">
-            <CardHeader>
+            <CardHeader className="pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/10">
                   <BookOpen className="h-6 w-6 text-primary" />
@@ -56,7 +59,7 @@ export function AboutSection() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-0">
               <div className="prose prose-sm max-w-none text-muted-foreground">
                 <p className="leading-relaxed whitespace-pre-line">
                   {t.about.projectOrigin.content}
@@ -67,9 +70,9 @@ export function AboutSection() {
         </div>
 
         {/* Phase 2 Development */}
-        <div className="mt-16">
+        <div className="mt-12">
           <Card className="glass-card hover-lift">
-            <CardHeader>
+            <CardHeader className="pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-accent/10">
                   <Clock className="h-6 w-6 text-accent" />
@@ -80,7 +83,7 @@ export function AboutSection() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-0">
               <div className="prose prose-sm max-w-none text-muted-foreground">
                 <p className="leading-relaxed">
                   {t.about.phase2.content}
@@ -91,10 +94,10 @@ export function AboutSection() {
         </div>
 
         {/* Contributing and License Section */}
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {/* Contributing Guidelines */}
           <Card className="glass-card hover-lift">
-            <CardHeader>
+            <CardHeader className="pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-primary/10">
                   <GitBranch className="h-6 w-6 text-primary" />
@@ -105,7 +108,7 @@ export function AboutSection() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 pt-0">
               <div>
                 <h4 className="font-semibold mb-2 flex items-center gap-2">
                   <Code className="h-4 w-4" />
@@ -131,7 +134,7 @@ export function AboutSection() {
           
           {/* License Information */}
           <Card className="glass-card hover-lift">
-            <CardHeader>
+            <CardHeader className="pb-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-accent/10">
                   <Scale className="h-6 w-6 text-accent" />
@@ -142,7 +145,7 @@ export function AboutSection() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 pt-0">
               <p className="text-sm text-muted-foreground">{t.about.license.openSource}</p>
               
               <div className="grid gap-4 sm:grid-cols-3">
