@@ -155,7 +155,7 @@ export const designers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg',
     tags: ['UX设计', '用户体验', '设计思维', 'Figma', '用户旅程', '信息架构']
   }
-
+  
 ];
 
 export const contributors: TeamMember[] = [
@@ -195,7 +195,7 @@ export const contributors: TeamMember[] = [
     name: '许子涵',
     role: '产品经理',
     bio: '负责产品规划和需求分析，推动项目向正确方向发展。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/许子涵 2.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/许子涵.png',
     tags: ['产品规划', '需求分析', '用户研究', 'Axure', '原型设计', '数据分析'],
     github: 'https://github.com/xuzihan'
   },
@@ -219,7 +219,7 @@ export const contributors: TeamMember[] = [
     name: '王彦君',
     role: '工业/产品设计师',
     bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君2.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/王彦君.jpg',
     tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
   },
   {

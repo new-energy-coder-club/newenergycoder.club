@@ -104,6 +104,7 @@ export interface Translations {
     contributorTitle: string;
     sponsorTitle: string;
     viewFullTeam: string;
+    teamPhoto: string;
     maintainers: TeamMember[];
     developers: TeamMember[];
     designers: TeamMember[];

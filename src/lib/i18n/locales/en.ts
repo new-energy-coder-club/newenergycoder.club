@@ -105,6 +105,7 @@ export const enTranslations: Translations = {
     contributorTitle: 'Contributor',
     sponsorTitle: 'Sponsor',
     viewFullTeam: 'View Full Team',
+    teamPhoto: 'Team Photo',
     maintainers,
     developers,
     designers,

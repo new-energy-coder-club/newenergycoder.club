@@ -105,6 +105,7 @@ export const zhTranslations: Translations = {
     contributorTitle: '贡献者',
     sponsorTitle: '赞助商',
     viewFullTeam: '查看完整团队',
+    teamPhoto: '团队合照',
     maintainers,
     developers,
     designers,
@@ -301,6 +302,6 @@ export const zhTranslations: Translations = {
     learningMaterials: '学习资料',
     joinClub: '加入俱乐部',
     address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
-    copyright: '© 2024 新能源编程俱乐部。保留所有权利。'
+    copyright: '© 2025 新能源编程俱乐部。保留所有权利。'
   }
 };
