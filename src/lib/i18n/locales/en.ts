@@ -31,7 +31,7 @@ export const enTranslations: Translations = {
   },
   about: {
     title: 'About Our Club',
-    paragraph1: 'The New Energy Coder Club was founded in 2023 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy.',
+    paragraph1: 'The New Energy Coder Club was founded in 2024 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy.',
     paragraph2: 'Our mission is to build a community that develops open-source software solutions for renewable energy applications, smart grid technologies, energy efficiency, and sustainability.',
     paragraph3: 'Through workshops, hackathons, collaborative projects, and partnerships with energy companies, we aim to create a platform where technology meets sustainability for a better future.',
     learnMore: 'Learn More About Us',
@@ -185,7 +185,7 @@ export const enTranslations: Translations = {
     date: 'Date'
   },
   events: {
-    title: 'Events & Workshops',
+    title: 'Future / 未来',
     description: 'Join our upcoming events and workshops on sustainable technology',
     filterTitle: 'Filter Events',
     expandFilters: 'Expand Filters',

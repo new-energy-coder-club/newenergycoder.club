@@ -31,9 +31,9 @@ export const zhTranslations: Translations = {
   },
   about: {
     title: '关于我们的俱乐部',
-    paragraph1: '新能源编程俱乐部由一群充满热情的开发者和工程师于2023年创立，他们希望将编码技能与对可持续发展和可再生能源的承诺相结合。',
-    paragraph2: '我们的使命是建立一个社区，为可再生能源应用、智能电网技术、能源效率和可持续发展开发开源软件解决方案。',
-    paragraph3: '通过工作坊、黑客马拉松、合作项目以及与能源公司的合作，我们旨在创建一个技术与可持续发展相结合的平台，为更美好的未来而努力。',
+    paragraph1: '新能源编程俱乐部由一群充满热情的开发者和工程师于2023年创立，他们希望将编码的热情与对可持续发展和可再生能源的承诺相结合。',
+    paragraph2: '我们的使命是建立一个社区，为可再生能源应用、智能电网技术、能源效率和可持续性开发开源软件解决方案。',
+    paragraph3: '通过工作坊、黑客马拉松、合作项目以及与能源公司的合作，我们旨在创建一个技术与可持续发展相结合的平台，共创美好未来。',
     learnMore: '了解更多关于我们',
     projectOrigin: {
       title: '项目起源故事',
@@ -185,7 +185,7 @@ export const zhTranslations: Translations = {
     date: '日期'
   },
   events: {
-    title: '活动与工作坊',
+    title: 'Future / 未来',
     description: '参加我们即将举行的可持续技术活动和研讨会',
     filterTitle: '筛选活动',
     expandFilters: '展开筛选',
