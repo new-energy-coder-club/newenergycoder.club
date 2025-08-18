@@ -43,7 +43,7 @@ export function HeroSection() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="hover-lift border-primary/20 hover:border-primary/40" asChild>
-              <a href="https://github.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer">
+              <a href="https://gitee.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer">
                 {t.hero.viewGithub}
               </a>
             </Button>

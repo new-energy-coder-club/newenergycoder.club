@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { useTranslation } from '@/contexts/LanguageContext'
-import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
+
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 
@@ -44,7 +45,6 @@ const getTeamGroups = (t: any): TeamGroup[] => [
 export function TeamSection() {
   const t = useTranslation();
   const teamGroups = getTeamGroups(t);
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]');
   
   return (
     <section className="py-24 bg-gradient-to-br from-accent/10 to-secondary/20 relative overflow-hidden">
@@ -58,14 +58,7 @@ export function TeamSection() {
             {t.team.description}
           </p>
           
-          {/* Aspect Ratio Selector */}
-          <div className="mt-8 flex justify-center">
-            <AspectRatioSelector 
-              value={selectedRatio} 
-              onValueChange={setSelectedRatio}
-              className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
-            />
-          </div>
+
         </div>
         
         <div className="space-y-16">
@@ -76,7 +69,7 @@ export function TeamSection() {
                 <div className="flex gap-6 min-w-max px-4">
                   {group.members.map((member, memberIndex) => (
                     <Card key={memberIndex} className="glass-card hover-lift glow-hover group overflow-hidden flex-shrink-0 w-80">
-                      <div className={`${selectedRatio} overflow-hidden relative`}>
+                      <div className={group.title.includes('Sponsor') || group.title.includes('赞助') ? 'h-[88px] overflow-hidden relative' : 'aspect-[3/4] overflow-hidden relative'}>
                         <img 
                           src={member.image}
                           alt={member.name}
@@ -92,7 +85,7 @@ export function TeamSection() {
                         <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{member.bio}</p>
                         <div className="flex gap-3">
                           <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200 hover-lift">
-                            <Github className="h-4 w-4" />
+                            <GiteeIcon className="h-4 w-4" />
                           </a>
                           <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200 hover-lift">
                             <Linkedin className="h-4 w-4" />

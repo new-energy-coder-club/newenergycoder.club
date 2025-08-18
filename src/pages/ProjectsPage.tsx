@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ExternalLink, Github, Calendar, User, ChevronDown, ChevronUp } from 'lucide-react'
+import { ExternalLink, Calendar, User, ChevronDown, ChevronUp } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
-import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
 type ProjectCategory = 'all' | 'web' | 'mobile' | 'ai' | 'iot' | 'embedded' | 'robotics' | 'research' | 'other'
 
@@ -147,7 +148,11 @@ export function ProjectsPage() {
     : mockProjects.filter(project => project.category === selectedCategory)
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
       {/* Hero Section */}
       <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -208,14 +213,7 @@ export function ProjectsPage() {
                   ))}
                 </div>
                 
-                {/* Aspect Ratio Selector */}
-                <div className="flex justify-center">
-                  <AspectRatioSelector 
-                    value={selectedRatio} 
-                    onValueChange={setSelectedRatio}
-                    className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
-                  />
-                </div>
+
               </div>
             </div>
           </div>
@@ -245,7 +243,7 @@ export function ProjectsPage() {
                       )}
                       {project.githubUrl && (
                         <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30" onClick={() => window.open(project.githubUrl, '_blank')}>
-                          <Github className="h-4 w-4 mr-2" />
+                          <GiteeIcon className="h-4 w-4 mr-2" />
                           {t.projects.viewCode}
                         </Button>
                       )}

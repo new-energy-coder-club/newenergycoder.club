@@ -33,6 +33,13 @@ export const maintainers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg',
     tags: ['电控系统', '运行时', 'ROBOCON', '嵌入式', '系统稳定性'],
     github: 'https://github.com/zhangwangwang'
+  },
+  {
+    name: '闻志伟',
+    role: 'Bronze Sponsor',
+    bio: '致力于推动可持续技术发展的个人赞助者。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.png',
+    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   }
 ];
 
@@ -240,12 +247,5 @@ export const sponsors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/立创开源广场.png',
     tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
     github: 'https://oshwhub.com/explore'
-  },
-  {
-    name: '闻志伟',
-    role: 'Bronze Sponsor',
-    bio: '致力于推动可持续技术发展的个人赞助者。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/闻志伟.png',
-    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   }
 ];

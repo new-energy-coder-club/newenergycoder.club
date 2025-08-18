@@ -20,11 +20,11 @@ import {
   Trophy,
   BookOpen,
   MessageCircle,
-  Github,
   ExternalLink,
   Activity,
   Zap
 } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 
 function DashboardPage() {
   const { user, logout } = useAuthStore()
@@ -237,8 +237,8 @@ function DashboardPage() {
             </CardContent>
             <CardFooter>
               <Button className="w-full" size="sm" asChild>
-                <a href="https://github.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <Github className="h-4 w-4" />
+                <a href="https://gitee.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <GiteeIcon className="h-4 w-4" />
                   {t.dashboard.myProjects.viewGithub}
                   <ExternalLink className="h-3 w-3" />
                 </a>

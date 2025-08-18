@@ -23,11 +23,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     
     // Try to detect browser language
     const browserLang = navigator.language.toLowerCase();
-    if (browserLang.startsWith('zh')) {
-      return 'zh';
+    if (browserLang.startsWith('en')) {
+      return 'en';
     }
     
-    return defaultLanguage;
+    // Default to Chinese
+    return 'zh';
   });
 
   useEffect(() => {

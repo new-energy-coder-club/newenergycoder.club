@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { PageLayout } from '@/components/layout/PageLayout'
-import { Github, Linkedin, Mail, ExternalLink, Download } from 'lucide-react'
+import { Linkedin, Mail, ExternalLink, Download } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { useTranslation } from '@/contexts/LanguageContext'
 
 type AspectRatio = 'aspect-square' | 'aspect-video' | 'aspect-[4/3]' | 'aspect-[3/4]' | 'aspect-[16/10]' | 'aspect-[21/9]'
@@ -130,7 +131,7 @@ export function DisplayRatioPage() {
               {item.type === 'team' ? (
                 <>
                   <Button size="sm" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
-                    <Github className="h-4 w-4" />
+                    <GiteeIcon className="h-4 w-4" />
                   </Button>
                   <Button size="sm" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
                     <Linkedin className="h-4 w-4" />
@@ -170,7 +171,11 @@ export function DisplayRatioPage() {
   }
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -183,66 +188,6 @@ export function DisplayRatioPage() {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
               调整卡片显示比例，查看不同比例下的视觉效果
             </p>
-          </div>
-        </section>
-
-        {/* Control Section */}
-        <section className="py-8 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
-          <div className="container">
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">显示比例:</label>
-                <Select value={selectedRatio} onValueChange={(value: AspectRatio) => setSelectedRatio(value)}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {aspectRatioOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">主题模式:</label>
-                <Select value={document.documentElement.classList.contains('dark') ? 'dark' : 'light'} onValueChange={(value) => {
-                  if (value === 'dark') {
-                    document.documentElement.classList.add('dark')
-                    localStorage.setItem('theme', 'dark')
-                  } else {
-                    document.documentElement.classList.remove('dark')
-                    localStorage.setItem('theme', 'light')
-                  }
-                }}>
-                  <SelectTrigger className="w-32">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">亮色</SelectItem>
-                    <SelectItem value="dark">暗色</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">内容类型:</label>
-                <Select value={selectedType} onValueChange={setSelectedType}>
-                  <SelectTrigger className="w-32">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">全部</SelectItem>
-                    <SelectItem value="team">团队</SelectItem>
-                    <SelectItem value="project">项目</SelectItem>
-                    <SelectItem value="resource">资源</SelectItem>
-                    <SelectItem value="event">活动</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
           </div>
         </section>
 

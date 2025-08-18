@@ -3,7 +3,8 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
@@ -18,13 +19,14 @@ interface TeamMemberCardProps {
     linkedin?: string
     email?: string
   }
+  isSponsors?: boolean
 }
 
-function TeamMemberCard({ member }: TeamMemberCardProps) {
+function TeamMemberCard({ member, isSponsors }: TeamMemberCardProps) {
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg">
       <div className="relative overflow-hidden">
-        <Avatar className="w-full h-48 rounded-none">
+        <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-48 rounded-none"}>
           <AvatarImage 
             src={member.image} 
             alt={member.name}
@@ -71,7 +73,7 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
           {member.github && (
             <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
               <a href={member.github} target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4" />
+                <GiteeIcon className="h-4 w-4" />
               </a>
             </Button>
           )}
@@ -96,6 +98,7 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
 }
 
 function TeamSection({ title, members }: { title: string; members: any[] }) {
+  const isSponsors = title.includes('Sponsor') || title.includes('赞助');
   return (
     <section className="mb-16">
       <div className="text-center mb-8">
@@ -104,7 +107,7 @@ function TeamSection({ title, members }: { title: string; members: any[] }) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {members.map((member, index) => (
-          <TeamMemberCard key={index} member={member} />
+          <TeamMemberCard key={index} member={member} isSponsors={isSponsors} />
         ))}
       </div>
     </section>

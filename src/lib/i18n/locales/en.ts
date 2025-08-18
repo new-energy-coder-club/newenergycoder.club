@@ -21,7 +21,7 @@ export const enTranslations: Translations = {
     titleHighlight: 'Sustainable',
     description: 'Join a community of developers passionate about creating innovative software solutions for renewable energy, sustainability, and a greener tomorrow.',
     joinCommunity: 'Join Our Community',
-    viewGithub: 'View on GitHub',
+    viewGithub: 'View on Gitee',
     codingWorkshops: 'Coding Workshops',
     codingWorkshopsDesc: 'Weekly sessions to learn sustainable tech development',
     innovationProjects: 'Innovation Projects',
@@ -269,7 +269,7 @@ export const enTranslations: Translations = {
       title: 'My Projects',
       description: 'Manage and track your contributions to our open-source projects',
       noProjects: 'No projects yet',
-      viewGithub: 'View on GitHub'
+      viewGithub: 'View on Gitee'
     },
     upcomingEvents: {
       title: 'Upcoming Events',

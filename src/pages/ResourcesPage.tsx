@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { ExternalLink, Download, Search, Star, BookOpen, Code, Wrench, GraduationCap, FileText, ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
-import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
 type ResourceCategory = 'all' | 'tutorials' | 'tools' | 'books' | 'courses' | 'documentation'
 type ResourceDifficulty = 'beginner' | 'intermediate' | 'advanced'
@@ -195,7 +195,11 @@ export function ResourcesPage() {
   }
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -269,14 +273,7 @@ export function ResourcesPage() {
                     })}
                   </div>
                   
-                  {/* Aspect Ratio Selector */}
-                  <div className="flex justify-center">
-                    <AspectRatioSelector 
-                      value={selectedRatio} 
-                      onValueChange={setSelectedRatio}
-                      className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
-                    />
-                  </div>
+
                 </div>
               </div>
             </div>

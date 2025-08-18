@@ -2,7 +2,8 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, Star, Users } from 'lucide-react'
+import { ExternalLink, Star, Users } from 'lucide-react'
+import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Link } from 'react-router-dom'
 
 interface Project {
@@ -88,7 +89,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.giteeUrl && (
             <Button variant="outline" size="sm" asChild>
               <a href={project.giteeUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4 mr-1" />
+                <GiteeIcon className="h-4 w-4 mr-1" />
                 Gitee
               </a>
             </Button>
@@ -96,7 +97,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.githubUrl && (
             <Button variant="outline" size="sm" asChild>
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4 mr-1" />
+                <GiteeIcon className="h-4 w-4 mr-1" />
                 GitHub
               </a>
             </Button>
@@ -206,7 +207,7 @@ export function ProjectsSection() {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <Github className="h-5 w-5 mr-2" />
+                <GiteeIcon className="h-5 w-5 mr-2" />
                 访问完整仓库
               </a>
             </Button>

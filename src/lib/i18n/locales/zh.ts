@@ -21,7 +21,7 @@ export const zhTranslations: Translations = {
     titleHighlight: '可持续',
     description: '加入我们，与一群热衷于为可再生能源、可持续发展和绿色明天创造创新软件解决方案的开发者们共同努力。',
     joinCommunity: '加入我们的社区',
-    viewGithub: '查看GitHub',
+    viewGithub: '查看Gitee',
     codingWorkshops: '编程工作坊',
     codingWorkshopsDesc: '每周学习可持续技术开发的课程',
     innovationProjects: '创新项目',
@@ -269,7 +269,7 @@ export const zhTranslations: Translations = {
       title: '我的项目',
       description: '管理和跟踪您对我们开源项目的贡献',
       noProjects: '暂无项目',
-      viewGithub: '查看GitHub'
+      viewGithub: '查看Gitee'
     },
     upcomingEvents: {
       title: '即将开始的活动',

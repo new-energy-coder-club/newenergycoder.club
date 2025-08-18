@@ -7,7 +7,7 @@ import { Calendar, MapPin, Users, Clock, ExternalLink, ChevronDown, ChevronUp } 
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { FeishuForm } from '@/components/forms/FeishuForm'
-import { AspectRatioSelector, type AspectRatio } from '@/components/ui/aspect-ratio-selector'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
 type EventCategory = 'all' | 'workshop' | 'hackathon' | 'seminar' | 'competition' | 'networking'
 type EventStatus = 'upcoming' | 'past'
@@ -232,7 +232,11 @@ export function EventsPage() {
   )
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -291,14 +295,7 @@ export function EventsPage() {
                     ))}
                   </div>
                   
-                  {/* Aspect Ratio Selector */}
-                  <div className="flex justify-center">
-                    <AspectRatioSelector 
-                      value={selectedRatio} 
-                      onValueChange={setSelectedRatio}
-                      className="bg-background/50 backdrop-blur-sm rounded-lg p-4 border border-primary/10"
-                    />
-                  </div>
+
                 </div>
               </div>
             </div>
