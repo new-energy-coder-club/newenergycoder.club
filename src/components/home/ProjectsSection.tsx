@@ -140,7 +140,7 @@ export function ProjectsSection() {
       participants: 8
     },
     {
-      title: 'AI能源监测系统',
+      title: '5轴流体工作站',
       description: '基于人工智能的能源监测和管理系统，实现智能化能源优化。',
       category: '🧠 AI项目',
       status: 'development',

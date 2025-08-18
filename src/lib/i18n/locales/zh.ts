@@ -255,9 +255,9 @@ export const zhTranslations: Translations = {
       messageError: '发送消息失败。请重试。'
     },
     info: {
-      address: '创新街123号，科技城市，TC 12345',
-      phone: '+86 (555) 123-4567',
-      email: 'hello@energycoder.club',
+      address: '新北区辽河路666号，东一门，玉衡楼 A416',
+      phone: '+86 158 9600 0818',
+      email: '22230635@czu.cn',
       hours: '周一至周五：上午9点 - 下午6点'
     }
   },
@@ -300,7 +300,7 @@ export const zhTranslations: Translations = {
     resources: '资源',
     contact: '联系',
     learningMaterials: '学习资料',
-    joinClub: '加入俱乐部',
+    joinClub: '加入NEC仓库实验室',
     address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
     copyright: '© 2025 新能源编程俱乐部。保留所有权利。'
   }

@@ -86,14 +86,6 @@ export const developers: TeamMember[] = [
     github: 'https://github.com/zhengqinwen'
   },
   {
-    name: '余浩铭',
-    role: 'Developer&文艺工作者',
-    bio: '机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
-    tags: ['文艺工作', '运营编辑', '宣传策划', '文字编辑', 'NEC理念', '内容创作'],
-    github: 'https://github.com/yuhaoming'
-  },
-  {
     name: '杨力滔',
     role: '星闪手柄开发工程师',
     bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
@@ -133,14 +125,6 @@ export const designers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张若璐.jpg',
     tags: ['视觉设计', '品牌设计', 'Adobe Creative Suite', 'Logo设计', '平面设计', '色彩搭配']
   },
-
-  {
-    name: '李一楠',
-    role: '运营组长',
-    bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
-    tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
-  },
   {
     name: '李想',
     role: 'UX设计师',
@@ -148,7 +132,6 @@ export const designers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg',
     tags: ['UX设计', '用户体验', '设计思维', 'Figma', '用户旅程', '信息架构']
   }
-  
 ];
 
 export const contributors: TeamMember[] = [
@@ -200,6 +183,14 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/wuluobin'
   },
   {
+    name: '余浩铭',
+    role: 'Developer&文艺工作者',
+    bio: '机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
+    tags: ['文艺工作', '运营编辑', '宣传策划', '文字编辑', 'NEC理念', '内容创作'],
+    github: 'https://github.com/yuhaoming'
+  },
+  {
     name: '许子涵',
     role: '产品经理',
     bio: '负责产品规划和需求分析，推动项目向正确方向发展。',
@@ -228,7 +219,14 @@ export const contributors: TeamMember[] = [
     bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg',
     tags: ['财务管理', '预算控制', '风险防控', '数据分析', '流程优化', '成本管控']
-  }
+  },
+  {
+    name: '李一楠',
+    role: '运营组长',
+    bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
+    tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
+  },
 ];
 
 export const sponsors: TeamMember[] = [
