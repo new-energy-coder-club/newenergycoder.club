@@ -8,7 +8,7 @@ export const maintainers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpeg',
     tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
     github: 'https://github.com/Darrenpig',
-    email: 'darrenpig@example.com'
+    email: '22230635@czu.cn'
   },
   {
     name: '殷统创',
@@ -47,10 +47,10 @@ export const developers: TeamMember[] = [
   },
   {
     name: '单广志',
-    role: '后端开发工程师',
-    bio: '专注于服务端架构设计和API开发，为项目提供稳定的后端支持。',
+    role: '嵌入式开发工程师',
+    bio: '机器人行业电控驱动开发以及硬件电路设计。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.png',
-    tags: ['Node.js', 'Python', 'API设计', '数据库', '微服务', 'Docker'],
+    tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
     github: 'https://github.com/shanguangzhi'
   },
   {
@@ -84,6 +84,30 @@ export const developers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg',
     tags: ['React Native', 'Flutter', 'iOS', 'Android', '移动端优化', '跨平台开发'],
     github: 'https://github.com/zhengqinwen'
+  },
+  {
+    name: '余浩铭',
+    role: '软件开发工程师',
+    bio: '专注于软件开发和技术创新，致力于构建高质量的应用程序。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
+    tags: ['软件开发', '技术创新', 'Java', 'Spring', '后端开发', '系统设计'],
+    github: 'https://github.com/yuhaoming'
+  },
+  {
+    name: '杨力滔',
+    role: '技术研发工程师',
+    bio: '致力于技术研发和项目实施，推动创新技术在实际项目中的应用。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG',
+    tags: ['技术研发', '项目实施', 'Python', '数据分析', '机器学习', '算法优化'],
+    github: 'https://github.com/yanglitao'
+  },
+  {
+    name: '彭柯颖',
+    role: '新成员开发者',
+    bio: '新加入的开发团队成员，积极参与项目开发，学习新技术。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg',
+    tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
+    github: 'https://github.com/pengkeying'
   }
 ];
 
@@ -104,17 +128,17 @@ export const designers: TeamMember[] = [
   },
   {
     name: '徐海婷',
-    role: 'BI交互设计师',
-    bio: '专注于财务流程优化和数据分析，通过预算管理和风险控制推动技术项目健康发展。',
+    role: '财务管理专员',
+    bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg',
-    tags: ['交互设计', '用户研究', 'Axure', 'Principle', '动效设计', '可用性测试']
+    tags: ['财务管理', '预算控制', '风险防控', '数据分析', '流程优化', '成本管控']
   },
   {
     name: '李一楠',
-    role: '产品设计师',
-    bio: '负责产品设计和用户体验优化，推动设计与技术的完美结合。',
+    role: '运营组长',
+    bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
-    tags: ['产品设计', '用户体验', 'Figma', '需求分析', '设计系统', '产品策略']
+    tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
   },
   {
     name: '李想',
@@ -127,7 +151,7 @@ export const designers: TeamMember[] = [
     name: '王彦君',
     role: '工业/产品设计师',
     bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君2.jpg',
     tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
   }
 ];
@@ -180,6 +204,14 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴罗斌.jpeg',
     tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '传感器', '自动化系统'],
     github: 'https://github.com/wuluobin'
+  },
+  {
+    name: '卞乐凌',
+    role: '新成员贡献者',
+    bio: '新加入的贡献者团队成员，热衷于开源项目和社区建设。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卞乐凌.jpg',
+    tags: ['开源贡献', '社区建设', '文档编写', '项目维护', '团队协作', '学习分享'],
+    github: 'https://github.com/bianleiling'
   }
 ];
 

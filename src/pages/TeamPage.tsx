@@ -23,9 +23,9 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <CardHeader className="text-center">
-        <Avatar className="w-24 h-24 mx-auto mb-4 ring-4 ring-primary/10 group-hover:ring-primary/20 transition-all duration-300">
-          <AvatarImage src={member.image} alt={member.name} />
-          <AvatarFallback className="text-lg font-semibold">
+        <Avatar className="w-24 h-32 mx-auto mb-4 ring-4 ring-primary/10 group-hover:ring-primary/20 transition-all duration-300 rounded-lg">
+          <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+          <AvatarFallback className="text-lg font-semibold rounded-lg">
             {member.name.split(' ').map(n => n[0]).join('').toUpperCase()}
           </AvatarFallback>
         </Avatar>
@@ -41,15 +41,16 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
           {member.bio}
         </p>
         
-        {/* 技术栈标签 */}
+        {/* 技术栈标签 - 优化版本 */}
         {member.tags && member.tags.length > 0 && (
           <div className="mb-4">
-            <div className="flex flex-wrap gap-1 justify-center">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-2 text-center">技能标签</h4>
+            <div className="flex flex-wrap gap-2 justify-center">
               {member.tags.map((tag, index) => (
                 <Badge 
                   key={index} 
                   variant="outline" 
-                  className="text-xs px-2 py-1 bg-primary/5 hover:bg-primary/10 transition-colors"
+                  className="text-xs px-3 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 border-primary/30 hover:border-primary/50 hover:scale-105 hover:shadow-lg backdrop-blur-sm bg-white/20 font-medium cursor-default shadow-sm hover:shadow-md"
                 >
                   {tag}
                 </Badge>

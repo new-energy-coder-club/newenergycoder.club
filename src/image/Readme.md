@@ -40,7 +40,9 @@ src/image/
 | `李硕.png` | 李硕 | 系统架构师 | 专注于系统架构设计和技术选型，为项目提供技术指导。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/李硕.png` |
 | `牛良旭.png` | 牛良旭 | DevOps工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.png` |
 | `郑钦文.jpg` | 郑钦文 | 移动端开发工程师 | 专注于移动应用开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg` |
-| `彭柯颖.jpg` | 彭柯颖 | 新成员 | 新加入的开发团队成员 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
+| `彭柯颖.jpg` | 彭柯颖 | 新成员开发者 | 新加入的开发团队成员，积极参与项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
+| `余浩铭.jpg` | 余浩铭 | 软件开发工程师 | 专注于软件开发和技术创新，致力于构建高质量的应用程序。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg` |
+| `杨力滔.JPG` | 杨力滔 | 技术研发工程师 | 致力于技术研发和项目实施，推动创新技术在实际项目中的应用。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG` |
 
 ### 🎨 设计团队 (Designers Team)
 对应i18n.ts中的 `team.designers` 数组
@@ -85,7 +87,7 @@ src/image/
 
 ## 🔗 数据对应关系 (Data Mapping)
 
-### 与i18n.ts的对应关系
+### 与team.ts和TeamPage.tsx的对应关系
 
 1. **图片路径规则**: `src/image/{role}/{filename}` → `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/{role}/{filename}`
 
@@ -102,9 +104,19 @@ src/image/
      name: "成员姓名",
      role: "职责描述",
      bio: "个人简介",
-     image: "完整的GitHub Raw图片链接"
+     image: "完整的GitHub Raw图片链接",
+     tags?: string[], // 技能标签数组，在TeamPage.tsx第43-54行渲染
+     github?: string, // GitHub链接
+     linkedin?: string, // LinkedIn链接
+     email?: string // 邮箱地址
    }
    ```
+
+4. **Tags字段渲染位置**:
+   - 文件: `src/pages/TeamPage.tsx`
+   - 行数: 第43-54行
+   - 功能: 在团队成员卡片中显示技能标签，使用Badge组件渲染
+   - 样式: 渐变背景、毛玻璃效果、悬停动画
 
 ## 📝 使用规范 (Usage Guidelines)
 

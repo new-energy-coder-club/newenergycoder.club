@@ -18,6 +18,7 @@ export interface Translations {
     events: string;
     resources: string;
     contact: string;
+    team: string;
     login: string;
     logout: string;
     joinClub: string;
@@ -102,6 +103,7 @@ export interface Translations {
     designerTitle: string;
     contributorTitle: string;
     sponsorTitle: string;
+    viewFullTeam: string;
     maintainers: TeamMember[];
     developers: TeamMember[];
     designers: TeamMember[];
