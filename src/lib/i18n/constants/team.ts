@@ -33,13 +33,6 @@ export const maintainers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg',
     tags: ['电控系统', '运行时', 'ROBOCON', '嵌入式', '系统稳定性'],
     github: 'https://github.com/zhangwangwang'
-  },
-  {
-    name: '闻志伟',
-    role: 'Bronze Sponsor',
-    bio: '致力于推动可持续技术发展的个人赞助者。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.png',
-    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   }
 ];
 
@@ -184,6 +177,13 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/cuizhengyang'
   },
   {
+    name: '闻志伟',
+    role: 'Bronze Sponsor',
+    bio: '致力于推动可持续技术发展的个人赞助者。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.png',
+    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
+  },
+  {
     name: '张旺旺',
     role: '新能源运维工程师',
     bio: '负责核心项目的真机部署和运维工作，保障系统的稳定运行。',
@@ -192,20 +192,20 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/zhangwangwang'
   },
   {
+    name: '吴洛斌',
+    role: '开源贡献者&气动自动化专家',
+    bio: '积极参与开源项目，为社区贡献代码商业化文档。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴洛斌.jpg',
+    tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '传感器', '自动化系统'],
+    github: 'https://github.com/wuluobin'
+  },
+  {
     name: '许子涵',
     role: '产品经理',
     bio: '负责产品规划和需求分析，推动项目向正确方向发展。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/许子涵.png',
     tags: ['产品规划', '需求分析', '用户研究', 'Axure', '原型设计', '数据分析'],
     github: 'https://github.com/xuzihan'
-  },
-  {
-    name: '吴洛斌',
-    role: '开源贡献者&气动自动化专家',
-    bio: '积极参与开源项目，为社区贡献代码商业化文档。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴洛斌.jpeg',
-    tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '传感器', '自动化系统'],
-    github: 'https://github.com/wuluobin'
   },
   {
     name: '卞乐凌',
