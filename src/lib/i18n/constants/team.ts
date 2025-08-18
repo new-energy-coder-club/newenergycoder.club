@@ -49,7 +49,7 @@ export const developers: TeamMember[] = [
     name: '单广志',
     role: '嵌入式开发工程师',
     bio: '机器人行业电控驱动开发以及硬件电路设计。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.jpg',
     tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
     github: 'https://github.com/shanguangzhi'
   },
@@ -226,6 +226,22 @@ export const contributors: TeamMember[] = [
     bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
     tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
+  },
+  {
+    name: '郑绍恺',
+    role: '算法竞赛选手',
+    bio: '专注于算法研究以及最优化问题',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/郑绍恺.jpg',
+    tags: ['算法研究', '最优化', '竞赛选手', '问题求解', '算法优化', '数学建模'],
+    github: 'https://github.com/zhengshaokai'
+  },
+  {
+    name: '杨鑫海',
+    role: 'Developer',
+    bio: '专注于Arduino和ESP32等开发板的代码例程开发。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/杨鑫海.jpg',
+    tags: ['Arduino', 'ESP32', '代码例程', '嵌入式开发', '物联网', '开发板'],
+    github: 'https://github.com/yangxinhai'
   },
 ];
 
