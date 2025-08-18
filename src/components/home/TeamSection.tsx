@@ -69,14 +69,6 @@ export function TeamSection() {
                 <div className="flex gap-6 min-w-max px-4">
                   {group.members.map((member, memberIndex) => (
                     <Card key={memberIndex} className="glass-card hover-lift glow-hover group overflow-hidden flex-shrink-0 w-80">
-                      <div className={group.title.includes('Sponsor') || group.title.includes('赞助') ? 'h-[88px] overflow-hidden relative' : 'aspect-[3/4] overflow-hidden relative'}>
-                        <img 
-                          src={member.image}
-                          alt={member.name}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </div>
                       <CardHeader className="pb-3">
                         <h4 className="font-bold text-lg">{member.name}</h4>
                         <p className="text-sm gradient-text font-semibold">{member.role}</p>

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-const newTeamPhoto = 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/NEC25RC_start-up_team.JPG'
-
 export function AboutSection() {
   const t = useTranslation();
   
@@ -15,10 +13,9 @@ export function AboutSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
       
       <div className="container relative z-10">
-        <div className="relative rounded-lg shadow-lg overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${newTeamPhoto})` }}>
-          <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative rounded-lg shadow-lg overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm border border-white/10">
           <div className="relative z-10 p-12">
-            <div className="text-white/85 mb-8">
+            <div className="text-foreground mb-8">
                 <h2 className="text-3xl font-bold tracking-tight">
                   {t.about.title}
                 </h2>
