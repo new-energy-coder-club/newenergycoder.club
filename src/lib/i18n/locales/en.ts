@@ -293,7 +293,7 @@ export const enTranslations: Translations = {
     }
   },
   footer: {
-    clubName: 'Energy Coder Club',
+    clubName: 'New Energy Coder Club',
     description: 'Building sustainable technology through collaborative development',
     navigation: 'Navigation',
     resources: 'Resources',

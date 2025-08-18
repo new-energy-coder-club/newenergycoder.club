@@ -87,18 +87,18 @@ export const developers: TeamMember[] = [
   },
   {
     name: '余浩铭',
-    role: '软件开发工程师',
-    bio: '专注于软件开发和技术创新，致力于构建高质量的应用程序。',
+    role: 'Developer&文艺工作者',
+    bio: '机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg',
-    tags: ['软件开发', '技术创新', 'Java', 'Spring', '后端开发', '系统设计'],
+    tags: ['文艺工作', '运营编辑', '宣传策划', '文字编辑', 'NEC理念', '内容创作'],
     github: 'https://github.com/yuhaoming'
   },
   {
     name: '杨力滔',
-    role: '技术研发工程师',
-    bio: '致力于技术研发和项目实施，推动创新技术在实际项目中的应用。',
+    role: '星闪手柄开发工程师',
+    bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG',
-    tags: ['技术研发', '项目实施', 'Python', '数据分析', '机器学习', '算法优化'],
+    tags: ['星闪手柄', 'STM32', 'RTOS', 'C语言', '嵌入式开发', '硬件控制'],
     github: 'https://github.com/yanglitao'
   },
   {
@@ -116,8 +116,15 @@ export const designers: TeamMember[] = [
     name: 'Xiux',
     role: 'UI/UX设计师',
     bio: '专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/xiux.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/Xiux.jpg',
     tags: ['UI设计', 'UX设计', 'Figma', 'Sketch', '原型设计', '用户研究']
+  },
+  {
+    name: 'ikkOoOo',
+    role: '设计师',
+    bio: '专注于创意设计和视觉表达，为项目提供独特的设计视角。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/ikkOoOo.jpg',
+    tags: ['创意设计', '视觉表达', '设计创新', '艺术指导', '品牌设计', '视觉传达']
   },
   {
     name: '张若璐',
@@ -126,13 +133,7 @@ export const designers: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张若璐.jpg',
     tags: ['视觉设计', '品牌设计', 'Adobe Creative Suite', 'Logo设计', '平面设计', '色彩搭配']
   },
-  {
-    name: '徐海婷',
-    role: '财务管理专员',
-    bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg',
-    tags: ['财务管理', '预算控制', '风险防控', '数据分析', '流程优化', '成本管控']
-  },
+
   {
     name: '李一楠',
     role: '运营组长',
@@ -146,31 +147,25 @@ export const designers: TeamMember[] = [
     bio: '一直在探索技术与设计边界的路上，以用户为中心，以体验为驱动。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg',
     tags: ['UX设计', '用户体验', '设计思维', 'Figma', '用户旅程', '信息架构']
-  },
-  {
-    name: '王彦君',
-    role: '工业/产品设计师',
-    bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君2.jpg',
-    tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
   }
+
 ];
 
 export const contributors: TeamMember[] = [
   {
     name: '卢永杰',
-    role: '开源贡献者',
-    bio: '积极参与开源项目，为社区贡献代码和文档。',
+    role: '嵌入式&运控算法专家',
+    bio: '专注算法部署优化及硬件底层逻辑协同设计，在嵌入式和运控算法领域有深入研究。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢永杰.jpg',
-    tags: ['开源贡献', 'Git', 'GitHub', '代码审查', '社区运营', '技术写作'],
+    tags: ['嵌入式开发', '运控算法', '算法部署', '硬件底层', '协同设计', '算法优化'],
     github: 'https://github.com/luyongjie'
   },
   {
     name: '卢王淳',
-    role: '赛期管理',
-    bio: '24新能源班，负责比赛期间的管理和协调工作。',
+    role: '25RC项管&机械&电控小白',
+    bio: '25RC项目管理，机械和电控领域的学习者，负责项目协调工作。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢王淳.png',
-    tags: ['项目管理', '团队协调', 'ROBOCON', '赛事组织', '流程优化', '沟通协调'],
+    tags: ['项目管理', '机械设计', '电控学习', 'ROBOCON', '团队协调', '25RC'],
     github: 'https://github.com/luwangchun'
   },
   {
@@ -198,35 +193,58 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/xuzihan'
   },
   {
-    name: '吴罗斌',
+    name: '吴洛斌',
     role: '开源贡献者&气动自动化专家',
     bio: '积极参与开源项目，为社区贡献代码商业化文档。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴罗斌.jpeg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴洛斌.jpeg',
     tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '传感器', '自动化系统'],
     github: 'https://github.com/wuluobin'
   },
   {
     name: '卞乐凌',
-    role: '新成员贡献者',
-    bio: '新加入的贡献者团队成员，热衷于开源项目和社区建设。',
+    role: '嵌入式学习贡献者',
+    bio: '嵌入式学习中，积极参与开源项目和社区建设。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卞乐凌.jpg',
-    tags: ['开源贡献', '社区建设', '文档编写', '项目维护', '团队协作', '学习分享'],
+    tags: ['嵌入式学习', '开源贡献', '社区建设', 'STM32', '硬件开发', '学习分享'],
     github: 'https://github.com/bianleiling'
+  },
+  {
+    name: '王彦君',
+    role: '工业/产品设计师',
+    bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君2.jpg',
+    tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
+  },
+  {
+    name: '徐海婷',
+    role: '财务管理专员',
+    bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg',
+    tags: ['财务管理', '预算控制', '风险防控', '数据分析', '流程优化', '成本管控']
   }
 ];
 
 export const sponsors: TeamMember[] = [
   {
-    name: 'Green Tech Foundation',
-    role: 'Gold Sponsor',
-    bio: 'Non-profit organization dedicated to supporting sustainable technology development.',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/杨立涛.png',
-    tags: ['可持续技术', '绿色能源', '环保科技', '资金支持', '技术孵化', '创新推动']
+    name: '开源之夏',
+    role: 'Gold Sponsor - ¥12,000',
+    bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办的开源活动。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/开源之夏Logo.png',
+    tags: ['开源软件', '供应链点亮', '学生项目', '技术孵化', '创新推动', '人才培养'],
+    github: 'https://summer-ospp.ac.cn/'
+  },
+  {
+    name: '立创开源硬件平台',
+    role: 'Silver Sponsor - ¥8,000',
+    bio: '专业的开源硬件开发平台，提供丰富的开发板和技术资源。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/立创开源广场.png',
+    tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
+    github: 'https://oshwhub.com/explore'
   },
   {
     name: '闻志伟',
-    role: 'Silver Sponsor',
-    bio: '致力于推动可持续技术发展的非营利组织。',
+    role: 'Bronze Sponsor',
+    bio: '致力于推动可持续技术发展的个人赞助者。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/闻志伟.png',
     tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   }

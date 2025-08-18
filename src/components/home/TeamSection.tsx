@@ -44,7 +44,7 @@ const getTeamGroups = (t: any): TeamGroup[] => [
 export function TeamSection() {
   const t = useTranslation();
   const teamGroups = getTeamGroups(t);
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[4/3]');
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]');
   
   return (
     <section className="py-24 bg-gradient-to-br from-accent/10 to-secondary/20 relative overflow-hidden">

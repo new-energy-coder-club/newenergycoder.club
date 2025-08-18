@@ -138,7 +138,7 @@ const categoryFilters = [
 
 export function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all')
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-video')
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
   const [isFilterExpanded, setIsFilterExpanded] = useState(true)
   const t = useTranslation()
 

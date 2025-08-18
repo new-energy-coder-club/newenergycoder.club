@@ -88,7 +88,7 @@ const typeColors = {
 
 export function DisplayRatioPage() {
   const t = useTranslation()
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[4/3]')
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
   const [selectedType, setSelectedType] = useState<string>('all')
 
   const filteredItems = selectedType === 'all' 
@@ -202,6 +202,27 @@ export function DisplayRatioPage() {
                         {option.label}
                       </SelectItem>
                     ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <label className="text-sm font-medium">主题模式:</label>
+                <Select value={document.documentElement.classList.contains('dark') ? 'dark' : 'light'} onValueChange={(value) => {
+                  if (value === 'dark') {
+                    document.documentElement.classList.add('dark')
+                    localStorage.setItem('theme', 'dark')
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                    localStorage.setItem('theme', 'light')
+                  }
+                }}>
+                  <SelectTrigger className="w-32">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">亮色</SelectItem>
+                    <SelectItem value="dark">暗色</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

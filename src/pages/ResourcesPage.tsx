@@ -165,7 +165,7 @@ const getTypeColor = (type: ResourceType) => {
 export function ResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-video')
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
   const [isFilterExpanded, setIsFilterExpanded] = useState(true)
   const t = useTranslation()
 

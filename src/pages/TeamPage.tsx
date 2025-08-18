@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 interface TeamMemberCardProps {
   member: {
@@ -21,30 +22,37 @@ interface TeamMemberCardProps {
 
 function TeamMemberCard({ member }: TeamMemberCardProps) {
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-      <CardHeader className="text-center">
-        <Avatar className="w-24 h-32 mx-auto mb-4 ring-4 ring-primary/10 group-hover:ring-primary/20 transition-all duration-300 rounded-lg">
-          <AvatarImage src={member.image} alt={member.name} className="object-cover" />
-          <AvatarFallback className="text-lg font-semibold rounded-lg">
-            {member.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg">
+      <div className="relative overflow-hidden">
+        <Avatar className="w-full h-48 rounded-none">
+          <AvatarImage 
+            src={member.image} 
+            alt={member.name}
+            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+          />
+          <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
+            {member.name.slice(0, 2)}
           </AvatarFallback>
         </Avatar>
-        <CardTitle className="text-xl">{member.name}</CardTitle>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+      <CardHeader className="text-center relative z-10">
+        <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">{member.name}</CardTitle>
         <CardDescription className="text-base font-medium">
-          <Badge variant="secondary" className="text-xs px-2 py-1">
+          <Badge variant="secondary" className="text-xs px-2 py-1 bg-primary/20 text-primary-foreground dark:bg-primary/30 dark:text-white">
             {member.role}
           </Badge>
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground text-center mb-4 leading-relaxed">
+        <p className="text-sm text-muted-foreground dark:text-gray-200 text-center mb-4 leading-relaxed drop-shadow-sm">
           {member.bio}
         </p>
         
         {/* 技术栈标签 - 优化版本 */}
         {member.tags && member.tags.length > 0 && (
           <div className="mb-4">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-2 text-center">技能标签</h4>
+            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center drop-shadow-sm">技能标签</h4>
             <div className="flex flex-wrap gap-2 justify-center">
               {member.tags.map((tag, index) => (
                 <Badge 
@@ -88,13 +96,11 @@ function TeamMemberCard({ member }: TeamMemberCardProps) {
 }
 
 function TeamSection({ title, members }: { title: string; members: any[] }) {
-  if (!members || members.length === 0) return null
-
   return (
-    <section className="py-12">
+    <section className="mb-16">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold tracking-tight mb-2">{title}</h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+        <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{title}</h2>
+        <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {members.map((member, index) => (
@@ -110,13 +116,29 @@ export function TeamPage() {
 
   return (
     <PageLayout>
-      <div className="container py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">
+      {/* Background with team photos */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
+        <img
+          src="/src/image/校门合照.jpg"
+          alt="团队校门合照"
+          className="w-full h-full object-cover opacity-20 dark:opacity-25"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/src/image/横向项目合照.jpg'
+          }}
+        />
+      </div>
+      
+      <div className="container py-12 relative z-20">
+        {/* Hero Section with Theme Toggle */}
+        <div className="text-center mb-12 relative">
+          <div className="absolute top-0 right-0">
+            <ThemeToggle />
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
             {t.team.title}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto dark:text-gray-200 drop-shadow-md">
             {t.team.description}
           </p>
         </div>
@@ -129,26 +151,22 @@ export function TeamPage() {
         <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} />
 
         {/* Team Photo Section */}
-        <section className="py-12">
+        <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight mb-2">团队合照</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{t.team.teamPhoto}</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
-          <div className="max-w-4xl mx-auto">
-            <div className="relative overflow-hidden rounded-lg shadow-lg">
+          <div className="flex justify-center">
+            <div className="relative group max-w-4xl">
               <img
-                src="/src/image/team_photo.jpg"
-                alt="新能源编程俱乐部团队合照"
-                className="w-full h-auto object-cover"
+                src="/src/image/校门合照.jpg"
+                alt={t.team.teamPhoto}
+                className="w-full h-auto rounded-lg shadow-2xl group-hover:shadow-3xl transition-shadow duration-300 bg-card/90 backdrop-blur-sm border border-primary/20"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop'
+                  (e.target as HTMLImageElement).src = '/src/image/横向项目合照.jpg'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <h3 className="text-xl font-semibold">新能源编程俱乐部</h3>
-                <p className="text-sm opacity-90">2024年度团队合照</p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
         </section>

@@ -300,7 +300,7 @@ export const zhTranslations: Translations = {
     contact: '联系',
     learningMaterials: '学习资料',
     joinClub: '加入俱乐部',
-    address: '创新街123号，科技城市',
+    address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
     copyright: '© 2024 新能源编程俱乐部。保留所有权利。'
   }
 };

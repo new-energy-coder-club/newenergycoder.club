@@ -277,6 +277,33 @@ export function ContactPage() {
                   </CardContent>
                 </Card>
 
+                {/* NEC官网上线申请表 */}
+                <Card className="glass-card">
+                  <CardHeader>
+                    <h2 className="text-2xl font-bold mb-2">NEC官网上线申请</h2>
+                    <p className="text-muted-foreground">
+                      申请加入NEC官网，展示您的项目和成果。
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col items-center space-y-4">
+                      <img 
+                        src="/src/image/NEC官网上线申请表.png" 
+                        alt="NEC官网上线申请表" 
+                        className="w-full max-w-md rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                      />
+                      <a
+                        href="https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium"
+                      >
+                        立即申请
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 {/* Map Placeholder */}
                 <Card className="glass-card overflow-hidden">
                   <div className="aspect-video bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">

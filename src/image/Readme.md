@@ -41,15 +41,16 @@ src/image/
 | `牛良旭.png` | 牛良旭 | DevOps工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.png` |
 | `郑钦文.jpg` | 郑钦文 | 移动端开发工程师 | 专注于移动应用开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg` |
 | `彭柯颖.jpg` | 彭柯颖 | 新成员开发者 | 新加入的开发团队成员，积极参与项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
-| `余浩铭.jpg` | 余浩铭 | 软件开发工程师 | 专注于软件开发和技术创新，致力于构建高质量的应用程序。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg` |
-| `杨力滔.JPG` | 杨力滔 | 技术研发工程师 | 致力于技术研发和项目实施，推动创新技术在实际项目中的应用。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG` |
+| `余浩铭.jpg` | 余浩铭 | Developer&文艺工作者 | 机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg` |
+| `杨力滔.JPG` | 杨力滔 | 星闪手柄开发工程师 | 星闪手柄开发专家，熟悉STM32+RTOS C语言开发。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG` |
 
 ### 🎨 设计团队 (Designers Team)
 对应i18n.ts中的 `team.designers` 数组
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `xiux.jpg` | Xiux | UI/UX设计师 | 专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/xiux.jpg` |
+| `Xiux.jpg` | Xiux | UI/UX设计师 | 专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/Xiux.jpg` |
+| `ikkOoOo.jpg` | ikkOoOo | 设计师 | 专注于创意设计和视觉表达，为项目提供独特的设计视角。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/ikkOoOo.jpg` |
 | `张若璐.jpg` | 张若璐 | 视觉设计师 | 专注于品牌视觉设计和图形创意，为项目提供专业的视觉解决方案。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张若璐.jpg` |
 | `徐海婷.jpg` | 徐海婷 | 交互设计师 | 专注于交互设计和用户研究，致力于提升产品的用户体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg` |
 | `李一楠.jpg` | 李一楠 | 产品设计师 | 负责产品设计和用户体验优化，推动设计与技术的完美结合。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg` |
@@ -61,14 +62,14 @@ src/image/
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `卢永杰.jpg` | 卢永杰 | 开源贡献者 | 积极参与开源项目，为社区贡献代码和文档。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢永杰.jpg` |
-| `卢王淳.png` | 卢王淳 | 赛期管理 | 24新能源班，负责比赛期间的管理和协调工作。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢王淳.png` |
+| `卢永杰.jpg` | 卢永杰 | 嵌入式&运控算法专家 | 专注算法部署优化及硬件底层逻辑协同设计，在嵌入式和运控算法领域有深入研究。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢永杰.jpg` |
+| `卢王淳.png` | 卢王淳 | 25RC项管&机械&电控小白 | 25RC项目管理，机械和电控领域的学习者，负责项目协调工作。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢王淳.png` |
 | `崔正阳.png` | 崔正阳 | 测试工程师 | 专注于软件质量保证，确保项目的稳定性和可靠性。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.png` |
 | `张旺旺.jpg` | 张旺旺 | 运维工程师 | 负责项目的部署和运维工作，保障系统的稳定运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/张旺旺.jpg` |
 | `许子涵 2.png` | 许子涵 | 产品经理 | 负责产品规划和需求分析，推动项目向正确方向发展。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/许子涵 2.png` |
-| `吴罗斌.jpeg` | 吴罗斌 | 开源贡献者&气动自动化专家 | 积极参与开源项目，为社区贡献代码商业化文档。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴罗斌.jpeg` |
+| `吴洛斌.jpeg` | 吴洛斌 | 开源贡献者&气动自动化专家 | 积极参与开源项目，为社区贡献代码商业化文档。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/吴洛斌.jpeg` |
 | `王彦君.jpg` | 王彦君 | UI设计师 | 专注于用户界面设计，为用户提供美观易用的界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/王彦君.jpg` |
-| `卞乐凌.jpg` | 卞乐凌 | 新成员 | 新加入的贡献者团队成员 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卞乐凌.jpg` |
+| `卞乐凌.jpg` | 卞乐凌 | 嵌入式学习贡献者 | 嵌入式学习中，积极参与开源项目和社区建设。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卞乐凌.jpg` |
 
 ### 💰 赞助商团队 (Sponsors Team)
 对应i18n.ts中的 `team.sponsors` 数组
