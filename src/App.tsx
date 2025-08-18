@@ -21,7 +21,7 @@ const PlaceholderPage = ({ title }: { title: string }) => (
     <div className="container py-16">
       <h1 className="text-3xl font-bold">{title}</h1>
       <p className="text-muted-foreground mt-4">
-        This page will be implemented in Phase 2 of the project.
+        一群做开源项目养机器人的开发者&设计师们
       </p>
       
       <div className="mt-12 space-y-8">
@@ -29,7 +29,7 @@ const PlaceholderPage = ({ title }: { title: string }) => (
           <h2 className="text-2xl font-semibold mb-4">关于新能源编程俱乐部</h2>
           <p className="text-muted-foreground leading-relaxed">
             新能源编程俱乐部成立于2023年，由一群热爱编程并致力于可持续发展和可再生能源的开发者和工程师创立。
-            我们的使命是建立一个社区，开发用于可再生能源应用、智能电网技术、能源效率和可持续发展的开源软件解决方案。
+            我们的使命是建立一个社区，开发用于可再生能源应用、智能驾驶技术、具身机器人和可持续发展的开源软件解决方案。
           </p>
           
           <h3 className="text-xl font-semibold mt-8 mb-4">我们的愿景</h3>

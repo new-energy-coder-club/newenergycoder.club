@@ -43,7 +43,7 @@ export function Footer() {
             <a href="#" className="text-muted-foreground hover:text-foreground">
               <WechatIcon className="h-5 w-5" />
             </a>
-            <a href="mailto:contact@energycoderclub.org" className="text-muted-foreground hover:text-foreground">
+            <a href="mailto:22230635@czu.cn" className="text-muted-foreground hover:text-foreground">
               <Mail className="h-5 w-5" />
             </a>
           </div>
@@ -77,7 +77,7 @@ export function Footer() {
             </div>
             <div className="flex items-start gap-2">
               <Mail className="h-4 w-4 mt-0.5 shrink-0" />
-              <span>contact@energycoderclub.org</span>
+              <span>22230635@czu.cn</span>
             </div>
           </div>
         </div>

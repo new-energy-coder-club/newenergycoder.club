@@ -42,7 +42,7 @@ export const enTranslations: Translations = {
     phase2: {
       title: 'Phase 2 Development',
       description: 'Future enhancements and expanded features coming soon',
-      content: 'This page will be implemented in Phase 2 of the project. We are continuously working to enhance our platform with new features, improved user experience, and expanded functionality. Phase 2 will include advanced project management tools, enhanced collaboration features, integrated development environments, and comprehensive learning resources. Stay tuned for exciting updates as we continue to build and improve our community platform.'
+      content: '一群做开源项目养机器人的开发者&设计师们'
     },
     contributing: {
       title: 'Contributing Guidelines',
@@ -255,9 +255,9 @@ export const enTranslations: Translations = {
       messageError: 'Failed to send message. Please try again.'
     },
     info: {
-      address: '123 Innovation Street, Tech City, TC 12345',
-      phone: '+1 (555) 123-4567',
-      email: 'hello@energycoder.club',
+      address: 'No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
+      phone: '+86 15896000818',
+      email: '22230635@czu.cn',
       hours: 'Monday - Friday: 9AM - 6PM'
     }
   },

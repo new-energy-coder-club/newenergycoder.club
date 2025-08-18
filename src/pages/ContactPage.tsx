@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
+import NECApplicationForm from '@/image/NEC官网上线申请表.png'
 
 interface ContactFormData {
   name: string
@@ -205,7 +206,7 @@ export function ContactPage() {
                   <CardContent>
                     <div className="flex flex-col items-center space-y-4">
                       <img 
-                        src="/src/image/NEC官网上线申请表.png" 
+                        src={NECApplicationForm} 
                         alt="NEC官网上线申请表" 
                         className="w-full max-w-md rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
                       />
