@@ -1,1 +1,16 @@
-node_modules
+/dist
+/node_modules
+.DS_Store
+*.local
+.env.local
+.env.*.local
+
+# IDEs
+.idea/
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
