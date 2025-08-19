@@ -10,6 +10,24 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      // 高德地图API代理配置
+      '/_AMapService': {
+        target: 'https://restapi.amap.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/_AMapService/, ''),
+        configure: (proxy, _options) => {
+          proxy.on('proxyReq', (proxyReq, _req, _res) => {
+            // 添加安全密钥到请求参数
+            const url = new URL(proxyReq.path || '', 'https://restapi.amap.com')
+            url.searchParams.append('jscode', '56b9003040769f3afb14593ca6c4a8ae')
+            proxyReq.path = url.pathname + url.search
+          })
+        }
+      }
+    }
+  },
   build: {
     // 启用代码分割
     rollupOptions: {

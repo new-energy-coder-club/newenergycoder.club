@@ -9,6 +9,7 @@ import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
+import { AmapLocation } from '@/components/ui/amap-location'
 import NECApplicationForm from '@/image/NEC官网上线申请表.png'
 import TeamPhoto1 from '@/image/校门合照.jpg'
 import TeamPhoto2 from '@/image/横向项目合照.jpg'
@@ -315,18 +316,8 @@ export function ContactPage() {
                   </CardContent>
                 </Card>
 
-                {/* Map Placeholder */}
-                <Card className="glass-card overflow-hidden">
-                  <div className="aspect-video bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
-                      <h3 className="font-semibold mb-2">Campus Location</h3>
-                      <p className="text-muted-foreground text-sm">
-                        Interactive map coming soon
-                      </p>
-                    </div>
-                  </div>
-                </Card>
+                {/* Interactive Map */}
+                <AmapLocation />
 
 
               </div>
