@@ -4,7 +4,6 @@ import { Translations } from '../types/translations';
 export const zhTranslations: Translations = {
   nav: {
     home: '首页',
-    about: '关于我们',
     team: '团队',
     projects: '项目',
     events: '活动',
@@ -30,10 +29,10 @@ export const zhTranslations: Translations = {
     industryConnectionsDesc: '与领先的能源行业专业人士建立联系',
   },
   about: {
-    title: '关于我们的俱乐部',
-    paragraph1: '新能源编程俱乐部由一群充满热情的开发者和工程师于2023年创立，他们希望将编码的热情与对可持续发展和可再生能源的承诺相结合。',
-    paragraph2: '我们的使命是建立一个社区，为可再生能源应用、智能电网技术、能源效率和可持续性开发开源软件解决方案。',
-    paragraph3: '通过工作坊、黑客马拉松、合作项目以及与能源公司的合作，我们旨在创建一个技术与可持续发展相结合的平台，共创美好未来。',
+    title: '关于 NEC 仓库',
+    paragraph1: '欢迎来到「NEC新能源极客俱乐部」—— 一个充满活力和脑洞的「开源游乐园」！🎮 这里不仅是新能源、机器人爱好者的秘密基地，更是大学生竞赛党的「宝藏地图」。我们正在疯狂备战2025全国大学生机器人大赛，囤积了82套FRC图纸、铝方型材设计库，甚至还有企业级网盘资料包，仿佛藏着一整个机器人军火库。20多位全栈小白在这里捣鼓嵌入式开发、BSP底软，一边玩转openEuler和Rt-thread开源社区，一边把代码写成「乐高积木」——模块化、可复用，拼出无限可能。从机械设计到算法调参，从竞赛攻略到科研经验，这里的文档像「哆啦A梦的口袋」，随时掏出你需要的秘籍攻略，助你从菜鸟进化成赛场扛把子！💪',
+    paragraph2: '',
+    paragraph3: '',
     learnMore: '了解更多关于我们',
     projectOrigin: {
       title: '项目起源故事',

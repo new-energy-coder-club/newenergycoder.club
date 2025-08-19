@@ -53,7 +53,6 @@ export function Footer() {
           <h3 className="font-medium mb-4">{t.footer.navigation}</h3>
           <ul className="space-y-2">
             <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.home}</Link></li>
-            <li><Link to="/about" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.about}</Link></li>
             <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.projects}</Link></li>
             <li><Link to="/events" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.events}</Link></li>
           </ul>

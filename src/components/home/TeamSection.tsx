@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Linkedin, Mail, ArrowRight } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { useTranslation } from '@/contexts/LanguageContext'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
@@ -42,7 +43,11 @@ const getTeamGroups = (t: any): TeamGroup[] => [
   }
 ]
 
-export function TeamSection() {
+interface TeamSectionProps {
+  selectedRatio?: AspectRatio;
+}
+
+export function TeamSection({ selectedRatio = 'aspect-[3/4]' }: TeamSectionProps) {
   const t = useTranslation();
   const teamGroups = getTeamGroups(t);
   

@@ -1,24 +1,24 @@
+// React Hooks
 import { useState } from 'react'
+
+// UI 组件
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+
+// 从FloatingControls导入集成的组件和类型
+import { AspectRatio, DisplayItem, typeColors, aspectRatioOptions } from '@/components/ui/floating-controls'
+
+// 布局组件
 import { PageLayout } from '@/components/layout/PageLayout'
+
+// 图标组件
 import { Linkedin, Mail, ExternalLink, Download } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
+
+// 国际化
 import { useTranslation } from '@/contexts/LanguageContext'
-
-type AspectRatio = 'aspect-square' | 'aspect-video' | 'aspect-[4/3]' | 'aspect-[3/4]' | 'aspect-[16/10]' | 'aspect-[21/9]'
-
-interface DisplayItem {
-  id: string
-  title: string
-  description: string
-  image: string
-  type: 'team' | 'project' | 'resource' | 'event'
-  category?: string
-  role?: string
-}
 
 const sampleItems: DisplayItem[] = [
   {
@@ -70,22 +70,6 @@ const sampleItems: DisplayItem[] = [
     category: '区块链'
   }
 ]
-
-const aspectRatioOptions: { value: AspectRatio; label: string }[] = [
-  { value: 'aspect-square', label: '正方形 (1:1)' },
-  { value: 'aspect-video', label: '视频比例 (16:9)' },
-  { value: 'aspect-[4/3]', label: '传统比例 (4:3)' },
-  { value: 'aspect-[3/4]', label: '竖直比例 (3:4)' },
-  { value: 'aspect-[16/10]', label: '宽屏比例 (16:10)' },
-  { value: 'aspect-[21/9]', label: '超宽比例 (21:9)' }
-]
-
-const typeColors = {
-  team: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
-  project: 'bg-green-500/10 text-green-600 border-green-500/20',
-  resource: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-  event: 'bg-orange-500/10 text-orange-600 border-orange-500/20'
-}
 
 export function DisplayRatioPage() {
   const t = useTranslation()
@@ -178,6 +162,7 @@ export function DisplayRatioPage() {
     >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
+        {/* 页面顶部的主要展示区域，包含标题和描述文本 */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_75%_75%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
           
@@ -207,6 +192,7 @@ export function DisplayRatioPage() {
         </section>
 
         {/* Info Section */}
+        {/*
         <section className="py-16 bg-gradient-to-br from-secondary/20 to-accent/10">
           <div className="container">
             <div className="max-w-4xl mx-auto text-center">
@@ -240,6 +226,7 @@ export function DisplayRatioPage() {
             </div>
           </div>
         </section>
+        */}
       </div>
     </PageLayout>
   )

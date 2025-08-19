@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ExternalLink, Star, Users } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Link } from 'react-router-dom'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
 interface Project {
   title: string
@@ -116,7 +117,11 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
-export function ProjectsSection() {
+interface ProjectsSectionProps {
+  selectedRatio?: AspectRatio;
+}
+
+export function ProjectsSection({ selectedRatio = 'aspect-[3/4]' }: ProjectsSectionProps) {
   const t = useTranslation()
 
   // 基于Gitee仓库信息的热门项目数据

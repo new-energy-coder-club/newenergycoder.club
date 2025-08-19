@@ -165,8 +165,9 @@ const getTypeColor = (type: ResourceType) => {
 export function ResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
   const [isFilterExpanded, setIsFilterExpanded] = useState(true)
+  // 显示比例状态管理 - 控制资源卡片图片的宽高比显示
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[21/9]')
   const t = useTranslation()
 
   const filteredResources = mockResources.filter(resource => {
@@ -357,6 +358,8 @@ export function ResourcesPage() {
           </div>
         </section>
       </div>
+      
+
     </PageLayout>
   )
 }

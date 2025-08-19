@@ -1,106 +1,242 @@
-import { useTranslation, useLanguage } from '@/contexts/LanguageContext';
-import { PageLayout } from '@/components/layout/PageLayout';
-import { Calendar, Users } from 'lucide-react';
+import { useState } from 'react'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react'
+import { useTranslation } from '@/contexts/LanguageContext'
+import { PageLayout } from '@/components/layout/PageLayout'
+import { FeishuForm } from '@/components/forms/FeishuForm'
+import { type AspectRatio } from '@/components/ui/floating-controls'
 
-type EventStatus = 'upcoming' | 'past';
+type EventCategory = 'all' | 'workshop' | 'hackathon' | 'seminar' | 'competition' | 'networking'
+type EventStatus = 'upcoming' | 'past'
 
 interface Event {
-  id: string;
-  title: { zh: string; en: string };
-  description: { zh: string; en: string };
-  date: string;
-  participants: number;
-  status: EventStatus;
+  id: string
+  title: string
+  description: string
+  image: string
+  category: EventCategory
+  date: string
+  time: string
+  location: string
+  participants: number
+  maxParticipants?: number
+  status: EventStatus
+  registrationUrl?: string
+  detailsUrl?: string
 }
 
-const eventsData = [
-    { date: '241120', zh: { title: '团队初创会议', desc: '完成初期投票，创建群聊，首次线下会议' }, en: { title: 'Team Kick-off', desc: 'Initial vote, group chat, first offline meeting' } },
-    { date: '241213', zh: { title: '项目规划讨论', desc: '讨论底盘、经费、人员、采购等议题' }, en: { title: 'Project Planning', desc: 'Discussed chassis, budget, staffing, procurement' } },
-    { date: '250111', zh: { title: '寒假开发板寄送', desc: '离校前最后一次组会，寄送开发板' }, en: { title: 'Dev Board Shipping', desc: 'Final meeting before break, boards shipped' } },
-    { date: '250113', zh: { title: '嵌入式开发启动', desc: '基于51单片机和RT-Thread RA6M3' }, en: { title: 'Embedded Dev Start', desc: 'Based on 51 MCU and RT-Thread RA6M3' } },
-    { date: '250306', zh: { title: '机器人底盘定型', desc: '确定人形机器人底盘，A/C板下单' }, en: { title: 'Robot Chassis Done', desc: 'Humanoid robot chassis set, boards ordered' } },
-    { date: '250311', zh: { title: '与江苏理工交流', desc: '展示Gitee仓库，探讨技术合作' }, en: { title: 'Jiangsu Poly Visit', desc: 'Showcased Gitee repo, discussed tech collaboration' } },
-    { date: '250317', zh: { title: '星闪手柄项目推进', desc: '推进星闪手柄进度，汇总采购情况' }, en: { title: 'Handle Progress', desc: 'Advanced Nearlink handle, reviewed procurements' } },
-    { date: '250321', zh: { title: '团队进程会议', desc: '讨论各组进展，确定交流安排' }, en: { title: 'Team Sync Meeting', desc: 'Discussed group progress, planned next visit' } },
-    { date: '250323', zh: { title: '争取学院支持', desc: '向机械学院领导介绍团队与项目' }, en: { title: 'College Support', desc: 'Presented team and project to Mech. Eng. dept.' } },
-    { date: '250323', zh: { title: '赴江苏理工交流', desc: '多层面深入切磋，聚焦开源仓库' }, en: { title: 'Visit to Jiangsu Poly', desc: 'In-depth talks on open-source repo collaboration' } },
-    { date: '250324', zh: { title: '机械组新人培训', desc: '为机械组新人配置软件，深夜装配' }, en: { title: 'Mech. Team Training', desc: 'Software setup for new members, late-night assembly' } },
-    { date: '250327', zh: { title: '新成员加入', desc: '迎接新面孔，节能减排小组成立' }, en: { title: 'New Members Onboard', desc: 'Welcomed new faces, energy-saving team formed' } },
-    { date: '250330', zh: { title: '周末线上组会', desc: '各项目组汇报进度，讨论后续方案' }, en: { title: 'Weekend Online Sync', desc: 'Project groups reported progress, discussed plans' } },
-    { date: '250402', zh: { title: '硬件问题讨论会', desc: '就硬件问题开展讨论，迎接中期考核' }, en: { title: 'Hardware Meeting', desc: 'Discussed hardware issues, prepared for mid-term' } },
-    { date: '250406', zh: { title: '进度大会', desc: '明确各组方向，分配负责人' }, en: { title: 'Progress Assembly', desc: 'Clarified group directions, assigned leads' } },
-    { date: '250407', zh: { title: '冲刺中期检测', desc: '安排详细计划，分工明确，通宵赶工' }, en: { title: 'Mid-term Sprint', desc: 'Detailed planning, clear roles, all-nighter' } },
-    { date: '250409', zh: { title: '完成中期检测', desc: '完善小车结构，提交检测材料' }, en: { title: 'Mid-term Review Done', desc: 'Improved car structure, submitted review materials' } },
-    { date: '250410', zh: { title: '提交中期检测材料', desc: '中期检测材料提交完毕。' }, en: { title: 'Mid-term Submission', desc: 'Mid-term review materials have been submitted.' } },
-    { date: '250412', zh: { title: '赴杭州技术交流', desc: '参加openEuler开发者日，拜访浙理' }, en: { title: 'Hangzhou Tech Trip', desc: 'Attended openEuler Dev Day, visited ZJUT' } },
-    { date: '250429', zh: { title: '项目进度汇报', desc: '汇报项目进展，强调实验室卫生' }, en: { title: 'Project Status Update', desc: 'Reported progress, stressed lab cleanliness' } },
-    { date: '250430', zh: { title: 'RC人员优化', desc: '中期检测通过，根据贡献优化人员' }, en: { title: 'RC Team Optimization', desc: 'Mid-term passed, optimized team by contribution' } },
-    { date: '250511', zh: { title: 'A416线下会议', desc: 'R1/R2进度汇报，讨论项目合作' }, en: { title: 'A416 Offline Meeting', desc: 'R1/R2 progress report, discussed collaborations' } },
-    { date: '250531', zh: { title: '跨校交流赛', desc: '与江理工、南理工交流，判断技术差距' }, en: { title: 'Inter-University Meet', desc: 'Exchanged with JPU/NJUST, assessed tech gaps' } },
-    { date: '250608', zh: { title: '南京交流赛', desc: '赴南理工参加江苏队伍交流赛' }, en: { title: 'Nanjing Exchange', desc: 'Attended exchange match at NJUST' } },
-    { date: '250611', zh: { title: '技术方案选型', desc: '调通电磁阀，完成电机、电调选型' }, en: { title: 'Tech Selection', desc: 'Solenoid valve tested, motor/ESC selection done' } },
-];
+const mockEvents: Event[] = [
+  {
+    id: '1',
+    title: 'AI & Machine Learning Workshop',
+    description: 'Learn the fundamentals of AI and ML with hands-on projects using Python, TensorFlow, and real-world datasets.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
+    category: 'workshop',
+    date: '2024-04-15',
+    time: '14:00 - 17:00',
+    location: 'Computer Lab A',
+    participants: 25,
+    maxParticipants: 30,
+    status: 'upcoming',
+    registrationUrl: 'https://example.com/register/ai-workshop',
+    detailsUrl: 'https://example.com/events/ai-workshop'
+  },
+  {
+    id: '2',
+    title: 'Green Tech Hackathon 2024',
+    description: '48-hour hackathon focused on developing sustainable technology solutions for environmental challenges.',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop',
+    category: 'hackathon',
+    date: '2024-05-20',
+    time: '09:00 - 18:00 (2 days)',
+    location: 'Innovation Hub',
+    participants: 45,
+    maxParticipants: 60,
+    status: 'upcoming',
+    registrationUrl: 'https://example.com/register/green-hackathon',
+    detailsUrl: 'https://example.com/events/green-hackathon'
+  },
+  {
+    id: '3',
+    title: 'Industry Leaders Seminar',
+    description: 'Meet and learn from successful tech entrepreneurs and industry leaders about career paths and innovation.',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop',
+    category: 'seminar',
+    date: '2024-04-28',
+    time: '15:00 - 16:30',
+    location: 'Main Auditorium',
+    participants: 120,
+    maxParticipants: 150,
+    status: 'upcoming',
+    registrationUrl: 'https://example.com/register/industry-seminar',
+    detailsUrl: 'https://example.com/events/industry-seminar'
+  },
+  {
+    id: '4',
+    title: 'Web Development Bootcamp',
+    description: 'Intensive 3-day bootcamp covering modern web development with React, Node.js, and cloud deployment.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop',
+    category: 'workshop',
+    date: '2024-03-15',
+    time: '09:00 - 17:00',
+    location: 'Computer Lab B',
+    participants: 28,
+    maxParticipants: 30,
+    status: 'past',
+    detailsUrl: 'https://example.com/events/web-bootcamp'
+  },
+  {
+    id: '5',
+    title: 'Coding Competition 2024',
+    description: 'Annual programming contest with algorithmic challenges and prizes for top performers.',
+    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=250&fit=crop',
+    category: 'competition',
+    date: '2024-02-28',
+    time: '10:00 - 16:00',
+    location: 'Main Hall',
+    participants: 85,
+    status: 'past',
+    detailsUrl: 'https://example.com/events/coding-competition'
+  },
+  {
+    id: '6',
+    title: 'Tech Networking Night',
+    description: 'Casual networking event for students, alumni, and industry professionals to connect and share experiences.',
+    image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=250&fit=crop',
+    category: 'networking',
+    date: '2024-03-08',
+    time: '18:00 - 21:00',
+    location: 'Student Center',
+    participants: 65,
+    status: 'past',
+    detailsUrl: 'https://example.com/events/networking-night'
+  }
+]
 
-const mockEvents: Event[] = eventsData.map((item, index) => {
-  const year = `20${item.date.substring(0, 2)}`;
-  const month = item.date.substring(2, 4);
-  const day = item.date.substring(4, 6);
+const categoryFilters = [
+  { key: 'all' as EventCategory, labelKey: 'filterAll' },
+  { key: 'workshop' as EventCategory, labelKey: 'filterWorkshop' },
+  { key: 'hackathon' as EventCategory, labelKey: 'filterHackathon' },
+  { key: 'seminar' as EventCategory, labelKey: 'filterSeminar' },
+  { key: 'competition' as EventCategory, labelKey: 'filterCompetition' },
+  { key: 'networking' as EventCategory, labelKey: 'filterNetworking' }
+]
 
-  return {
-    id: String(index + 1),
-    title: {
-      zh: item.zh.title.slice(0, 15),
-      en: item.en.title.slice(0, 15),
-    },
-    description: {
-      zh: item.zh.desc.slice(0, 25),
-      en: item.en.desc.slice(0, 25),
-    },
-    date: `${year}-${month}-${day}`,
-    participants: Math.floor(Math.random() * (24 - 7 + 1)) + 7,
-    status: 'past' as EventStatus,
-  };
-});
-
-const TimelineEvent = ({ event, isLast }: { event: Event, isLast: boolean }) => {
-    const { language } = useLanguage();
-    const title = event.title[language as keyof typeof event.title];
-    const description = event.description[language as keyof typeof event.description];
-
-    return (
-        <div className="relative pl-8 sm:pl-12">
-            {!isLast && <div className="absolute left-[11px] sm:left-[13px] top-5 h-full w-0.5 bg-border" />}
-            <div className="absolute left-0 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary ring-4 ring-background">
-                <Calendar className="h-3 w-3 text-primary-foreground" />
-            </div>
-            <div className="ml-4">
-                <div className="flex items-baseline flex-wrap">
-                    <h3 className="font-bold text-base sm:text-lg">{title}</h3>
-                    <p className="ml-4 text-sm text-muted-foreground flex items-center">
-                        <Users className="h-3 w-3 mr-1" />
-                        {event.participants}
-                    </p>
-                </div>
-                <p className="mt-1 text-muted-foreground text-sm sm:text-base">{description}</p>
-                <p className="mt-1 text-xs text-muted-foreground/80">
-                    {new Date(event.date).toLocaleDateString(language === 'zh' ? 'zh-CN' : 'en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    })}
-                </p>
-            </div>
-        </div>
-    );
-};
-
+const getCategoryColor = (category: EventCategory) => {
+  const colors = {
+    workshop: 'bg-blue-500/10 text-blue-700 border-blue-200',
+    hackathon: 'bg-purple-500/10 text-purple-700 border-purple-200',
+    seminar: 'bg-green-500/10 text-green-700 border-green-200',
+    competition: 'bg-red-500/10 text-red-700 border-red-200',
+    networking: 'bg-orange-500/10 text-orange-700 border-orange-200',
+    all: 'bg-gray-500/10 text-gray-700 border-gray-200'
+  }
+  return colors[category] || colors.all
+}
 
 export function EventsPage() {
-  const t = useTranslation();
-  const events = mockEvents.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const [selectedCategory, setSelectedCategory] = useState<EventCategory>('all')
+  const [activeTab, setActiveTab] = useState<EventStatus>('upcoming')
+  // 显示比例状态管理 - 控制事件卡片图片的宽高比显示
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[21/9]')
+  const t = useTranslation()
+
+  const filterEvents = (status: EventStatus) => {
+    const statusFiltered = mockEvents.filter(event => event.status === status)
+    return selectedCategory === 'all' 
+      ? statusFiltered 
+      : statusFiltered.filter(event => event.category === selectedCategory)
+  }
+
+  const upcomingEvents = filterEvents('upcoming')
+  const pastEvents = filterEvents('past')
+
+  const EventCard = ({ event, selectedRatio = 'aspect-[3/4]' }: { event: Event; selectedRatio?: AspectRatio }) => (
+    <Card className="glass-card hover-lift glow-hover group overflow-hidden">
+      <div className={`${selectedRatio} overflow-hidden relative`}>
+        <img 
+          src={event.image}
+          alt={event.title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute top-4 left-4">
+          <Badge className={`${getCategoryColor(event.category)} border`}>
+            {t.events[`filter${event.category.charAt(0).toUpperCase() + event.category.slice(1)}` as keyof typeof t.events] || event.category}
+          </Badge>
+        </div>
+        {event.status === 'upcoming' && (
+          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="flex gap-2">
+              {event.registrationUrl && (
+                <FeishuForm 
+                  eventId={event.id}
+                  eventTitle={event.title}
+                  className="bg-primary/90 backdrop-blur-sm hover:bg-primary text-sm h-8 px-3"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  {t.events.registerNow}
+                </FeishuForm>
+              )}
+              {event.detailsUrl && (
+                <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
+                  {t.events.viewDetails}
+                </Button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+      
+      <CardHeader className="pb-3">
+        <h3 className="font-bold text-xl mb-2">{event.title}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {event.description}
+        </p>
+      </CardHeader>
+      
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-primary" />
+            <div>
+              <div className="font-medium">{new Date(event.date).toLocaleDateString()}</div>
+              <div className="text-muted-foreground text-xs">{event.time}</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-primary" />
+            <span className="font-medium">{event.location}</span>
+          </div>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 pt-3 border-t">
+          <div className="flex items-center gap-2 text-sm">
+            <Users className="h-4 w-4 text-primary" />
+            <span>
+              {event.participants} {t.events.participants}
+              {event.maxParticipants && ` / ${event.maxParticipants}`}
+            </span>
+          </div>
+          {event.status === 'past' && event.detailsUrl && (
+            <Button size="sm" variant="outline">
+              {t.events.viewDetails}
+            </Button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  )
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -116,17 +252,78 @@ export function EventsPage() {
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <section className="py-16 sm:py-24">
-          <div className="container max-w-3xl">
-            <div className="space-y-10">
-              {events.map((event, index) => (
-                <TimelineEvent key={event.id} event={event} isLast={index === events.length - 1} />
+        {/* Filter Section */}
+        <section className="py-8 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
+          <div className="container">
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6">
+              {categoryFilters.map((filter) => (
+                <Button
+                  key={filter.key}
+                  variant={selectedCategory === filter.key ? 'default' : 'outline'}
+                  onClick={() => setSelectedCategory(filter.key)}
+                  className="hover-lift transition-all duration-200 text-xs sm:text-sm px-3 py-2"
+                  size="sm"
+                >
+                  {t.events[filter.labelKey]}
+                </Button>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Events Tabs */}
+        <section className="py-16">
+          <div className="container">
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as EventStatus)} className="w-full">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
+                <TabsTrigger value="upcoming" className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  {t.events.upcoming}
+                </TabsTrigger>
+                <TabsTrigger value="past" className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  {t.events.past}
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="upcoming" className="mt-0">
+                {upcomingEvents.length > 0 ? (
+                  <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    {upcomingEvents.map((event) => (
+                      <EventCard key={event.id} event={event} selectedRatio={selectedRatio} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-16">
+                    <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground text-lg">
+                      {t.events.noUpcoming}
+                    </p>
+                  </div>
+                )}
+              </TabsContent>
+              
+              <TabsContent value="past" className="mt-0">
+                {pastEvents.length > 0 ? (
+                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {pastEvents.map((event) => (
+                      <EventCard key={event.id} event={event} selectedRatio={selectedRatio} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-16">
+                    <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground text-lg">
+                      {t.events.noPast}
+                    </p>
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
+          </div>
+        </section>
       </div>
+
     </PageLayout>
-  );
+  )
 }

@@ -74,7 +74,7 @@ export function LoginButton({ children, className }: LoginButtonProps) {
             disabled={isLoading}
           >
             <img 
-              src="/src/assets/wechat-logo.svg" 
+              src="/src/assets/wechat.png" 
               alt="WeChat" 
               className="w-5 h-5"
             />

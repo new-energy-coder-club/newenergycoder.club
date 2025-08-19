@@ -19,26 +19,14 @@ export function AboutSection() {
                 <h2 className="text-3xl font-bold tracking-tight">
                   {t.about.title}
                 </h2>
-                <div className="mt-6 grid grid-cols-3 gap-8">
-                  <div className="text-left">
-                    <p className="leading-relaxed">
-                      {t.about.paragraph1}
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <p className="leading-relaxed">
-                      {t.about.paragraph2}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="leading-relaxed">
-                      {t.about.paragraph3}
-                    </p>
-                  </div>
+                <div className="mt-6 max-w-4xl mx-auto">
+                  <p className="leading-relaxed text-left">
+                    {t.about.paragraph1}
+                  </p>
                 </div>
                 <div className="mt-8 flex">
                   <Button asChild className="bg-white/10 border-white/20 hover:bg-white/20 hover-lift glow-hover" variant="outline">
-                    <Link to="/about">
+                    <Link to="/team">
                       {t.about.learnMore}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>

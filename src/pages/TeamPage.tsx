@@ -7,6 +7,8 @@ import { Linkedin, Mail } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { type AspectRatio } from '@/components/ui/floating-controls'
+import { useState } from 'react'
 
 interface TeamMemberCardProps {
   member: {
@@ -20,13 +22,15 @@ interface TeamMemberCardProps {
     email?: string
   }
   isSponsors?: boolean
+  selectedRatio?: AspectRatio
 }
 
-function TeamMemberCard({ member, isSponsors }: TeamMemberCardProps) {
+function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: TeamMemberCardProps) {
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg">
       <div className="relative overflow-hidden">
-        <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-48 rounded-none"}>
+        <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
+          <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
           <AvatarImage 
             src={member.image} 
             alt={member.name}
@@ -35,7 +39,8 @@ function TeamMemberCard({ member, isSponsors }: TeamMemberCardProps) {
           <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
             {member.name.slice(0, 2)}
           </AvatarFallback>
-        </Avatar>
+          </Avatar>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <CardHeader className="text-center relative z-10">
@@ -97,7 +102,7 @@ function TeamMemberCard({ member, isSponsors }: TeamMemberCardProps) {
   )
 }
 
-function TeamSection({ title, members }: { title: string; members: any[] }) {
+function TeamSection({ title, members, selectedRatio }: { title: string; members: any[]; selectedRatio?: AspectRatio }) {
   const isSponsors = title.includes('Sponsor') || title.includes('赞助');
   return (
     <section className="mb-16">
@@ -107,7 +112,7 @@ function TeamSection({ title, members }: { title: string; members: any[] }) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {members.map((member, index) => (
-          <TeamMemberCard key={index} member={member} isSponsors={isSponsors} />
+          <TeamMemberCard key={index} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} />
         ))}
       </div>
     </section>
@@ -116,9 +121,15 @@ function TeamSection({ title, members }: { title: string; members: any[] }) {
 
 export function TeamPage() {
   const t = useTranslation()
+  // 显示比例状态管理 - 控制团队成员卡片图片的宽高比显示
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       {/* Background with team photos */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
@@ -139,21 +150,72 @@ export function TeamPage() {
             <ThemeToggle />
           </div>
           <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-            {t.team.title}
+            {t.about.title}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto dark:text-gray-200 drop-shadow-md">
             {t.team.description}
           </p>
         </div>
 
+        {/* About Section */}
+        <section className="mb-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid gap-8 md:gap-12">
+              {/* Main About Content */}
+              <div className="space-y-6">
+                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200 text-left">
+                  {t.about.paragraph1}
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200">
+                  {t.about.paragraph2}
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200">
+                  {t.about.paragraph3}
+                </p>
+              </div>
+
+              {/* Project Origin Story */}
+              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl gradient-text">{t.about.projectOrigin.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed dark:text-gray-200">
+                    {t.about.projectOrigin.content}
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Phase 2 Development */}
+              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl gradient-text">{t.about.phase2.title}</CardTitle>
+                  <CardDescription className="text-base">{t.about.phase2.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed dark:text-gray-200">
+                    {t.about.phase2.content}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+            {t.team.title}
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+        </div>
+
         {/* Team Sections */}
-        <TeamSection title={t.team.maintainerTitle} members={t.team.maintainers} />
-        <TeamSection title={t.team.developerTitle} members={t.team.developers} />
-        <TeamSection title={t.team.designerTitle} members={t.team.designers} />
-        <TeamSection title={t.team.contributorTitle} members={t.team.contributors} />
-        <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} />
-
-
+        <TeamSection title={t.team.maintainerTitle} members={t.team.maintainers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.developerTitle} members={t.team.developers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.designerTitle} members={t.team.designers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.contributorTitle} members={t.team.contributors} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} selectedRatio={selectedRatio} />
       </div>
     </PageLayout>
   )

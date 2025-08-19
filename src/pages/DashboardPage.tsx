@@ -25,6 +25,7 @@ import {
   Zap
 } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
+import { FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 
 function DashboardPage() {
   const { user, logout } = useAuthStore()
@@ -287,6 +288,7 @@ function DashboardPage() {
           </Card>
         </div>
       </div>
+      <FloatingControls showAspectRatio={true} />
     </PageLayout>
   )
 }

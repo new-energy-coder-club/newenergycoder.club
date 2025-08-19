@@ -13,7 +13,6 @@ export interface Translations {
   // Navigation
   nav: {
     home: string;
-    about: string;
     projects: string;
     events: string;
     resources: string;
@@ -45,8 +44,8 @@ export interface Translations {
   about: {
     title: string;
     paragraph1: string;
-    paragraph2: string;
-    paragraph3: string;
+    paragraph2?: string;
+    paragraph3?: string;
     learnMore: string;
     projectOrigin: {
       title: string;

@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
+import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import NECApplicationForm from '@/image/NEC官网上线申请表.png'
 import TeamPhoto1 from '@/image/校门合照.jpg'
 import TeamPhoto2 from '@/image/横向项目合照.jpg'
@@ -53,6 +54,7 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
   const t = useTranslation()
+  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -88,7 +90,11 @@ export function ContactPage() {
   const isFormValid = formData.name && formData.email && formData.subject && formData.message
 
   return (
-    <PageLayout>
+    <PageLayout 
+      showAspectRatio={true}
+      aspectRatio={selectedRatio}
+      onAspectRatioChange={setSelectedRatio}
+    >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
@@ -207,11 +213,13 @@ export function ContactPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-col items-center space-y-4">
-                      <img 
-                        src={NECApplicationForm} 
-                        alt="NEC官网上线申请表" 
-                        className="w-full max-w-md rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-                      />
+                      <div className={`${selectedRatio} overflow-hidden relative w-full max-w-md`}>
+                        <img 
+                          src={NECApplicationForm} 
+                          alt="NEC官网上线申请表" 
+                          className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                        />
+                      </div>
                       <a
                         href="https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh"
                         target="_blank"
@@ -326,6 +334,8 @@ export function ContactPage() {
           </div>
         </section>
       </div>
+      
+
     </PageLayout>
   )
 }

@@ -18,16 +18,23 @@ export function Header() {
   const { isAuthenticated } = useAuthStore()
   const t = useTranslation()
   
+  // 定义导航菜单项数组
+  // 每个菜单项包含标签(label)和对应的路由地址(href)
   const navItems = [
+    // 首页导航项
     { label: t.nav.home, href: '/' },
-    { label: t.nav.about, href: '/about' },
+
+    // 团队页面导航项
     { label: t.nav.team, href: '/team' },
+    // 项目展示页面导航项
     { label: t.nav.projects, href: '/projects' },
+    // 活动页面导航项
     { label: t.nav.events, href: '/events' },
+    // 资源页面导航项
     { label: t.nav.resources, href: '/resources' },
+    // 联系我们页面导航项
     { label: t.nav.contact, href: '/contact' },
   ]
-  
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">

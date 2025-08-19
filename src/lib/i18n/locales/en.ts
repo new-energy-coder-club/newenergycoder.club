@@ -4,7 +4,6 @@ import { Translations } from '../types/translations';
 export const enTranslations: Translations = {
   nav: {
     home: 'Home',
-    about: 'About',
     team: 'Team',
     projects: 'Projects',
     events: 'Events',
@@ -31,9 +30,7 @@ export const enTranslations: Translations = {
   },
   about: {
     title: 'About Our Club',
-    paragraph1: 'The New Energy Coder Club was founded in 2024 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy.',
-    paragraph2: 'Our mission is to build a community that develops open-source software solutions for renewable energy applications, smart grid technologies, energy efficiency, and sustainability.',
-    paragraph3: 'Through workshops, hackathons, collaborative projects, and partnerships with energy companies, we aim to create a platform where technology meets sustainability for a better future.',
+    paragraph1: 'The New Energy Coder Club was founded in 2024 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy. Our mission is to build a community that develops open-source software solutions for renewable energy applications, smart grid technologies, energy efficiency, and sustainability. Through workshops, hackathons, collaborative projects, and partnerships with energy companies, we aim to create a platform where technology meets sustainability for a better future.',
     learnMore: 'Learn More About Us',
     projectOrigin: {
       title: 'Project Origin Story',
