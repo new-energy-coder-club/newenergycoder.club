@@ -126,6 +126,20 @@ export const designers: TeamMember[] = [
     tags: ['品牌设计', 'Power BI', 'Logo设计', '色彩搭配']
   },
   {
+    name: '韦彩日',
+    role: '工业产品设计师',
+    bio: '负责对接需求，专注于工业产品设计，为项目提供专业的设计解决方案。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/韦彩日.jpg',
+    tags: ['工业设计', '产品设计', '需求对接', '设计解决方案', '用户体验', '产品规划']
+  },
+  {
+    name: '张岩皓',
+    role: '摄影&数据可视化&设计师&运营博主',
+    bio: '会摄影，学艺术设计，做漂亮餐，专注于摄影、数据可视化设计和运营推广。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张岩皓.jpg',
+    tags: ['摄影', '数据可视化', '艺术设计', '运营博主', '视觉传达', '内容创作']
+  },
+  {
     name: '李想',
     role: 'UX设计师',
     bio: '一直在探索技术与设计边界的路上，以用户为中心，以体验为驱动。',
@@ -250,6 +264,14 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/殷子豪.jpg',
     tags: ['运营宣传', '文字编辑', '内容创作', '团队传播', '文案策划', '品牌建设'],
     github: 'https://github.com/yinzihao'
+  },
+  {
+    name: '孙如婕',
+    role: '灵巧手横向开发贡献者',
+    bio: '专注于灵巧手的横向开发，为项目提供创新的技术解决方案和开发支持。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/孙如婕.jpg',
+    tags: ['灵巧手开发', '横向开发', '技术创新', '开发支持', '项目贡献', '技术解决方案'],
+    github: 'https://github.com/sunrujie'
   },
 ];
 
