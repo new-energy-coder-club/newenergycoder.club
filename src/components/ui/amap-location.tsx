@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin, Navigation, Clock, Route, ExternalLink, Compass } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
+import NECBuilding from '@/image/NEC-A416.png'
 
 interface LocationInfo {
   latitude: number
@@ -328,7 +329,7 @@ export function AmapLocation({ className }: AmapLocationProps) {
         {/* 地点图片 */}
         <div className="mt-4">
           <img 
-            src="/src/image/NEC-A416.png" 
+            src={NECBuilding} 
             alt="常州工学院玉衡楼" 
             className="w-full h-64 rounded-lg object-cover shadow-lg border border-primary/20"
           />

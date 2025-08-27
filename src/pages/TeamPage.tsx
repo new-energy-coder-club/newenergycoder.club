@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { type AspectRatio } from '@/components/ui/floating-controls'
 import { useState } from 'react'
+import TeamPhoto1 from '@/image/校门合照.jpg'
+import TeamPhoto2 from '@/image/横向项目合照.jpg'
 
 interface TeamMemberCardProps {
   member: {
@@ -134,11 +136,11 @@ export function TeamPage() {
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
         <img
-          src="/src/image/校门合照.jpg"
+          src={TeamPhoto1}
           alt="团队校门合照"
           className="w-full h-full object-cover opacity-20 dark:opacity-25"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/src/image/横向项目合照.jpg'
+            (e.target as HTMLImageElement).src = TeamPhoto2
           }}
         />
       </div>
