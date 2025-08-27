@@ -24,8 +24,8 @@ src/image/
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `DarrenPig.jpeg` | DarrenPig | 社团创始人 & BSP嵌软工程师 | Renewable energy researcher with a focus on AI applications for energy optimization. | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpeg` |
-| `殷统创.png` | 殷统创 | 社团创始人 & BSP专家 | 专注于AI在能源优化应用的可再生能源研究员。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/殷统创.png` |
+| `DarrenPig.jpg` | DarrenPig | Club Founder & BSP 嵌软工程师 | Renewable energy researcher with a focus on AI applications for energy optimization. | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpeg` |
+| `殷统创.jpg` | 殷统创 | Club Founder & BSP Expert | 专注于AI在能源优化应用的可再生能源研究员。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/殷统创.png` |
 | `许珑译.jpg` | 许珑译 | 机器人算法工程师 | 专注于机器人算法研发部署以及业务逻辑设计。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/许珑译.jpg` |
 | `张旺旺.jpg` | 张旺旺 | 机器人运行时工程师 | 负责项目的核心技术攻坚，保障电控系统的稳定运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg` |
 
@@ -34,28 +34,30 @@ src/image/
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `刘英琪.png` | 刘英琪 | 前端开发工程师 | 专注于现代前端技术栈，致力于构建高性能的用户界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/刘英琪.png` |
-| `单广志.png` | 单广志 | 后端开发工程师 | 专注于服务端架构设计和API开发，为项目提供稳定的后端支持。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.png` |
+| `刘英琪.png` | 刘英琪 | 嵌入式开发工程师 | 专注于现代机器人技术栈，致力于构建高性能的机器人界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/刘英琪.png` |
+| `单广志.jpg` | 单广志 | 嵌入式开发工程师 | 机器人行业电控驱动开发以及硬件电路设计。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.jpg` |
 | `周志.png` | 周志 | 全栈开发工程师 | 具备前后端开发能力，致力于端到端的解决方案开发。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/周志.png` |
-| `李硕.png` | 李硕 | 系统架构师 | 专注于系统架构设计和技术选型，为项目提供技术指导。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/李硕.png` |
-| `牛良旭.png` | 牛良旭 | DevOps工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.png` |
-| `郑钦文.jpg` | 郑钦文 | 移动端开发工程师 | 专注于移动应用开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg` |
-| `彭柯颖.jpg` | 彭柯颖 | 新成员开发者 | 新加入的开发团队成员，积极参与项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
-| `余浩铭.jpg` | 余浩铭 | Developer&文艺工作者 | 机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg` |
+| `李硕.png` | 李硕 | 硬件系统架构师 | 专注于硬件系统架构设计和技术选型，为项目提供技术指导。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/李硕.png` |
+| `牛良旭.jpg` | 牛良旭 | DevOps电池管理工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.jpg` |
+| `郑钦文.jpg` | 郑钦文 | 机电一体化开发工程师 | 专注于机电设计开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg` |
 | `杨力滔.JPG` | 杨力滔 | 星闪手柄开发工程师 | 星闪手柄开发专家，熟悉STM32+RTOS C语言开发。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG` |
+| `彭柯颖.jpg` | 彭柯颖 | 机械R1机器人开发者 | 新加入的开发团队成员，积极参与机器人项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
+| `余浩铭.jpg` | 余浩铭 | Developer&文艺工作者 | 机器人日志运营编辑，专注于宣传和文字编辑，让NEC的每一份理念都能被看见。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/余浩铭.jpg` |
+| `闻志伟.jpg` | 闻志伟 | 开发工程师 | 专注于技术开发和项目实施，为团队提供技术支持。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.jpg` |
 
 ### 🎨 设计团队 (Designers Team)
 对应i18n.ts中的 `team.designers` 数组
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `Xiux.jpg` | Xiux | UI/UX设计师 | 专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/Xiux.jpg` |
+| `xiux.jpg` | Xiux | UI/UX设计师 | 专注于用户体验设计和界面优化，为可持续技术产品创造美观易用的界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/xiux.jpg` |
 | `ikkOoOo.jpg` | ikkOoOo | 设计师 | 专注于创意设计和视觉表达，为项目提供独特的设计视角。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/ikkOoOo.jpg` |
+| `张岩皓.jpg` | 张岩皓 | 视觉设计师 | 专注于视觉设计和创意表达，为项目提供专业的设计支持。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张岩皓.jpg` |
 | `张若璐.jpg` | 张若璐 | 视觉设计师 | 专注于品牌视觉设计和图形创意，为项目提供专业的视觉解决方案。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/张若璐.jpg` |
 | `徐海婷.jpg` | 徐海婷 | 交互设计师 | 专注于交互设计和用户研究，致力于提升产品的用户体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg` |
 | `李一楠.jpg` | 李一楠 | 产品设计师 | 负责产品设计和用户体验优化，推动设计与技术的完美结合。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg` |
 | `李想.jpg` | 李想 | UX设计师 | 一直在探索技术与设计边界的路上，以用户为中心，以体验为驱动。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg` |
-| `王彦君2.jpg` | 王彦君 | 工业/产品设计师 | 致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/王彦君.jpg` |
+| `韦彩日.jpg` | 韦彩日 | 设计师 | 专注于设计创新和用户体验，为项目提供创意设计支持。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/韦彩日.jpg` |
 
 ### 🤝 贡献者团队 (Contributors Team)
 对应i18n.ts中的 `team.contributors` 数组
@@ -74,10 +76,10 @@ src/image/
 ### 💰 赞助商团队 (Sponsors Team)
 对应i18n.ts中的 `team.sponsors` 数组
 
-| 图片文件 | 姓名/组织 | 职责 | 个人简介 | GitHub图片链接 |
-|---------|-----------|------|----------|----------------|
-| `杨立涛.png` | 杨立涛/Green Tech Foundation | 黄金赞助商 | Non-profit organization dedicated to supporting sustainable technology development. | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/杨立涛.png` |
-| `闻志伟.png` | 闻志伟 | 白银赞助商 | 致力于推动可持续技术发展的非营利组织。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/闻志伟.png` |
+| 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
+|---------|------|------|----------|----------------|
+| `DarrenPig.jpg` | DarrenPig | 金牌赞助商 | 为项目提供资金支持，推动开源项目的发展。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/DarrenPig.jpg` |
+| `殷统创.jpg` | 殷统创 | 技术赞助商 | 提供技术支持和指导，助力项目技术发展。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/殷统创.jpg` |
 
 ## 📸 团队合照 (Team Group Photos)
 

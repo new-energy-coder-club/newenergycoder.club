@@ -5,7 +5,7 @@ export const maintainers: TeamMember[] = [
     name: 'DarrenPig',
     role: 'Club Founder & BSP 嵌软工程师',
     bio: 'Renewable energy researcher with a focus on AI applications for energy optimization.',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpeg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpg',
     tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
     github: 'https://github.com/Darrenpig',
     email: '22230635@czu.cn'
@@ -14,7 +14,7 @@ export const maintainers: TeamMember[] = [
     name: '殷统创',
     role: 'Club Founder & BSP Expert',
     bio: '专注于AI在能源优化应用的可再生能源研究员。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/殷统创.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/殷统创.jpg',
     tags: ['AI', 'BSP', '能源优化', '可再生能源', '华为云AI'],
     github: 'https://github.com/yintongchuang'
   },
@@ -73,7 +73,7 @@ export const developers: TeamMember[] = [
     name: '牛良旭',
     role: 'DevOps电池管理工程师',
     bio: '负责项目的持续集成和部署，保障开发流程的高效运行。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.jpg',
     tags: ['DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'GitHub Actions', '自动化部署'],
     github: 'https://github.com/niuliangxu'
   },
@@ -161,7 +161,7 @@ export const contributors: TeamMember[] = [
     name: '卢王淳',
     role: '25RC项管&机械&电控小白',
     bio: '25RC项目管理，机械和电控领域的学习者，负责项目协调工作。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢王淳.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/卢王淳.jpg',
     tags: ['项目管理', '机械设计', '电控学习', 'ROBOCON', '团队协调', '25RC'],
     github: 'https://github.com/luwangchun'
   },
@@ -169,7 +169,7 @@ export const contributors: TeamMember[] = [
     name: '崔正阳',
     role: '上位机测试工程师',
     bio: '专注于上位机软件质量保证，确保项目的稳定性和可靠性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.jpg',
     tags: ['海鸥派', 'Liunx', 'openEuler', '自动化测试', '性能测试'],
     github: 'https://github.com/cuizhengyang'
   },
@@ -177,7 +177,7 @@ export const contributors: TeamMember[] = [
     name: '闻志伟',
     role: 'Bronze Sponsor',
     bio: '致力于推动可持续技术发展的个人赞助者。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.png',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/闻志伟.jpg',
     tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   },
   {
