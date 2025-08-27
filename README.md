@@ -1,4 +1,4 @@
-# Energy Coder Club Website
+# New Energy Coder Club Web3
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg)](https://www.typescriptlang.org/)
@@ -19,28 +19,10 @@
 
 ## 🚀 快速启动
 
-### Windows 用户（推荐）
-
-**一键启动开发环境：**
-```powershell
-# PowerShell 脚本（推荐）
-.\start-dev.ps1
-
-# 或批处理文件
-.\start-dev.bat
-```
-
-**环境检查：**
-```powershell
-# 检查开发环境配置
-.\check-env.ps1
-```
-
 ### 手动启动
 
 1. **安装 Node.js**（必需）
    - 访问 [Node.js 官网](https://nodejs.org/) 下载 LTS 版本
-   - 或查看 `SETUP_GUIDE.md` 获取详细安装指南
 
 2. **安装依赖：**
 ```bash
@@ -62,6 +44,26 @@ npm run dev
 npm run build
 # 或 bun run build
 ```
+
+## 部署
+
+本网站使用 GitHub Pages 进行托管，并通过 Cloudflare CDN 加速。
+
+### 部署流程
+
+1.  **推送到 `main` 分支**
+    -   每次向 `main` 分支推送代码时，GitHub Actions 会自动触发部署流程。
+
+2.  **自动构建和部署**
+    -   GitHub Actions 会执行以下操作：
+        1.  安装依赖
+        2.  构建项目
+        3.  将构建产物（`dist` 目录）部署到 `gh-pages` 分支
+
+3.  **访问网站**
+    -   部署成功后，可以通过以下链接访问：
+    -   [https://newenergycoder.github.io/newenergycoder.club/](https://newenergycoder.github.io/newenergycoder.club/)
+
 
 ## 🌟 主要功能
 
@@ -122,4 +124,4 @@ src/
 
 ---
 
-*由 Energy Coder Club 驱动*
+*由 New Energy Coder Club 驱动*
