@@ -3,5 +3,14 @@
   "compatibility_date": "2025-08-18",
   "assets": {
     "directory": "./dist"
+  },
+  "build": {
+    "command": "npm run build"
+  },
+  "deploy": {
+    "command": "npx wrangler deploy"
+  },
+  "versions": {
+    "command": "npx wrangler versions upload"
   }
 }
