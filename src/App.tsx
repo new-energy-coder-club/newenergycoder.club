@@ -21,7 +21,7 @@ function App() {
   return (
     <LanguageProvider>
       <TooltipProvider>
-        <BrowserRouter basename={import.meta.env.PROD ? '/Energy-Coder-Club-Website' : '/'}>
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           
