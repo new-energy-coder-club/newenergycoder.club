@@ -47,22 +47,26 @@ npm run build
 
 ## 部署
 
-本网站使用 GitHub Pages 进行托管，并通过 Cloudflare CDN 加速。
+本网站使用 Vercel 进行托管，并通过 Cloudflare CDN 加速。
 
 ### 部署流程
 
-1.  **推送到 `main` 分支**
-    -   每次向 `main` 分支推送代码时，GitHub Actions 会自动触发部署流程。
+1.  **连接 GitHub 仓库到 Vercel**
+    -   在 [Vercel Dashboard](https://vercel.com/dashboard) 中导入此 GitHub 仓库
+    -   Vercel 会自动检测到这是一个 Vite 项目
 
 2.  **自动构建和部署**
-    -   GitHub Actions 会执行以下操作：
-        1.  安装依赖
-        2.  构建项目
-        3.  将构建产物（`dist` 目录）部署到 `gh-pages` 分支
+    -   每次向 `main` 分支推送代码时，Vercel 会自动触发部署
+    -   构建配置已在 `vercel.json` 中预设
+    -   支持预览部署（Pull Request 会生成预览链接）
 
-3.  **访问网站**
-    -   部署成功后，可以通过以下链接访问：
-    -   [https://newenergycoder.github.io/newenergycoder.club/](https://newenergycoder.github.io/newenergycoder.club/)
+3.  **自定义域名**
+    -   在 Vercel 项目设置中添加自定义域名 `newenergycoder.club`
+    -   配置 DNS 记录指向 Vercel
+
+4.  **访问网站**
+    -   Vercel 部署链接：`https://your-project.vercel.app`
+    -   自定义域名：`https://newenergycoder.club`
 
 
 ## 🌟 主要功能

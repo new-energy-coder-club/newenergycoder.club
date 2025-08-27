@@ -54,7 +54,5 @@ export default defineConfig({
     reportCompressedSize: true,
     // 设置 chunk 大小警告限制
     chunkSizeWarningLimit: 1000,
-  },
-  // GitHub Pages 部署配置
-  base: process.env.NODE_ENV === 'production' ? '/Energy-Coder-Club-Website/' : '/'
+  }
 })
