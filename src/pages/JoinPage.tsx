@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Users, Code, Heart, MessageCircle, ArrowRight, Calendar, Target, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
+import WeChatIcon from '@/wechat.svg'
+import FeishuIcon from '@/feishu.png'
 
 const roadmapSteps = [
   {
@@ -49,11 +51,11 @@ export function JoinPage() {
   const [copied, setCopied] = useState(false)
   const t = useTranslation()
 
-  const wechatId = "NEC_NewEnergyCoder"
+  const feishuGroupId = "L-Ch-2023-1124"
   
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(wechatId)
+      await navigator.clipboard.writeText(feishuGroupId)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
@@ -99,7 +101,7 @@ export function JoinPage() {
                 <CardContent className="space-y-6">
                   <div className="text-center space-y-4">
                     <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-lg">
-                      <span className="font-mono text-lg font-bold text-primary">{wechatId}</span>
+                      <span className="font-mono text-lg font-bold text-primary">{feishuGroupId}</span>
                     </div>
                     <Button 
                        onClick={copyToClipboard}
@@ -260,32 +262,33 @@ export function JoinPage() {
               <Card className="glass-card border-primary/20">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <MessageCircle className="h-8 w-8 text-primary" />
+                    <img src={FeishuIcon} alt="Feishu" className="h-8 w-8" />
                   </div>
                   <CardTitle className="text-2xl">联系加入我们</CardTitle>
                   <CardDescription>
-                    添加我们的官方微信，获取最新加入信息和一对一指导
+                    添加我们的运营maintainer，获取最新官方飞书群和一对一咨询
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="text-center space-y-4">
                     <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-lg">
-                      <span className="font-mono text-lg font-bold text-primary">{wechatId}</span>
+                      <img src={WeChatIcon} alt="WeChat" className="h-7 w-6 mr-2" />
+                      <span className="font-mono text-lg font-bold text-primary">{feishuGroupId}</span>
                     </div>
                     <Button 
                       onClick={copyToClipboard}
                       className="w-full sm:w-auto"
                       variant={copied ? "secondary" : "default"}
                     >
-                      {copied ? "已复制 ✓" : "复制微信号"}
+                      {copied ? "已复制 ✓" : "复制运营微信"}
                     </Button>
                   </div>
                   
                   <div className="bg-muted/50 p-4 rounded-lg">
                     <h4 className="font-semibold mb-2">添加时请备注：</h4>
                     <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• 姓名 + 学校/公司</li>
-                      <li>• 技术方向（如：前端/后端/嵌入式）</li>
+                      <li>• 姓名 + 学校/公司&班级</li>
+                      <li>• 技术方向（如：前端/后端/嵌入式/算法/机械/设计）</li>
                       <li>• 加入目的（如：学习/项目/交流）</li>
                     </ul>
                   </div>

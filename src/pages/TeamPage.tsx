@@ -12,6 +12,10 @@ import { type AspectRatio } from '@/components/ui/floating-controls'
 import { useState } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg'
 import TeamPhoto2 from '@/image/横向项目合照.jpg'
+import TeamPhoto3 from '@/image/合照1.jpg'
+import TeamPhoto4 from '@/image/合照2.jpg'
+import TeamPhoto5 from '@/image/合照3.jpg'
+import TeamPhoto6 from '@/image/合照4.jpg'
 
 interface TeamMemberCardProps {
   member: {
@@ -314,6 +318,98 @@ export function TeamPage() {
               </Table>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Team Project Photo Section */}
+        <div className="mt-16 mb-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+              团队项目合照
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+          </div>
+          
+          <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+            <CardContent className="p-0">
+              <div className="relative overflow-hidden">
+                <img
+                  src={TeamPhoto2}
+                  alt="团队横向项目合照"
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <p className="text-center text-muted-foreground dark:text-gray-200">
+                  团队成员在项目开发过程中的珍贵合影，记录了我们共同努力和协作的美好时光。
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Additional Team Photos Section */}
+        <div className="mt-16 mb-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+              更多团队合照
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={TeamPhoto3}
+                    alt="团队合照1"
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={TeamPhoto4}
+                    alt="团队合照2"
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={TeamPhoto5}
+                    alt="团队合照3"
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={TeamPhoto6}
+                    alt="团队合照4"
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </PageLayout>

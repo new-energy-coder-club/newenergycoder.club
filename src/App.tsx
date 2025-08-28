@@ -15,6 +15,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 
 
@@ -48,6 +49,7 @@ function App() {
         </Routes>
         </BrowserRouter>
         <Toaster />
+        <Analytics />
       </TooltipProvider>
     </LanguageProvider>
   );

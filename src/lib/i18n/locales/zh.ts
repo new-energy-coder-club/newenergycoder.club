@@ -278,6 +278,14 @@ export const zhTranslations: Translations = {
         github: 'https://github.com/liuyingqi'
       },
       {
+        name: '单广志',
+        role: '嵌入式开发工程师',
+        bio: '机器人行业电控驱动开发以及硬件电路设计。',
+        image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.png',
+        tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
+        github: 'https://github.com/shanguangzhi'
+      },
+      {
         name: '周志',
         role: '全栈开发工程师',
         bio: '具备前后端开发能力，致力于端到端的解决方案开发。',
@@ -418,14 +426,6 @@ export const zhTranslations: Translations = {
         tags: ['气动自动化', '开源贡献', '工业控制', 'PLC', '自动化系统'],
         github: 'https://github.com/wuluobin'
       },
-       {
-        name: '单广志',
-        role: '嵌入式开发工程师',
-        bio: '机器人行业电控驱动开发以及硬件电路设计。',
-        image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.jpg',
-        tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
-        github: 'https://github.com/shanguangzhi'
-      },
       {
         name: '余浩铭',
         role: '机器人日志运营编辑',
@@ -502,14 +502,6 @@ export const zhTranslations: Translations = {
         image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/孙如婕.jpg',
         tags: ['灵巧手开发', '横向开发', '技术创新', '开发支持', '项目贡献', '技术解决方案'],
         github: 'https://github.com/sunrujie'
-      },
-      {
-        name: 'Gitee社区贡献者',
-        role: '开源平台支持者们',
-        bio: '来自Gitee开源社区的活跃贡献者，为新能源编程俱乐部项目提供技术支持和代码贡献。',
-        image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/gitee-community.jpg',
-        tags: ['Gitee社区', '开源贡献', '代码审查', '技术支持', '社区建设', '知识分享'],
-        github: 'https://gitee.com/darrenpig/new_energy_coder_club'
       }
     ],
     sponsors: [
