@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import { JoinPage } from "@/pages/JoinPage";
+import { FeishuJoinFormPage } from "@/pages/FeishuJoinFormPage";
 import DashboardPage from "@/pages/DashboardPage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { EventsPage } from "@/pages/EventsPage";
@@ -33,6 +34,8 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/display-ratio" element={<DisplayRatioPage />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/join/form" element={<FeishuJoinFormPage />} />
           
           {/* Protected Routes */}
           <Route path="/dashboard" element={

@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 // 从FloatingControls导入集成的组件和类型
-import { AspectRatio, DisplayItem, typeColors, aspectRatioOptions } from '@/components/ui/floating-controls'
+import { AspectRatio, DisplayItem, typeColors, getAspectRatioOptions } from '@/components/ui/floating-controls'
 
 // 布局组件
 import { PageLayout } from '@/components/layout/PageLayout'

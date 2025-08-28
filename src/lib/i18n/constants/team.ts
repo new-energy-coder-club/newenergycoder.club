@@ -273,22 +273,6 @@ export const contributors: TeamMember[] = [
     tags: ['灵巧手开发', '横向开发', '技术创新', '开发支持', '项目贡献', '技术解决方案'],
     github: 'https://github.com/sunrujie'
   },
-  {
-    name: 'haolei',
-    role: 'Gitee项目合作伙伴',
-    bio: '与DarrenPig共同发起新能源编程俱乐部项目，致力于推动可持续技术发展。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/default-avatar.jpg',
-    tags: ['项目发起', '合作伙伴', '可持续技术', '新能源', '开源贡献', '技术推广'],
-    github: 'https://gitee.com/haolei'
-  },
-  {
-    name: 'Gitee社区贡献者',
-    role: '开源平台支持者',
-    bio: '来自Gitee开源社区的活跃贡献者，为新能源编程俱乐部项目提供技术支持和代码贡献。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/gitee-community.jpg',
-    tags: ['Gitee社区', '开源贡献', '代码审查', '技术支持', '社区建设', '知识分享'],
-    github: 'https://gitee.com/darrenpig/new_energy_coder_club'
-  },
 ];
 
 export const sponsors: TeamMember[] = [
