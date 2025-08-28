@@ -3,9 +3,10 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { type AspectRatio } from '@/components/ui/floating-controls'
 import { useState } from 'react'
@@ -159,50 +160,7 @@ export function TeamPage() {
           </p>
         </div>
 
-        {/* About Section */}
-        <section className="mb-16">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-8 md:gap-12">
-              {/* Main About Content */}
-              <div className="space-y-6">
-                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200 text-left">
-                  {t.about.paragraph1}
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200">
-                  {t.about.paragraph2}
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed dark:text-gray-200">
-                  {t.about.paragraph3}
-                </p>
-              </div>
 
-              {/* Project Origin Story */}
-              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-2xl gradient-text">{t.about.projectOrigin.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed dark:text-gray-200">
-                    {t.about.projectOrigin.content}
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Phase 2 Development */}
-              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-2xl gradient-text">{t.about.phase2.title}</CardTitle>
-                  <CardDescription className="text-base">{t.about.phase2.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed dark:text-gray-200">
-                    {t.about.phase2.content}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
 
         {/* Team Title */}
         <div className="text-center mb-12">
@@ -218,6 +176,145 @@ export function TeamPage() {
         <TeamSection title={t.team.designerTitle} members={t.team.designers} selectedRatio={selectedRatio} />
         <TeamSection title={t.team.contributorTitle} members={t.team.contributors} selectedRatio={selectedRatio} />
         <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} selectedRatio={selectedRatio} />
+
+        {/* Team Analytics Section */}
+        <div className="mt-16 mb-12">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <BarChart3 className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl font-bold tracking-tight text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+                {t.team.analytics.title}
+              </h2>
+            </div>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-2">
+              {t.team.analytics.description}
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+              {t.team.analytics.giteeReference}
+            </p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">
+              {t.team.analytics.lastUpdated}: {new Date().toLocaleDateString('zh-CN')}
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+          </div>
+
+          {/* Statistics Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">维护者</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{t.team.maintainers?.length || 0}</div>
+                <p className="text-xs text-muted-foreground">核心团队成员</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">开发者</CardTitle>
+                <Code className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{t.team.developers?.length || 0}</div>
+                <p className="text-xs text-muted-foreground">技术开发人员</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">设计师</CardTitle>
+                <Palette className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{t.team.designers?.length || 0}</div>
+                <p className="text-xs text-muted-foreground">UI/UX设计师</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">贡献者</CardTitle>
+                <Heart className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{t.team.contributors?.length || 0}</div>
+                <p className="text-xs text-muted-foreground">社区贡献者</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Detailed Analytics Table */}
+          <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">{t.team.analytics.roleDistribution}</CardTitle>
+              <CardDescription>{t.team.analytics.contributionStats}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>角色类型</TableHead>
+                    <TableHead className="text-center">人数</TableHead>
+                    <TableHead className="text-center">占比</TableHead>
+                    <TableHead>{t.team.analytics.mainResponsibilities}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">维护者</TableCell>
+                    <TableCell className="text-center">{t.team.maintainers?.length || 0}</TableCell>
+                    <TableCell className="text-center">
+                      {((t.team.maintainers?.length || 0) / 
+                        ((t.team.maintainers?.length || 0) + 
+                         (t.team.developers?.length || 0) + 
+                         (t.team.designers?.length || 0) + 
+                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
+                    </TableCell>
+                    <TableCell>项目管理、代码审核、技术决策</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">开发者</TableCell>
+                    <TableCell className="text-center">{t.team.developers?.length || 0}</TableCell>
+                    <TableCell className="text-center">
+                      {((t.team.developers?.length || 0) / 
+                        ((t.team.maintainers?.length || 0) + 
+                         (t.team.developers?.length || 0) + 
+                         (t.team.designers?.length || 0) + 
+                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
+                    </TableCell>
+                    <TableCell>功能开发、Bug修复、技术实现</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">设计师</TableCell>
+                    <TableCell className="text-center">{t.team.designers?.length || 0}</TableCell>
+                    <TableCell className="text-center">
+                      {((t.team.designers?.length || 0) / 
+                        ((t.team.maintainers?.length || 0) + 
+                         (t.team.developers?.length || 0) + 
+                         (t.team.designers?.length || 0) + 
+                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
+                    </TableCell>
+                    <TableCell>界面设计、用户体验、视觉规范</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">贡献者</TableCell>
+                    <TableCell className="text-center">{t.team.contributors?.length || 0}</TableCell>
+                    <TableCell className="text-center">
+                      {((t.team.contributors?.length || 0) / 
+                        ((t.team.maintainers?.length || 0) + 
+                         (t.team.developers?.length || 0) + 
+                         (t.team.designers?.length || 0) + 
+                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
+                    </TableCell>
+                    <TableCell>文档编写、测试反馈、社区支持</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </PageLayout>
   )

@@ -66,7 +66,7 @@ export function Header() {
               <Button variant="ghost" size="sm" className="gap-2" asChild>
                 <Link to="/display-ratio">
                   <Ratio className="h-4 w-4" />
-                  <span className="hidden sm:inline">显示比例</span>
+                  <span className="hidden sm:inline">{t.displayRatio.aspectRatioLabel}</span>
                 </Link>
               </Button>
               <LanguageSwitcher />
@@ -102,7 +102,7 @@ export function Header() {
             <Button variant="ghost" size="sm" className="gap-2" asChild>
               <Link to="/display-ratio" onClick={() => setMobileMenuOpen(false)}>
                 <Ratio className="h-4 w-4" />
-                <span>显示比例</span>
+                <span>{t.displayRatio.aspectRatioLabel}</span>
               </Link>
             </Button>
             <LanguageSwitcher />

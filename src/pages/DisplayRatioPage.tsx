@@ -128,7 +128,7 @@ export function DisplayRatioPage() {
                 <>
                   <Button size="sm" className="bg-primary/90 backdrop-blur-sm hover:bg-primary flex-1">
                     <ExternalLink className="h-4 w-4 mr-2" />
-                    查看详情
+                    {t.displayRatio.viewDetails}
                   </Button>
                   {item.type === 'resource' && (
                     <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
@@ -168,10 +168,10 @@ export function DisplayRatioPage() {
           
           <div className="container relative z-10 text-center">
             <h1 className="text-4xl font-bold gradient-text sm:text-5xl lg:text-6xl mb-6">
-              显示比例调整器
+              {t.displayRatio.title}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-              调整卡片显示比例，查看不同比例下的视觉效果
+              {t.displayRatio.description}
             </p>
           </div>
         </section>
@@ -185,7 +185,7 @@ export function DisplayRatioPage() {
             
             {filteredItems.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-muted-foreground text-lg">没有找到匹配的内容</p>
+                <p className="text-muted-foreground text-lg">{t.displayRatio.noMatchingContent}</p>
               </div>
             )}
           </div>

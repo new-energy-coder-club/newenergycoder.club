@@ -229,7 +229,16 @@ export const enTranslations: Translations = {
     advanced: 'Advanced',
     category: 'Category',
     author: 'Author',
-    rating: 'Rating'
+    rating: 'Rating',
+    sortBy: 'Sort By',
+    sortOrder: 'Sort Order',
+    sortByRating: 'Rating',
+    sortByTitle: 'Title',
+    sortByDifficulty: 'Difficulty',
+    sortByType: 'Type',
+    ascending: 'Ascending',
+    descending: 'Descending',
+    totalResources: '{count} resources total'
   },
   contact: {
     title: 'Contact Us',
@@ -300,5 +309,20 @@ export const enTranslations: Translations = {
     joinClub: 'Join Club',
     address: 'Yuheng A416 Warehouse Laboratory, Liaohai Road Campus, Changzhou Institute of Technology, No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
     copyright: '© 2025 New Energy Coder Club. All rights reserved.'
+  },
+  displayRatio: {
+    title: 'Display Ratio Adjuster',
+    description: 'Adjust card display ratios and view visual effects under different ratios',
+    aspectRatioLabel: 'Display Ratio',
+    viewDetails: 'View Details',
+    noMatchingContent: 'No matching content found',
+    aspectRatios: {
+      square: 'Square (1:1)',
+      video: 'Video Ratio (16:9)',
+      traditional: 'Traditional Ratio (4:3)',
+      portrait: 'Portrait Ratio (3:4)',
+      widescreen: 'Widescreen Ratio (16:10)',
+      ultrawide: 'Ultrawide Ratio (21:9)'
+    }
   }
 };

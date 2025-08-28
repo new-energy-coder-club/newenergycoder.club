@@ -1,4 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useTranslation } from '@/contexts/LanguageContext'
 
 export type AspectRatio = 'aspect-square' | 'aspect-video' | 'aspect-[4/3]' | 'aspect-[3/4]' | 'aspect-[16/10]' | 'aspect-[21/9]'
 
@@ -8,19 +9,22 @@ interface AspectRatioSelectorProps {
   className?: string
 }
 
-const aspectRatioOptions: { value: AspectRatio; label: string }[] = [
-  { value: 'aspect-square', label: '正方形 (1:1)' },
-  { value: 'aspect-video', label: '视频比例 (16:9)' },
-  { value: 'aspect-[4/3]', label: '传统比例 (4:3)' },
-  { value: 'aspect-[3/4]', label: '竖直比例 (3:4)' },
-  { value: 'aspect-[16/10]', label: '宽屏比例 (16:10)' },
-  { value: 'aspect-[21/9]', label: '超宽比例 (21:9)' }
+const getAspectRatioOptions = (t: any): { value: AspectRatio; label: string }[] => [
+  { value: 'aspect-square', label: t.displayRatio.aspectRatios.square },
+  { value: 'aspect-video', label: t.displayRatio.aspectRatios.video },
+  { value: 'aspect-[4/3]', label: t.displayRatio.aspectRatios.traditional },
+  { value: 'aspect-[3/4]', label: t.displayRatio.aspectRatios.portrait },
+  { value: 'aspect-[16/10]', label: t.displayRatio.aspectRatios.widescreen },
+  { value: 'aspect-[21/9]', label: t.displayRatio.aspectRatios.ultrawide }
 ]
 
 export function AspectRatioSelector({ value, onValueChange, className }: AspectRatioSelectorProps) {
+  const t = useTranslation()
+  const aspectRatioOptions = getAspectRatioOptions(t)
+  
   return (
     <div className={`flex items-center gap-2 ${className || ''}`}>
-      <label className="text-sm font-medium whitespace-nowrap">显示比例:</label>
+      <label className="text-sm font-medium whitespace-nowrap">{t.displayRatio.aspectRatioLabel}:</label>
       <Select value={value} onValueChange={onValueChange}>
         <SelectTrigger className="w-48">
           <SelectValue />
@@ -37,4 +41,4 @@ export function AspectRatioSelector({ value, onValueChange, className }: AspectR
   )
 }
 
-export { aspectRatioOptions }
+export { getAspectRatioOptions }

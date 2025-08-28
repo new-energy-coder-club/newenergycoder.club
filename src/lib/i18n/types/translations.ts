@@ -228,6 +228,15 @@ export interface Translations {
     category: string;
     author: string;
     rating: string;
+    sortBy: string;
+    sortOrder: string;
+    sortByRating: string;
+    sortByTitle: string;
+    sortByDifficulty: string;
+    sortByType: string;
+    ascending: string;
+    descending: string;
+    totalResources: string;
   };
   
   // Contact Page
@@ -304,6 +313,23 @@ export interface Translations {
     joinClub: string;
     address: string;
     copyright: string;
+  };
+  
+  // Display Ratio Page
+  displayRatio: {
+    title: string;
+    description: string;
+    aspectRatioLabel: string;
+    viewDetails: string;
+    noMatchingContent: string;
+    aspectRatios: {
+      square: string;
+      video: string;
+      traditional: string;
+      portrait: string;
+      widescreen: string;
+      ultrawide: string;
+    };
   };
 }
 

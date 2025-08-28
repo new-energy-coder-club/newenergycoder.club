@@ -105,6 +105,17 @@ export const zhTranslations: Translations = {
     sponsorTitle: '赞助商',
     viewFullTeam: '查看完整团队',
     teamPhoto: '团队合照',
+    analytics: {
+      title: '团队数据分析',
+      description: '基于Gitee项目贡献者数据的团队组成分析',
+      totalMembers: '总成员数',
+      activeContributors: '活跃贡献者',
+      giteeReference: '参考来源：Gitee项目贡献者页面',
+      lastUpdated: '最后更新时间',
+      roleDistribution: '角色分布',
+      contributionStats: '贡献统计',
+      mainResponsibilities: '主要职责'
+    },
     maintainers,
     developers,
     designers,
@@ -231,7 +242,16 @@ export const zhTranslations: Translations = {
     advanced: '高级',
     category: '类别',
     author: '作者',
-    rating: '评分'
+    rating: '评分',
+    sortBy: '排序方式',
+    sortOrder: '排序',
+    sortByRating: '评分',
+    sortByTitle: '标题',
+    sortByDifficulty: '难度',
+    sortByType: '类型',
+    ascending: '升序',
+    descending: '降序',
+    totalResources: '共 {count} 个资源'
   },
   contact: {
     title: '联系我们',
@@ -302,5 +322,20 @@ export const zhTranslations: Translations = {
     joinClub: '加入NEC仓库实验室',
     address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
     copyright: '© 2025 新能源编程俱乐部。保留所有权利。'
+  },
+  displayRatio: {
+    title: '显示比例调整器',
+    description: '调整卡片显示比例，查看不同比例下的视觉效果',
+    aspectRatioLabel: '显示比例',
+    viewDetails: '查看详情',
+    noMatchingContent: '没有找到匹配的内容',
+    aspectRatios: {
+      square: '正方形 (1:1)',
+      video: '视频比例 (16:9)',
+      traditional: '传统比例 (4:3)',
+      portrait: '竖直比例 (3:4)',
+      widescreen: '宽屏比例 (16:10)',
+      ultrawide: '超宽比例 (21:9)'
+    }
   }
 };
