@@ -104,6 +104,17 @@ export interface Translations {
     sponsorTitle: string;
     viewFullTeam: string;
     teamPhoto: string;
+    analytics: {
+      title: string;
+      description: string;
+      totalMembers: string;
+      activeContributors: string;
+      giteeReference: string;
+      lastUpdated: string;
+      roleDistribution: string;
+      contributionStats: string;
+      mainResponsibilities: string;
+    };
     maintainers: TeamMember[];
     developers: TeamMember[];
     designers: TeamMember[];
@@ -119,16 +130,34 @@ export interface Translations {
   };
   
   // Join Page
-  join: {
+  joinPage: {
     title: string;
     subtitle: string;
-    benefits: string;
-    benefitsList: string[];
-    requirements: string;
-    requirementsList: string[];
-    howToJoin: string;
-    steps: string[];
-    joinNow: string;
+    wechat: {
+      title: string
+      description: string
+      id: string
+      copyButton: string
+      copied: string
+      addTips: string
+      addTipsList: string[]
+    }
+    roadmap: {
+      title: string
+      description: string
+      steps: Array<{
+        title: string
+        description: string
+        duration: string
+      }>
+    }
+    cta: {
+      title: string
+      description: string
+      addWechat: string
+      viewProject: string
+      tip: string
+    };
   };
   
   // Common
@@ -201,7 +230,82 @@ export interface Translations {
     filterCompetition: string;
     filterNetworking: string;
   };
-  
+
+  // Feishu Form
+  join: {
+    form: {
+      title: string
+      subtitle: string
+      basicInfo: {
+        title: string
+        description: string
+        name: string
+        email: string
+        phone: string
+        organization: string
+        namePlaceholder: string
+        emailPlaceholder: string
+        phonePlaceholder: string
+        organizationPlaceholder: string
+      }
+      roleInfo: {
+      title: string
+      description: string
+      role: string
+      rolePlaceholder: string
+      experience: string
+      experiencePlaceholder: string
+      identityLabel: string
+      student: string
+      professional: string
+      freelancer: string
+      other: string
+    }
+      techStack: {
+        title: string
+        description: string
+        frontend: string
+        backend: string
+        embedded: string
+        ai: string
+        other: string
+        otherPlaceholder: string
+        options: string[]
+      }
+      experience: {
+      title: string
+      description: string
+      motivation: string
+      motivationPlaceholder: string
+      experienceLabel: string
+      motivationLabel: string
+      contributionLabel: string
+      experiencePlaceholder: string
+      contributionPlaceholder: string
+    }
+      timeExpectation: {
+      title: string
+      description: string
+      expectationsLabel: string
+      expectationsPlaceholder: string
+      availabilityLabel: string
+      selectPlaceholder: string
+      option1to2: string
+      option3to5: string
+      option6to10: string
+      option10plus: string
+    }
+      submit: {
+        button: string
+        submitting: string
+        success: string
+        successMessage: string
+        error: string
+        errorMessage: string
+      }
+    }
+  };
+
   // Resources Page
   resources: {
     title: string;
@@ -228,6 +332,15 @@ export interface Translations {
     category: string;
     author: string;
     rating: string;
+    sortBy: string;
+    sortOrder: string;
+    sortByRating: string;
+    sortByTitle: string;
+    sortByDifficulty: string;
+    sortByType: string;
+    ascending: string;
+    descending: string;
+    totalResources: string;
   };
   
   // Contact Page
@@ -304,6 +417,23 @@ export interface Translations {
     joinClub: string;
     address: string;
     copyright: string;
+  };
+  
+  // Display Ratio Page
+  displayRatio: {
+    title: string;
+    description: string;
+    aspectRatioLabel: string;
+    viewDetails: string;
+    noMatchingContent: string;
+    aspectRatios: {
+      square: string;
+      video: string;
+      traditional: string;
+      portrait: string;
+      widescreen: string;
+      ultrawide: string;
+    };
   };
 }
 

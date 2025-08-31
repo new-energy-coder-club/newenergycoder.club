@@ -1,4 +1,4 @@
-# Energy Coder Club Website
+# New Energy Coder Club Web3
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg)](https://www.typescriptlang.org/)
@@ -6,10 +6,10 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-cyan.svg)](https://tailwindcss.com/)
 
 **新能源编程俱乐部官方网站** - 一个旨在连接、启发和赋能新能源领域开发者和爱好者的现代化、功能丰富的平台。
-
+https://www.newenergycoder.club/
 ## ✨ 项目简介
 
-新能源编程俱乐部（Energy Coder Club）是一个致力于探索和推进软件技术在新能源领域应用的开发者社区。我们相信，通过代码和创新，可以为可持续发展的未来贡献力量。
+新能源编程俱乐部（New Energy Coder Club）是一个致力于探索和推进软件技术在新能源领域应用的开发者社区。我们相信，通过代码和创新，可以为可持续发展的未来贡献力量。
 
 本网站作为俱乐部的官方门户，旨在：
 - **展示俱乐部形象**：分享我们的使命、愿景和团队成员。
@@ -19,28 +19,10 @@
 
 ## 🚀 快速启动
 
-### Windows 用户（推荐）
-
-**一键启动开发环境：**
-```powershell
-# PowerShell 脚本（推荐）
-.\start-dev.ps1
-
-# 或批处理文件
-.\start-dev.bat
-```
-
-**环境检查：**
-```powershell
-# 检查开发环境配置
-.\check-env.ps1
-```
-
 ### 手动启动
 
 1. **安装 Node.js**（必需）
    - 访问 [Node.js 官网](https://nodejs.org/) 下载 LTS 版本
-   - 或查看 `SETUP_GUIDE.md` 获取详细安装指南
 
 2. **安装依赖：**
 ```bash
@@ -62,6 +44,30 @@ npm run dev
 npm run build
 # 或 bun run build
 ```
+
+## 部署
+
+本网站使用 Vercel 进行托管，并通过 Cloudflare CDN 加速。
+
+### 部署流程
+
+1.  **连接 GitHub 仓库到 Vercel**
+    -   在 [Vercel Dashboard](https://vercel.com/dashboard) 中导入此 GitHub 仓库
+    -   Vercel 会自动检测到这是一个 Vite 项目
+
+2.  **自动构建和部署**
+    -   每次向 `main` 分支推送代码时，Vercel 会自动触发部署
+    -   构建配置已在 `vercel.json` 中预设
+    -   支持预览部署（Pull Request 会生成预览链接）
+
+3.  **自定义域名**
+    -   在 Vercel 项目设置中添加自定义域名 `newenergycoder.club`
+    -   配置 DNS 记录指向 Vercel
+
+4.  **访问网站**
+    -   Vercel 部署链接：`https://your-project.vercel.app`
+    -   自定义域名：`https://newenergycoder.club`
+
 
 ## 🌟 主要功能
 
@@ -122,4 +128,4 @@ src/
 
 ---
 
-*由 Energy Coder Club 驱动*
+*由 New Energy Coder Club 驱动*

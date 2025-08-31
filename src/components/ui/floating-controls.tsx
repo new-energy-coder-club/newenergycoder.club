@@ -14,7 +14,7 @@ import { Sun, Moon, ArrowUp, Settings, X, Languages } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 // 导入语言上下文
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage, useTranslation } from '@/contexts/LanguageContext'
 
 export type AspectRatio = 'aspect-square' | 'aspect-video' | 'aspect-[4/3]' | 'aspect-[3/4]' | 'aspect-[16/10]' | 'aspect-[21/9]'
 
@@ -47,7 +47,7 @@ interface FloatingControlsProps {
 
 
 /**
- * 宽高比选项配置数组 - 显示比例选择器的核心数据源
+ * 宽高比选项配置函数 - 显示比例选择器的核心数据源
  * 
  * 调用逻辑说明：
  * 1. 数据结构：每个选项包含 value（CSS类名）和 label（显示文本）
@@ -57,27 +57,27 @@ interface FloatingControlsProps {
  * 5. 持久化：选中状态通过 localStorage 保存，页面刷新后保持用户选择
  * 
  * 调用流程：
- * aspectRatioOptions → map渲染 → 用户点击 → setSelectedAspectRatio → 
+ * getAspectRatioOptions(t) → map渲染 → 用户点击 → setSelectedAspectRatio → 
  * → localStorage存储 → 应用到document.documentElement.className
  */
-export const aspectRatioOptions: { value: AspectRatio; label: string }[] = [
+export const getAspectRatioOptions = (t: any): { value: AspectRatio; label: string }[] => [
   // 正方形比例 - 适用于头像、图标等需要等宽高的元素
-  { value: 'aspect-square', label: '正方形 (1:1)' },
+  { value: 'aspect-square', label: t.displayRatio.aspectRatios.square },
   
   // 标准视频比例 - 现代显示器和视频内容的主流比例
-  { value: 'aspect-video', label: '视频比例 (16:9)' },
+  { value: 'aspect-video', label: t.displayRatio.aspectRatios.video },
   
   // 传统显示器比例 - 经典的4:3比例，适合传统内容展示
-  { value: 'aspect-[4/3]', label: '传统比例 (4:3)' },
+  { value: 'aspect-[4/3]', label: t.displayRatio.aspectRatios.traditional },
   
   // 竖直比例 - 适合移动端竖屏浏览和纵向内容展示
-  { value: 'aspect-[3/4]', label: '竖直比例 (3:4)' },
+  { value: 'aspect-[3/4]', label: t.displayRatio.aspectRatios.portrait },
   
   // 宽屏比例 - 笔记本电脑常见比例，平衡宽度和高度
-  { value: 'aspect-[16/10]', label: '宽屏比例 (16:10)' },
+  { value: 'aspect-[16/10]', label: t.displayRatio.aspectRatios.widescreen },
   
   // 超宽比例 - 电影院线比例，适合沉浸式宽屏体验
-  { value: 'aspect-[21/9]', label: '超宽比例 (21:9)' }
+  { value: 'aspect-[21/9]', label: t.displayRatio.aspectRatios.ultrawide }
 ]
 
 // DisplayRatioPage 组件
@@ -172,6 +172,7 @@ export function FloatingControls({
   
   // 语言上下文 - 获取当前语言和语言切换函数
   const { language, setLanguage } = useLanguage()
+  const t = useTranslation()
 
   /**
    * 3秒无响应自动隐藏逻辑 - 核心交互体验函数
@@ -577,7 +578,7 @@ export function FloatingControls({
               {showAspectRatio && (
                 <div className="space-y-2">
                   {/* 组件标题 - 使用次要文本颜色，提供用户友好的标识 */}
-                  <span className="text-sm text-muted-foreground">显示比例</span>
+                  <span className="text-sm text-muted-foreground">{t.displayRatio.aspectRatioLabel}</span>
                   
                   {/* Select选择器 - Shadcn/ui组件，受控组件模式
                       - value: 当前选中的宽高比值，与父组件状态同步
@@ -595,17 +596,17 @@ export function FloatingControls({
                     {/* 下拉菜单内容容器 */}
                     <SelectContent>
                       {/* 动态渲染所有宽高比选项
-                          数据来源: aspectRatioOptions数组（第48-56行定义）
-                          渲染逻辑: 遍历数组，为每个option创建一个SelectItem
-                          key属性: 使用option.value确保React列表渲染的唯一性
-                          value属性: 选项的实际值，用于状态管理和回调传递
-                          显示内容: option.label，用户看到的友好文本
-                      */}
-                      {aspectRatioOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value} className="text-xs">
-                          {option.label}
-                        </SelectItem>
-                      ))}
+                        数据来源: getAspectRatioOptions函数（第48-56行定义）
+                        渲染逻辑: 遍历数组，为每个option创建一个SelectItem
+                        key属性: 使用option.value确保React列表渲染的唯一性
+                        value属性: 选项的实际值，用于状态管理和回调传递
+                        显示内容: option.label，用户看到的友好文本
+                    */}
+                    {getAspectRatioOptions(t).map((option) => (
+                      <SelectItem key={option.value} value={option.value} className="text-xs">
+                        {option.label}
+                      </SelectItem>
+                    ))}
                     </SelectContent>
                   </Select>
                 </div>

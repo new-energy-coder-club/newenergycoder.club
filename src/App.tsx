@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import { JoinPage } from "@/pages/JoinPage";
+import { FeishuJoinFormPage } from "@/pages/FeishuJoinFormPage";
 import DashboardPage from "@/pages/DashboardPage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { EventsPage } from "@/pages/EventsPage";
@@ -14,6 +15,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 
 
@@ -21,7 +23,7 @@ function App() {
   return (
     <LanguageProvider>
       <TooltipProvider>
-        <BrowserRouter basename={import.meta.env.PROD ? '/Energy-Coder-Club-Website' : '/'}>
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           
@@ -33,6 +35,8 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/display-ratio" element={<DisplayRatioPage />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/join/form" element={<FeishuJoinFormPage />} />
           
           {/* Protected Routes */}
           <Route path="/dashboard" element={
@@ -45,6 +49,7 @@ function App() {
         </Routes>
         </BrowserRouter>
         <Toaster />
+        <Analytics />
       </TooltipProvider>
     </LanguageProvider>
   );

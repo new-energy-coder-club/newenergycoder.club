@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/store/auth-store'
+import GoogleLogo from '@/assets/google-logo.svg'
+import WeChatLogo from '@/assets/wechat.png'
 
 interface LoginButtonProps {
   children: React.ReactNode
@@ -60,7 +62,7 @@ export function LoginButton({ children, className }: LoginButtonProps) {
             disabled={isLoading}
           >
             <img 
-              src="/src/assets/google-logo.svg" 
+              src={GoogleLogo} 
               alt="Google" 
               className="w-5 h-5"
             />
@@ -74,7 +76,7 @@ export function LoginButton({ children, className }: LoginButtonProps) {
             disabled={isLoading}
           >
             <img 
-              src="/src/assets/wechat.png" 
+              src={WeChatLogo} 
               alt="WeChat" 
               className="w-5 h-5"
             />
