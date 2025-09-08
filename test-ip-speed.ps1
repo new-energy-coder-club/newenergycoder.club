@@ -51,7 +51,7 @@ foreach ($ip in $ips) {
             # Test HTTP response time
             $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
             try {
-                $response = Invoke-WebRequest -Uri "https://$ipAddress" -TimeoutSec 10 -UseBasicParsing -Headers @{"Host"="energy-coder-club-website.pages.dev"} -ErrorAction Stop
+                $response = Invoke-WebRequest -Uri "https://$ipAddress" -TimeoutSec 10 -UseBasicParsing -Headers @{"Host"="newenergycoder.club"} -ErrorAction Stop
                 $stopwatch.Stop()
                 $responseTime = $stopwatch.ElapsedMilliseconds
                 $status = "Success"

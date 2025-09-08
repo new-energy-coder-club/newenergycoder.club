@@ -24,24 +24,24 @@ src/image/
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `DarrenPig.jpg` | DarrenPig | Club Founder & BSP 嵌软工程师 | Renewable energy researcher with a focus on AI applications for energy optimization. | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpg` |
-| `殷统创.jpg` | 殷统创 | Club Founder & BSP Expert | 专注于AI在能源优化应用的可再生能源研究员。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/殷统创.jpg` |
-| `许珑译.jpg` | 许珑译 | 机器人算法工程师 | 专注于机器人算法研发部署以及业务逻辑设计。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/许珑译.jpg` |
-| `张旺旺.jpg` | 张旺旺 | 机器人运行时工程师 | 负责项目的核心技术攻坚，保障电控系统的稳定运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg` |
+| `DarrenPig.jpg` | DarrenPig | Club Founder & BSP 嵌软工程师 | Renewable energy researcher with a focus on AI applications for energy optimization. | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/DarrenPig.jpg` |
+| `殷统创.jpg` | 殷统创 | Club Founder & BSP Expert | 专注于AI在能源优化应用的可再生能源研究员。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/殷统创.jpg` |
+| `许珑译.jpg` | 许珑译 | 机器人算法工程师 | 专注于机器人算法研发部署以及业务逻辑设计。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/许珑译.jpg` |
+| `张旺旺.png` | 张旺旺 | 机器人运行时工程师 | 负责项目的核心技术攻坚，保障电控系统的稳定运行。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/张旺旺.png` |
 
 ### 💻 开发团队 (Developers Team)
 对应i18n.ts中的 `team.developers` 数组
 
 | 图片文件 | 姓名 | 职责 | 个人简介 | GitHub图片链接 |
 |---------|------|------|----------|----------------|
-| `刘英琪.png` | 刘英琪 | 嵌入式开发工程师 | 专注于现代机器人技术栈，致力于构建高性能的机器人界面。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/刘英琪.png` |
-| `单广志.jpg` | 单广志 | 嵌入式开发工程师 | 机器人行业电控驱动开发以及硬件电路设计。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/单广志.jpg` |
-| `周志.png` | 周志 | 全栈开发工程师 | 具备前后端开发能力，致力于端到端的解决方案开发。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/周志.png` |
-| `李硕.png` | 李硕 | 硬件系统架构师 | 专注于硬件系统架构设计和技术选型，为项目提供技术指导。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/李硕.png` |
-| `牛良旭.jpg` | 牛良旭 | DevOps电池管理工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/牛良旭.jpg` |
-| `郑钦文.jpg` | 郑钦文 | 机电一体化开发工程师 | 专注于机电设计开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/郑钦文.jpg` |
-| `杨力滔.JPG` | 杨力滔 | 星闪手柄开发工程师 | 星闪手柄开发专家，熟悉STM32+RTOS C语言开发。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/杨力滔.JPG` |
-| `彭柯颖.jpg` | 彭柯颖 | 机械R1机器人开发者 | 新加入的开发团队成员，积极参与机器人项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/developer/彭柯颖.jpg` |
+| `刘英琪.png` | 刘英琪 | 嵌入式开发工程师 | 专注于现代机器人技术栈，致力于构建高性能的机器人界面。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/刘英琪.png` |
+| `单广志.jpg` | 单广志 | 嵌入式开发工程师 | 机器人行业电控驱动开发以及硬件电路设计。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/单广志.jpg` |
+| `周志.png` | 周志 | 全栈开发工程师 | 具备前后端开发能力，致力于端到端的解决方案开发。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/周志.png` |
+| `李硕.png` | 李硕 | 硬件系统架构师 | 专注于硬件系统架构设计和技术选型，为项目提供技术指导。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/李硕.png` |
+| `牛良旭.jpg` | 牛良旭 | DevOps电池管理工程师 | 负责项目的持续集成和部署，保障开发流程的高效运行。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/牛良旭.jpg` |
+| `郑钦文.jpg` | 郑钦文 | 机电一体化开发工程师 | 专注于机电设计开发，为用户提供优质的移动端体验。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/郑钦文.jpg` |
+| `杨力滔.JPG` | 杨力滔 | 星闪手柄开发工程师 | 星闪手柄开发专家，熟悉STM32+RTOS C语言开发。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/杨力滔.JPG` |
+| `彭柯颖.jpg` | 彭柯颖 | 机械R1机器人开发者 | 新加入的开发团队成员，积极参与机器人项目开发，学习新技术。 | `https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/developer/彭柯颖.jpg` |
 
 ### 🎨 设计团队 (Designers Team)
 对应i18n.ts中的 `team.designers` 数组
