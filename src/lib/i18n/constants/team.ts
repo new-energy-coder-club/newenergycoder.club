@@ -166,6 +166,7 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/luwangchun'
   },
   {
+<<<<<<< HEAD
     name: '崔正阳',
     role: '上位机测试工程师',
     bio: '专注于上位机软件质量保证，确保项目的稳定性和可靠性。',
@@ -174,6 +175,32 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/cuizhengyang'
   },
   {
+=======
+    name: '韩祺冉',
+    role: 'Contributor',
+    bio: '数据分析师，专注于数据处理和分析工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/韩祺冉.jpg',
+    tags: ['数据分析', '数据处理', '统计分析', '数据可视化', '业务分析'],
+    github: 'https://github.com/hanqiran'
+  },
+  {
+    name: '崔正阳',
+    role: 'Developer/Sponsor',
+    bio: '24年华为云IoT大赛加入实验室，24RC全国机器人大赛正式接触机器人，25RC全程参与备赛。主要技能掌握为上位机控制，算法，仿真模型。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.jpg',
+    tags: ['上位机控制', '算法开发', '仿真模型', 'ROBOCON', '华为云IoT', '机器人竞赛'],
+    github: 'https://github.com/cuizhengyang'
+  },
+  {
+    name: '王于豪',
+    role: '成型组组长',
+    bio: '调试3D打印机帮助团队打印物品，负责成型组的管理和技术支持工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/王于豪.jpg',
+    tags: ['3D打印', '成型技术', '团队管理', '技术支持', '设备调试', '物品制作'],
+    github: 'https://github.com/wangyuhao'
+  },
+  {
+>>>>>>> master
     name: '闻志伟',
     role: 'Bronze Sponsor',
     bio: '致力于推动可持续技术发展的个人赞助者。',
