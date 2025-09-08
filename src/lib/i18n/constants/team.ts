@@ -166,16 +166,6 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/luwangchun'
   },
   {
-<<<<<<< HEAD
-    name: '崔正阳',
-    role: '上位机测试工程师',
-    bio: '专注于上位机软件质量保证，确保项目的稳定性和可靠性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.jpg',
-    tags: ['海鸥派', 'Liunx', 'openEuler', '自动化测试', '性能测试'],
-    github: 'https://github.com/cuizhengyang'
-  },
-  {
-=======
     name: '韩祺冉',
     role: 'Contributor',
     bio: '数据分析师，专注于数据处理和分析工作。',
@@ -200,7 +190,6 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/wangyuhao'
   },
   {
->>>>>>> master
     name: '闻志伟',
     role: 'Bronze Sponsor',
     bio: '致力于推动可持续技术发展的个人赞助者。',
