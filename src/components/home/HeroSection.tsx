@@ -28,7 +28,6 @@ export function HeroSection() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             {t.hero.title}
             <span className="gradient-text"> {t.hero.titleHighlight} </span>
-            未来
           </h1>
           
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
