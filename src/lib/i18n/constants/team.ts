@@ -30,7 +30,7 @@ export const maintainers: TeamMember[] = [
     name: '张旺旺',
     role: '机器人运行时工程师',
     bio: '负责项目的核心技术攻坚，保障电控系统的稳定运行。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/张旺旺.png',
     tags: ['电控系统', '运行时', 'ROBOCON', '嵌入式', '系统稳定性'],
     github: 'https://github.com/zhangwangwang'
   }
@@ -145,6 +145,21 @@ export const designers: TeamMember[] = [
     bio: '一直在探索技术与设计边界的路上，以用户为中心，以体验为驱动。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李想.jpg',
     tags: ['UX设计', '用户体验', '设计思维', 'Figma', '用户旅程', '信息架构']
+  },
+  {
+    name: '李一楠',
+    role: '运营组长',
+    bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
+    tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
+  },
+  {
+    name: '韩祺冉',
+    role: 'Contributor',
+    bio: '数据分析师，专注于数据处理和可视化分析工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/韩祺冉.jpg',
+    tags: ['数据分析', '数据处理', '统计分析', '数据可视化', '业务分析'],
+    github: 'https://github.com/hanqiran'
   }
 ];
 
@@ -166,18 +181,10 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/luwangchun'
   },
   {
-    name: '韩祺冉',
-    role: 'Contributor',
-    bio: '数据分析师，专注于数据处理和分析工作。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/韩祺冉.jpg',
-    tags: ['数据分析', '数据处理', '统计分析', '数据可视化', '业务分析'],
-    github: 'https://github.com/hanqiran'
-  },
-  {
     name: '崔正阳',
     role: 'Developer/Sponsor',
     bio: '24年华为云IoT大赛加入实验室，24RC全国机器人大赛正式接触机器人，25RC全程参与备赛。主要技能掌握为上位机控制，算法，仿真模型。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/contributer/崔正阳2.jpg',
     tags: ['上位机控制', '算法开发', '仿真模型', 'ROBOCON', '华为云IoT', '机器人竞赛'],
     github: 'https://github.com/cuizhengyang'
   },
@@ -249,13 +256,6 @@ export const contributors: TeamMember[] = [
     bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
     image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/徐海婷.jpg',
     tags: ['财务管理', '预算控制', '风险防控', '数据分析', '流程优化', '成本管控']
-  },
-  {
-    name: '李一楠',
-    role: '运营组长',
-    bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/designer/李一楠.jpg',
-    tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
   },
   {
     name: '郑绍恺',
