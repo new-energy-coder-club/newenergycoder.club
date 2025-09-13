@@ -152,14 +152,6 @@ export const designers: TeamMember[] = [
     bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/designer/李一楠.jpg',
     tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
-  },
-  {
-    name: '韩祺冉',
-    role: 'Contributor',
-    bio: '数据分析师，专注于数据处理和可视化分析工作。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/韩祺冉.jpg',
-    tags: ['数据分析', '数据处理', '统计分析', '数据可视化', '业务分析'],
-    github: 'https://github.com/hanqiran'
   }
 ];
 
@@ -181,10 +173,18 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/luwangchun'
   },
   {
+    name: '韩祺冉',
+    role: 'Contributor',
+    bio: '数据分析师，专注于数据处理和可视化分析工作。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/韩祺冉.jpg',
+    tags: ['数据分析', '数据处理', '统计分析', '数据可视化', '业务分析'],
+    github: 'https://gitee.com/han-qiran'
+  },
+  {
     name: '崔正阳',
     role: 'Developer/Sponsor',
     bio: '24年华为云IoT大赛加入实验室，24RC全国机器人大赛正式接触机器人，25RC全程参与备赛。主要技能掌握为上位机控制，算法，仿真模型。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/崔正阳2.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/崔正阳.jpg',
     tags: ['上位机控制', '算法开发', '仿真模型', 'ROBOCON', '华为云IoT', '机器人竞赛'],
     github: 'https://github.com/cuizhengyang'
   },
@@ -288,7 +288,7 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/孙如婕.jpg',
     tags: ['灵巧手开发', '横向开发', '技术创新', '开发支持', '项目贡献', '技术解决方案'],
     github: 'https://github.com/sunrujie'
-  },
+  }
 ];
 
 export const sponsors: TeamMember[] = [
