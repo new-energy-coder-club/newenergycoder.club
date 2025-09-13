@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { type AspectRatio } from '@/components/ui/floating-controls'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg'
 import TeamPhoto2 from '@/image/横向项目合照.jpg'
 import TeamPhoto3 from '@/image/合照1.jpg'
@@ -17,24 +17,43 @@ import TeamPhoto4 from '@/image/合照2.jpg'
 import TeamPhoto5 from '@/image/合照3.jpg'
 import TeamPhoto6 from '@/image/合照4.jpg'
 
+// 样式常量定义
+const CARD_STYLES = {
+  base: "group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg",
+  analytics: "bg-card/90 backdrop-blur-md border-primary/30 shadow-lg",
+  photo: "bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden"
+}
+
+// 团队照片配置
+const TEAM_PHOTOS = [
+  { src: TeamPhoto3, alt: "团队合照1" },
+  { src: TeamPhoto4, alt: "团队合照2" },
+  { src: TeamPhoto5, alt: "团队合照3" },
+  { src: TeamPhoto6, alt: "团队合照4" }
+]
+
+// 团队成员数据类型定义
+interface TeamMember {
+  name: string
+  role: string
+  bio: string
+  image: string
+  tags?: string[]
+  github?: string
+  linkedin?: string
+  email?: string
+}
+
+// 团队成员卡片组件属性
 interface TeamMemberCardProps {
-  member: {
-    name: string
-    role: string
-    bio: string
-    image: string
-    tags?: string[]
-    github?: string
-    linkedin?: string
-    email?: string
-  }
+  member: TeamMember
   isSponsors?: boolean
   selectedRatio?: AspectRatio
 }
 
 function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: TeamMemberCardProps) {
   return (
-    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg">
+    <Card className={CARD_STYLES.base}>
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
@@ -51,19 +70,19 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <CardHeader className="text-center relative z-10">
-        <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">{member.name}</CardTitle>
-        <CardDescription className="text-base font-medium">
-          <Badge variant="secondary" className="text-xs px-2 py-1 bg-primary/20 text-primary-foreground dark:bg-primary/30 dark:text-white">
-            {member.role}
-          </Badge>
-        </CardDescription>
-      </CardHeader>
+         <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">{member.name}</CardTitle>
+         <div className="text-base font-medium flex justify-center">
+           <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+             {member.role}
+           </Badge>
+         </div>
+       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground dark:text-gray-200 text-center mb-4 leading-relaxed drop-shadow-sm">
           {member.bio}
         </p>
         
-        {/* 技术栈标签 - 优化版本 */}
+        {/* 技术栈标签 */}
         {member.tags && member.tags.length > 0 && (
           <div className="mb-4">
             <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center drop-shadow-sm">技能标签</h4>
@@ -110,7 +129,7 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
 }
 
 function TeamSection({ title, members, selectedRatio }: { title: string; members: any[]; selectedRatio?: AspectRatio }) {
-  const isSponsors = title.includes('Sponsor') || title.includes('赞助');
+  const isSponsors = title.includes('Sponsor') || title.includes('赞助')
   return (
     <section className="mb-16">
       <div className="text-center mb-8">
@@ -126,10 +145,78 @@ function TeamSection({ title, members, selectedRatio }: { title: string; members
   )
 }
 
+// 统计卡片组件属性类型
+interface StatCardProps {
+  title: string
+  count: number
+  description: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+// 统计卡片组件
+function StatCard({ title, count, description, icon: Icon }: StatCardProps) {
+  return (
+    <Card className={CARD_STYLES.analytics}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <Icon className="h-4 w-4 text-muted-foreground" />
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{count}</div>
+        <p className="text-xs text-muted-foreground">{description}</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+// 照片卡片组件属性类型
+interface PhotoCardProps {
+  src: string
+  alt: string
+}
+
+// 图片卡片组件
+function PhotoCard({ src, alt }: PhotoCardProps) {
+  return (
+    <Card className={CARD_STYLES.photo}>
+      <CardContent className="p-0">
+        <div className="relative overflow-hidden">
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 export function TeamPage() {
   const t = useTranslation()
-  // 显示比例状态管理 - 控制团队成员卡片图片的宽高比显示
   const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
+
+  // 使用 useMemo 优化统计计算
+  const teamStats = useMemo(() => {
+    const counts = {
+      maintainers: t.team.maintainers?.length || 0,
+      developers: t.team.developers?.length || 0,
+      designers: t.team.designers?.length || 0,
+      contributors: t.team.contributors?.length || 0
+    }
+    
+    const total = Object.values(counts).reduce((sum, count) => sum + count, 0)
+    
+    const percentages = Object.fromEntries(
+      Object.entries(counts).map(([key, count]) => [
+        key,
+        total > 0 ? ((count / total) * 100).toFixed(1) : '0.0'
+      ])
+    )
+    
+    return { counts, percentages, total }
+  }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
   return (
     <PageLayout 
@@ -163,8 +250,6 @@ export function TeamPage() {
             {t.team.description}
           </p>
         </div>
-
-
 
         {/* Team Title */}
         <div className="text-center mb-12">
@@ -204,53 +289,14 @@ export function TeamPage() {
 
           {/* Statistics Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">维护者</CardTitle>
-                <Users className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{t.team.maintainers?.length || 0}</div>
-                <p className="text-xs text-muted-foreground">核心团队成员</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">开发者</CardTitle>
-                <Code className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{t.team.developers?.length || 0}</div>
-                <p className="text-xs text-muted-foreground">技术开发人员</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">设计师</CardTitle>
-                <Palette className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{t.team.designers?.length || 0}</div>
-                <p className="text-xs text-muted-foreground">UI/UX设计师</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">贡献者</CardTitle>
-                <Heart className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{t.team.contributors?.length || 0}</div>
-                <p className="text-xs text-muted-foreground">社区贡献者</p>
-              </CardContent>
-            </Card>
+            <StatCard title="维护者" count={teamStats.counts.maintainers} description="核心团队成员" icon={Users} />
+            <StatCard title="开发者" count={teamStats.counts.developers} description="技术开发人员" icon={Code} />
+            <StatCard title="设计师" count={teamStats.counts.designers} description="UI/UX设计师" icon={Palette} />
+            <StatCard title="贡献者" count={teamStats.counts.contributors} description="社区贡献者" icon={Heart} />
           </div>
 
           {/* Detailed Analytics Table */}
-          <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg">
+          <Card className={CARD_STYLES.analytics}>
             <CardHeader>
               <CardTitle className="text-xl font-semibold">{t.team.analytics.roleDistribution}</CardTitle>
               <CardDescription>{t.team.analytics.contributionStats}</CardDescription>
@@ -268,51 +314,27 @@ export function TeamPage() {
                 <TableBody>
                   <TableRow>
                     <TableCell className="font-medium">维护者</TableCell>
-                    <TableCell className="text-center">{t.team.maintainers?.length || 0}</TableCell>
-                    <TableCell className="text-center">
-                      {((t.team.maintainers?.length || 0) / 
-                        ((t.team.maintainers?.length || 0) + 
-                         (t.team.developers?.length || 0) + 
-                         (t.team.designers?.length || 0) + 
-                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
-                    </TableCell>
-                    <TableCell>项目管理、代码审核、技术决策</TableCell>
+                    <TableCell className="text-center">{teamStats.counts.maintainers}</TableCell>
+                    <TableCell className="text-center">{teamStats.percentages.maintainers}%</TableCell>
+                    <TableCell>{t.team.analytics.maintainerResponsibilities}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">开发者</TableCell>
-                    <TableCell className="text-center">{t.team.developers?.length || 0}</TableCell>
-                    <TableCell className="text-center">
-                      {((t.team.developers?.length || 0) / 
-                        ((t.team.maintainers?.length || 0) + 
-                         (t.team.developers?.length || 0) + 
-                         (t.team.designers?.length || 0) + 
-                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
-                    </TableCell>
-                    <TableCell>功能开发、Bug修复、技术实现</TableCell>
+                    <TableCell className="text-center">{teamStats.counts.developers}</TableCell>
+                    <TableCell className="text-center">{teamStats.percentages.developers}%</TableCell>
+                    <TableCell>{t.team.analytics.developerResponsibilities}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">设计师</TableCell>
-                    <TableCell className="text-center">{t.team.designers?.length || 0}</TableCell>
-                    <TableCell className="text-center">
-                      {((t.team.designers?.length || 0) / 
-                        ((t.team.maintainers?.length || 0) + 
-                         (t.team.developers?.length || 0) + 
-                         (t.team.designers?.length || 0) + 
-                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
-                    </TableCell>
-                    <TableCell>界面设计、用户体验、视觉规范</TableCell>
+                    <TableCell className="text-center">{teamStats.counts.designers}</TableCell>
+                    <TableCell className="text-center">{teamStats.percentages.designers}%</TableCell>
+                    <TableCell>{t.team.analytics.designerResponsibilities}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">贡献者</TableCell>
-                    <TableCell className="text-center">{t.team.contributors?.length || 0}</TableCell>
-                    <TableCell className="text-center">
-                      {((t.team.contributors?.length || 0) / 
-                        ((t.team.maintainers?.length || 0) + 
-                         (t.team.developers?.length || 0) + 
-                         (t.team.designers?.length || 0) + 
-                         (t.team.contributors?.length || 0)) * 100).toFixed(1)}%
-                    </TableCell>
-                    <TableCell>文档编写、测试反馈、社区支持</TableCell>
+                    <TableCell className="text-center">{teamStats.counts.contributors}</TableCell>
+                    <TableCell className="text-center">{teamStats.percentages.contributors}%</TableCell>
+                    <TableCell>{t.team.analytics.contributorResponsibilities}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -329,7 +351,7 @@ export function TeamPage() {
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
           
-          <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
+          <Card className={CARD_STYLES.photo}>
             <CardContent className="p-0">
               <div className="relative overflow-hidden">
                 <img
@@ -341,7 +363,7 @@ export function TeamPage() {
               </div>
               <div className="p-6">
                 <p className="text-center text-muted-foreground dark:text-gray-200">
-                  团队成员在项目开发过程中的珍贵合影，记录了我们共同努力和协作的美好时光。
+                  {t.team.teamPhotoDescription}
                 </p>
               </div>
             </CardContent>
@@ -358,57 +380,9 @@ export function TeamPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={TeamPhoto3}
-                    alt="团队合照1"
-                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={TeamPhoto4}
-                    alt="团队合照2"
-                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={TeamPhoto5}
-                    alt="团队合照3"
-                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={TeamPhoto6}
-                    alt="团队合照4"
-                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                </div>
-              </CardContent>
-            </Card>
+            {TEAM_PHOTOS.map((photo, index) => (
+              <PhotoCard key={index} src={photo.src} alt={photo.alt} />
+            ))}
           </div>
         </div>
       </div>

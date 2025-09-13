@@ -152,6 +152,13 @@ export const designers: TeamMember[] = [
     bio: '为NEC小队宣传以及主持，负责团队运营和对外宣传工作。',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/designer/李一楠.jpg',
     tags: ['团队运营', '宣传策划', '活动主持', 'NEC小队', '对外联络', '品牌推广']
+  },
+  {
+    name: '王彦君',
+    role: '工业/产品设计师',
+    bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/王彦君.jpg',
+    tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
   }
 ];
 
@@ -244,13 +251,6 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/bianleiling'
   },
   {
-    name: '王彦君',
-    role: '工业/产品设计师',
-    bio: '致力于通过设计解决实际问题，以更开放的态度寻找更多可能性。',
-    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/王彦君.jpg',
-    tags: ['工业设计', '产品设计', 'SolidWorks', 'Rhino', '3D建模', '材料工艺']
-  },
-  {
     name: '徐海婷',
     role: '财务管理专员',
     bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
@@ -261,7 +261,7 @@ export const contributors: TeamMember[] = [
     name: '郑绍恺',
     role: '算法竞赛选手',
     bio: '专注于算法研究以及最优化问题',
-    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/郑绍恺.jpg',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/郑邵凯.png',
     tags: ['算法研究', '最优化', '竞赛选手', '问题求解', '算法优化', '数学建模'],
     github: 'https://github.com/zhengshaokai'
   },

@@ -224,15 +224,20 @@ export const zhTranslations: Translations = {
     teamPhoto: '团队照片',
     analytics: {
       title: '团队分析',
-      description: '我们社区增长的详细统计',
-      totalMembers: '总成员',
+      description: '基于Gitee项目贡献者数据的团队组成分析',
+      totalMembers: '总成员数',
       activeContributors: '活跃贡献者',
-      giteeReference: 'Gitee参考',
+      giteeReference: '参考：Gitee项目贡献者页面',
       lastUpdated: '最后更新',
       roleDistribution: '角色分布',
       contributionStats: '贡献统计',
-      mainResponsibilities: '主要职责'
+      mainResponsibilities: '主要职责',
+      maintainerResponsibilities: '项目管理、代码审核、技术决策',
+      developerResponsibilities: '功能开发、Bug修复、技术实现',
+      designerResponsibilities: '界面设计、用户体验、视觉规范',
+      contributorResponsibilities: '文档编写、测试反馈、社区支持'
     },
+    teamPhotoDescription: '团队成员在项目开发过程中的珍贵合影，记录了我们共同努力和协作的美好时光。',
     maintainers: [
       {
         name: 'DarrenPig',

@@ -185,8 +185,13 @@ export const enTranslations: Translations = {
       lastUpdated: 'Last Updated',
       roleDistribution: 'Role Distribution',
       contributionStats: 'Contribution Statistics',
-      mainResponsibilities: 'Main Responsibilities'
+      mainResponsibilities: 'Main Responsibilities',
+      maintainerResponsibilities: 'Project management, code review, technical decisions',
+      developerResponsibilities: 'Feature development, bug fixes, technical implementation',
+      designerResponsibilities: 'Interface design, user experience, visual standards',
+      contributorResponsibilities: 'Documentation, testing feedback, community support'
     },
+    teamPhotoDescription: 'Precious photos of team members during project development, recording our collaborative efforts and wonderful times together.',
     maintainers,
     developers,
     designers,
