@@ -90,7 +90,7 @@ export const enTranslations: Translations = {
   hero: {
     tagline: 'Where Code Meets Clean Energy',
     title: 'Coding for a',
-    titleHighlight: 'Sustainable',
+    titleHighlight: 'Sustainable Future',
     description: 'Join a community of developers passionate about creating innovative software solutions for renewable energy, sustainability, and a greener tomorrow.',
     joinCommunity: 'Join Our Community',
     viewGithub: 'View on Gitee',

@@ -104,6 +104,7 @@ export interface Translations {
     sponsorTitle: string;
     viewFullTeam: string;
     teamPhoto: string;
+    teamPhotoDescription: string;
     analytics: {
       title: string;
       description: string;
@@ -114,6 +115,10 @@ export interface Translations {
       roleDistribution: string;
       contributionStats: string;
       mainResponsibilities: string;
+      maintainerResponsibilities: string;
+      developerResponsibilities: string;
+      designerResponsibilities: string;
+      contributorResponsibilities: string;
     };
     maintainers: TeamMember[];
     developers: TeamMember[];
