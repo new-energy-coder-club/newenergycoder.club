@@ -641,6 +641,7 @@ export const zhTranslations: Translations = {
     contact: '联系',
     learningMaterials: '学习资料',
     joinClub: '加入NEC仓库实验室',
+    gettingStarted: '入门文档',
     address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
     copyright: '© 2025 新能源编程俱乐部。保留所有权利。'
   },

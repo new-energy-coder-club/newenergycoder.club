@@ -426,6 +426,7 @@ export const enTranslations: Translations = {
     contact: 'Contact',
     learningMaterials: 'Learning Materials',
     joinClub: 'Join Club',
+    gettingStarted: 'Getting Started',
     address: 'Yuheng A416 Warehouse Laboratory, Liaohai Road Campus, Changzhou Institute of Technology, No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
     copyright: '© 2025 New Energy Coder Club. All rights reserved.'
   },
