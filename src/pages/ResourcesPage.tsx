@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -1188,6 +1188,10 @@ export function ResourcesPage() {
   // 排序状态管理
   const [sortBy, setSortBy] = useState<'rating' | 'title' | 'difficulty' | 'type'>('rating')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
+  // 筛选框显示/隐藏状态管理
+  const [isFilterVisible, setIsFilterVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const filterRef = useRef<HTMLElement>(null)
   const t = useTranslation()
 
   const filteredResources = mockResources
@@ -1224,6 +1228,47 @@ export function ResourcesPage() {
       return sortOrder === 'asc' ? comparison : -comparison
     })
 
+  // 滚动监听效果
+  useEffect(() => {
+    let ticking = false
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY
+          const scrollDifference = currentScrollY - lastScrollY
+          
+          // 只有在滚动距离超过阈值时才触发隐藏/显示
+          if (Math.abs(scrollDifference) > 15) {
+            if (scrollDifference > 0 && currentScrollY > 150) {
+              // 向下滚动且超过150px时隐藏
+              setIsFilterVisible(false)
+            } else if (scrollDifference < 0 || currentScrollY <= 100) {
+              // 向上滚动或接近顶部时显示
+              setIsFilterVisible(true)
+            }
+            setLastScrollY(currentScrollY)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // 添加防抖处理
+    let timeoutId: NodeJS.Timeout
+    const debouncedHandleScroll = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleScroll, 10)
+    }
+
+    window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', debouncedHandleScroll)
+      clearTimeout(timeoutId)
+    }
+  }, [lastScrollY])
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -1254,123 +1299,130 @@ export function ResourcesPage() {
             <h1 className="text-4xl font-bold gradient-text sm:text-5xl lg:text-6xl mb-6">
               {t.resources.title}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t.resources.description}
             </p>
-            
-            {/* Search Bar */}
-            <div className="w-full max-w-md mx-auto relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                type="text"
-                placeholder={t.resources.searchPlaceholder}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40"
-              />
-            </div>
           </div>
         </section>
 
         {/* Filter Section */}
-        <section className="py-6 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
+        <section 
+          ref={filterRef}
+          className={`py-6 border-b bg-background/95 backdrop-blur-sm sticky top-16 z-40 transition-all duration-500 ease-in-out transform ${
+            isFilterVisible 
+              ? 'translate-y-0 opacity-100 scale-100' 
+              : '-translate-y-full opacity-0 scale-95'
+          }`}
+          style={{
+            transformOrigin: 'top center',
+            willChange: 'transform, opacity'
+          }}
+        >
           <div className="container">
-            {/* Sort Controls */}
-            <div className="flex flex-wrap items-center gap-4 mb-4 pb-4 border-b border-border/30">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-muted-foreground">{t.resources.sortBy}:</span>
-                <select 
-                  value={sortBy} 
-                  onChange={(e) => setSortBy(e.target.value as 'rating' | 'title' | 'difficulty' | 'type')}
-                  className="px-3 py-1 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                >
-                  <option value="rating">{t.resources.sortByRating}</option>
-                  <option value="title">{t.resources.sortByTitle}</option>
-                  <option value="difficulty">{t.resources.sortByDifficulty}</option>
-                  <option value="type">{t.resources.sortByType}</option>
-                </select>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-muted-foreground">{t.resources.sortOrder}:</span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                  className="h-8 px-3 text-xs"
-                >
-                  {sortOrder === 'desc' ? `↓ ${t.resources.descending}` : `↑ ${t.resources.ascending}`}
-                </Button>
-              </div>
-              <div className="text-sm text-muted-foreground ml-auto">
-                {t.resources.totalResources.replace('{count}', filteredResources.length.toString())}
-              </div>
-            </div>
-            <div className="space-y-6">
-              {/* Filter Toggle Header */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {t.resources.filterTitle}
-                  </h3>
+            {/* Integrated Search and Controls */}
+            <div className="space-y-4">
+              {/* Top Row: Search, Sort, and Toggle */}
+              <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                {/* Left: Search Bar */}
+                <div className="flex-1 max-w-md relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <Input
+                    type="text"
+                    placeholder={t.resources.searchPlaceholder}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40"
+                  />
+                </div>
+                
+                {/* Right: Sort Controls and Filter Toggle */}
+                <div className="flex flex-wrap items-center gap-4">
                   <Badge variant="secondary" className="text-xs">
                     {filteredResources.length} 个资源
                   </Badge>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-muted-foreground">{t.resources.sortBy}:</span>
+                    <select 
+                      value={sortBy} 
+                      onChange={(e) => setSortBy(e.target.value as 'rating' | 'title' | 'difficulty' | 'type')}
+                      className="px-3 py-1 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    >
+                      <option value="rating">{t.resources.sortByRating}</option>
+                      <option value="title">{t.resources.sortByTitle}</option>
+                      <option value="difficulty">{t.resources.sortByDifficulty}</option>
+                      <option value="type">{t.resources.sortByType}</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-muted-foreground">{t.resources.sortOrder}:</span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                      className="h-8 px-3 text-xs"
+                    >
+                      {sortOrder === 'desc' ? `↓ ${t.resources.descending}` : `↑ ${t.resources.ascending}`}
+                    </Button>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors h-8 px-3 text-xs"
+                  >
+                    筛选
+                    {isFilterExpanded ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </Button>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {isFilterExpanded ? t.resources.collapseFilters : t.resources.expandFilters}
-                  {isFilterExpanded ? (
-                    <ChevronUp className="h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4" />
-                  )}
-                </Button>
               </div>
               
-              {/* Collapsible Filter Content */}
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isFilterExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-              }`}>
-                <div className="space-y-4">
-                  {/* Category Filter Buttons */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                    {categoryFilters.map((filter) => {
-                      const Icon = filter.icon
-                      const isActive = selectedCategory === filter.key
-                      return (
-                        <Button
-                          key={filter.key}
-                          variant={isActive ? 'default' : 'outline'}
-                          onClick={() => setSelectedCategory(filter.key)}
-                          className={`hover-lift transition-all duration-200 flex items-center justify-center gap-2 h-12 ${
-                            isActive ? 'shadow-lg scale-105' : 'hover:scale-105'
-                          }`}
-                        >
-                          <Icon className="h-4 w-4" />
-                          <span className="hidden sm:inline">{t.resources[filter.labelKey]}</span>
-                        </Button>
-                      )
-                    })}
+
+            </div>
+            {/* Collapsible Filter Content */}
+             <div className={`overflow-hidden transition-all duration-500 ease-in-out transform ${
+               isFilterExpanded 
+                 ? 'max-h-96 opacity-100 translate-y-0' 
+                 : 'max-h-0 opacity-0 -translate-y-2'
+             }`}>
+              <div className="space-y-4 pt-4 border-t border-border/30">
+                {/* Category Filter Buttons */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+                  {categoryFilters.map((filter) => {
+                    const Icon = filter.icon
+                    const isActive = selectedCategory === filter.key
+                    return (
+                      <Button
+                        key={filter.key}
+                        variant={isActive ? 'default' : 'outline'}
+                        onClick={() => setSelectedCategory(filter.key)}
+                        className={`hover-lift transition-all duration-200 flex items-center justify-center gap-2 h-10 text-xs ${
+                          isActive ? 'shadow-lg scale-105' : 'hover:scale-105'
+                        }`}
+                      >
+                        <Icon className="h-3 w-3" />
+                        <span className="hidden sm:inline">{t.resources[filter.labelKey]}</span>
+                      </Button>
+                    )
+                  })}
+                </div>
+                
+                {/* Quick Stats */}
+                <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>免费资源: {mockResources.filter(r => r.type === 'free').length}</span>
                   </div>
-                  
-                  {/* Quick Stats */}
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>免费资源: {mockResources.filter(r => r.type === 'free').length}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span>付费资源: {mockResources.filter(r => r.type === 'paid').length}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>高评分: {mockResources.filter(r => r.rating >= 4.5).length}</span>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span>付费资源: {mockResources.filter(r => r.type === 'paid').length}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>高评分: {mockResources.filter(r => r.rating >= 4.5).length}</span>
                   </div>
                 </div>
               </div>

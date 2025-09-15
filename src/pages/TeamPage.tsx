@@ -1,4 +1,7 @@
-import { PageLayout } from '@/components/layout/PageLayout'
+import { Header } from '@/components/layout/Header'
+import { FloatingControls } from '@/components/ui/floating-controls'
+import { AspectRatio } from '@/types/ui'
+import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,7 +11,6 @@ import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
-import { type AspectRatio } from '@/components/ui/floating-controls'
 import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg'
 import TeamPhoto2 from '@/image/横向项目合照.jpg'
@@ -219,13 +221,11 @@ export function TeamPage() {
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
   return (
-    <PageLayout 
-      showAspectRatio={true}
-      aspectRatio={selectedRatio}
-      onAspectRatioChange={setSelectedRatio}
-    >
-      {/* Background with team photos */}
-      <div className="fixed inset-0 z-0">
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        {/* Background with team photos */}
+        <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
         <img
           src={TeamPhoto1}
@@ -379,13 +379,109 @@ export function TeamPage() {
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {TEAM_PHOTOS.map((photo, index) => (
               <PhotoCard key={index} src={photo.src} alt={photo.alt} />
             ))}
           </div>
         </div>
+
+        {/* Sponsors Section */}
+        <div className="mt-20 mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+              感谢赞助商
+            </h2>
+            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
+              感谢以下赞助商对新能源编程俱乐部的支持与信任
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
+          </div>
+          
+          {/* Sponsors Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
+            {/* Placeholder sponsors - will be replaced with actual data */}
+            {[
+              { name: "TRAE AI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20tech%20company%20logo%20TRAE%20AI%20minimalist%20design%20green%20accent&image_size=square", website: "https://trae.ai" },
+              { name: "OpenAI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=OpenAI%20logo%20artificial%20intelligence%20company%20minimalist%20design&image_size=square", website: "https://openai.com" },
+              { name: "GitHub", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=GitHub%20logo%20code%20repository%20platform%20minimalist%20design&image_size=square", website: "https://github.com" },
+              { name: "Microsoft", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Microsoft%20logo%20technology%20company%20minimalist%20design&image_size=square", website: "https://microsoft.com" },
+              { name: "Google", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Google%20logo%20search%20engine%20company%20minimalist%20design&image_size=square", website: "https://google.com" },
+              { name: "Tesla", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Tesla%20logo%20electric%20vehicle%20company%20minimalist%20design&image_size=square", website: "https://tesla.com" }
+            ].map((sponsor, index) => (
+              <div key={index} className="group">
+                <a 
+                  href={sponsor.website} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
+                    <div className="flex flex-col items-center space-y-3">
+                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        <img 
+                          src={sponsor.logo} 
+                          alt={`${sponsor.name} logo`}
+                          className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                        />
+                      </div>
+                      <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                        {sponsor.name}
+                      </span>
+                    </div>
+                  </Card>
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* Sponsor CTA */}
+          <div className="text-center">
+            <Card className="bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 border-primary/30 p-8 max-w-2xl mx-auto">
+              <div className="flex flex-col items-center space-y-4">
+                <Heart className="h-8 w-8 text-primary" />
+                <h3 className="text-xl font-semibold text-foreground dark:text-white">
+                  成为我们的赞助商
+                </h3>
+                <p className="text-muted-foreground dark:text-gray-300 text-center max-w-lg">
+                  如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解赞助合作机会
+                </p>
+                <Button 
+                  variant="outline" 
+                  className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+                  asChild
+                >
+                  <a href="mailto:22230635@czu.cn">
+                    <Mail className="h-4 w-4 mr-2" />
+                    联系我们
+                  </a>
+                </Button>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Three.js Animation Section */}
+        <div className="mt-20 mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+              创新技术展示
+            </h2>
+            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
+              体验我们在新能源技术领域的创新成果
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
+          </div>
+          <ThreeJsAnimation />
+        </div>
+
+        <FloatingControls 
+          showAspectRatio={true}
+          aspectRatio={selectedRatio}
+          onAspectRatioChange={setSelectedRatio}
+        />
       </div>
-    </PageLayout>
+      </main>
+    </div>
   )
 }

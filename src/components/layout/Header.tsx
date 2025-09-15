@@ -28,10 +28,10 @@ export function Header() {
     { label: t.nav.team, href: '/team' },
     // 项目展示页面导航项
     { label: t.nav.projects, href: '/projects' },
+    // 学习资源页面导航项
+    { label: t.nav.resources, href: '/resources' },
     // 活动页面导航项
     { label: t.nav.events, href: '/events' },
-    // 资源页面导航项
-    { label: t.nav.resources, href: '/resources' },
     // 联系我们页面导航项
     { label: t.nav.contact, href: '/contact' },
   ]

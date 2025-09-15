@@ -13,7 +13,7 @@ export function CTASection() {
       
       <div className="container relative z-10">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl font-bold gradient-text sm:text-5xl mb-6">
+          <h2 className="text-6xl font-bold gradient-text sm:text-7xl mb-6">
             {t.cta.title}
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-3xl mx-auto">

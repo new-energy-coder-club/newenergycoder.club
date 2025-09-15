@@ -134,6 +134,7 @@ export const zhTranslations: Translations = {
   nav: {
     home: '首页',
     projects: '项目',
+    innovation: '创新成果',
     events: '活动',
     resources: '资源',
     contact: '联系我们',
@@ -403,6 +404,70 @@ export const zhTranslations: Translations = {
         image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/sponsor/立创开源广场.png',
         tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
         github: 'https://oshwhub.com/explore'
+      },
+      {
+        name: '艾迈斯',
+        role: 'Bronze Sponsor - ¥800',
+        bio: '全球领先的连接器解决方案提供商，专注于高性能连接器技术和创新应用。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=ams%20logo%20sensor%20technology%20company%20professional%20corporate%20design&image_size=square',
+        tags: ['传感器技术', '光学传感器', '环境传感器', '汽车传感器', '工业4.0', '物联网'],
+        github: 'https://ams.com/'
+      },
+      {
+        name: '明基',
+        role: 'Product Sponsor - 显示器',
+        bio: '专业显示器设备解决方案提供商，为俱乐部提供高质量显示器支持，致力于提升视觉体验和工作效率。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=benq%20logo%20display%20technology%20monitor%20projector%20professional%20brand&image_size=square',
+        tags: ['显示技术', '投影设备', '专业显示器', '视觉解决方案', '办公设备', '教育科技'],
+        github: 'https://www.benq.com/'
+      },
+      {
+        name: '嘉立创',
+        role: 'Bronze Sponsor - ¥500',
+        bio: '专业的PCB制造服务供应商，为电子工程师提供一站式硬件开发和PCB制造服务。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=jlcpcb%20logo%20pcb%20manufacturing%20electronic%20components%20green%20circuit%20board&image_size=square',
+        tags: ['PCB制造', '电子元器件', '硬件开发', 'SMT贴片', '原型制作', '批量生产'],
+        github: 'https://www.jlc.com/'
+      },
+      {
+        name: '易百纳社区',
+        role: 'Silver Sponsor - ¥4,500',
+        bio: '专业的技术开发者社区平台，为俱乐部提供开发板支持，汇聚众多技术专家，提供丰富的学习资源和交流机会。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=developer%20community%20logo%20technology%20learning%20platform%20modern%20design&image_size=square',
+        tags: ['开发者社区', '技术交流', '在线学习', '项目分享', '技术文档', '编程教育'],
+        github: 'https://www.ebaina.com/'
+      },
+      {
+        name: 'openEuler社区',
+        role: 'Technology Partner',
+        bio: '开源操作系统社区，致力于构建创新、开放、安全的操作系统生态。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=openeuler%20logo%20open%20source%20operating%20system%20linux%20community%20blue%20technology&image_size=square',
+        tags: ['开源操作系统', 'Linux发行版', '系统安全', '云计算', '边缘计算', '开源生态'],
+        github: 'https://www.openeuler.org/'
+      },
+      {
+        name: '海思社区',
+        role: 'Technology Partner',
+        bio: '专业的芯片技术社区，专注于半导体技术创新和芯片设计开发。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=hisilicon%20logo%20chip%20semiconductor%20technology%20processor%20design&image_size=square',
+        tags: ['芯片设计', '半导体技术', '处理器架构', '嵌入式系统', 'AI芯片', '通信芯片'],
+        github: 'https://www.hisilicon.com/'
+      },
+      {
+        name: '鲲鹏社区',
+        role: 'Technology Partner',
+        bio: '计算技术生态社区，推动多样性计算发展，构建开放共赢的计算产业生态。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=kunpeng%20logo%20computing%20technology%20ecosystem%20server%20processor%20orange&image_size=square',
+        tags: ['计算生态', '服务器处理器', '多样性计算', '云原生', '大数据', '人工智能'],
+        github: 'https://www.kunpeng.com/'
+      },
+      {
+        name: 'Gitee',
+        role: 'Platform Partner',
+        bio: '中国领先的代码托管平台，为开发者提供安全、稳定、高效的代码管理服务。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=gitee%20logo%20code%20hosting%20platform%20git%20repository%20red%20chinese&image_size=square',
+        tags: ['代码托管', 'Git仓库', '项目管理', '持续集成', '开源项目', '团队协作'],
+        github: 'https://gitee.com/'
       }
     ]
   },

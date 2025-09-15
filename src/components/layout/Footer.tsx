@@ -33,6 +33,11 @@ export function Footer() {
               {t.footer.clubName}
             </a>
           </div>
+          <div className="mt-2">
+            <a href="https://gitee.com/explore/robot?order=starred&page=2" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Gitee No.24 机器人开源仓库
+            </a>
+          </div>
           <p className="text-muted-foreground text-sm mt-2">
             {t.footer.description}
           </p>
@@ -47,14 +52,17 @@ export function Footer() {
               <Mail className="h-5 w-5" />
             </a>
           </div>
+
         </div>
         
         <div>
           <h3 className="font-medium mb-4">{t.footer.navigation}</h3>
           <ul className="space-y-2">
             <li><Link to="/" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.home}</Link></li>
+            <li><Link to="/team" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.team}</Link></li>
             <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.projects}</Link></li>
             <li><Link to="/events" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.events}</Link></li>
+            <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.resources}</Link></li>
           </ul>
         </div>
         
@@ -62,8 +70,10 @@ export function Footer() {
           <h3 className="font-medium mb-4">{t.footer.resources}</h3>
           <ul className="space-y-2">
             <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.learningMaterials}</Link></li>
+            <li><Link to="/innovation" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.innovation}</Link></li>
             <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.contact}</Link></li>
             <li><Link to="/join" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.joinClub}</Link></li>
+            <li><Link to="/getting-started" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.gettingStarted}</Link></li>
           </ul>
         </div>
         
@@ -84,7 +94,7 @@ export function Footer() {
       
       <div className="container mt-10 pt-6 border-t border-border">
         <div className="text-center text-sm text-muted-foreground">
-          <p>© 2025 Energy Coder Club. All rights reserved.</p>
+          <p>© 2025 New Energy Coder Club. All rights reserved.</p>
           <p>苏ICP备2025187096号-1X</p>
         </div>
       </div>

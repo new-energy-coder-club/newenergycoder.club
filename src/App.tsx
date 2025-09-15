@@ -10,6 +10,7 @@ import { ResourcesPage } from "@/pages/ResourcesPage";
 import { ContactPage } from "@/pages/ContactPage";
 import { GettingStartedPage } from "@/pages/GettingStartedPage";
 import { TeamPage } from "@/pages/TeamPage";
+import { InnovationShowcasePage } from "@/pages/InnovationShowcasePage";
 import AdminDashboard from "@/pages/AdminDashboard";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -37,6 +38,7 @@ function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/team" element={<TeamPage />} />
+            <Route path="/innovation" element={<InnovationShowcasePage />} />
             <Route path="/getting-started" element={<GettingStartedPage />} />
             <Route path="/join" element={<JoinPage />} />
             <Route path="/join/form" element={<FeishuJoinFormPage />} />
