@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Zap, Ratio } from 'lucide-react'
+import { Menu, X, Zap, BookOpen } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { cn } from '@/lib/utils'
@@ -64,9 +64,9 @@ export function Header() {
             ))}
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" className="gap-2" asChild>
-                <Link to="/display-ratio">
-                  <Ratio className="h-4 w-4" />
-                  <span className="hidden sm:inline">{t.displayRatio.aspectRatioLabel}</span>
+                <Link to="/getting-started">
+                  <BookOpen className="h-4 w-4" />
+                  <span className="hidden sm:inline">入门文档</span>
                 </Link>
               </Button>
               <LanguageSwitcher />
@@ -100,9 +100,9 @@ export function Header() {
           ))}
           <div className="flex items-center gap-2 mt-2">
             <Button variant="ghost" size="sm" className="gap-2" asChild>
-              <Link to="/display-ratio" onClick={() => setMobileMenuOpen(false)}>
-                <Ratio className="h-4 w-4" />
-                <span>{t.displayRatio.aspectRatioLabel}</span>
+              <Link to="/getting-started" onClick={() => setMobileMenuOpen(false)}>
+                <BookOpen className="h-4 w-4" />
+                <span>入门文档</span>
               </Link>
             </Button>
             <LanguageSwitcher />

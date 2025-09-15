@@ -8,7 +8,7 @@ import { ProjectsPage } from "@/pages/ProjectsPage";
 import { EventsPage } from "@/pages/EventsPage";
 import { ResourcesPage } from "@/pages/ResourcesPage";
 import { ContactPage } from "@/pages/ContactPage";
-import { DisplayRatioPage } from "@/pages/DisplayRatioPage";
+import { GettingStartedPage } from "@/pages/GettingStartedPage";
 import { TeamPage } from "@/pages/TeamPage";
 import AdminDashboard from "@/pages/AdminDashboard";
 import { Toaster } from "@/components/ui/toaster";
@@ -37,7 +37,7 @@ function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/team" element={<TeamPage />} />
-            <Route path="/display-ratio" element={<DisplayRatioPage />} />
+            <Route path="/getting-started" element={<GettingStartedPage />} />
             <Route path="/join" element={<JoinPage />} />
             <Route path="/join/form" element={<FeishuJoinFormPage />} />
             
