@@ -120,21 +120,6 @@ const mockEvents: Event[] = [
     detailsUrl: 'https://example.com/events/green-hackathon'
   },
   {
-    id: '3',
-    title: 'Industry Leaders Seminar',
-    description: 'Meet and learn from successful tech entrepreneurs and industry leaders about career paths and innovation.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop',
-    category: 'seminar',
-    date: '2024-04-28',
-    time: '15:00 - 16:30',
-    location: 'Main Auditorium',
-    participants: 120,
-    maxParticipants: 150,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/industry-seminar',
-    detailsUrl: 'https://example.com/events/industry-seminar'
-  },
-  {
     id: '4',
     title: 'Web Development Bootcamp',
     description: 'Intensive 3-day bootcamp covering modern web development with React, Node.js, and cloud deployment.',
@@ -173,6 +158,32 @@ const mockEvents: Event[] = [
     participants: 65,
     status: 'past',
     detailsUrl: 'https://example.com/events/networking-night'
+  },
+  {
+    id: '11',
+    title: 'AGL社区文档',
+    description: '汽车级Linux(AGL)官方文档，提供完整的开发指南和技术资源，涵盖信息娱乐、仪表盘、HUD、远程信息处理等汽车应用开发。',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop',
+    category: 'seminar',
+    date: '2025-11-01',
+    time: '全天可访问',
+    location: '在线文档平台',
+    participants: 0,
+    status: 'upcoming',
+    detailsUrl: 'https://docs.automotivelinux.org/en/master/'
+  },
+  {
+    id: '12',
+    title: 'Slake协作平台',
+    description: 'AGL项目协作平台，基于Atlassian Confluence的知识管理和团队协作工具，为AGL开发者提供项目文档和协作空间。',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop',
+    category: 'networking',
+    date: '2025-11-01',
+    time: '全天可访问',
+    location: '在线协作平台',
+    participants: 0,
+    status: 'upcoming',
+    detailsUrl: 'https://lf-automotivelinux.atlassian.net/wiki/spaces/HOME/overview?mode=global'
   }
 ]
 
