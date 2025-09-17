@@ -8,7 +8,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 
-type ProjectCategory = 'all' | 'web' | 'mobile' | 'ai' | 'iot' | 'embedded' | 'robotics' | 'research' | 'other'
+type ProjectCategory = 'all' | 'web' | 'mobile' | 'ai' | 'iot' | 'embedded' | 'robotics' | 'research' | 'aerospace' | 'system' | 'other'
 
 interface Project {
   id: string

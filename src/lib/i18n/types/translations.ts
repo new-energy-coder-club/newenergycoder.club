@@ -22,6 +22,7 @@ export interface Translations {
     logout: string;
     joinClub: string;
     dashboard: string;
+    innovation: string;
   };
   
   // Hero Section
@@ -420,6 +421,7 @@ export interface Translations {
     contact: string;
     learningMaterials: string;
     joinClub: string;
+    gettingStarted: string;
     address: string;
     copyright: string;
   };

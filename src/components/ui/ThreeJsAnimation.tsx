@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Mesh, Points } from 'three';
 import { OrbitControls } from '@react-three/drei';
 
 // 旋转的几何体组件
@@ -49,7 +49,7 @@ function RotatingGeometry() {
 
 // 粒子效果组件
 function ParticleField() {
-  const particlesRef = useRef<Mesh>(null!);
+  const particlesRef = useRef<Points>(null!);
   
   useFrame((state) => {
     if (particlesRef.current) {
