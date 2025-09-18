@@ -251,8 +251,9 @@ export const DocumentPage: React.FC = () => {
                     </h3>
                   ),
                   // 自定义代码块样式
-                  code: ({ inline, children, ...props }) => {
-                    if (inline) {
+                  code: ({ children, className, ...props }: any) => {
+                    const isInline = !className || !className.includes('language-');
+                    if (isInline) {
                       return (
                         <code className="bg-gray-100 text-gray-800 px-1 py-0.5 rounded text-sm" {...props}>
                           {children}

@@ -1,5 +1,5 @@
 // 文档路由参数接口
-export interface DocumentRouteParams {
+export interface DocumentRouteParams extends Record<string, string | undefined> {
   category: string;
   subcategory?: string;
   slug: string;

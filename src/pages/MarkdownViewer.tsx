@@ -150,7 +150,7 @@ function StatsDisplay({ stats, className }: StatsDisplayProps) {
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">标题</span>
               <Badge variant="outline">
-                {Object.values(stats.headings).reduce((a: number, b: number) => a + b, 0)}
+                {Object.values(stats.headings).reduce((a: number, b: any) => a + Number(b), 0).toString()}
               </Badge>
             </div>
             <div className="flex justify-between">
@@ -169,19 +169,19 @@ function StatsDisplay({ stats, className }: StatsDisplayProps) {
         </div>
         
         {/* 标题层级分布 */}
-        {Object.values(stats.headings).some((count: number) => count > 0) && (
+        {Object.values(stats.headings).some((count: any) => Number(count) > 0) && (
           <div className="space-y-2">
             <Separator />
             <h4 className="text-sm font-medium">标题分布</h4>
             <div className="space-y-1">
-              {Object.entries(stats.headings).map(([level, count]) => (
-                count > 0 && (
+              {Object.entries(stats.headings).map(([level, count]) =>
+                Number(count) > 0 ? (
                   <div key={level} className="flex justify-between text-xs">
                     <span className="text-muted-foreground">{level.toUpperCase()}</span>
-                    <span>{count}</span>
+                    <span>{Number(count)}</span>
                   </div>
-                )
-              ))}
+                ) : null
+              )}
             </div>
           </div>
         )}
@@ -398,14 +398,9 @@ export function MarkdownViewer() {
         {/* Markdown编辑器 */}
         <div className="flex-1">
           <MarkdownPage
-            initialContent={content}
-            initialConfig={config}
-            title=""
-            showToolbar={false}
-            showConfig={false}
-            showStatus={true}
+            content={content}
+            showMetadata={false}
             onContentChange={updateContent}
-            onConfigChange={updateConfig}
             className="h-full"
           />
         </div>

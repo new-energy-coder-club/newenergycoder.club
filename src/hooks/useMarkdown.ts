@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
   MarkdownConfig,
   MarkdownContent,
-  MarkdownHookReturn,
+  UseMarkdownReturn,
   DEFAULT_MARKDOWN_CONFIG
 } from '@/types/markdown';
 
@@ -164,7 +164,7 @@ export function useMarkdown(
     maxHistoryEntries?: number;
     enableHistory?: boolean;
   } = {}
-): MarkdownHookReturn {
+): UseMarkdownReturn {
   const {
     autoSave = true,
     autoSaveDelay = 1000,
@@ -371,12 +371,10 @@ export function useMarkdown(
     restoreFromStorage,
     clearStorage,
     
-    // 历史记录操作（仅在启用时提供）
-    ...(enableHistory ? {
-      history: historyHook.history,
-      clearHistory: historyHook.clearHistory,
-      restoreFromHistory: historyHook.restoreFromHistory
-    } : {})
+    // 历史记录操作
+    history: enableHistory ? historyHook.history : [],
+    clearHistory: enableHistory ? historyHook.clearHistory : () => {},
+    restoreFromHistory: enableHistory ? historyHook.restoreFromHistory : () => null
   };
 }
 

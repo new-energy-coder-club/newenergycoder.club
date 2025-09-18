@@ -16,6 +16,8 @@ export interface MarkdownConfig {
   enableTaskLists?: boolean;
   // 是否启用链接在新窗口打开
   openLinksInNewTab?: boolean;
+  // 字体大小
+  fontSize?: 'small' | 'medium' | 'large';
 }
 
 // Markdown内容接口
@@ -62,20 +64,14 @@ export interface MarkdownRendererProps {
 
 // Markdown页面属性接口
 export interface MarkdownPageProps {
-  // 内容数据
-  content?: MarkdownContent;
-  // 是否显示元信息
+  // 内容
+  content?: string;
+  // 是否显示元数据
   showMetadata?: boolean;
-  // 是否显示目录
-  showTOC?: boolean;
-  // 自定义样式
-  customStyles?: React.CSSProperties;
-  // 返回按钮配置
-  backButton?: {
-    show: boolean;
-    text?: string;
-    href?: string;
-  };
+  // 自定义CSS类名
+  className?: string;
+  // 内容变化回调
+  onContentChange?: (content: string) => void;
 }
 
 // Markdown查看器属性接口
@@ -92,16 +88,42 @@ export interface MarkdownViewerProps {
 
 // useMarkdown Hook返回值接口
 export interface UseMarkdownReturn {
-  // 渲染后的内容
-  renderedContent: string;
+  // 当前内容
+  content: string;
+  // 当前配置
+  config: MarkdownConfig;
   // 加载状态
-  loading: boolean;
+  isLoading: boolean;
   // 错误信息
   error: string | null;
-  // 重新加载函数
-  reload: () => void;
+  // 最后保存时间
+  lastSaved: Date | null;
+  // 统计信息
+  stats: any;
+  // 更新内容函数
+  updateContent: (content: string, addToHistory?: boolean) => void;
   // 更新配置函数
   updateConfig: (config: Partial<MarkdownConfig>) => void;
+  // 清空内容
+  clearContent: () => void;
+  // 重置配置
+  resetConfig: () => void;
+  // 导入文件
+  importFile: (file: File) => Promise<void>;
+  // 导出文件
+  exportFile: (filename?: string) => void;
+  // 保存到存储
+  saveToStorage: () => void;
+  // 从存储恢复
+  restoreFromStorage: () => void;
+  // 清空存储
+  clearStorage: () => void;
+  // 历史记录
+  history: any[] | null;
+  // 清空历史
+  clearHistory: (() => void) | null;
+  // 从历史恢复
+  restoreFromHistory: ((id: string) => string | null) | null;
 }
 
 // Markdown API响应接口
@@ -121,14 +143,15 @@ export const DEFAULT_MARKDOWN_CONFIG: MarkdownConfig = {
   enableTables: true,
   enableTaskLists: true,
   openLinksInNewTab: true,
+  fontSize: 'medium',
 };
 
 // 支持的语法高亮主题
-export const SYNTAX_THEMES = {
-  light: 'github',
-  dark: 'tomorrow-night',
-  auto: 'github', // 默认使用light主题，可通过CSS媒体查询切换
-} as const;
+export const SYNTAX_THEMES = [
+  { value: 'light', label: '浅色主题' },
+  { value: 'dark', label: '深色主题' },
+  { value: 'auto', label: '自动切换' },
+] as const;
 
 // Markdown文件类型
 export type MarkdownFileType = 'md' | 'markdown' | 'txt';
