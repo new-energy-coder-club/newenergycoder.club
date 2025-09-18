@@ -193,3 +193,6 @@
     overflow: hidden;
   }
 }
+
+/* Import Markdown specific styles */
+@import './markdown.css';

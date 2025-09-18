@@ -7,6 +7,7 @@ import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
+import { ProjectImage } from '@/components/ui/project-image'
 
 type ProjectCategory = 'all' | 'web' | 'mobile' | 'ai' | 'iot' | 'embedded' | 'robotics' | 'research' | 'aerospace' | 'system' | 'other'
 
@@ -28,7 +29,7 @@ const mockProjects: Project[] = [
     id: '1',
     title: '20250319流体工作站',
     description: '流体工作站监控系统，实现对流体设备的实时监控和数据采集，提供高精度的流体参数测量和控制功能。',
-    image: 'https://foruda.gitee.com/images/1742626012064587311/80c41fae_13331507.png',
+    image: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop&crop=center',
     category: 'ai',
     technologies: ['嵌入式系统', '传感器技术', 'C/C++', '数据采集', 'SCADA'],
     author: '新能源编程俱乐部',
@@ -39,7 +40,7 @@ const mockProjects: Project[] = [
     id: '2',
     title: '20250426星闪手柄',
     description: '基于WS63的星闪手柄开发项目，采用星闪技术实现低延迟、高可靠性的无线通信，为游戏和控制应用提供优质体验。',
-    image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/projects/embedded/nearlink/20250426%E6%98%9F%E9%97%AA%E6%89%8B%E6%9F%84/image/26a7f4dbece3034dc0a8081bc154da9.jpg',
+    image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&h=600&fit=crop&crop=center',
     category: 'embedded',
     technologies: ['WS63', '星闪技术', 'NearLink', '嵌入式开发', '无线通信'],
     author: '新能源编程俱乐部',
@@ -50,7 +51,7 @@ const mockProjects: Project[] = [
     id: '3',
     title: '20241201人形机器人主线',
     description: '人形机器人核心开发项目，涵盖机器人运动控制、感知系统、决策算法等关键技术，致力于打造智能化的人形机器人平台。',
-    image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/Image/Duma_image.png',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center',
     category: 'robotics',
     technologies: ['ROS', '运动控制', '计算机视觉', '深度学习', '传感器融合'],
     author: '新能源编程俱乐部',
@@ -83,7 +84,7 @@ const mockProjects: Project[] = [
     id: '6',
     title: '人形机器人UMI低成本灵巧手',
     description: 'UMI（Universal Manipulation Interface）人形机器人低成本灵巧手的设计与实现，提供精确的抓取和操作能力。',
-    image: 'https://gitee.com/darrenpig/new_energy_coder_club/raw/master/shared/images/others/4.png',
+    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center',
     category: 'robotics',
     technologies: ['机器人学', '灵巧手', '运动控制', '传感器融合', '机械设计'],
     author: '新能源编程俱乐部',
@@ -94,7 +95,7 @@ const mockProjects: Project[] = [
       id: '7',
       title: 'MICA混合关键系统验证',
       description: 'MICA（Mixed-Criticality Architecture）混合关键系统的设计与验证，确保系统在不同关键级别下的可靠性和安全性。',
-      image: 'https://foruda.gitee.com/images/1755875628248814577/3ad54a9b_13331507.png',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center',
       category: 'system',
       technologies: ['混合关键系统', '系统验证', '安全关键', '实时系统', '形式化验证'],
       author: '新能源编程俱乐部',
@@ -111,18 +112,7 @@ const mockProjects: Project[] = [
       author: '新能源编程俱乐部',
       date: '2024-07-10',
       githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/3d-printing-team'
-    },
-  {
-    id: '9',
-    title: 'MICA混合关键系统验证',
-    description: '混合关键部署框架验证项目，研究和验证MICA框架在混合关键系统中的应用效果和性能表现。',
-    image: 'https://darrenpig.github.io/files/news10.jpg',
-    category: 'research',
-    technologies: ['MICA框架', '混合关键系统', '系统验证', '性能分析', '安全关键'],
-    author: '新能源编程俱乐部',
-    date: '2024-06-25',
-    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/mica-validation'
-  }
+    }
 ]
 
 const categoryFilters = [
@@ -250,10 +240,10 @@ export function ProjectsPage() {
               <Card key={project.id} className="glass-card hover-lift glow-hover group overflow-hidden">
                 {/* 项目图片容器div - 使用选定的宽高比，隐藏溢出内容，相对定位 */}
                 <div className={`${selectedRatio} overflow-hidden relative`}>
-                  <img 
+                  <ProjectImage 
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="h-full w-full"
                   />
                   {/* 
                     悬停遮罩层 - 项目卡片图片的交互遮罩效果

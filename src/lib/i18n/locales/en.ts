@@ -1,5 +1,6 @@
 import { maintainers, developers, designers, contributors, sponsors } from '../constants/team';
 import { Translations } from '../types/translations';
+import { learningTranslations } from './learning';
 
 export const enTranslations: Translations = {
   join: {
@@ -207,6 +208,24 @@ export const enTranslations: Translations = {
   joinPage: {
     title: 'Join Our Club',
     subtitle: 'Become part of our sustainable coding community',
+    form: {
+      name: 'Name',
+      email: 'Email',
+      phone: 'Phone',
+      experience: 'Experience',
+      interests: 'Interests',
+      submit: 'Submit',
+      submitting: 'Submitting...',
+      success: 'Submitted successfully',
+      error: 'Submission failed'
+    },
+    benefits: {
+      title: 'Member Benefits',
+      networking: 'Networking',
+      learning: 'Learning Opportunities',
+      projects: 'Project Participation',
+      career: 'Career Development'
+    },
     wechat: {
       title: 'WeChat Group',
       description: 'Join our WeChat group for the latest updates, project discussions, and community activities',
@@ -427,6 +446,10 @@ export const enTranslations: Translations = {
     learningMaterials: 'Learning Materials',
     joinClub: 'Join Club',
     gettingStarted: 'Getting Started',
+    techRoadmap: {
+      title: 'Tech Roadmap',
+      description: 'Explore our technology learning paths'
+    },
     address: 'Yuheng A416 Warehouse Laboratory, Liaohai Road Campus, Changzhou Institute of Technology, No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
     copyright: '© 2025 New Energy Coder Club. All rights reserved.'
   },
@@ -444,5 +467,8 @@ export const enTranslations: Translations = {
       widescreen: 'Widescreen Ratio (16:10)',
       ultrawide: 'Ultrawide Ratio (21:9)'
     }
-  }
+  },
+  
+  // Learning path and tech roadmap translations
+  learning: learningTranslations.en
 };

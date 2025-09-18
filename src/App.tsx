@@ -8,10 +8,15 @@ import { ProjectsPage } from "@/pages/ProjectsPage";
 import { EventsPage } from "@/pages/EventsPage";
 import { ResourcesPage } from "@/pages/ResourcesPage";
 import { ContactPage } from "@/pages/ContactPage";
-import { GettingStartedPage } from "@/pages/GettingStartedPage";
+import GettingStartedPage from "@/pages/GettingStartedPage";
+import EmbeddedDetailPage from "@/pages/EmbeddedDetailPage";
+import MechanicalDetailPage from "@/pages/MechanicalDetailPage";
+import DesignerDetailPage from "@/pages/DesignerDetailPage";
 import { TeamPage } from "@/pages/TeamPage";
 import { InnovationShowcasePage } from "@/pages/InnovationShowcasePage";
 import AdminDashboard from "@/pages/AdminDashboard";
+import { MarkdownViewer } from "@/pages/MarkdownViewer";
+import { DocumentPage } from "@/components/DocumentPage";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -40,6 +45,18 @@ function App() {
             <Route path="/team" element={<TeamPage />} />
             <Route path="/innovation" element={<InnovationShowcasePage />} />
             <Route path="/getting-started" element={<GettingStartedPage />} />
+            <Route path="/learning/embedded" element={<EmbeddedDetailPage />} />
+            <Route path="/learning/mechanical" element={<MechanicalDetailPage />} />
+            <Route path="/learning/designer" element={<DesignerDetailPage />} />
+            
+            {/* Document Routes */}
+            <Route path="/docs/:category" element={<DocumentPage />} />
+            <Route path="/docs/:category/:slug" element={<DocumentPage />} />
+            
+            {/* Markdown Editor Routes */}
+            <Route path="/markdown" element={<MarkdownViewer />} />
+            <Route path="/markdown/editor" element={<MarkdownViewer />} />
+            <Route path="/markdown/viewer" element={<MarkdownViewer />} />
             <Route path="/join" element={<JoinPage />} />
             <Route path="/join/form" element={<FeishuJoinFormPage />} />
             

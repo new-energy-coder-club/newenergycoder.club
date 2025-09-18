@@ -1,0 +1,25 @@
+{
+  "title": "新能源编程俱乐部文档中心",
+  "description": "提供全面的编程学习资源和技术指南",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "slug": "getting-started",
+      "title": "快速开始",
+      "description": "新能源编程俱乐部快速入门指南",
+      "order": 1
+    },
+    {
+      "slug": "tutorials",
+      "title": "教程指南",
+      "description": "深入的编程教程和实践指南",
+      "order": 2
+    },
+    {
+      "slug": "resources",
+      "title": "资源库",
+      "description": "工具、库和参考资料",
+      "order": 3
+    }
+  ]
+}

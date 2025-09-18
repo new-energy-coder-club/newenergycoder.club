@@ -1,0 +1,358 @@
+/* Markdown 编辑器专用样式 */
+
+/* 编辑器容器样式 */
+.markdown-editor {
+  @apply h-full flex flex-col;
+}
+
+.markdown-editor-content {
+  @apply flex-1 overflow-hidden;
+}
+
+/* 编辑器分割面板 */
+.markdown-split-view {
+  @apply flex h-full;
+}
+
+.markdown-editor-panel {
+  @apply flex-1 border-r border-border;
+}
+
+.markdown-preview-panel {
+  @apply flex-1;
+}
+
+/* 编辑器文本区域 */
+.markdown-textarea {
+  @apply w-full h-full p-4 bg-background text-foreground font-mono text-sm leading-relaxed resize-none border-0 outline-none;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+  tab-size: 2;
+}
+
+.markdown-textarea:focus {
+  @apply ring-0 outline-none;
+}
+
+/* 预览区域样式 */
+.markdown-preview {
+  @apply h-full overflow-y-auto p-4 bg-background;
+}
+
+/* Markdown 内容渲染样式 */
+.markdown-content {
+  @apply max-w-none prose prose-slate dark:prose-invert;
+  /* 覆盖 prose 的最大宽度限制 */
+  max-width: none !important;
+}
+
+/* 标题样式 */
+.markdown-content h1 {
+  @apply text-3xl font-bold mb-6 mt-8 pb-2 border-b border-border;
+}
+
+.markdown-content h2 {
+  @apply text-2xl font-semibold mb-4 mt-6 pb-2 border-b border-border;
+}
+
+.markdown-content h3 {
+  @apply text-xl font-semibold mb-3 mt-5;
+}
+
+.markdown-content h4 {
+  @apply text-lg font-medium mb-2 mt-4;
+}
+
+.markdown-content h5 {
+  @apply text-base font-medium mb-2 mt-3;
+}
+
+.markdown-content h6 {
+  @apply text-sm font-medium mb-2 mt-3 text-muted-foreground;
+}
+
+/* 段落和文本样式 */
+.markdown-content p {
+  @apply mb-4 leading-7;
+}
+
+.markdown-content strong {
+  @apply font-semibold;
+}
+
+.markdown-content em {
+  @apply italic;
+}
+
+.markdown-content del {
+  @apply line-through opacity-75;
+}
+
+/* 链接样式 */
+.markdown-content a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-4 transition-colors;
+}
+
+.markdown-content a:hover {
+  @apply text-primary/80;
+}
+
+/* 列表样式 */
+.markdown-content ul {
+  @apply list-disc list-inside mb-4 space-y-1;
+}
+
+.markdown-content ol {
+  @apply list-decimal list-inside mb-4 space-y-1;
+}
+
+.markdown-content li {
+  @apply leading-7;
+}
+
+.markdown-content li > ul,
+.markdown-content li > ol {
+  @apply mt-2 ml-4;
+}
+
+/* 任务列表样式 */
+.markdown-content .task-list-item {
+  @apply list-none flex items-start gap-2;
+}
+
+.markdown-content .task-list-item input[type="checkbox"] {
+  @apply mt-1 rounded border-border;
+}
+
+/* 引用块样式 */
+.markdown-content blockquote {
+  @apply border-l-4 border-primary/30 pl-4 py-2 my-4 bg-muted/30 italic;
+}
+
+.markdown-content blockquote p {
+  @apply mb-0;
+}
+
+/* 代码样式 */
+.markdown-content code {
+  @apply px-1.5 py-0.5 bg-muted text-muted-foreground rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent p-0 text-foreground;
+}
+
+/* 代码块语法高亮容器 */
+.markdown-code-block {
+  @apply relative mb-4;
+}
+
+.markdown-code-block pre {
+  @apply bg-slate-900 dark:bg-slate-800 text-slate-100 p-4 rounded-lg overflow-x-auto;
+}
+
+.markdown-code-block .code-language {
+  @apply absolute top-2 right-2 text-xs text-slate-400 bg-slate-700 px-2 py-1 rounded;
+}
+
+/* 表格样式 */
+.markdown-content table {
+  @apply w-full border-collapse border border-border mb-4;
+}
+
+.markdown-content th {
+  @apply border border-border bg-muted px-3 py-2 text-left font-semibold;
+}
+
+.markdown-content td {
+  @apply border border-border px-3 py-2;
+}
+
+.markdown-content tr:nth-child(even) {
+  @apply bg-muted/30;
+}
+
+/* 分隔线样式 */
+.markdown-content hr {
+  @apply border-0 border-t border-border my-8;
+}
+
+/* 图片样式 */
+.markdown-content img {
+  @apply max-w-full h-auto rounded-lg shadow-sm;
+}
+
+/* 工具栏样式 */
+.markdown-toolbar {
+  @apply flex items-center gap-2 p-2 border-b border-border bg-muted/30;
+}
+
+.markdown-toolbar-group {
+  @apply flex items-center gap-1;
+}
+
+.markdown-toolbar-separator {
+  @apply w-px h-6 bg-border mx-2;
+}
+
+/* 配置面板样式 */
+.markdown-config-panel {
+  @apply w-64 border-r border-border bg-muted/30 p-4 overflow-y-auto;
+}
+
+.markdown-config-section {
+  @apply mb-6;
+}
+
+.markdown-config-section h3 {
+  @apply text-sm font-semibold mb-3 text-foreground;
+}
+
+.markdown-config-item {
+  @apply mb-3;
+}
+
+.markdown-config-item label {
+  @apply text-xs font-medium text-muted-foreground mb-1 block;
+}
+
+/* 状态栏样式 */
+.markdown-status-bar {
+  @apply flex items-center justify-between px-4 py-2 border-t border-border bg-muted/30 text-xs text-muted-foreground;
+}
+
+.markdown-status-item {
+  @apply flex items-center gap-1;
+}
+
+/* 加载状态样式 */
+.markdown-loading {
+  @apply flex items-center justify-center h-full text-muted-foreground;
+}
+
+.markdown-loading-spinner {
+  @apply animate-spin h-6 w-6 mr-2;
+}
+
+/* 错误状态样式 */
+.markdown-error {
+  @apply p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .markdown-split-view {
+    @apply flex-col;
+  }
+  
+  .markdown-editor-panel {
+    @apply border-r-0 border-b border-border;
+  }
+  
+  .markdown-config-panel {
+    @apply w-full border-r-0 border-b border-border;
+  }
+  
+  .markdown-toolbar {
+    @apply flex-wrap;
+  }
+}
+
+/* 暗色主题特定样式 */
+@media (prefers-color-scheme: dark) {
+  .markdown-textarea {
+    @apply bg-slate-900 text-slate-100;
+  }
+  
+  .markdown-preview {
+    @apply bg-slate-900;
+  }
+  
+  .markdown-code-block pre {
+    @apply bg-slate-800;
+  }
+}
+
+/* 自定义滚动条样式 */
+.markdown-preview::-webkit-scrollbar,
+.markdown-textarea::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.markdown-preview::-webkit-scrollbar-track,
+.markdown-textarea::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.markdown-preview::-webkit-scrollbar-thumb,
+.markdown-textarea::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full;
+}
+
+.markdown-preview::-webkit-scrollbar-thumb:hover,
+.markdown-textarea::-webkit-scrollbar-thumb:hover {
+  @apply bg-border/80;
+}
+
+/* 选择文本样式 */
+.markdown-textarea::selection {
+  @apply bg-primary/20;
+}
+
+.markdown-content ::selection {
+  @apply bg-primary/20;
+}
+
+/* 焦点样式 */
+.markdown-editor:focus-within .markdown-editor-panel {
+  @apply ring-1 ring-primary/20;
+}
+
+/* 拖拽样式 */
+.markdown-editor.drag-over {
+  @apply ring-2 ring-primary ring-offset-2;
+}
+
+/* 动画效果 */
+.markdown-fade-in {
+  animation: markdown-fade-in 0.2s ease-in-out;
+}
+
+@keyframes markdown-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .markdown-toolbar,
+  .markdown-config-panel,
+  .markdown-status-bar {
+    @apply hidden;
+  }
+  
+  .markdown-editor-panel {
+    @apply hidden;
+  }
+  
+  .markdown-preview-panel {
+    @apply w-full;
+  }
+  
+  .markdown-content {
+    @apply text-black;
+  }
+  
+  .markdown-content a {
+    @apply text-black underline;
+  }
+}

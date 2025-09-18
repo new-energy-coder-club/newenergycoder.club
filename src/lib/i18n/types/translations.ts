@@ -139,6 +139,24 @@ export interface Translations {
   joinPage: {
     title: string;
     subtitle: string;
+    form: {
+      name: string;
+      email: string;
+      phone: string;
+      experience: string;
+      interests: string;
+      submit: string;
+      submitting: string;
+      success: string;
+      error: string;
+    };
+    benefits: {
+      title: string;
+      networking: string;
+      learning: string;
+      projects: string;
+      career: string;
+    };
     wechat: {
       title: string
       description: string
@@ -422,6 +440,10 @@ export interface Translations {
     learningMaterials: string;
     joinClub: string;
     gettingStarted: string;
+    techRoadmap: {
+      title: string;
+      description: string;
+    };
     address: string;
     copyright: string;
   };
@@ -440,6 +462,205 @@ export interface Translations {
       portrait: string;
       widescreen: string;
       ultrawide: string;
+    };
+  };
+  
+  // 学习路径和技术路线翻译类型
+  learning: {
+    pageTitle: string;
+    pageSubtitle: string;
+    navigation: {
+      overview: string;
+      embedded: string;
+      mechanical: string;
+      design: string;
+      resources: string;
+      quickStart: string;
+    };
+    directions: {
+      embedded: {
+        title: string;
+        subtitle: string;
+        description: string;
+        keySkills: string;
+        careerPath: string;
+        salaryRange: string;
+      };
+      mechanical: {
+        title: string;
+        subtitle: string;
+        description: string;
+        keySkills: string;
+        careerPath: string;
+        salaryRange: string;
+      };
+      design: {
+        title: string;
+        subtitle: string;
+        description: string;
+        keySkills: string;
+        careerPath: string;
+        salaryRange: string;
+      };
+    };
+    phases: {
+      foundation: {
+        title: string;
+        description: string;
+        duration: string;
+        objectives: string;
+      };
+      intermediate: {
+        title: string;
+        description: string;
+        duration: string;
+        objectives: string;
+      };
+      advanced: {
+        title: string;
+        description: string;
+        duration: string;
+        objectives: string;
+      };
+      expert: {
+        title: string;
+        description: string;
+        duration: string;
+        objectives: string;
+      };
+    };
+    steps: {
+      theory: string;
+      practice: string;
+      project: string;
+      review: string;
+      assessment: string;
+    };
+    difficulty: {
+      easy: string;
+      medium: string;
+      hard: string;
+      expert: string;
+    };
+    resourceTypes: {
+      documentation: string;
+      video: string;
+      book: string;
+      course: string;
+      practice: string;
+      tool: string;
+      community: string;
+    };
+    resources: {
+      title: string;
+      subtitle: string;
+      filterBy: string;
+      filterByType: string;
+      filterByDifficulty: string;
+      filterByLanguage: string;
+      filterByDirection: string;
+      showFreeOnly: string;
+      estimatedTime: string;
+      difficulty: string;
+      language: string;
+      lastUpdated: string;
+      viewResource: string;
+      addToLearningPlan: string;
+      recommended: string;
+      free: string;
+      paid: string;
+    };
+    quickStart: {
+      title: string;
+      subtitle: string;
+      chooseDirection: string;
+      requirements: string;
+      operatingSystem: string;
+      software: string;
+      hardware: string;
+      steps: string;
+      step: string;
+      estimatedTime: string;
+      minutes: string;
+      firstProject: string;
+      projectDifficulty: string;
+      projectTime: string;
+      hours: string;
+      viewOnGitHub: string;
+      startNow: string;
+      nextSteps: string;
+    };
+    learningPlan: {
+      title: string;
+      subtitle: string;
+      createPlan: string;
+      editPlan: string;
+      deletePlan: string;
+      planName: string;
+      targetDirection: string;
+      currentLevel: string;
+      targetLevel: string;
+      timeCommitment: string;
+      hoursPerWeek: string;
+      estimatedCompletion: string;
+      progress: string;
+      completed: string;
+      inProgress: string;
+      notStarted: string;
+      markAsCompleted: string;
+      addNote: string;
+      viewDetails: string;
+    };
+    assessment: {
+      title: string;
+      subtitle: string;
+      startAssessment: string;
+      question: string;
+      of: string;
+      next: string;
+      previous: string;
+      submit: string;
+      results: string;
+      yourLevel: string;
+      recommendations: string;
+      retakeAssessment: string;
+      shareResults: string;
+    };
+    common: {
+      viewMore: string;
+      viewLess: string;
+      learnMore: string;
+      getStarted: string;
+      download: string;
+      share: string;
+      bookmark: string;
+      unbookmark: string;
+      copy: string;
+      copied: string;
+      loading: string;
+      error: string;
+      retry: string;
+      cancel: string;
+      confirm: string;
+      save: string;
+      edit: string;
+      delete: string;
+      search: string;
+      filter: string;
+      sort: string;
+      reset: string;
+    };
+    messages: {
+      noResourcesFound: string;
+      noPlansFound: string;
+      planSaved: string;
+      planDeleted: string;
+      resourceAdded: string;
+      resourceRemoved: string;
+      assessmentCompleted: string;
+      progressUpdated: string;
+      networkError: string;
+      serverError: string;
     };
   };
 }

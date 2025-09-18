@@ -1,0 +1,19 @@
+{
+  "title": "进阶教程",
+  "description": "中级编程概念和实践技巧",
+  "order": 2,
+  "items": [
+    {
+      "slug": "advanced-concepts",
+      "title": "高级概念",
+      "description": "面向对象、设计模式等进阶概念",
+      "order": 1
+    },
+    {
+      "slug": "best-practices",
+      "title": "最佳实践",
+      "description": "代码质量、测试、调试等最佳实践",
+      "order": 2
+    }
+  ]
+}

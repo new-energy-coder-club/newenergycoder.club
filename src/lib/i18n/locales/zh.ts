@@ -1,10 +1,29 @@
 import { maintainers, developers, designers, contributors, sponsors } from '../constants/team';
 import { Translations } from '../types/translations';
+import { learningTranslations } from './learning';
 
 export const zhTranslations: Translations = {
   joinPage: {
     title: '加入我们的俱乐部',
     subtitle: '成为我们可持续编程社区的一员',
+    form: {
+      name: '姓名',
+      email: '邮箱',
+      phone: '电话',
+      experience: '经验',
+      interests: '兴趣',
+      submit: '提交',
+      submitting: '提交中...',
+      success: '提交成功',
+      error: '提交失败'
+    },
+    benefits: {
+      title: '会员福利',
+      networking: '网络建设',
+      learning: '学习机会',
+      projects: '项目参与',
+      career: '职业发展'
+    },
     wechat: {
       title: '微信群',
       description: '加入我们的微信群，了解最新更新、项目讨论和社区活动',
@@ -642,9 +661,16 @@ export const zhTranslations: Translations = {
     learningMaterials: '学习资料',
     joinClub: '加入NEC仓库实验室',
     gettingStarted: '入门文档',
+    techRoadmap: {
+      title: '技术路线',
+      description: '专业的技术发展指导'
+    },
     address: '江苏省常州市新北区辽河路666号常州工学院辽河路校区玉衡A416仓库实验室',
     copyright: '© 2025 新能源编程俱乐部。保留所有权利。'
   },
+  
+  // 学习路径和技术路线翻译
+  learning: learningTranslations.zh,
   displayRatio: {
     title: '显示比例调整器',
     description: '调整卡片显示比例，查看不同比例下的视觉效果',
