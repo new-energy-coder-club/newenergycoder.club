@@ -288,6 +288,22 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/孙如婕.jpg',
     tags: ['灵巧手开发', '横向开发', '技术创新', '开发支持', '项目贡献', '技术解决方案'],
     github: 'https://github.com/sunrujie'
+  },
+  {
+    name: '杨彩妮',
+    role: 'Contributor',
+    bio: 'AIC工业视觉SIG pre-sponsor，专注于工业视觉技术的研究和应用。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/杨彩妮.jpg',
+    tags: ['工业视觉', 'AIC', 'SIG', 'pre-sponsor', '视觉技术', '技术研究'],
+    github: 'https://github.com/yangcaini'
+  },
+  {
+    name: '孙诗睿',
+    role: 'Contributor',
+    bio: 'AIC工业视觉SIG 嵌硬-单片机专家，专注于嵌入式硬件和单片机开发。',
+    image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/孙诗睿.jpg',
+    tags: ['嵌入式硬件', '单片机', 'AIC', '工业视觉', 'SIG', '硬件开发'],
+    github: 'https://github.com/sunshirui'
   }
 ];
 
