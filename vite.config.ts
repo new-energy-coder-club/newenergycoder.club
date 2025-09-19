@@ -40,43 +40,121 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React 核心库
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'react-vendor';
+          // React 核心拆分
+          if (id.includes('react-dom/client')) {
+            return 'react-dom-client';
           }
-          // 路由相关
+          if (id.includes('react-dom')) {
+            return 'react-dom';
+          }
+          if (id.includes('react/jsx-runtime')) {
+            return 'react-jsx';
+          }
+          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router') && !id.includes('@react-three')) {
+            return 'react-core';
+          }
+          
+          // Three.js 细粒度拆分
+          if (id.includes('three/examples/jsm')) {
+            return 'three-examples';
+          }
+          if (id.includes('@react-three/fiber')) {
+            return 'r3f-fiber';
+          }
+          if (id.includes('@react-three/drei')) {
+            return 'r3f-drei';
+          }
+          if (id.includes('three') && !id.includes('@react-three') && !id.includes('three/examples')) {
+            return 'three-core';
+          }
+          
+          // 路由相关细分
+          if (id.includes('react-router-dom')) {
+            return 'router-dom';
+          }
           if (id.includes('react-router')) {
-            return 'router';
+            return 'router-core';
           }
-          // UI 组件库
-          if (id.includes('@radix-ui') || id.includes('framer-motion')) {
-            return 'ui-vendor';
+          
+          // UI 组件库细分
+          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-dropdown-menu')) {
+            return 'radix-overlays';
           }
-          // 图标库
+          if (id.includes('@radix-ui')) {
+            return 'radix-core';
+          }
           if (id.includes('lucide-react')) {
             return 'icons';
           }
-          // Markdown 相关
-          if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
-            return 'markdown';
+          
+          // 动画和交互库
+          if (id.includes('framer-motion')) {
+            return 'animations';
           }
-          // 代码高亮
-          if (id.includes('react-syntax-highlighter') || id.includes('prismjs')) {
-            return 'syntax-highlighter';
+          
+          // 工具库细分
+          if (id.includes('lodash')) {
+            return 'lodash';
           }
-          // 3D 库
-          if (id.includes('three') || id.includes('@react-three')) {
-            return 'three-vendor';
+          if (id.includes('date-fns')) {
+            return 'date-utils';
           }
+          if (id.includes('clsx') || id.includes('class-variance-authority')) {
+            return 'style-utils';
+          }
+          
           // 状态管理
-          if (id.includes('zustand')) {
+          if (id.includes('zustand') || id.includes('jotai')) {
             return 'state-management';
           }
+          
+          // 网络请求
+          if (id.includes('axios') || id.includes('ky')) {
+            return 'http-client';
+          }
+          
+          // Markdown 相关 - 细分
+          if (id.includes('react-markdown')) {
+            return 'react-markdown';
+          }
+          if (id.includes('remark') || id.includes('rehype')) {
+            return 'markdown-processors';
+          }
+          
+          // 代码高亮 - 细分
+          if (id.includes('react-syntax-highlighter')) {
+            return 'syntax-highlighter';
+          }
+          if (id.includes('prismjs')) {
+            return 'prism';
+          }
+          
           // Vercel 分析工具
           if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
             return 'vercel-analytics';
           }
-          // 其他 node_modules 依赖
+          
+          // Tailwind 相关
+          if (id.includes('tailwind')) {
+            return 'tailwind-utils';
+          }
+          
+          // 国际化
+          if (id.includes('react-i18next') || id.includes('i18next')) {
+            return 'i18n';
+          }
+          
+          // 监控和错误追踪
+          if (id.includes('@sentry')) {
+            return 'sentry';
+          }
+          
+          // 其他工具库
+          if (id.includes('react-helmet')) {
+            return 'react-helmet';
+          }
+          
+          // 其他较小的依赖
           if (id.includes('node_modules')) {
             return 'vendor';
           }
@@ -95,9 +173,17 @@ export default defineConfig({
     // 启用 gzip 压缩提示
     reportCompressedSize: true,
     // 设置 chunk 大小警告限制 (KB)
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 300,
     // 优化构建性能
     target: 'esnext',
     sourcemap: false,
+    // CSS 代码分割
+    cssCodeSplit: true,
+    // 预加载模块
+    modulePreload: {
+      polyfill: true
+    },
+    // 资源内联阈值
+    assetsInlineLimit: 4096,
   }
 })

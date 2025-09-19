@@ -29,16 +29,26 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
+import RoutePreloader from "@/components/RoutePreloader";
+import { initFontOptimization } from "@/utils/fontOptimization";
 import './styles/LinkDetection.css'
 
 
 
 function App() {
+  // 初始化字体优化
+  React.useEffect(() => {
+    initFontOptimization();
+  }, []);
+
   return (
     <ErrorBoundary>
+      <PerformanceMonitor />
       <LanguageProvider>
         <TooltipProvider>
           <BrowserRouter>
+            <RoutePreloader />
           <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div></div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
