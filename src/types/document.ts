@@ -3,6 +3,7 @@ export interface DocumentMeta {
   title: string;
   description: string;
   order: number;
+  slug?: string;
   items?: DocumentItem[];
   subcategories?: DocumentSubcategory[];
 }
@@ -56,6 +57,9 @@ export interface TableOfContentsItem {
   level: number;
   children?: TableOfContentsItem[];
 }
+
+// TOCItem 别名，用于向后兼容
+export type TOCItem = TableOfContentsItem;
 
 // 文档加载状态
 export type DocumentLoadState = 'idle' | 'loading' | 'success' | 'error';

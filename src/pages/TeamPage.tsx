@@ -1,7 +1,8 @@
 import { Header } from '@/components/layout/Header'
 import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
-import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
+import React, { Suspense } from 'react'
+const ThreeJsAnimation = React.lazy(() => import('@/components/ui/ThreeJsAnimation'))
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -497,7 +498,23 @@ export function TeamPage() {
           
           {/* 条件渲染Three.js动画 */}
           {showAnimation ? (
-            <ThreeJsAnimation />
+            <Suspense fallback={
+              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg p-12">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-spin">
+                    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full"></div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground dark:text-white mb-2">
+                    加载3D动画中...
+                  </h3>
+                  <p className="text-muted-foreground dark:text-gray-300">
+                    正在加载Three.js动画组件
+                  </p>
+                </div>
+              </Card>
+            }>
+              <ThreeJsAnimation />
+            </Suspense>
           ) : (
             <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg p-12">
               <div className="text-center">

@@ -11,8 +11,6 @@ export default defineConfig({
     },
   },
   server: {
-    // 配置开发服务器的404处理，让React Router处理所有路由
-    historyApiFallback: true,
     // 配置静态文件服务，允许访问docs目录
     fs: {
       allow: ['..', 'docs']
@@ -41,12 +39,47 @@ export default defineConfig({
     // 启用代码分割
     rollupOptions: {
       output: {
-        manualChunks: {
-          // 将大型依赖分离到单独的 chunk
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
-          router: ['react-router-dom'],
-          icons: ['lucide-react'],
+        manualChunks: (id) => {
+          // React 核心库
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-vendor';
+          }
+          // 路由相关
+          if (id.includes('react-router')) {
+            return 'router';
+          }
+          // UI 组件库
+          if (id.includes('@radix-ui') || id.includes('framer-motion')) {
+            return 'ui-vendor';
+          }
+          // 图标库
+          if (id.includes('lucide-react')) {
+            return 'icons';
+          }
+          // Markdown 相关
+          if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
+            return 'markdown';
+          }
+          // 代码高亮
+          if (id.includes('react-syntax-highlighter') || id.includes('prismjs')) {
+            return 'syntax-highlighter';
+          }
+          // 3D 库
+          if (id.includes('three') || id.includes('@react-three')) {
+            return 'three-vendor';
+          }
+          // 状态管理
+          if (id.includes('zustand')) {
+            return 'state-management';
+          }
+          // Vercel 分析工具
+          if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
+            return 'vercel-analytics';
+          }
+          // 其他 node_modules 依赖
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
@@ -61,7 +94,10 @@ export default defineConfig({
     },
     // 启用 gzip 压缩提示
     reportCompressedSize: true,
-    // 设置 chunk 大小警告限制
-    chunkSizeWarningLimit: 1000,
+    // 设置 chunk 大小警告限制 (KB)
+    chunkSizeWarningLimit: 500,
+    // 优化构建性能
+    target: 'esnext',
+    sourcemap: false,
   }
 })
