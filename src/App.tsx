@@ -17,6 +17,7 @@ import { InnovationShowcasePage } from "@/pages/InnovationShowcasePage";
 import AdminDashboard from "@/pages/AdminDashboard";
 import { MarkdownViewer } from "@/pages/MarkdownViewer";
 import { DocumentPage } from "@/components/DocumentPage";
+import { TechnicalDocsLayout } from "@/components/TechnicalDocsLayout";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -51,6 +52,8 @@ function App() {
             <Route path="/learning/designer" element={<DesignerDetailPage />} />
             
             {/* Document Routes */}
+            <Route path="/docs/technical" element={<TechnicalDocsLayout />} />
+            <Route path="/docs/technical/:slug" element={<DocumentPage />} />
             <Route path="/docs/:category/:subcategory/:slug" element={<DocumentPage />} />
             <Route path="/docs/:category" element={<DocumentPage />} />
             <Route path="/docs/:category/:slug" element={<DocumentPage />} />

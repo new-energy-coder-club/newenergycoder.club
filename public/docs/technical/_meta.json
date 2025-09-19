@@ -1,0 +1,37 @@
+{
+  "title": "技术文档",
+  "description": "详细的技术文档和API参考",
+  "order": 4,
+  "items": [
+    {
+      "slug": "api-reference",
+      "title": "API参考",
+      "description": "完整的API接口文档",
+      "order": 1
+    },
+    {
+      "slug": "architecture",
+      "title": "系统架构",
+      "description": "系统架构设计文档",
+      "order": 2
+    },
+    {
+      "slug": "development-guide",
+      "title": "开发指南",
+      "description": "开发规范和最佳实践",
+      "order": 3
+    },
+    {
+      "slug": "integration-guide",
+      "title": "集成指南",
+      "description": "第三方服务集成指南",
+      "order": 4
+    },
+    {
+      "slug": "deployment",
+      "title": "部署文档",
+      "description": "项目部署和运维指南",
+      "order": 5
+    }
+  ]
+}

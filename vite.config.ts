@@ -11,6 +11,12 @@ export default defineConfig({
     },
   },
   server: {
+    // 配置开发服务器的404处理，让React Router处理所有路由
+    historyApiFallback: true,
+    // 配置静态文件服务，允许访问docs目录
+    fs: {
+      allow: ['..', 'docs']
+    },
     proxy: {
       // 高德地图API代理配置
       '/_AMapService': {
@@ -28,6 +34,9 @@ export default defineConfig({
       }
     }
   },
+  // 配置静态文件服务
+  publicDir: 'public',
+  assetsInclude: ['**/*.md'],
   build: {
     // 启用代码分割
     rollupOptions: {

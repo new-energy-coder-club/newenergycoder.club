@@ -9,7 +9,7 @@ export class DocumentLoader {
   private baseUrl: string;
 
   private constructor() {
-    this.baseUrl = '/docs';
+    this.baseUrl = '';
   }
 
   public static getInstance(): DocumentLoader {
@@ -45,16 +45,26 @@ export class DocumentLoader {
    */
   async loadDocument(category: string, slug: string, subcategory?: string): Promise<DocumentLoadResult> {
     try {
-      const docPath = subcategory
-        ? `${this.baseUrl}/${category}/${subcategory}/${slug}.md`
-        : `${this.baseUrl}/${category}/${slug}.md`;
+      // 首先尝试加载目录下的index.md文件（这是主要的文档结构）
+      const indexPath = subcategory
+        ? `/docs/${category}/${subcategory}/${slug}/index.md`
+        : `/docs/${category}/${slug}/index.md`;
       
-      const response = await fetch(docPath);
+      let response = await fetch(indexPath);
+      let finalPath = indexPath;
+      
+      // 如果index.md文件不存在，尝试加载直接的.md文件
       if (!response.ok) {
-        return {
-          state: 'error',
-          error: `Document not found: ${docPath}`
-        };
+        const docPath = subcategory
+          ? `/docs/${category}/${subcategory}/${slug}.md`
+          : `/docs/${category}/${slug}.md`;
+        
+        response = await fetch(docPath);
+        finalPath = docPath;
+      }
+      
+      if (!response.ok) {
+        throw new Error(`文档未找到: ${finalPath}`);
       }
       
       const content = await response.text();
@@ -65,7 +75,6 @@ export class DocumentLoader {
         data: parsedContent
       };
     } catch (error) {
-      console.error('Error loading document:', error);
       return {
         state: 'error',
         error: error instanceof Error ? error.message : 'Unknown error'
