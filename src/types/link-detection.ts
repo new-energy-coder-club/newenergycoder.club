@@ -21,7 +21,11 @@ export enum LinkType {
   /** 邮件链接 */
   EMAIL = 'email',
   /** 电话链接 */
-  TEL = 'tel'
+  TEL = 'tel',
+  /** 电话链接（别名） */
+  PHONE = 'phone',
+  /** 文件链接 */
+  FILE = 'file'
 }
 
 /**
@@ -50,6 +54,8 @@ export interface ProcessedLink {
   type: LinkType;
   /** 链接是否有效 */
   isValid: boolean;
+  /** 链接文本 */
+  text?: string;
   /** 链接元数据 */
   metadata: LinkMetadata;
   /** 错误信息（如果有） */
@@ -100,6 +106,8 @@ export interface LinkMetadata {
   fileSize?: number;
   /** 链接权重/重要性 */
   weight?: number;
+  /** 样式类名 */
+  styleClass?: string;
   /** 自定义属性 */
   customAttributes?: Record<string, string>;
 }
@@ -313,4 +321,29 @@ export interface EventData {
   payload: any;
   /** 事件来源 */
   source?: string;
+}
+
+/**
+ * 链接检测器组件属性接口
+ * 定义链接检测器组件的属性
+ */
+export interface LinkDetectorProps {
+  /** 文档内容 */
+  content: string;
+  /** 文档难度 */
+  difficulty?: DocumentDifficulty;
+  /** 文档路径 */
+  documentPath?: string;
+  /** 是否显示验证状态 */
+  showValidationStatus?: boolean;
+  /** 是否自动验证链接 */
+  autoValidate?: boolean;
+  /** 自定义样式类名 */
+  className?: string;
+  /** 链接点击回调 */
+  onLinkClick?: (link: ProcessedLink, event: React.MouseEvent) => void;
+  /** 验证完成回调 */
+  onValidationComplete?: (results: Map<string, ValidationResult>) => void;
+  /** 错误回调 */
+  onError?: (error: string) => void;
 }

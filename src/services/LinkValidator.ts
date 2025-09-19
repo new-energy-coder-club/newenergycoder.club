@@ -43,10 +43,9 @@ export class LinkValidator {
       return result;
     } catch (error) {
       const errorResult: ValidationResult = {
-        url,
         isValid: false,
         error: error instanceof Error ? error.message : '验证失败',
-        timestamp: Date.now(),
+        validatedAt: Date.now(),
         responseTime: 0,
       };
       
@@ -196,13 +195,15 @@ export class LinkValidator {
         return {
           isValid: true,
           statusCode: response.status || 200,
-          redirectUrl: response.url !== url ? response.url : undefined
+          redirectUrl: response.url !== url ? response.url : undefined,
+          validatedAt: Date.now()
         };
       } else {
         return {
           isValid: false,
           statusCode: response.status,
-          error: `HTTP ${response.status}: ${response.statusText}`
+          error: `HTTP ${response.status}: ${response.statusText}`,
+          validatedAt: Date.now()
         };
       }
     } catch (error) {
@@ -210,7 +211,8 @@ export class LinkValidator {
         if (error.name === 'AbortError') {
           return {
             isValid: false,
-            error: `请求超时 (${timeout}ms)`
+            error: `请求超时 (${timeout}ms)`,
+            validatedAt: Date.now()
           };
         }
         
@@ -220,7 +222,8 @@ export class LinkValidator {
       
       return {
         isValid: false,
-        error: '网络请求失败'
+        error: '网络请求失败',
+        validatedAt: Date.now()
       };
     }
   }
@@ -234,7 +237,8 @@ export class LinkValidator {
       const timeout = setTimeout(() => {
         resolve({
           isValid: false,
-          error: '链接验证超时'
+          error: '链接验证超时',
+          validatedAt: Date.now()
         });
       }, this.DEFAULT_TIMEOUT);
 
@@ -242,7 +246,8 @@ export class LinkValidator {
         clearTimeout(timeout);
         resolve({
           isValid: true,
-          statusCode: 200
+          statusCode: 200,
+          validatedAt: Date.now()
         });
       };
 
@@ -253,7 +258,8 @@ export class LinkValidator {
         resolve({
           isValid: true,
           statusCode: 200,
-          error: '无法验证非图片资源，假设有效'
+          error: '无法验证非图片资源，假设有效',
+          validatedAt: Date.now()
         });
       };
 
@@ -275,12 +281,14 @@ export class LinkValidator {
       return {
         isValid: response.ok,
         statusCode: response.status,
-        error: response.ok ? undefined : `HTTP ${response.status}: ${response.statusText}`
+        error: response.ok ? undefined : `HTTP ${response.status}: ${response.statusText}`,
+        validatedAt: Date.now()
       };
     } catch (error) {
       return {
         isValid: false,
-        error: error instanceof Error ? error.message : '内部链接验证失败'
+        error: error instanceof Error ? error.message : '内部链接验证失败',
+        validatedAt: Date.now()
       };
     }
   }
@@ -294,7 +302,8 @@ export class LinkValidator {
     if (!anchorId) {
       return {
         isValid: false,
-        error: '锚点ID不能为空'
+        error: '锚点ID不能为空',
+        validatedAt: Date.now()
       };
     }
 
@@ -305,7 +314,8 @@ export class LinkValidator {
 
     return {
       isValid: !!element,
-      error: element ? undefined : `找不到锚点: ${anchorId}`
+      error: element ? undefined : `找不到锚点: ${anchorId}`,
+      validatedAt: Date.now()
     };
   }
 
@@ -320,7 +330,8 @@ export class LinkValidator {
     
     return {
       isValid,
-      error: isValid ? undefined : '邮件地址格式无效'
+      error: isValid ? undefined : '邮件地址格式无效',
+      validatedAt: Date.now()
     };
   }
 
@@ -335,7 +346,8 @@ export class LinkValidator {
     
     return {
       isValid,
-      error: isValid ? undefined : '电话号码格式无效'
+      error: isValid ? undefined : '电话号码格式无效',
+      validatedAt: Date.now()
     };
   }
 
@@ -350,7 +362,8 @@ export class LinkValidator {
     } catch (error) {
       return {
         isValid: false,
-        error: '相对URL格式无效'
+        error: '相对URL格式无效',
+        validatedAt: Date.now()
       };
     }
   }

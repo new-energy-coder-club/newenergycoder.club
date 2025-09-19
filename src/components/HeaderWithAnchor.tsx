@@ -276,24 +276,23 @@ export const HeaderWithAnchor: React.FC<HeaderWithAnchorProps> = ({
   // 创建标题元素
   const HeaderTag = `h${level}` as keyof JSX.IntrinsicElements;
   
-  return (
-    <HeaderTag
-      id={anchorId}
-      className={headerClasses}
-    >
-      <span className="flex-1">{children}</span>
-      
-      {showAnchor && (
-        <AnchorButton
-          id={anchorId}
-          showCopyButton={showCopyButton}
-          difficulty={difficulty}
-          onAnchorClick={onAnchorClick}
-          onCopySuccess={onCopySuccess}
-          onCopyError={onCopyError}
-        />
-      )}
-    </HeaderTag>
+  return React.createElement(
+    HeaderTag,
+    {
+      id: anchorId,
+      className: headerClasses
+    },
+    <span className="flex-1">{children}</span>,
+    showAnchor && (
+      <AnchorButton
+        id={anchorId}
+        showCopyButton={showCopyButton}
+        difficulty={difficulty}
+        onAnchorClick={onAnchorClick}
+        onCopySuccess={onCopySuccess}
+        onCopyError={onCopyError}
+      />
+    )
   );
 };
 

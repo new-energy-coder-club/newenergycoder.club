@@ -155,8 +155,8 @@ const LinkComponent: React.FC<{
       className={linkClasses}
       title={title}
       onClick={handleClick}
-      target={link.metadata.isExternal ? '_blank' : undefined}
-      rel={link.metadata.isExternal ? 'noopener noreferrer' : undefined}
+      target={link.type === LinkType.EXTERNAL ? '_blank' : undefined}
+      rel={link.type === LinkType.EXTERNAL ? 'noopener noreferrer' : undefined}
     >
       <LinkIcon type={link.type} className="w-3 h-3" />
       <span>{link.text}</span>
@@ -261,7 +261,8 @@ export const LinkDetectorComponent: React.FC<LinkDetectorComponentProps> = ({
     documentContext: {
       difficulty,
       path: documentPath || window.location.pathname,
-      title: document.title
+      title: document.title,
+      language: 'zh-CN'
     }
   });
   

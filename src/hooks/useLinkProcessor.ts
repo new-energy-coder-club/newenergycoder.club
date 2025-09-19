@@ -366,7 +366,8 @@ export function useSimpleLinkProcessor(content: string, difficulty?: DocumentDif
         const processedLinks = await processor.processDocument(content, {
           difficulty,
           path: window.location.pathname,
-          title: document.title
+          title: document.title,
+          language: 'zh-CN'
         });
         setLinks(processedLinks);
       } catch (error) {
@@ -461,7 +462,7 @@ export function useLinkStats(links: ProcessedLink[], validationResults: Map<stri
     links.forEach(link => {
       stats.byType[link.type] = (stats.byType[link.type] || 0) + 1;
       
-      if (link.metadata.isExternal) {
+      if (link.type === LinkType.EXTERNAL) {
         stats.external++;
       } else {
         stats.internal++;

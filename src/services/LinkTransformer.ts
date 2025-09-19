@@ -37,16 +37,18 @@ export class LinkTransformer {
     
     return {
       originalUrl: url,
-      processedUrl,
-      text: enhancedText,
+      processedUrl: processedUrl,
+      text: text,
       type: linkType,
+      isValid: true,
+      processedAt: Date.now(),
       metadata: {
-        isExternal: this.isExternalLink(url),
-        requiresValidation: this.requiresValidation(linkType),
-        difficulty: context?.difficulty,
-        section: context?.section,
-        lineNumber: context?.lineNumber,
-        transformedAt: Date.now()
+        customAttributes: {
+          requiresValidation: this.requiresValidation(linkType).toString(),
+          difficulty: context?.difficulty || '',
+          section: context?.section || '',
+          transformedAt: Date.now().toString()
+        }
       }
     };
   }
@@ -62,10 +64,7 @@ export class LinkTransformer {
     section?: string;
   }): ProcessedLink[] {
     return links.map((link, index) => 
-      this.transform(link.url, link.text, {
-        ...context,
-        lineNumber: context?.lineNumber ? context.lineNumber + index : undefined
-      })
+      this.transform(link.url, link.text, context)
     );
   }
 
@@ -463,8 +462,11 @@ export class LinkTransformer {
       metadata: {
         ...link.metadata,
         styleClass: `link-${difficulty.toLowerCase()}`,
-        color: config.color,
-        difficulty
+        customAttributes: {
+          ...link.metadata.customAttributes,
+          difficulty: difficulty,
+          color: config.color || '#000000'
+        }
       }
     };
   }
@@ -484,11 +486,14 @@ export class LinkTransformer {
       processedUrl: '/',
       text: '首页',
       type: LinkType.INTERNAL,
+      isValid: true,
+      processedAt: Date.now(),
       metadata: {
-        isExternal: false,
-        requiresValidation: false,
-        isBreadcrumb: true,
-        transformedAt: Date.now()
+        customAttributes: {
+          requiresValidation: 'false',
+          isBreadcrumb: 'true',
+          transformedAt: Date.now().toString()
+        }
       }
     });
     
@@ -502,12 +507,15 @@ export class LinkTransformer {
         processedUrl: currentPath,
         text: this.formatBreadcrumbText(segment),
         type: LinkType.INTERNAL,
+        isValid: true,
+        processedAt: Date.now(),
         metadata: {
-          isExternal: false,
-          requiresValidation: false,
-          isBreadcrumb: true,
-          isLast: index === segments.length - 1,
-          transformedAt: Date.now()
+          customAttributes: {
+            requiresValidation: 'false',
+            isBreadcrumb: 'true',
+            isLast: (index === segments.length - 1).toString(),
+            transformedAt: Date.now().toString()
+          }
         }
       });
     });

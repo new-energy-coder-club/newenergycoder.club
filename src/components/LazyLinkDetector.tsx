@@ -4,7 +4,7 @@
  */
 
 import React, { Suspense, lazy, memo } from 'react';
-import { LinkDetectorProps } from '../types/LinkDetection';
+import { LinkDetectorProps } from '../types/link-detection';
 
 // 懒加载链接检测组件
 const LinkDetectorComponent = lazy(() => 
@@ -104,7 +104,7 @@ class LinkDetectorErrorBoundary extends React.Component<
 /**
  * 懒加载链接检测器属性
  */
-export interface LazyLinkDetectorProps extends LinkDetectorProps {
+export interface LazyLinkDetectorProps extends Omit<LinkDetectorProps, 'onError'> {
   /** 是否启用懒加载 */
   enableLazyLoading?: boolean;
   /** 自定义加载组件 */
@@ -233,7 +233,7 @@ export const ViewportLazyLinkDetector: React.FC<ViewportLazyLinkDetectorProps> =
 ViewportLazyLinkDetector.displayName = 'ViewportLazyLinkDetector';
 
 // 导出类型
-export type { LinkDetectorProps } from '../types/LinkDetection';
+export type { LinkDetectorProps } from '../types/link-detection';
 
 // 默认导出
 export default LazyLinkDetector;

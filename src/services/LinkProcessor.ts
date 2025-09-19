@@ -213,42 +213,48 @@ export class LinkProcessor implements ILinkDetectionService {
 
     try {
       // 转换链接
-      const transformedUrl = this.transformer.transform(url, context);
+      const transformedUrl = this.transformer.transform(url, url, {
+        difficulty: context.difficulty
+      });
       
       // 确定链接类型
-      const linkType = this.determineLinkType(transformedUrl);
+      const linkType = this.determineLinkType(transformedUrl.processedUrl);
       
       // 生成元数据
-      const metadata = await this.generateMetadata(transformedUrl, linkType, context);
+      const metadata = await this.generateMetadata(transformedUrl.processedUrl, linkType, context);
       
       // 验证链接（如果需要）
       let isValid = true;
       let error: string | undefined;
       
       if (this.shouldValidateLink(linkType, config)) {
-        const validation = await this.validateLink(transformedUrl);
+        const validation = await this.validateLink(transformedUrl.processedUrl);
         isValid = validation.isValid;
         error = validation.error;
       }
 
       return {
         originalUrl: url,
-        processedUrl: transformedUrl,
+        processedUrl: transformedUrl.processedUrl,
+        text: transformedUrl.text,
         type: linkType,
         isValid,
+        processedAt: Date.now(),
         metadata,
-        error,
-        processedAt: startTime
+        error
       };
     } catch (err) {
       return {
         originalUrl: url,
         processedUrl: url,
+        text: url,
         type: LinkType.EXTERNAL,
         isValid: false,
-        metadata: {},
-        error: err instanceof Error ? err.message : '处理链接时发生未知错误',
-        processedAt: startTime
+        processedAt: Date.now(),
+        metadata: {
+          customAttributes: {}
+        },
+        error: err instanceof Error ? err.message : '处理链接时发生未知错误'
       };
     }
   }
@@ -529,7 +535,13 @@ export class LinkProcessor implements ILinkDetectionService {
       // 处理结果
       const processedResults = await Promise.all(
         result.results.map(async (item) => {
-          return await this.processLinks(item.content);
+          const defaultContext: DocumentContext = {
+            difficulty: DocumentDifficulty.BASIC,
+            path: '',
+            title: '',
+            language: 'zh-CN'
+          };
+          return await this.processLinks([item.content], defaultContext);
         })
       );
 
@@ -537,8 +549,14 @@ export class LinkProcessor implements ILinkDetectionService {
     } catch (error) {
       console.error('批量处理链接失败:', error);
       // 降级到原始方法
+      const defaultContext: DocumentContext = {
+        difficulty: DocumentDifficulty.BASIC,
+        path: '',
+        title: '',
+        language: 'zh-CN'
+      };
       const results = await Promise.all(
-        contents.map(content => this.processLinks(content))
+        contents.map(content => this.processLinks([content], defaultContext))
       );
       return results;
     }
@@ -554,7 +572,8 @@ export class LinkProcessor implements ILinkDetectionService {
     } catch (error) {
       console.error('批量验证链接失败:', error);
       // 降级到单个验证
-      return Promise.all(urls.map(url => this.validator.validateLink(url)));
+      const validationResults = await Promise.all(urls.map(url => this.validator.validate(url)));
+      return validationResults.map(result => result.isValid);
     }
   }
 }

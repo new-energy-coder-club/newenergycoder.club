@@ -29,7 +29,7 @@ import {
   TrendingUp
 } from 'lucide-react'
 // 导入技术路线图组件
-import { TechRoadmap } from '@/components/TechRoadmapOverview'
+import TechRoadmapOverview from '@/components/TechRoadmapOverview'
 // 导入学习资源组件
 import { default as LearningResources } from '@/components/LearningResources'
 import { techRoutes } from '@/data/techRoutes'

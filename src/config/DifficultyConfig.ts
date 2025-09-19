@@ -14,6 +14,8 @@ export interface DifficultyLevelConfig {
   name: string;
   /** 配置描述 */
   description: string;
+  /** 主题颜色 */
+  color?: string;
   /** 链接验证超时时间（毫秒） */
   validationTimeout: number;
   /** 最大并发验证数 */
