@@ -12,12 +12,12 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useState, useMemo } from 'react'
-import TeamPhoto1 from '@/image/校门合照.jpg'
-import TeamPhoto2 from '@/image/横向项目合照.jpg'
-import TeamPhoto3 from '@/image/合照1.jpg'
-import TeamPhoto4 from '@/image/合照2.jpg'
-import TeamPhoto5 from '@/image/合照3.jpg'
-import TeamPhoto6 from '@/image/合照4.jpg'
+import TeamPhoto1 from '@/image/校门合照.jpg?url'
+import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
+import TeamPhoto3 from '@/image/合照1.jpg?url'
+import TeamPhoto4 from '@/image/合照2.jpg?url'
+import TeamPhoto5 from '@/image/合照3.jpg?url'
+import TeamPhoto6 from '@/image/合照4.jpg?url'
 
 // 样式常量定义
 const CARD_STYLES = {

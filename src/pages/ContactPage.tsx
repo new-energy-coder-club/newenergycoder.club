@@ -10,9 +10,9 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import { AmapLocation } from '@/components/ui/amap-location'
-import NECApplicationForm from '@/image/NEC官网上线申请表.png'
-import TeamPhoto1 from '@/image/校门合照.jpg'
-import TeamPhoto2 from '@/image/横向项目合照.jpg'
+import NECApplicationForm from '@/image/NEC官网上线申请表.png?url'
+import TeamPhoto1 from '@/image/校门合照.jpg?url'
+import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
 
 interface ContactFormData {
   name: string

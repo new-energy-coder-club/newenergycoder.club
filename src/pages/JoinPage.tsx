@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Users, Code, Heart, MessageCircle, ArrowRight, Calendar, Target, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
-import WeChatIcon from '@/wechat.svg'
-import FeishuIcon from '@/feishu.png'
+import WeChatIcon from '@/wechat.svg?url'
+import FeishuIcon from '@/feishu.png?url'
 
 const roadmapSteps = [
   {

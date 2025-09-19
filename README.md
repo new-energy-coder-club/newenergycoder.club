@@ -216,6 +216,7 @@ VITE_APP_DESCRIPTION=新能源编程俱乐部官方网站
 - **🎯 类型安全**: 完整的 TypeScript 支持
 - **📈 分析统计**: 集成 Vercel Analytics 进行访问统计
 - **🔍 SEO 优化**: 良好的搜索引擎优化支持
+- **🔗 智能链接检测**: 自动检测文档中的链接状态，支持批量验证、缓存优化和性能监控
 
 ## 🛠️ 技术栈
 
@@ -249,6 +250,8 @@ VITE_APP_DESCRIPTION=新能源编程俱乐部官方网站
 
 ```
 newenergycoder.club/
+├── docs/                   # 项目文档
+│   └── LINK_DETECTION.md  # 链接检测功能文档
 ├── public/                 # 静态资源
 │   ├── icons/             # 图标文件
 │   └── images/            # 图片资源
@@ -271,6 +274,10 @@ newenergycoder.club/
 │   │   │   ├── Footer.tsx
 │   │   │   ├── Header.tsx
 │   │   │   └── PageLayout.tsx
+│   │   ├── link-detection/ # 链接检测组件
+│   │   │   ├── LinkDetectorComponent.tsx
+│   │   │   ├── HeaderWithAnchor.tsx
+│   │   │   └── LazyLinkDetector.tsx
 │   │   └── ui/           # 基础 UI 组件
 │   │       ├── LanguageSwitcher.tsx
 │   │       ├── ThemeToggle.tsx
@@ -280,9 +287,19 @@ newenergycoder.club/
 │   │       └── ... (更多 shadcn/ui 组件)
 │   ├── contexts/          # React Context
 │   ├── hooks/             # 自定义 Hooks
+│   │   └── useLinkProcessor.ts # 链接处理 Hook
 │   ├── lib/               # 工具库和配置
 │   │   ├── i18n/         # 国际化配置
 │   │   └── utils.ts      # 工具函数
+│   ├── services/          # 业务服务
+│   │   ├── LinkProcessor.ts   # 链接处理服务
+│   │   ├── LinkValidator.ts   # 链接验证服务
+│   │   └── CacheManager.ts    # 缓存管理服务
+│   ├── styles/            # 样式文件
+│   │   └── LinkDetection.css  # 链接检测样式
+│   ├── utils/             # 工具函数
+│   │   ├── PerformanceUtils.ts # 性能优化工具
+│   │   └── BatchProcessor.ts   # 批处理工具
 │   ├── pages/             # 页面组件
 │   │   ├── HomePage.tsx
 │   │   ├── TeamPage.tsx
@@ -297,7 +314,8 @@ newenergycoder.club/
 │   │   ├── DisplayRatioPage.tsx
 │   │   └── NotFoundPage.tsx
 │   ├── types/             # TypeScript 类型定义
-│   │   └── innovation.ts  # 创新技术相关类型
+│   │   ├── innovation.ts  # 创新技术相关类型
+│   │   └── link-detection.ts # 链接检测相关类型
 │   ├── store/             # Zustand 状态管理
 │   ├── App.tsx            # 应用主组件
 │   ├── main.tsx           # 应用入口
@@ -453,6 +471,123 @@ const handleClick = useCallback(() => {
 - 使用 WebP 格式图片
 - 实现图片懒加载
 - 提供多种尺寸的响应式图片
+
+## 🔗 链接检测功能
+
+### 功能概述
+
+智能链接检测是本网站的核心功能之一，专门用于自动检测和验证文档中的链接状态。该功能提供了实时链接验证、批量处理、缓存优化和性能监控等特性，确保文档中的链接始终保持有效和可访问。
+
+### 主要特性
+
+#### 🎯 核心功能
+- **自动链接检测**: 自动扫描文档内容，识别所有链接
+- **实时状态验证**: 检查链接的可访问性和响应状态
+- **批量处理**: 支持同时验证多个链接，提高处理效率
+- **智能缓存**: 缓存验证结果，避免重复检查
+- **性能优化**: 使用防抖、节流和懒加载等技术优化性能
+
+#### 📊 状态显示
+- **有效链接**: 绿色标识，表示链接可正常访问
+- **无效链接**: 红色标识，表示链接无法访问或已失效
+- **检查中**: 黄色标识，表示正在验证链接状态
+- **未检查**: 灰色标识，表示尚未进行验证
+
+#### 🔧 高级功能
+- **锚点链接**: 自动为文档标题生成锚点链接
+- **难度指示**: 根据文档难度显示不同的视觉标识
+- **统计信息**: 显示链接总数、有效数量、无效数量等统计数据
+- **错误报告**: 详细的错误信息和修复建议
+
+### 使用方法
+
+#### 基础使用
+```tsx
+import { LinkDetectorComponent } from '@/components/link-detection/LinkDetectorComponent';
+
+// 在文档页面中使用
+<LinkDetectorComponent 
+  content={documentContent}
+  difficulty="intermediate"
+  onLinksProcessed={(links) => console.log('处理的链接:', links)}
+/>
+```
+
+#### 使用 Hook
+```tsx
+import { useLinkProcessor } from '@/hooks/useLinkProcessor';
+
+const MyComponent = () => {
+  const { processLinks, isProcessing, processedLinks, clearCache } = useLinkProcessor();
+  
+  const handleProcess = async () => {
+    const links = await processLinks(content, { enableCache: true });
+    console.log('处理结果:', links);
+  };
+  
+  return (
+    <div>
+      <button onClick={handleProcess} disabled={isProcessing}>
+        {isProcessing ? '处理中...' : '检测链接'}
+      </button>
+      <button onClick={clearCache}>清除缓存</button>
+    </div>
+  );
+};
+```
+
+#### 懒加载组件
+```tsx
+import { LazyLinkDetector } from '@/components/link-detection/LazyLinkDetector';
+
+// 性能优化的懒加载版本
+<LazyLinkDetector 
+  content={content}
+  difficulty="advanced"
+  enableViewportLazy={true}
+/>
+```
+
+### 配置选项
+
+#### 缓存配置
+```typescript
+interface CacheConfig {
+  maxSize: number;        // 最大缓存条目数
+  ttl: number;           // 缓存生存时间（毫秒）
+  enableLocalStorage: boolean; // 是否启用本地存储
+  cleanupInterval: number;     // 清理间隔（毫秒）
+}
+```
+
+#### 性能配置
+```typescript
+interface PerformanceConfig {
+  debounceDelay: number;    // 防抖延迟
+  throttleDelay: number;    // 节流延迟
+  batchSize: number;        // 批处理大小
+  maxConcurrency: number;   // 最大并发数
+}
+```
+
+### 样式定制
+
+链接检测组件支持完整的样式定制，包括：
+
+- **主题适配**: 自动适配明亮/暗黑主题
+- **响应式设计**: 支持各种屏幕尺寸
+- **状态指示**: 不同链接状态的视觉反馈
+- **动画效果**: 平滑的加载和状态切换动画
+
+详细的样式定制说明请参考 [链接检测功能文档](./docs/LINK_DETECTION.md)。
+
+### 性能优化
+
+- **智能缓存**: 多层缓存策略，减少重复验证
+- **批量处理**: 并发处理多个链接，提高效率
+- **懒加载**: 按需加载组件，减少初始加载时间
+- **防抖节流**: 避免频繁的验证请求
+- **内存管理**: 自动清理过期缓存，防止内存泄漏
 
 ## ❓ 常见问题
 

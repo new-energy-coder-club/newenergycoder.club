@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { FloatingControls } from '@/components/ui/floating-controls'
 import {
   BookOpen,
   Code,
@@ -26,8 +28,10 @@ import {
   Award,
   TrendingUp
 } from 'lucide-react'
-import TechRoadmapOverview from '@/components/TechRoadmapOverview'
-import LearningResources from '@/components/LearningResources'
+// 导入技术路线图组件
+import { TechRoadmap } from '@/components/TechRoadmapOverview'
+// 导入学习资源组件
+import { default as LearningResources } from '@/components/LearningResources'
 import { techRoutes } from '@/data/techRoutes'
 import { trainingCategories } from '@/data/resources'
 
@@ -125,16 +129,31 @@ const quickGuides: QuickGuide[] = [
     difficulty: 'easy'
   },
   {
+    id: 'first-good-issue',
+    title: '第一个好的问题',
+    description: '寻找并解决你的第一个Good Issue，开始为开源项目做贡献',
+    icon: Target,
+    steps: [
+      '浏览项目Issue列表',
+      '筛选Good First Issue标签',
+      '理解问题描述和要求',
+      'Fork项目并创建分支',
+      '实现解决方案',
+      '提交Pull Request'
+    ],
+    estimatedTime: '25分钟',
+    difficulty: 'easy'
+  },
+  {
     id: 'first-project',
     title: '第一个项目',
-    description: '通过实际项目快速上手，掌握基础开发流程，并解决你的第一个Good Issue',
+    description: '通过实际项目快速上手，掌握基础开发流程',
     icon: Code,
     steps: [
       '选择入门项目',
       '理解项目结构',
       '编写核心代码',
       '测试和调试',
-      '寻找并解决第一个Good Issue',
       '项目部署'
     ],
     estimatedTime: '2小时',
@@ -365,6 +384,10 @@ export default function GettingStartedPage() {
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10" />
+        {/* Theme Toggle */}
+        <div className="absolute top-4 right-4 z-10">
+          <ThemeToggle />
+        </div>
         <div className="relative max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -501,8 +524,89 @@ export default function GettingStartedPage() {
         </div>
       </section>
 
-      {/* 培训资源 */}
+      {/* 基础教程 */}
       <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4">基础教程</h2>
+            <p className="text-lg text-muted-foreground">
+              从零开始学习编程基础知识和核心概念
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="hover:shadow-lg transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <BookOpen className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold mb-2">编程入门</h3>
+                      <p className="text-muted-foreground mb-4">
+                        编程基础概念和思维方式，了解新能源编程的应用领域和发展前景
+                      </p>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="/docs/tutorials/basic/introduction">
+                          开始学习
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="hover:shadow-lg transition-all duration-300 h-full">
+                <CardContent className="p-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <Code className="h-6 w-6 text-primary" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold mb-2">编程基础</h3>
+                      <p className="text-muted-foreground mb-4">
+                        变量、函数、控制结构等基础知识，掌握编程的核心概念和语法
+                      </p>
+                      <Button variant="outline" size="sm" asChild>
+                        <a href="/docs/tutorials/basic/fundamentals">
+                          开始学习
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 培训资源 */}
+      <section className="py-16 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -585,6 +689,9 @@ export default function GettingStartedPage() {
           </div>
         </div>
       </section>
+      
+      {/* Floating Controls */}
+      <FloatingControls />
     </div>
   )
 }

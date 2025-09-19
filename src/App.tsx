@@ -24,6 +24,7 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import './styles/LinkDetection.css'
 
 
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/learning/designer" element={<DesignerDetailPage />} />
             
             {/* Document Routes */}
+            <Route path="/docs/:category/:subcategory/:slug" element={<DocumentPage />} />
             <Route path="/docs/:category" element={<DocumentPage />} />
             <Route path="/docs/:category/:slug" element={<DocumentPage />} />
             
