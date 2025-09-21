@@ -388,25 +388,15 @@ export function TeamPage() {
         <div className="mt-20 mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              感谢赞助商
+            欢迎开发者们加入！   
             </h2>
-            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              感谢以下赞助商对新能源编程俱乐部的支持与信任
-            </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
           
           {/* Sponsors Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
-            {/* Placeholder sponsors - will be replaced with actual data */}
-            {[
-              { name: "TRAE AI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20tech%20company%20logo%20TRAE%20AI%20minimalist%20design%20green%20accent&image_size=square", website: "https://trae.ai" },
-              { name: "OpenAI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=OpenAI%20logo%20artificial%20intelligence%20company%20minimalist%20design&image_size=square", website: "https://openai.com" },
-              { name: "GitHub", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=GitHub%20logo%20code%20repository%20platform%20minimalist%20design&image_size=square", website: "https://github.com" },
-              { name: "Microsoft", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Microsoft%20logo%20technology%20company%20minimalist%20design&image_size=square", website: "https://microsoft.com" },
-              { name: "Google", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Google%20logo%20search%20engine%20company%20minimalist%20design&image_size=square", website: "https://google.com" },
-              { name: "Tesla", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Tesla%20logo%20electric%20vehicle%20company%20minimalist%20design&image_size=square", website: "https://tesla.com" }
-            ].map((sponsor, index) => (
+            {/* 赞助商数据将在未来添加 */}
+            {[].map((sponsor, index) => (
               <div key={index} className="group">
                 <a 
                   href={sponsor.website} 
@@ -457,6 +447,21 @@ export function TeamPage() {
               </div>
             </Card>
           </div>
+        </div>
+
+        {/* 添加首页动图展示 */}
+        <div className="mt-16 mb-12">
+          <Card className={CARD_STYLES.photo}>
+            <CardContent className="p-0">
+              <div className="relative overflow-hidden">
+                <img
+                  src="/src/NEC-home.gif"
+                  alt="首页动图展示"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>
