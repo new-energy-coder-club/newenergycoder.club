@@ -40,7 +40,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React 核心拆分
+          // React 核心拆分 - 保持不变
           if (id.includes('react-dom/client')) {
             return 'react-dom-client';
           }
@@ -54,9 +54,27 @@ export default defineConfig({
             return 'react-core';
           }
           
-          // Three.js 细粒度拆分
+          // Three.js 超细粒度拆分 - 解决three-vendor过大问题
+          if (id.includes('three/examples/jsm/controls')) {
+            return 'three-controls';
+          }
+          if (id.includes('three/examples/jsm/loaders')) {
+            return 'three-loaders';
+          }
+          if (id.includes('three/examples/jsm/geometries')) {
+            return 'three-geometries';
+          }
+          if (id.includes('three/examples/jsm/materials')) {
+            return 'three-materials';
+          }
+          if (id.includes('three/examples/jsm/postprocessing')) {
+            return 'three-postprocessing';
+          }
+          if (id.includes('three/examples/jsm/helpers')) {
+            return 'three-helpers';
+          }
           if (id.includes('three/examples/jsm')) {
-            return 'three-examples';
+            return 'three-examples-misc';
           }
           if (id.includes('@react-three/fiber')) {
             return 'r3f-fiber';
@@ -64,8 +82,17 @@ export default defineConfig({
           if (id.includes('@react-three/drei')) {
             return 'r3f-drei';
           }
-          if (id.includes('three') && !id.includes('@react-three') && !id.includes('three/examples')) {
+          if (id.includes('three/src/core')) {
             return 'three-core';
+          }
+          if (id.includes('three/src/math')) {
+            return 'three-math';
+          }
+          if (id.includes('three/src/renderers')) {
+            return 'three-renderers';
+          }
+          if (id.includes('three') && !id.includes('@react-three') && !id.includes('three/examples')) {
+            return 'three-base';
           }
           
           // 路由相关细分
@@ -76,12 +103,27 @@ export default defineConfig({
             return 'router-core';
           }
           
-          // UI 组件库细分
-          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-dropdown-menu')) {
-            return 'radix-overlays';
+          // UI 组件库更细分 - 解决radix过大问题
+          if (id.includes('@radix-ui/react-dialog')) {
+            return 'radix-dialog';
+          }
+          if (id.includes('@radix-ui/react-dropdown-menu')) {
+            return 'radix-dropdown';
+          }
+          if (id.includes('@radix-ui/react-select')) {
+            return 'radix-select';
+          }
+          if (id.includes('@radix-ui/react-tabs')) {
+            return 'radix-tabs';
+          }
+          if (id.includes('@radix-ui/react-toast')) {
+            return 'radix-toast';
+          }
+          if (id.includes('@radix-ui/react-tooltip')) {
+            return 'radix-tooltip';
           }
           if (id.includes('@radix-ui')) {
-            return 'radix-core';
+            return 'radix-base';
           }
           if (id.includes('lucide-react')) {
             return 'icons';
@@ -92,30 +134,31 @@ export default defineConfig({
             return 'animations';
           }
           
-          // 工具库细分
-          if (id.includes('lodash')) {
-            return 'lodash';
+          // 样式工具库细分
+          if (id.includes('tailwind-merge')) {
+            return 'tailwind-merge';
           }
-          if (id.includes('date-fns')) {
-            return 'date-utils';
+          if (id.includes('tailwindcss-animate')) {
+            return 'tailwind-animate';
+          }
+          if (id.includes('@tailwindcss/typography')) {
+            return 'tailwind-typography';
           }
           if (id.includes('clsx') || id.includes('class-variance-authority')) {
             return 'style-utils';
           }
           
           // 状态管理
-          if (id.includes('zustand') || id.includes('jotai')) {
+          if (id.includes('zustand')) {
             return 'state-management';
-          }
-          
-          // 网络请求
-          if (id.includes('axios') || id.includes('ky')) {
-            return 'http-client';
           }
           
           // Markdown 相关 - 细分
           if (id.includes('react-markdown')) {
             return 'react-markdown';
+          }
+          if (id.includes('remark-gfm')) {
+            return 'remark-gfm';
           }
           if (id.includes('remark') || id.includes('rehype')) {
             return 'markdown-processors';
@@ -129,34 +172,110 @@ export default defineConfig({
             return 'prism';
           }
           
-          // Vercel 分析工具
-          if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
+          // 监控和分析工具分离
+          if (id.includes('@vercel/analytics')) {
             return 'vercel-analytics';
           }
-          
-          // Tailwind 相关
-          if (id.includes('tailwind')) {
-            return 'tailwind-utils';
+          if (id.includes('@vercel/speed-insights')) {
+            return 'vercel-insights';
+          }
+          if (id.includes('@sentry/react')) {
+            return 'sentry-react';
+          }
+          if (id.includes('@sentry/tracing')) {
+            return 'sentry-tracing';
+          }
+          if (id.includes('@sentry')) {
+            return 'sentry-core';
           }
           
           // 国际化
-          if (id.includes('react-i18next') || id.includes('i18next')) {
-            return 'i18n';
+          if (id.includes('react-i18next')) {
+            return 'react-i18next';
+          }
+          if (id.includes('i18next')) {
+            return 'i18next-core';
           }
           
-          // 监控和错误追踪
-          if (id.includes('@sentry')) {
-            return 'sentry';
-          }
-          
-          // 其他工具库
-          if (id.includes('react-helmet')) {
+          // React 相关工具
+          if (id.includes('react-helmet-async')) {
             return 'react-helmet';
           }
           
-          // 其他较小的依赖
+          // 按使用频率和大小分组的vendor chunks - 更细粒度拆分
           if (id.includes('node_modules')) {
-            return 'vendor';
+            // 大型但不常变化的库
+            if (id.includes('typescript') || id.includes('terser')) {
+              return 'build-tools';
+            }
+            
+            // 测试相关库
+            if (id.includes('@testing-library') || id.includes('vitest') || id.includes('jsdom')) {
+              return 'testing-libs';
+            }
+            
+            // 类型定义文件
+            if (id.includes('@types/')) {
+              return 'type-definitions';
+            }
+            
+            // ESLint 相关
+            if (id.includes('eslint') || id.includes('globals')) {
+              return 'linting-tools';
+            }
+            
+            // PostCSS 和 Autoprefixer
+            if (id.includes('postcss') || id.includes('autoprefixer')) {
+              return 'css-processors';
+            }
+            
+            // Wrangler 和 Cloudflare 相关
+            if (id.includes('wrangler') || id.includes('cloudflare')) {
+              return 'cloudflare-tools';
+            }
+            
+            // 覆盖率工具
+            if (id.includes('coverage') || id.includes('c8') || id.includes('v8')) {
+              return 'coverage-tools';
+            }
+            
+            // 剩余的小型工具库按功能分类
+            if (id.includes('path') || id.includes('fs') || id.includes('util') || id.includes('crypto')) {
+              return 'node-utils';
+            }
+            
+            // 进一步细分大型依赖库
+            if (id.includes('lodash') || id.includes('ramda') || id.includes('underscore')) {
+              return 'utility-libs';
+            }
+            
+            // 日期处理库
+            if (id.includes('moment') || id.includes('dayjs') || id.includes('date-fns')) {
+              return 'date-libs';
+            }
+            
+            // HTTP 客户端
+            if (id.includes('axios') || id.includes('fetch') || id.includes('request')) {
+              return 'http-clients';
+            }
+            
+            // 表单处理
+            if (id.includes('formik') || id.includes('react-hook-form') || id.includes('yup')) {
+              return 'form-libs';
+            }
+            
+            // 图表库
+            if (id.includes('chart') || id.includes('d3') || id.includes('recharts')) {
+              return 'chart-libs';
+            }
+            
+            // 数据处理
+            if (id.includes('immutable') || id.includes('immer') || id.includes('normalizr')) {
+              return 'data-libs';
+            }
+            
+            // 其他未分类的小型依赖
+             return 'vendor-misc';
           }
         },
       },
@@ -173,7 +292,7 @@ export default defineConfig({
     // 启用 gzip 压缩提示
     reportCompressedSize: true,
     // 设置 chunk 大小警告限制 (KB)
-    chunkSizeWarningLimit: 300,
+    chunkSizeWarningLimit: 800,
     // 优化构建性能
     target: 'esnext',
     sourcemap: false,
