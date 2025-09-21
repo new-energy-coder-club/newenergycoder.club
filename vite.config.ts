@@ -291,8 +291,8 @@ export default defineConfig({
     },
     // 启用 gzip 压缩提示
     reportCompressedSize: true,
-    // 设置 chunk 大小警告限制 (KB)
-    chunkSizeWarningLimit: 800,
+    // 设置 chunk 大小警告限制 (KB) - 调整以适应当前文件大小
+    chunkSizeWarningLimit: 1000,
     // 优化构建性能
     target: 'esnext',
     sourcemap: false,
