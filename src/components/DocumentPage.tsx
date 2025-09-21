@@ -263,7 +263,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-2xl font-bold text-foreground mt-8 mb-4 first:mt-0"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h2: ({ children, ...props }) => (
@@ -273,7 +273,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-xl font-semibold text-foreground mt-6 mb-3"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h3: ({ children, ...props }) => (
@@ -283,7 +283,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-lg font-medium text-foreground mt-4 mb-2"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h4: ({ children, ...props }) => (
@@ -293,7 +293,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-base font-medium text-foreground mt-3 mb-2"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h5: ({ children, ...props }) => (
@@ -303,7 +303,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-sm font-medium text-gray-900 dark:text-white mt-2 mb-1"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h6: ({ children, ...props }) => (
@@ -313,7 +313,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-xs font-medium text-gray-900 dark:text-white mt-2 mb-1"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   // 自定义代码块样式

@@ -157,7 +157,7 @@ export function ProjectsPage() {
               {t.projects.title}
             </h1>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              {t.projects.subtitle}
+              {t.projects.description}
             </p>
           </div>
         </div>
