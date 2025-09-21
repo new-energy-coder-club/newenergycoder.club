@@ -441,14 +441,6 @@ export const zhTranslations: Translations = {
         github: 'https://www.benq.com/'
       },
       {
-        name: '嘉立创',
-        role: 'Bronze Sponsor - ¥500',
-        bio: '专业的PCB制造服务供应商，为电子工程师提供一站式硬件开发和PCB制造服务。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=jlcpcb%20logo%20pcb%20manufacturing%20electronic%20components%20green%20circuit%20board&image_size=square',
-        tags: ['PCB制造', '电子元器件', '硬件开发', 'SMT贴片', '原型制作', '批量生产'],
-        github: 'https://www.jlc.com/'
-      },
-      {
         name: '易百纳社区',
         role: 'Silver Sponsor - ¥4,500',
         bio: '专业的技术开发者社区平台，为俱乐部提供开发板支持，汇聚众多技术专家，提供丰富的学习资源和交流机会。',
@@ -457,36 +449,20 @@ export const zhTranslations: Translations = {
         github: 'https://www.ebaina.com/'
       },
       {
-        name: 'openEuler社区',
-        role: 'Technology Partner',
-        bio: '开源操作系统社区，致力于构建创新、开放、安全的操作系统生态。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=openeuler%20logo%20open%20source%20operating%20system%20linux%20community%20blue%20technology&image_size=square',
-        tags: ['开源操作系统', 'Linux发行版', '系统安全', '云计算', '边缘计算', '开源生态'],
-        github: 'https://www.openeuler.org/'
-      },
-      {
-        name: '海思社区',
-        role: 'Technology Partner',
-        bio: '专业的芯片技术社区，专注于半导体技术创新和芯片设计开发。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=hisilicon%20logo%20chip%20semiconductor%20technology%20processor%20design&image_size=square',
-        tags: ['芯片设计', '半导体技术', '处理器架构', '嵌入式系统', 'AI芯片', '通信芯片'],
-        github: 'https://www.hisilicon.com/'
-      },
-      {
-        name: '鲲鹏社区',
-        role: 'Technology Partner',
-        bio: '计算技术生态社区，推动多样性计算发展，构建开放共赢的计算产业生态。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=kunpeng%20logo%20computing%20technology%20ecosystem%20server%20processor%20orange&image_size=square',
-        tags: ['计算生态', '服务器处理器', '多样性计算', '云原生', '大数据', '人工智能'],
-        github: 'https://www.kunpeng.com/'
-      },
-      {
         name: 'Gitee',
         role: 'Platform Partner',
         bio: '中国领先的代码托管平台，为开发者提供安全、稳定、高效的代码管理服务。',
         image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=gitee%20logo%20code%20hosting%20platform%20git%20repository%20red%20chinese&image_size=square',
         tags: ['代码托管', 'Git仓库', '项目管理', '持续集成', '开源项目', '团队协作'],
         github: 'https://gitee.com/'
+      },
+      {
+        name: '飞书',
+        role: 'Communication Partner',
+        bio: '字节跳动旗下的新一代企业协作与管理平台，为团队提供高效的沟通与协作解决方案。',
+        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=feishu%20lark%20logo%20enterprise%20collaboration%20platform%20blue%20modern&image_size=square',
+        tags: ['团队协作', '即时通讯', '文档协作', '项目管理', '视频会议', '企业服务'],
+        github: 'https://www.feishu.cn/'
       }
     ]
   },

@@ -1,7 +1,7 @@
 import { Header } from '@/components/layout/Header'
 import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
-import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
+
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -461,19 +461,7 @@ export function TeamPage() {
           </div>
         </div>
 
-        {/* Three.js Animation Section */}
-        <div className="mt-20 mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              创新技术展示
-            </h2>
-            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              体验我们在新能源技术领域的创新成果
-            </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
-          </div>
-          <ThreeJsAnimation />
-        </div>
+
 
         <FloatingControls 
           showAspectRatio={true}
