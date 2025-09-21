@@ -72,14 +72,20 @@ export const checkFontLoading = async (fontFamily: string, timeout = 3000): Prom
  * 字体加载性能监控
  */
 export const monitorFontPerformance = () => {
-  if ('fonts' in document) {
-    document.fonts.addEventListener('loadingdone', () => {
-      console.log('All fonts loaded');
-    });
+  // 检查是否在浏览器环境中
+  if (typeof document === 'undefined') return;
+  
+  if ('fonts' in document && document.fonts) {
+    // 安全地添加事件监听器
+    if (typeof document.fonts.addEventListener === 'function') {
+      document.fonts.addEventListener('loadingdone', () => {
+        console.log('All fonts loaded');
+      });
 
-    document.fonts.addEventListener('loadingerror', (event) => {
-      console.warn('Font loading error:', event);
-    });
+      document.fonts.addEventListener('loadingerror', (event) => {
+        console.warn('Font loading error:', event);
+      });
+    }
   }
 };
 

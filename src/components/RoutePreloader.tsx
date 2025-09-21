@@ -160,11 +160,18 @@ const useHoverPreload = () => {
       }
     };
 
-    // 监听鼠标悬停事件
-    document.addEventListener('mouseenter', handleMouseEnter, true);
+    // 检查是否在浏览器环境中
+    if (typeof document === 'undefined') return;
+    
+    // 安全地添加事件监听器
+    if (document && typeof document.addEventListener === 'function') {
+      document.addEventListener('mouseenter', handleMouseEnter, true);
+    }
     
     return () => {
-      document.removeEventListener('mouseenter', handleMouseEnter, true);
+      if (document && typeof document.removeEventListener === 'function') {
+        document.removeEventListener('mouseenter', handleMouseEnter, true);
+      }
     };
   }, []);
 };

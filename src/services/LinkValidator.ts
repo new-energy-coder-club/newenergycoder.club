@@ -147,21 +147,60 @@ export class LinkValidator {
     timeout: number = this.DEFAULT_TIMEOUT
   ): Promise<ValidationResult[]> {
     const results: ValidationResult[] = [];
+    const uniqueUrls = [...new Set(urls)]; // 去重
     
     // 分批处理以控制并发
-    for (let i = 0; i < urls.length; i += maxConcurrent) {
-      const batch = urls.slice(i, i + maxConcurrent);
-      const batchPromises = batch.map(url => this.validate(url, timeout));
+    for (let i = 0; i < uniqueUrls.length; i += maxConcurrent) {
+      const batch = uniqueUrls.slice(i, i + maxConcurrent);
+      
+      // 使用Promise.allSettled而不是Promise.all，避免单个失败影响整批
+      const batchPromises = batch.map(async (url) => {
+        try {
+          const result = await this.validate(url, timeout);
+          return { url, result, success: true };
+        } catch (error) {
+          console.warn(`验证链接失败: ${url}`, error);
+          return {
+            url,
+            result: {
+              isValid: false,
+              error: error instanceof Error ? error.message : '验证失败',
+              responseTime: 0,
+              validatedAt: Date.now()
+            } as ValidationResult,
+            success: false
+          };
+        }
+      });
       
       try {
-        const batchResults = await Promise.all(batchPromises);
-        results.push(...batchResults);
+        const batchResults = await Promise.allSettled(batchPromises);
+        
+        for (const promiseResult of batchResults) {
+          if (promiseResult.status === 'fulfilled') {
+            results.push(promiseResult.value.result);
+          } else {
+            console.error('批量验证Promise失败:', promiseResult.reason);
+            results.push({
+              isValid: false,
+              error: '批量验证Promise失败',
+              responseTime: 0,
+              validatedAt: Date.now()
+            });
+          }
+        }
+        
+        // 在批次之间添加小延迟，避免过度占用资源
+        if (i + maxConcurrent < uniqueUrls.length) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
       } catch (error) {
-        console.error('批量验证链接时发生错误:', error);
+        console.error('批量验证批次失败:', error);
         // 为失败的批次添加错误结果
-        const errorResults = batch.map(url => ({
+        const errorResults = batch.map(() => ({
           isValid: false,
-          error: '批量验证失败',
+          error: '批量验证批次失败',
           responseTime: 0,
           validatedAt: Date.now()
         }));
@@ -176,19 +215,27 @@ export class LinkValidator {
    * 验证外部URL
    */
   private async validateExternalUrl(url: string, timeout: number): Promise<ValidationResult> {
+    const startTime = Date.now();
+    
     try {
       // 使用fetch进行HEAD请求以检查链接可访问性
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeout);
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+      }, timeout);
 
       const response = await fetch(url, {
         method: 'HEAD',
         signal: controller.signal,
         mode: 'no-cors', // 避免CORS问题
-        cache: 'no-cache'
+        cache: 'no-cache',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; LinkValidator/1.0)'
+        }
       });
 
       clearTimeout(timeoutId);
+      const responseTime = Date.now() - startTime;
 
       // 检查响应状态
       if (response.ok || response.status === 0) { // status 0 表示no-cors模式
@@ -196,6 +243,7 @@ export class LinkValidator {
           isValid: true,
           statusCode: response.status || 200,
           redirectUrl: response.url !== url ? response.url : undefined,
+          responseTime,
           validatedAt: Date.now()
         };
       } else {
@@ -203,26 +251,59 @@ export class LinkValidator {
           isValid: false,
           statusCode: response.status,
           error: `HTTP ${response.status}: ${response.statusText}`,
+          responseTime,
           validatedAt: Date.now()
         };
       }
     } catch (error) {
+      const responseTime = Date.now() - startTime;
+      
       if (error instanceof Error) {
+        // 处理中断错误
         if (error.name === 'AbortError') {
           return {
             isValid: false,
             error: `请求超时 (${timeout}ms)`,
+            responseTime,
             validatedAt: Date.now()
           };
         }
         
-        // 网络错误或CORS错误，尝试使用图片预加载方式验证
-        return this.validateUrlWithImage(url);
+        // 处理网络错误
+        if (error.message.includes('Failed to fetch') || 
+            error.message.includes('NetworkError') ||
+            error.message.includes('ERR_NETWORK')) {
+          // 网络错误，尝试使用备用验证方式
+          try {
+            return await this.validateUrlWithImage(url, timeout);
+          } catch (fallbackError) {
+            return {
+              isValid: false,
+              error: '网络连接失败，无法验证链接',
+              responseTime,
+              validatedAt: Date.now()
+            };
+          }
+        }
+        
+        // 处理CORS错误
+        if (error.message.includes('CORS') || error.message.includes('cross-origin')) {
+          // CORS错误，使用图片预加载方式验证
+          return this.validateUrlWithImage(url, timeout);
+        }
+        
+        return {
+          isValid: false,
+          error: `验证失败: ${error.message}`,
+          responseTime,
+          validatedAt: Date.now()
+        };
       }
       
       return {
         isValid: false,
-        error: '网络请求失败',
+        error: '未知错误',
+        responseTime,
         validatedAt: Date.now()
       };
     }
@@ -231,39 +312,71 @@ export class LinkValidator {
   /**
    * 使用图片预加载方式验证URL（绕过CORS限制）
    */
-  private validateUrlWithImage(url: string): Promise<ValidationResult> {
+  private validateUrlWithImage(url: string, timeout: number = this.DEFAULT_TIMEOUT): Promise<ValidationResult> {
     return new Promise((resolve) => {
+      const startTime = Date.now();
       const img = new Image();
-      const timeout = setTimeout(() => {
-        resolve({
+      let isResolved = false;
+      
+      const cleanup = () => {
+        if (img) {
+          img.onload = null;
+          img.onerror = null;
+          img.src = '';
+        }
+      };
+      
+      const resolveOnce = (result: ValidationResult) => {
+        if (!isResolved) {
+          isResolved = true;
+          cleanup();
+          resolve(result);
+        }
+      };
+      
+      const timeoutId = setTimeout(() => {
+        resolveOnce({
           isValid: false,
-          error: '链接验证超时',
+          error: '图片验证超时',
+          responseTime: Date.now() - startTime,
           validatedAt: Date.now()
         });
-      }, this.DEFAULT_TIMEOUT);
+      }, timeout);
 
       img.onload = () => {
-        clearTimeout(timeout);
-        resolve({
+        clearTimeout(timeoutId);
+        resolveOnce({
           isValid: true,
           statusCode: 200,
+          responseTime: Date.now() - startTime,
           validatedAt: Date.now()
         });
       };
 
       img.onerror = () => {
-        clearTimeout(timeout);
-        // 图片加载失败不一定意味着URL无效，可能只是不是图片
-        // 对于非图片URL，我们假设它是有效的
-        resolve({
+        clearTimeout(timeoutId);
+        // 图片加载失败，但URL可能仍然有效（非图片资源）
+        // 采用保守策略，标记为可能有效但需要用户确认
+        resolveOnce({
           isValid: true,
           statusCode: 200,
-          error: '无法验证非图片资源，假设有效',
+          error: '无法通过图片方式验证，可能为非图片资源',
+          responseTime: Date.now() - startTime,
           validatedAt: Date.now()
         });
       };
 
-      img.src = url;
+      try {
+        img.src = url;
+      } catch (error) {
+        clearTimeout(timeoutId);
+        resolveOnce({
+          isValid: false,
+          error: 'URL格式无效',
+          responseTime: Date.now() - startTime,
+          validatedAt: Date.now()
+        });
+      }
     });
   }
 
@@ -497,18 +610,43 @@ export class LinkValidator {
    * @param priority 优先级链接（优先验证）
    */
   public async prevalidateLinks(urls: string[], priority: string[] = []): Promise<void> {
-    // 优先验证重要链接
-    if (priority.length > 0) {
-      await this.validateBatch(priority, 3);
-    }
+    try {
+      // 过滤出需要验证的链接（排除已缓存的有效链接）
+      const urlsToValidate = urls.filter(url => {
+        const cached = this.getCachedValidation(url);
+        return !cached || !cached.isValid;
+      });
+      
+      if (urlsToValidate.length === 0) {
+        return; // 所有链接都已验证且有效
+      }
+      
+      // 优先验证重要链接
+      const priorityUrls = priority.filter(url => urlsToValidate.includes(url));
+      if (priorityUrls.length > 0) {
+        try {
+          await this.validateBatch(priorityUrls, 3, 8000); // 优先链接使用较长超时
+          console.log(`优先验证完成: ${priorityUrls.length} 个链接`);
+        } catch (error) {
+          console.warn('优先链接验证失败:', error);
+        }
+      }
 
-    // 后台验证其他链接
-    const remainingUrls = urls.filter(url => !priority.includes(url));
-    if (remainingUrls.length > 0) {
-      // 使用较低的并发数避免影响用户体验
-      setTimeout(() => {
-        this.validateBatch(remainingUrls, 2);
-      }, 1000);
+      // 后台验证其他链接
+      const remainingUrls = urlsToValidate.filter(url => !priority.includes(url));
+      if (remainingUrls.length > 0) {
+        // 使用较低的并发数和较短超时避免影响用户体验
+        setTimeout(async () => {
+          try {
+            await this.validateBatch(remainingUrls, 2, 5000);
+            console.log(`后台验证完成: ${remainingUrls.length} 个链接`);
+          } catch (error) {
+            console.warn('后台链接验证失败:', error);
+          }
+        }, 1000);
+      }
+    } catch (error) {
+      console.error('预验证链接时发生错误:', error);
     }
   }
 

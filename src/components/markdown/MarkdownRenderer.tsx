@@ -42,9 +42,21 @@ function CodeBlock({ children, className, inline, config }: CodeBlockProps) {
     checkTheme();
     
     if (config.syntaxTheme === 'auto') {
+      // 检查是否在浏览器环境中
+      if (typeof window === 'undefined') return;
+      
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', checkTheme);
-      return () => mediaQuery.removeEventListener('change', checkTheme);
+      
+      // 安全地添加事件监听器
+      if (mediaQuery && typeof mediaQuery.addEventListener === 'function') {
+        mediaQuery.addEventListener('change', checkTheme);
+      }
+      
+      return () => {
+        if (mediaQuery && typeof mediaQuery.removeEventListener === 'function') {
+          mediaQuery.removeEventListener('change', checkTheme);
+        }
+      };
     }
   }, [config.syntaxTheme]);
 

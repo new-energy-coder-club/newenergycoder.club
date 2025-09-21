@@ -27,6 +27,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
   const [hasError, setHasError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [retryCount, setRetryCount] = useState(0);
   const imgRef = useRef<HTMLImageElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -80,6 +82,49 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   };
 
   const handleError = () => {
+    // 尝试多种图片代理服务来解决ORB问题
+    const proxyServices = [
+      // GitHub raw链接的CDN替代方案
+      (url: string) => {
+        if (url.includes('raw.githubusercontent.com')) {
+          return url
+            .replace('raw.githubusercontent.com', 'cdn.jsdelivr.net/gh')
+            .replace('/main/', '@main/');
+        }
+        return null;
+      },
+      // Unsplash图片的优化
+      (url: string) => {
+        if (url.includes('images.unsplash.com')) {
+          const baseUrl = url.split('?')[0];
+          return `${baseUrl}?auto=format&fit=crop&w=400&h=250&q=80`;
+        }
+        return null;
+      },
+      // 通用图片代理服务
+      (url: string) => {
+        if (url.startsWith('http') && !url.includes('localhost') && retryCount < 2) {
+          return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=400&h=250&fit=cover&a=attention`;
+        }
+        return null;
+      }
+    ];
+    
+    // 如果还有重试机会，尝试代理服务
+    if (retryCount < proxyServices.length) {
+      const proxyService = proxyServices[retryCount];
+      const proxyUrl = proxyService(src);
+      
+      if (proxyUrl && currentSrc !== proxyUrl) {
+        setCurrentSrc(proxyUrl);
+        setRetryCount(retryCount + 1);
+        setHasError(false);
+        setIsLoaded(false);
+        return;
+      }
+    }
+    
+    // 所有重试都失败了
     setHasError(true);
     onError?.();
   };
@@ -100,7 +145,15 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     return originalSrc;
   };
 
-  const optimizedSrc = getOptimizedSrc(src);
+  const optimizedSrc = getOptimizedSrc(currentSrc);
+  
+  // 重置状态当src改变时
+  useEffect(() => {
+    setCurrentSrc(src);
+    setRetryCount(0);
+    setHasError(false);
+    setIsLoaded(false);
+  }, [src]);
 
   return (
     <div 
@@ -133,6 +186,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           )}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
         />
       )}
       

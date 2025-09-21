@@ -32,14 +32,25 @@ export const TechnicalDocsSearch: React.FC<TechnicalDocsSearchProps> = ({ classN
   }, []);
 
   useEffect(() => {
+    // 检查是否在浏览器环境中
+    if (typeof document === 'undefined') return;
+    
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (searchRef.current && event.target && !searchRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    // 安全地添加事件监听器
+    if (document && typeof document.addEventListener === 'function') {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      if (document && typeof document.removeEventListener === 'function') {
+        document.removeEventListener('mousedown', handleClickOutside);
+      }
+    };
   }, []);
 
   useEffect(() => {

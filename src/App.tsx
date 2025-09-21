@@ -46,7 +46,8 @@ function App() {
     <ErrorBoundary>
       <PerformanceMonitor />
       <LanguageProvider>
-        <TooltipProvider>
+        {typeof window !== 'undefined' ? (
+          <TooltipProvider>
           <BrowserRouter>
             <RoutePreloader />
           <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div></div>}>
@@ -96,7 +97,18 @@ function App() {
           <Toaster />
           <Analytics />
           {typeof window !== 'undefined' && <SpeedInsights />}
-        </TooltipProvider>
+          </TooltipProvider>
+        ) : (
+          <BrowserRouter>
+            <RoutePreloader />
+            <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div></div>}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        )}
       </LanguageProvider>
     </ErrorBoundary>
   );

@@ -7,6 +7,7 @@ import { ExternalLink, Download, Search, Star, BookOpen, Code, Wrench, Graduatio
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type AspectRatio } from '@/components/ui/floating-controls'
+import { ImageProxy } from '@/components/ui/image-proxy'
 
 type ResourceCategory = 'all' | 'tutorials' | 'tools' | 'books' | 'courses' | 'documentation'
 type ResourceDifficulty = 'beginner' | 'intermediate' | 'advanced'
@@ -1262,9 +1263,18 @@ export function ResourcesPage() {
       timeoutId = setTimeout(handleScroll, 10)
     }
 
-    window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+    // 检查是否在浏览器环境中
+    if (typeof window === 'undefined') return;
+    
+    // 安全地添加事件监听器
+    if (window && typeof window.addEventListener === 'function') {
+      window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+    }
+    
     return () => {
-      window.removeEventListener('scroll', debouncedHandleScroll)
+      if (window && typeof window.removeEventListener === 'function') {
+        window.removeEventListener('scroll', debouncedHandleScroll)
+      }
       clearTimeout(timeoutId)
     }
   }, [lastScrollY])

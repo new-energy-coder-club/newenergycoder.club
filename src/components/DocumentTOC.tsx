@@ -12,8 +12,13 @@ export const DocumentTOC: React.FC<DocumentTOCProps> = ({ toc, className = '' })
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    // 检查是否在浏览器环境中
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
     // 监听滚动事件，高亮当前章节
     const handleScroll = () => {
+      if (typeof document === 'undefined') return;
+      
       const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
       let currentId = '';
       
@@ -29,10 +34,17 @@ export const DocumentTOC: React.FC<DocumentTOCProps> = ({ toc, className = '' })
       setActiveId(currentId);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // 初始调用
+    // 安全地添加事件监听器
+    if (window && typeof window.addEventListener === 'function') {
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // 初始调用
+    }
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (window && typeof window.removeEventListener === 'function') {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    };
   }, []);
 
   const toggleExpanded = (id: string) => {
