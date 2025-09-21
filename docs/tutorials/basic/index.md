@@ -4,6 +4,8 @@ description: 编程基础知识和入门教程
 order: 1
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 # 基础教程
 
 ## 概述

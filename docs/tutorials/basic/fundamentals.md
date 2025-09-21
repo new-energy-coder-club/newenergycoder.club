@@ -9,6 +9,8 @@ estimated_time: 45分钟
 prerequisites: [新能源编程入门]
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 <div class="hero-section bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 text-white p-8 rounded-xl mb-8">
   <div class="max-w-4xl mx-auto text-center">
     <h1 class="text-4xl md:text-5xl font-bold mb-4">

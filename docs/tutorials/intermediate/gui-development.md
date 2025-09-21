@@ -14,6 +14,8 @@ difficulty: "intermediate"
 prerequisites: ["编程基础", "Python基础"]
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 # GUI开发入门
 
 在新能源系统开发中，图形用户界面（GUI）是用户与系统交互的重要桥梁。本教程将教您如何开发专业的新能源监控和管理界面。

@@ -4,6 +4,8 @@ description: 深入学习编程技术和最佳实践
 order: 2
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 # 进阶教程
 
 ## 概述

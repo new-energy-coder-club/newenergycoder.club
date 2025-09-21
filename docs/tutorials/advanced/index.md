@@ -4,6 +4,8 @@ description: 掌握企业级开发和架构设计
 order: 3
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 # 高级教程
 
 ## 概述
