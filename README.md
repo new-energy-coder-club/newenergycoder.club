@@ -1,3 +1,5 @@
+![NEC Home](./src/NEC-home.gif)
+
 # New Energy Coder Club 官方网站
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
@@ -250,82 +252,118 @@ VITE_APP_DESCRIPTION=新能源编程俱乐部官方网站
 
 ```
 newenergycoder.club/
-├── docs/                   # 项目文档
-│   └── LINK_DETECTION.md  # 链接检测功能文档
-├── public/                 # 静态资源
-│   ├── icons/             # 图标文件
-│   └── images/            # 图片资源
-├── src/
-│   ├── components/        # 可复用组件
+├── .env                   # 环境变量配置
+├── .github/               # GitHub 工作流配置
+│   └── workflows/
+│       └── static.yml
+├── .gitignore             # Git 忽略文件配置
+├── .trae/                 # Trae AI 配置和文档
+│   ├── documents/         # 项目文档和设计文档
+│   │   ├── ACCEPTANCE_*.md
+│   │   ├── ALIGNMENT_*.md
+│   │   ├── CONSENSUS_*.md
+│   │   ├── DESIGN_*.md
+│   │   ├── TASK_*.md
+│   │   └── document-link-detection/
+│   └── rules/
+│       └── project_rules.md
+├── .vercel/               # Vercel 部署配置
+├── coverage/              # 测试覆盖率报告
+├── docs/                  # 项目文档
+│   ├── LINK_DETECTION.md  # 链接检测功能文档
+│   ├── TEST_SUMMARY.md    # 测试总结文档
+│   ├── getting-started/   # 入门指南
+│   ├── resources/         # 资源文档
+│   ├── technical/         # 技术文档
+│   ├── tutorials/         # 教程文档
+│   │   ├── advanced/      # 高级教程
+│   │   ├── basic/         # 基础教程
+│   │   └── intermediate/  # 中级教程
+│   └── theme-integration/ # 主题集成文档
+├── public/                # 静态资源
+│   ├── 404.html          # 404 错误页面
+│   ├── docs/             # 公共文档资源
+│   └── og-image.svg      # Open Graph 图片
+├── src/                   # 源代码目录
+│   ├── assets/           # 静态资源文件
+│   │   ├── CIT_Logo.png
+│   │   ├── NEC Logo.svg
+│   │   ├── github-mark.png
+│   │   ├── wechat.png
+│   │   └── ... (更多图标和图片)
+│   ├── components/       # 可复用组件
 │   │   ├── auth/         # 用户认证组件
-│   │   │   ├── LoginModal.tsx
-│   │   │   ├── ProtectedRoute.tsx
-│   │   │   └── UserMenu.tsx
 │   │   ├── forms/        # 表单组件
-│   │   │   └── FeishuForm.tsx
 │   │   ├── home/         # 首页专用组件
-│   │   │   ├── AboutSection.tsx
-│   │   │   ├── CTASection.tsx
-│   │   │   ├── FeaturesSection.tsx
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── ProjectsSection.tsx
-│   │   │   └── TeamSection.tsx
 │   │   ├── layout/       # 布局组件
-│   │   │   ├── Footer.tsx
-│   │   │   ├── Header.tsx
-│   │   │   └── PageLayout.tsx
-│   │   ├── link-detection/ # 链接检测组件
-│   │   │   ├── LinkDetectorComponent.tsx
-│   │   │   ├── HeaderWithAnchor.tsx
-│   │   │   └── LazyLinkDetector.tsx
-│   │   └── ui/           # 基础 UI 组件
-│   │       ├── LanguageSwitcher.tsx
-│   │       ├── ThemeToggle.tsx
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       ├── dialog.tsx
-│   │       └── ... (更多 shadcn/ui 组件)
-│   ├── contexts/          # React Context
-│   ├── hooks/             # 自定义 Hooks
-│   │   └── useLinkProcessor.ts # 链接处理 Hook
-│   ├── lib/               # 工具库和配置
+│   │   ├── markdown/     # Markdown 相关组件
+│   │   ├── navigation/   # 导航组件
+│   │   ├── ui/           # 基础 UI 组件
+│   │   ├── DocumentPage.tsx
+│   │   ├── LinkDetectorComponent.tsx
+│   │   ├── PerformanceMonitor.tsx
+│   │   └── ... (更多组件)
+│   ├── config/           # 配置文件
+│   │   └── DifficultyConfig.ts
+│   ├── contexts/         # React Context
+│   │   └── LanguageContext.tsx
+│   ├── data/             # 数据文件
+│   │   ├── resources.ts
+│   │   └── techRoutes.ts
+│   ├── hooks/            # 自定义 Hooks
+│   │   ├── use-mobile.tsx
+│   │   ├── use-theme.ts
+│   │   ├── useLinkProcessor.ts
+│   │   └── useMarkdown.ts
+│   ├── image/            # 图片资源
+│   │   ├── contributer/  # 贡献者头像
+│   │   ├── designer/     # 设计师头像
+│   │   ├── developer/    # 开发者头像
+│   │   ├── maintainer/   # 维护者头像
+│   │   ├── sponsor/      # 赞助商图片
+│   │   └── ... (更多图片)
+│   ├── lib/              # 工具库和配置
 │   │   ├── i18n/         # 国际化配置
-│   │   └── utils.ts      # 工具函数
-│   ├── services/          # 业务服务
-│   │   ├── LinkProcessor.ts   # 链接处理服务
-│   │   ├── LinkValidator.ts   # 链接验证服务
-│   │   └── CacheManager.ts    # 缓存管理服务
-│   ├── styles/            # 样式文件
-│   │   └── LinkDetection.css  # 链接检测样式
-│   ├── utils/             # 工具函数
-│   │   ├── PerformanceUtils.ts # 性能优化工具
-│   │   └── BatchProcessor.ts   # 批处理工具
-│   ├── pages/             # 页面组件
-│   │   ├── HomePage.tsx
-│   │   ├── TeamPage.tsx
-│   │   ├── EventsPage.tsx
-│   │   ├── ProjectsPage.tsx
-│   │   ├── ResourcesPage.tsx
-│   │   ├── InnovationShowcasePage.tsx  # 创新技术展示页面
-│   │   ├── JoinPage.tsx
+│   │   ├── i18n.ts
+│   │   ├── performance.ts
+│   │   ├── sentry.ts
+│   │   └── utils.ts
+│   ├── pages/            # 页面组件
+│   │   ├── AdminDashboard.tsx
 │   │   ├── ContactPage.tsx
 │   │   ├── DashboardPage.tsx
-│   │   ├── FeishuJoinFormPage.tsx
-│   │   ├── DisplayRatioPage.tsx
-│   │   └── NotFoundPage.tsx
-│   ├── types/             # TypeScript 类型定义
-│   │   ├── innovation.ts  # 创新技术相关类型
-│   │   └── link-detection.ts # 链接检测相关类型
-│   ├── store/             # Zustand 状态管理
-│   ├── App.tsx            # 应用主组件
-│   ├── main.tsx           # 应用入口
-│   └── index.css          # 全局样式
-├── .eslintrc.js           # ESLint 配置
-├── tailwind.config.js     # Tailwind CSS 配置
-├── tsconfig.json          # TypeScript 配置
-├── vite.config.ts         # Vite 配置
-├── vercel.json            # Vercel 部署配置
-└── package.json           # 项目依赖和脚本
+│   │   ├── EventsPage.tsx
+│   │   ├── GettingStartedPage.tsx
+│   │   ├── HomePage.tsx
+│   │   ├── InnovationShowcasePage.tsx
+│   │   ├── JoinPage.tsx
+│   │   ├── LearningCenter.tsx
+│   │   ├── MarkdownViewer.tsx
+│   │   ├── ProjectsPage.tsx
+│   │   ├── ResourcesPage.tsx
+│   │   ├── TeamPage.tsx
+│   │   └── ... (更多页面)
+│   ├── routes/           # 路由配置
+│   ├── services/         # 业务服务
+│   ├── store/            # 状态管理
+│   ├── styles/           # 样式文件
+│   ├── test/             # 测试文件
+│   ├── types/            # TypeScript 类型定义
+│   ├── utils/            # 工具函数
+│   ├── App.tsx           # 应用主组件
+│   ├── main.tsx          # 应用入口
+│   ├── index.css         # 全局样式
+│   ├── NEC-home.gif      # 首页 GIF 动画
+│   └── vite-env.d.ts     # Vite 类型定义
+├── eslint.config.js      # ESLint 配置
+├── package.json          # 项目依赖和脚本
+├── postcss.config.js     # PostCSS 配置
+├── tailwind.config.js    # Tailwind CSS 配置
+├── tsconfig.json         # TypeScript 配置
+├── vercel.json           # Vercel 部署配置
+├── vite.config.ts        # Vite 配置
+├── vitest.config.ts      # Vitest 测试配置
+└── start-dev.bat/.ps1    # 开发启动脚本
 ```
 
 ## 👨‍💻 开发指南

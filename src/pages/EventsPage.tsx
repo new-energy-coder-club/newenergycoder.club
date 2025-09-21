@@ -8,6 +8,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { FeishuForm } from '@/components/forms/FeishuForm'
 import { type AspectRatio } from '@/components/ui/floating-controls'
+import { ImageProxy } from '@/components/ui/image-proxy'
 
 type EventCategory = 'all' | 'workshop' | 'hackathon' | 'seminar' | 'competition' | 'networking'
 type EventStatus = 'upcoming' | 'past'
@@ -228,10 +229,11 @@ export function EventsPage() {
   const EventCard = ({ event, selectedRatio = 'aspect-[3/4]' }: { event: Event; selectedRatio?: AspectRatio }) => (
     <Card className="glass-card hover-lift glow-hover group overflow-hidden">
       <div className={`${selectedRatio} overflow-hidden relative`}>
-        <img 
+        <ImageProxy 
           src={event.image}
           alt={event.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          fallbackSrc="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop&crop=center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="absolute top-4 left-4">

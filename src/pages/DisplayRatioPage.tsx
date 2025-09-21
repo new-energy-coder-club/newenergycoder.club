@@ -20,6 +20,9 @@ import { GiteeIcon } from '@/components/ui/gitee-icon'
 // 国际化
 import { useTranslation } from '@/contexts/LanguageContext'
 
+// 图片代理组件
+import { ImageProxy } from '@/components/ui/image-proxy'
+
 const sampleItems: DisplayItem[] = [
   {
     id: '1',
@@ -84,10 +87,11 @@ export function DisplayRatioPage() {
     return (
       <Card key={item.id} className="glass-card hover-lift glow-hover group overflow-hidden">
         <div className={`${selectedRatio} overflow-hidden relative`}>
-          <img 
+          <ImageProxy 
             src={item.image}
             alt={item.title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            fallbackSrc="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop&crop=center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           

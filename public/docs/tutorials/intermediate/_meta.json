@@ -1,0 +1,17 @@
+{
+  "title": "中级教程",
+  "description": "深入学习编程进阶技术",
+  "order": 2,
+  "items": [
+    {
+      "title": "中级编程进阶",
+      "slug": "index",
+      "description": "中级教程概览和学习路径"
+    },
+    {
+      "title": "GUI开发入门",
+      "slug": "gui-development",
+      "description": "学习使用现代GUI框架开发新能源监控和管理界面"
+    }
+  ]
+}

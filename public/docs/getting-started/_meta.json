@@ -1,0 +1,39 @@
+{
+  "title": "快速开始",
+  "description": "新能源编程俱乐部快速入门指南",
+  "order": 1,
+  "items": [
+    {
+      "slug": "index",
+      "title": "概述",
+      "description": "新能源编程俱乐部简介和学习路径",
+      "order": 1
+    },
+    {
+      "slug": "embedded-development",
+      "title": "嵌入式开发",
+      "description": "学习嵌入式系统开发的基础知识和实践技能",
+      "order": 2
+    },
+    {
+      "slug": "gui-development",
+      "title": "GUI界面开发",
+      "description": "掌握图形界面开发技术和框架",
+      "order": 3
+    },
+    {
+      "slug": "algorithm-design",
+      "title": "算法与数据结构",
+      "description": "深入理解算法设计和数据结构原理",
+      "order": 4
+    }
+  ],
+  "subcategories": [
+    {
+      "slug": "quick-guides",
+      "title": "快速指南",
+      "description": "快速上手指南和常见问题解答",
+      "order": 5
+    }
+  ]
+}

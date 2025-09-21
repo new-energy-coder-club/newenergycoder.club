@@ -1,16 +1,18 @@
 import { Header } from '@/components/layout/Header'
 import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
-
+import React, { Suspense } from 'react'
+const ThreeJsAnimation = React.lazy(() => import('@/components/ui/ThreeJsAnimation'))
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Eye, EyeOff } from 'lucide-react'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { ImageProxy } from '@/components/ui/image-proxy'
 import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg?url'
 import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
@@ -59,10 +61,11 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
-          <AvatarImage 
+          <ImageProxy 
             src={member.image} 
             alt={member.name}
             className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+            fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
           />
           <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
             {member.name.slice(0, 2)}
@@ -183,10 +186,11 @@ function PhotoCard({ src, alt }: PhotoCardProps) {
     <Card className={CARD_STYLES.photo}>
       <CardContent className="p-0">
         <div className="relative overflow-hidden">
-          <img
+          <ImageProxy
             src={src}
             alt={alt}
             className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+            fallbackSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
         </div>
@@ -198,6 +202,7 @@ function PhotoCard({ src, alt }: PhotoCardProps) {
 export function TeamPage() {
   const t = useTranslation()
   const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
+  const [showAnimation, setShowAnimation] = useState(true) // 控制Three.js动画显示/隐藏
 
   // 使用 useMemo 优化统计计算
   const teamStats = useMemo(() => {
@@ -227,13 +232,11 @@ export function TeamPage() {
         {/* Background with team photos */}
         <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
-        <img
+        <ImageProxy
           src={TeamPhoto1}
           alt="团队校门合照"
           className="w-full h-full object-cover opacity-20 dark:opacity-25"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = TeamPhoto2
-          }}
+          fallbackSrc={TeamPhoto2}
         />
       </div>
       
@@ -461,7 +464,74 @@ export function TeamPage() {
           </div>
         </div>
 
-
+        {/* Three.js Animation Section */}
+        <div className="mt-20 mb-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
+              创新技术展示
+            </h2>
+            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
+              体验我们在新能源技术领域的创新成果
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
+            
+            {/* 动画控制开关 */}
+            <div className="flex justify-center mb-6">
+              <Button
+                variant={showAnimation ? "default" : "outline"}
+                onClick={() => setShowAnimation(!showAnimation)}
+                className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105"
+              >
+                {showAnimation ? (
+                  <>
+                    <EyeOff className="h-4 w-4" />
+                    隐藏动画
+                  </>
+                ) : (
+                  <>
+                    <Eye className="h-4 w-4" />
+                    显示动画
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+          
+          {/* 条件渲染Three.js动画 */}
+          {showAnimation ? (
+            <Suspense fallback={
+              <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg p-12">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-spin">
+                    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full"></div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground dark:text-white mb-2">
+                    加载3D动画中...
+                  </h3>
+                  <p className="text-muted-foreground dark:text-gray-300">
+                    正在加载Three.js动画组件
+                  </p>
+                </div>
+              </Card>
+            }>
+              <ThreeJsAnimation />
+            </Suspense>
+          ) : (
+            <Card className="bg-card/90 backdrop-blur-md border-primary/30 shadow-lg p-12">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <EyeOff className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground dark:text-white mb-2">
+                  动画已隐藏
+                </h3>
+                <p className="text-muted-foreground dark:text-gray-300">
+                  点击上方按钮可重新显示Three.js动画效果
+                </p>
+              </div>
+            </Card>
+          )}
+        </div>
 
         <FloatingControls 
           showAspectRatio={true}
