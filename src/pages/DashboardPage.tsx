@@ -288,7 +288,6 @@ function DashboardPage() {
           </Card>
         </div>
       </div>
-      <FloatingControls showAspectRatio={true} />
     </PageLayout>
   )
 }

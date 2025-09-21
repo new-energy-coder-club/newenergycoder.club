@@ -695,8 +695,7 @@ export default function GettingStartedPage() {
         </div>
       </section>
       
-      {/* Floating Controls */}
-      <FloatingControls />
+
     </div>
   )
 }

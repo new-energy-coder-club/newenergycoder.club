@@ -98,14 +98,14 @@ export function ContactPage() {
     >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_75%_75%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
+        <section className="py-16 lg:py-20 bg-gradient-to-br from-primary/5 to-accent/5 relative">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
           
-          <div className="container relative z-10 text-center">
-            <h1 className="text-4xl font-bold gradient-text sm:text-5xl lg:text-6xl mb-6">
+          <div className="container relative text-center">
+            <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl mb-4 gradient-text">
               {t.contact.title}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.contact.description}
             </p>
           </div>

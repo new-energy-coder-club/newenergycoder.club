@@ -55,10 +55,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
             
             {/* Phase 2 Routes (currently placeholders) */}
-            <Route path="/projects" element={<PageLayout><ProjectsPage /></PageLayout>} />
-            <Route path="/events" element={<PageLayout><EventsPage /></PageLayout>} />
-            <Route path="/resources" element={<PageLayout><ResourcesPage /></PageLayout>} />
-            <Route path="/contact" element={<PageLayout><ContactPage /></PageLayout>} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/team" element={<PageLayout><TeamPage /></PageLayout>} />
             <Route path="/innovation" element={<PageLayout><InnovationShowcasePage /></PageLayout>} />
             <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
@@ -77,8 +77,8 @@ function App() {
             <Route path="/markdown" element={<PageLayout><MarkdownViewer /></PageLayout>} />
             <Route path="/markdown/editor" element={<PageLayout><MarkdownViewer /></PageLayout>} />
             <Route path="/markdown/viewer" element={<PageLayout><MarkdownViewer /></PageLayout>} />
-            <Route path="/join" element={<PageLayout><JoinPage /></PageLayout>} />
-            <Route path="/join/form" element={<PageLayout><FeishuJoinFormPage /></PageLayout>} />
+            <Route path="/join" element={<JoinPage />} />
+            <Route path="/join/form" element={<FeishuJoinFormPage />} />
             
             {/* Protected Routes */}
             <Route path="/dashboard" element={

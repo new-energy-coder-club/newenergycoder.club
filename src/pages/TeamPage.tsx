@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/Header'
 import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
 import React from 'react'
@@ -224,11 +223,9 @@ export function TeamPage() {
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1">
-        {/* Background with team photos */}
-        <div className="fixed inset-0 z-0">
+    <>
+      {/* Background with team photos */}
+      <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
         <ImageProxy
           src={TeamPhoto1}
@@ -461,16 +458,7 @@ export function TeamPage() {
             </Card>
           </div>
         </div>
-
-
-
-        <FloatingControls 
-          showAspectRatio={true}
-          aspectRatio={selectedRatio}
-          onAspectRatioChange={setSelectedRatio}
-        />
       </div>
-      </main>
-    </div>
+    </>
   )
 }

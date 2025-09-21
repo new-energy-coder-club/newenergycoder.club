@@ -376,9 +376,7 @@ export const DocumentPage: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* 悬浮控制组件 */}
-      <FloatingControls />
+
     </div>
   );
 };
