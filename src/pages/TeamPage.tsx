@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { ImageProxy } from '@/components/ui/image-proxy'
+import { Header } from '@/components/layout/Header'
 import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg?url'
 import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
@@ -223,19 +224,21 @@ export function TeamPage() {
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
   return (
-    <>
-      {/* Background with team photos */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
-        <ImageProxy
-          src={TeamPhoto1}
-          alt="团队校门合照"
-          className="w-full h-full object-cover opacity-20 dark:opacity-25"
-          fallbackSrc={TeamPhoto2}
-        />
-      </div>
-      
-      <div className="container py-12 relative z-20">
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <div className="flex-1 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        {/* Background with team photos */}
+        <div className="fixed inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
+          <ImageProxy
+            src={TeamPhoto1}
+            alt="团队校门合照"
+            className="w-full h-full object-cover opacity-20 dark:opacity-25"
+            fallbackSrc={TeamPhoto2}
+          />
+        </div>
+        
+        <div className="container py-12 relative z-20">
         {/* Hero Section with Theme Toggle */}
         <div className="text-center mb-12 relative">
           <div className="absolute top-0 right-0">
@@ -464,6 +467,7 @@ export function TeamPage() {
           </Card>
         </div>
       </div>
-    </>
+    </div>
+    </div>
   )
 }

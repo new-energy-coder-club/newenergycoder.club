@@ -59,7 +59,7 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/team" element={<PageLayout><TeamPage /></PageLayout>} />
+            <Route path="/team" element={<TeamPage />} />
             <Route path="/innovation" element={<PageLayout><InnovationShowcasePage /></PageLayout>} />
             <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
             <Route path="/learning/embedded" element={<PageLayout><EmbeddedDetailPage /></PageLayout>} />
