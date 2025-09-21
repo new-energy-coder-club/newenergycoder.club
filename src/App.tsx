@@ -55,42 +55,42 @@ function App() {
             <Route path="/" element={<HomePage />} />
             
             {/* Phase 2 Routes (currently placeholders) */}
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/team" element={<TeamPage />} />
-            <Route path="/innovation" element={<InnovationShowcasePage />} />
-            <Route path="/getting-started" element={<GettingStartedPage />} />
-            <Route path="/learning/embedded" element={<EmbeddedDetailPage />} />
-            <Route path="/learning/mechanical" element={<MechanicalDetailPage />} />
-            <Route path="/learning/designer" element={<DesignerDetailPage />} />
+            <Route path="/projects" element={<PageLayout><ProjectsPage /></PageLayout>} />
+            <Route path="/events" element={<PageLayout><EventsPage /></PageLayout>} />
+            <Route path="/resources" element={<PageLayout><ResourcesPage /></PageLayout>} />
+            <Route path="/contact" element={<PageLayout><ContactPage /></PageLayout>} />
+            <Route path="/team" element={<PageLayout><TeamPage /></PageLayout>} />
+            <Route path="/innovation" element={<PageLayout><InnovationShowcasePage /></PageLayout>} />
+            <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
+            <Route path="/learning/embedded" element={<PageLayout><EmbeddedDetailPage /></PageLayout>} />
+            <Route path="/learning/mechanical" element={<PageLayout><MechanicalDetailPage /></PageLayout>} />
+            <Route path="/learning/designer" element={<PageLayout><DesignerDetailPage /></PageLayout>} />
             
             {/* Document Routes */}
-            <Route path="/docs/technical" element={<TechnicalDocsLayout />} />
-            <Route path="/docs/technical/:slug" element={<DocumentPage />} />
-            <Route path="/docs/:category/:subcategory/:slug" element={<DocumentPage />} />
-            <Route path="/docs/:category" element={<DocumentPage />} />
-            <Route path="/docs/:category/:slug" element={<DocumentPage />} />
+            <Route path="/docs/technical" element={<PageLayout><TechnicalDocsLayout /></PageLayout>} />
+            <Route path="/docs/technical/:slug" element={<PageLayout><DocumentPage /></PageLayout>} />
+            <Route path="/docs/:category/:subcategory/:slug" element={<PageLayout><DocumentPage /></PageLayout>} />
+            <Route path="/docs/:category" element={<PageLayout><DocumentPage /></PageLayout>} />
+            <Route path="/docs/:category/:slug" element={<PageLayout><DocumentPage /></PageLayout>} />
             
             {/* Markdown Editor Routes */}
-            <Route path="/markdown" element={<MarkdownViewer />} />
-            <Route path="/markdown/editor" element={<MarkdownViewer />} />
-            <Route path="/markdown/viewer" element={<MarkdownViewer />} />
-            <Route path="/join" element={<JoinPage />} />
-            <Route path="/join/form" element={<FeishuJoinFormPage />} />
+            <Route path="/markdown" element={<PageLayout><MarkdownViewer /></PageLayout>} />
+            <Route path="/markdown/editor" element={<PageLayout><MarkdownViewer /></PageLayout>} />
+            <Route path="/markdown/viewer" element={<PageLayout><MarkdownViewer /></PageLayout>} />
+            <Route path="/join" element={<PageLayout><JoinPage /></PageLayout>} />
+            <Route path="/join/form" element={<PageLayout><FeishuJoinFormPage /></PageLayout>} />
             
             {/* Protected Routes */}
             <Route path="/dashboard" element={
               <ProtectedRoute>
-                <DashboardPage />
+                <PageLayout><DashboardPage /></PageLayout>
               </ProtectedRoute>
             } />
             
             {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin" element={<PageLayout><AdminDashboard /></PageLayout>} />
             
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<PageLayout><NotFoundPage /></PageLayout>} />
           </Routes>
           </Suspense>
           </BrowserRouter>
@@ -104,7 +104,7 @@ function App() {
             <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div></div>}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="*" element={<NotFoundPage />} />
+                <Route path="*" element={<PageLayout><NotFoundPage /></PageLayout>} />
               </Routes>
             </Suspense>
           </BrowserRouter>
