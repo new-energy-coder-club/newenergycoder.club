@@ -1,0 +1,172 @@
+/* 过滤器动画样式 */
+
+/* 过滤器切换动画 */
+.filter-switch {
+  animation: filterPulse 0.3s ease-out;
+}
+
+@keyframes filterPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* 按钮悬停增强效果 */
+.filter-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.filter-button:hover::before {
+  left: 100%;
+}
+
+/* 悬停提升效果 */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* 徽章动画 */
+.count-badge {
+  animation: badgeAppear 0.3s ease-out;
+}
+
+@keyframes badgeAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 粘性导航阴影效果 */
+.filter-section-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+/* 事件列表动画 */
+.events-list-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.events-list-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.events-list-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.events-list-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 过滤器激活状态动画 */
+.filter-active {
+  animation: filterActivate 0.4s ease-out;
+}
+
+@keyframes filterActivate {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* 加载状态动画 */
+.filter-loading {
+  position: relative;
+}
+
+.filter-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 悬停反馈动画 */
+.filter-hover-feedback {
+  position: relative;
+}
+
+.filter-hover-feedback::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.filter-hover-feedback:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* 响应式动画优化 */
+@media (prefers-reduced-motion: reduce) {
+  .filter-switch,
+  .hover-lift,
+  .count-badge,
+  .filter-button::before,
+  .events-list-enter-active,
+  .events-list-exit-active,
+  .filter-active,
+  .filter-loading::after,
+  .filter-hover-feedback::after {
+    animation: none;
+    transition: none;
+  }
+  
+  .hover-lift:hover {
+    transform: none;
+  }
+}

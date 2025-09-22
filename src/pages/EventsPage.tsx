@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -9,6 +9,11 @@ import { PageLayout } from '@/components/layout/PageLayout'
 import { FeishuForm } from '@/components/forms/FeishuForm'
 import { type AspectRatio } from '@/components/ui/floating-controls'
 import { ImageProxy } from '@/components/ui/image-proxy'
+import { useHeaderHeight } from '@/hooks/useHeaderHeight'
+import { useFilterAnimation } from '@/hooks/useFilterAnimation'
+import { useEventCounts } from '@/hooks/useEventCounts'
+import { useAccessibility } from '@/hooks/useAccessibility'
+import { FilterButton } from '@/components/ui/filter-button'
 
 type EventCategory = 'all' | 'workshop' | 'hackathon' | 'seminar' | 'competition' | 'networking'
 type EventStatus = 'upcoming' | 'past'
@@ -215,6 +220,27 @@ export function EventsPage() {
   // 显示比例状态管理 - 控制事件卡片图片的宽高比显示
   const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[21/9]')
   const t = useTranslation()
+  
+  // 使用自定义Hooks
+  const headerHeight = useHeaderHeight()
+  const { animationClass, triggerAnimation, isAnimating } = useFilterAnimation()
+  const eventCounts = useEventCounts(mockEvents, activeTab)
+  
+  // 状态管理
+  const [hoveredFilter, setHoveredFilter] = useState<EventCategory | null>(null)
+  const [listFadeIn, setListFadeIn] = useState(true)
+  const {
+    focusedFilterIndex,
+    announcement,
+    keyboardNavigationActive,
+    showSkipLink,
+    handleKeyNavigation,
+    setFilterRef,
+    handleFilterFocus,
+    handleFilterBlur,
+    announceFilterChange,
+    handleSkipToContent
+  } = useAccessibility()
 
   const filterEvents = (status: EventStatus) => {
     const statusFiltered = mockEvents.filter(event => event.status === status)
@@ -226,7 +252,20 @@ export function EventsPage() {
   const upcomingEvents = filterEvents('upcoming')
   const pastEvents = filterEvents('past')
 
-  const EventCard = ({ event, selectedRatio = 'aspect-[3/4]' }: { event: Event; selectedRatio?: AspectRatio }) => (
+  // 优化事件处理器
+  const handleCategoryChange = useCallback((category: EventCategory) => {
+    setSelectedCategory(category)
+    triggerAnimation()
+    setListFadeIn(false)
+    setTimeout(() => setListFadeIn(true), 100)
+  }, [triggerAnimation])
+
+  const handleFilterClick = useCallback((filter: EventCategory, labelKey: string, count: number) => {
+    handleCategoryChange(filter)
+    announceFilterChange(t.events[labelKey as keyof typeof t.events], count)
+  }, [handleCategoryChange, announceFilterChange, t.events])
+
+  const EventCard = React.memo(({ event, selectedRatio = 'aspect-[3/4]' }: { event: Event; selectedRatio?: AspectRatio }) => (
     <Card className="glass-card hover-lift glow-hover group overflow-hidden">
       <div className={`${selectedRatio} overflow-hidden relative`}>
         <ImageProxy 
@@ -302,7 +341,7 @@ export function EventsPage() {
         </div>
       </CardContent>
     </Card>
-  )
+  ))
 
   return (
     <PageLayout 
@@ -325,50 +364,120 @@ export function EventsPage() {
           </div>
         </section>
 
+        {/* Skip to content link for screen readers */}
+        <a 
+          href="#events-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50"
+        >
+          跳转到事件内容
+        </a>
+
         {/* Filter Section */}
-        <section className="py-8 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
+        <section 
+          className={`py-2 border-b bg-background/50 backdrop-blur-sm sticky z-40 transition-all duration-300 filter-section-shadow ${animationClass} ${isAnimating ? 'filter-active' : ''}`}
+          style={{ top: `${headerHeight}px` }}
+          role="navigation"
+          aria-label="事件分类过滤器"
+          onKeyDown={(e) => handleKeyNavigation(e.nativeEvent, categoryFilters.length)}
+        >
           <div className="container">
-            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6">
-              {categoryFilters.map((filter) => (
-                <Button
-                  key={filter.key}
-                  variant={selectedCategory === filter.key ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(filter.key)}
-                  className="hover-lift transition-all duration-200 text-xs sm:text-sm px-3 py-2"
-                  size="sm"
-                >
-                  {t.events[filter.labelKey]}
-                </Button>
-              ))}
+            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6" role="group" aria-label="事件分类选择">
+              {categoryFilters.map((filter, index) => {
+                const count = eventCounts[filter.key]
+                return (
+                  <FilterButton
+                    key={filter.key}
+                    ref={setFilterRef(index)}
+                    id={`filter-${filter.key}`}
+                    isSelected={selectedCategory === filter.key}
+                    count={count}
+                    isFocused={focusedFilterIndex === index}
+                    onClick={() => handleFilterClick(filter.key, filter.labelKey, count)}
+                    onMouseEnter={() => setHoveredFilter(filter.key)}
+                    onMouseLeave={() => setHoveredFilter(null)}
+
+                    onBlur={handleFilterBlur}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        handleFilterClick(filter.key, filter.labelKey, count)
+                      }
+                    }}
+                    size="sm"
+                    aria-label={`${t.events[filter.labelKey]} (${count} 个事件)`}
+                    aria-describedby={`filter-${filter.key}-desc`}
+                    className={`filter-hover-feedback ${hoveredFilter === filter.key ? 'scale-105' : ''} ${isAnimating ? 'filter-loading' : ''}`}
+                  >
+                    {t.events[filter.labelKey]}
+                  </FilterButton>
+                )
+              })}
             </div>
           </div>
         </section>
 
+        {/* Screen reader announcements */}
+        <div 
+          aria-live="polite" 
+          aria-atomic="true" 
+          className="sr-only"
+        >
+          {announcement && (
+            <div className="sr-only" aria-live="polite" aria-atomic="true">
+              {announcement}
+            </div>
+          )}
+        </div>
+
         {/* Events Tabs */}
-        <section className="py-16">
+        <section className="py-16" id="events-content">
           <div className="container">
             <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as EventStatus)} className="w-full">
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-                <TabsTrigger value="upcoming" className="flex items-center gap-2">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12" role="tablist" aria-label="事件时间分类">
+                <TabsTrigger 
+                  value="upcoming" 
+                  className="flex items-center gap-2"
+                  role="tab"
+                  aria-selected={activeTab === 'upcoming'}
+                  aria-controls="upcoming-events"
+                >
                   <Clock className="h-4 w-4" />
                   {t.events.upcoming}
                 </TabsTrigger>
-                <TabsTrigger value="past" className="flex items-center gap-2">
+                <TabsTrigger 
+                  value="past" 
+                  className="flex items-center gap-2"
+                  role="tab"
+                  aria-selected={activeTab === 'past'}
+                  aria-controls="past-events"
+                >
                   <Calendar className="h-4 w-4" />
                   {t.events.past}
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="upcoming" className="mt-0">
+              <TabsContent 
+                value="upcoming" 
+                className="mt-0"
+                role="tabpanel"
+                id="upcoming-events"
+                aria-labelledby="upcoming-tab"
+              >
                 {upcomingEvents.length > 0 ? (
-                  <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                  <div 
+                    className={`grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 transition-all duration-400 ${listFadeIn ? 'events-list-enter-active' : 'events-list-enter'}`}
+                    role="list"
+                    aria-label={`${upcomingEvents.length} 个即将举行的事件`}
+                  >
                     {upcomingEvents.map((event) => (
-                      <EventCard key={event.id} event={event} selectedRatio={selectedRatio} />
+                      <div key={event.id} role="listitem">
+                        <EventCard event={event} selectedRatio={selectedRatio} />
+                      </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-16">
-                    <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                  <div className="text-center py-16" role="status" aria-live="polite">
+                    <Clock className="h-16 w-16 text-muted-foreground mx-auto mb-4" aria-hidden="true" />
                     <p className="text-muted-foreground text-lg">
                       {t.events.noUpcoming}
                     </p>
@@ -376,16 +485,28 @@ export function EventsPage() {
                 )}
               </TabsContent>
               
-              <TabsContent value="past" className="mt-0">
+              <TabsContent 
+                value="past" 
+                className="mt-0"
+                role="tabpanel"
+                id="past-events"
+                aria-labelledby="past-tab"
+              >
                 {pastEvents.length > 0 ? (
-                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  <div 
+                    className={`grid gap-8 md:grid-cols-2 lg:grid-cols-3 transition-all duration-400 ${listFadeIn ? 'events-list-enter-active' : 'events-list-enter'}`}
+                    role="list"
+                    aria-label={`${pastEvents.length} 个过往事件`}
+                  >
                     {pastEvents.map((event) => (
-                      <EventCard key={event.id} event={event} selectedRatio={selectedRatio} />
+                      <div key={event.id} role="listitem">
+                        <EventCard event={event} selectedRatio={selectedRatio} />
+                      </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-16">
-                    <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                  <div className="text-center py-16" role="status" aria-live="polite">
+                    <Calendar className="h-16 w-16 text-muted-foreground mx-auto mb-4" aria-hidden="true" />
                     <p className="text-muted-foreground text-lg">
                       {t.events.noPast}
                     </p>

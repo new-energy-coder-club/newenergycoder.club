@@ -25,6 +25,7 @@
  */
 
 @import "./styles/markdown.css";
+@import "./styles/filter-animations.css";
 
 @tailwind base;
 @tailwind components;
