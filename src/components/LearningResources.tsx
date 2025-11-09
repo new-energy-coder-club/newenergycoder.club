@@ -300,6 +300,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
                 {t('learning.resources.filterByType')}
               </label>
               <select
+                id="filter-type"
+                name="type"
                 value={filters.type}
                 onChange={(e) => setFilters(prev => ({ ...prev, type: e.target.value as ResourceType | 'all' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -319,6 +321,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
                 {t('learning.resources.filterByDifficulty')}
               </label>
               <select
+                id="filter-difficulty"
+                name="difficulty"
                 value={filters.difficulty}
                 onChange={(e) => setFilters(prev => ({ ...prev, difficulty: e.target.value as DifficultyLevel | 'all' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -338,6 +342,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
                 {t('learning.resources.filterByDirection')}
               </label>
               <select
+                id="filter-direction"
+                name="direction"
                 value={filters.direction}
                 onChange={(e) => setFilters(prev => ({ ...prev, direction: e.target.value as TechDirection | 'all' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -357,6 +363,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
                 {t('learning.resources.filterByLanguage')}
               </label>
               <select
+                id="filter-language"
+                name="language"
                 value={filters.language}
                 onChange={(e) => setFilters(prev => ({ ...prev, language: e.target.value as 'zh' | 'en' | 'both' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -373,6 +381,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
+                id="filter-freeOnly"
+                name="freeOnly"
                 checked={filters.freeOnly}
                 onChange={(e) => setFilters(prev => ({ ...prev, freeOnly: e.target.checked }))}
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
@@ -424,6 +434,8 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
+                id="resource-search"
+                name="search"
                 placeholder="搜索资源、技术或关键词..."
                 value={filters.search}
                 onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}

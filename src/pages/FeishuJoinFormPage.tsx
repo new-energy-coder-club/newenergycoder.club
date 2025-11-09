@@ -315,7 +315,7 @@ export function FeishuJoinFormPage() {
                     value={formData.availability}
                     onValueChange={(value) => handleInputChange('availability', value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger id="availability" name="availability" aria-label="每周可投入时间">
                       <SelectValue placeholder={t.join.form.timeExpectation.selectPlaceholder} />
                     </SelectTrigger>
                     <SelectContent>

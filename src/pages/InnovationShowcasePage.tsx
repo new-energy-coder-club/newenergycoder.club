@@ -361,6 +361,9 @@ export function InnovationShowcasePage() {
                       <div className="relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input
+                          id="technology-search"
+                          name="search"
+                          aria-label="搜索技术"
                           placeholder="搜索技术名称、描述或标签..."
                           value={filters.searchQuery}
                           onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
@@ -370,6 +373,9 @@ export function InnovationShowcasePage() {
                     </div>
                     <div className="flex gap-2">
                       <select
+                        id="sortBy"
+                        name="sortBy"
+                        aria-label="排序方式"
                         value={filters.sortBy}
                         onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any }))}
                         className="px-3 py-2 border rounded-md bg-background"
