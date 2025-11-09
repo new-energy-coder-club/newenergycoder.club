@@ -5,7 +5,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone } from 'lucide-react'
 import BonjourIcon from '@/bonjour.ico?url'
 import GithubIcon from '@/github.ico?url'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
@@ -606,16 +606,36 @@ export function TeamPage() {
                 <p className="text-muted-foreground dark:text-gray-300 text-center max-w-lg">
                   如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解合作机会
                 </p>
-                <Button 
-                  variant="outline" 
-                  className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
-                  asChild
-                >
-                  <a href="mailto:22230635@czu.cn">
-                    <Mail className="h-4 w-4 mr-2" />
-                    联系我们
-                  </a>
-                </Button>
+                <div className="mt-1 flex flex-wrap justify-center gap-3">
+                  <Button 
+                    variant="outline" 
+                    className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+                    asChild
+                  >
+                    <a href="mailto:22230635@czu.cn">
+                      <Mail className="h-4 w-4 mr-2" />
+                      联系我们
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+                    asChild
+                  >
+                    <a href="tel:+8615896000818">
+                      <Phone className="h-4 w-4 mr-2" />
+                      电话：+86 15896000818
+                    </a>
+                  </Button>
+                </div>
+                <div className="mt-2 text-center space-y-1">
+                  <p className="text-sm text-muted-foreground dark:text-gray-300">
+                    电话：<span className="font-medium text-foreground dark:text-white">+86 15896000818</span>
+                  </p>
+                  <p className="text-sm text-muted-foreground dark:text-gray-300">
+                    微信 WeChat：<span className="font-medium text-foreground dark:text-white">Pei-pei-Zhu-Pig</span>
+                  </p>
+                </div>
               </div>
             </Card>
           </div>

@@ -83,7 +83,7 @@ export const enTranslations: Translations = {
     innovation: 'Innovation Results',
     events: 'Events',
     resources: 'Resources',
-    contact: 'Contact Us',
+    contact: 'Contact',
     login: 'Log in',
     logout: 'Log out',
     joinClub: 'Join Club',
@@ -379,11 +379,13 @@ export const enTranslations: Translations = {
     totalResources: '{count} resources total'
   },
   contact: {
-    title: 'Contact Us',
+    title: 'Contact',
     description: 'Get in touch with our team for questions, collaborations, or partnerships',
     getInTouch: 'Get In Touch',
     contactInfo: 'Contact Information',
     followUs: 'Follow Us',
+    channelsDescription: 'You can also reach us through the following channels.',
+    followUsDescription: 'Stay connected with us on social media for updates and news.',
     form: {
       name: 'Name',
       email: 'Email',
@@ -396,13 +398,158 @@ export const enTranslations: Translations = {
       sendMessage: 'Send Message',
       sending: 'Sending...',
       messageSent: 'Message sent successfully!',
-      messageError: 'Failed to send message. Please try again.'
+      messageError: 'Failed to send message. Please try again.',
+      introText: "Fill out the form below and we'll get back to you as soon as possible.",
+      toastSuccessDescription: "We'll get back to you as soon as possible.",
+      toastErrorDescription: 'Please check your connection and try again.'
     },
     info: {
       address: 'No. 666, Liaohai Road, Xinbei District, Changzhou City, Jiangsu Province',
       phone: '+86 15896000818',
       email: '22230635@czu.cn',
       hours: 'Monday - Friday: 9AM - 6PM'
+    },
+    infoLabels: {
+      address: 'Address',
+      phone: 'Phone',
+      email: 'Email',
+      hours: 'Office Hours'
+    },
+    social: {
+      gitee: 'Gitee',
+      wechat: 'WeChat',
+      email: 'Email'
+    },
+    application: {
+      title: 'NEC Site Listing Application',
+      description: 'Apply to be listed on the NEC official site to showcase your projects and achievements.',
+      applyNow: 'Apply Now'
+    }
+  },
+  // Getting Started page translations
+  gettingStarted: {
+    hero: {
+      title: 'New Energy Coder Club',
+      description: 'Explore the possibilities of new energy technology. Start changing the world with code.',
+      buttons: {
+        joinClub: 'Join Club',
+        viewProjects: 'View Projects',
+        visitSite: 'Visit Official Site'
+      }
+    },
+    stats: {
+      learnersTitle: 'Learners',
+      learnersDesc: 'Active learners',
+      completedProjectsTitle: 'Projects Completed',
+      completedProjectsDesc: 'Completed projects',
+      averageRatingTitle: 'Average Rating',
+      averageRatingDesc: 'Learner satisfaction',
+      successRateTitle: 'Success Rate',
+      successRateDesc: 'Learning success rate'
+    },
+    directions: {
+      title: 'Choose Your Tech Direction',
+      description: 'Select the learning path that best matches your interests and career plan.',
+      coreSkills: 'Core Skills',
+      projectsSuffix: ' projects',
+      startLearning: 'Start Learning',
+      embedded: {
+        title: 'Embedded Development',
+        description: 'Learn embedded systems development and master core technologies that combine hardware and software.',
+        skills: ['C/C++', 'FreeRTOS', 'Hardware Debugging', 'Communication Protocols'],
+        duration: '6-8 months'
+      },
+      gui: {
+        title: 'GUI Development',
+        description: 'Master cross-platform graphical interface development to build beautiful and practical desktop applications.',
+        skills: ['Qt/QML', 'UI Design', 'Cross-Platform Development', 'User Experience'],
+        duration: '4-6 months'
+      },
+      algorithm: {
+        title: 'Algorithms & Data Structures',
+        description: 'Dive deep into algorithm design and optimization to enhance problem-solving and programming thinking.',
+        skills: ['Algorithm Design', 'Data Structures', 'Performance Optimization', 'Mathematical Modeling'],
+        duration: '8-12 months'
+      }
+    },
+    quickGuides: {
+      title: 'Quick Start Guides',
+      description: 'Follow our guides to quickly begin your journey in new energy programming.',
+      stepsLabel: 'Steps:',
+      items: {
+        setup: {
+          title: 'Environment Setup',
+          description: 'Quickly set up your development environment and start coding.',
+          steps: [
+            'Choose suitable development tools',
+            'Install required packages',
+            'Configure your environment',
+            'Run your first program'
+          ],
+          estimatedTime: '30 minutes'
+        },
+        firstGoodIssue: {
+          title: 'Your First Good Issue',
+          description: 'Find and resolve your first Good Issue to start contributing to open-source projects.',
+          steps: [
+            'Browse the project issue list',
+            'Filter by Good First Issue label',
+            'Understand the problem description and requirements',
+            'Fork the project and create a branch',
+            'Implement the solution',
+            'Submit a Pull Request'
+          ],
+          estimatedTime: '25 minutes'
+        },
+        firstProject: {
+          title: 'First Project',
+          description: 'Get hands-on with a real project and learn core development flow.',
+          steps: [
+            'Choose a starter project',
+            'Understand the project structure',
+            'Write core code',
+            'Test and debug',
+            'Deploy the project'
+          ],
+          estimatedTime: '2 hours'
+        },
+        community: {
+          title: 'Join the Community',
+          description: 'Engage with the learning community to get more support and exchange ideas.',
+          steps: [
+            'Register a club account',
+            'Complete your profile',
+            'Join a study group',
+            'Participate in discussions'
+          ],
+          estimatedTime: '15 minutes'
+        }
+      }
+    },
+    baseTutorials: {
+      title: 'Basic Tutorials',
+      description: 'Start from zero to learn programming basics and core concepts.',
+      introTitle: 'Introduction to Programming',
+      introDesc: 'Basic concepts and mindset; explore application areas and prospects of energy programming.',
+      fundamentalsTitle: 'Programming Fundamentals',
+      fundamentalsDesc: 'Variables, functions, control structures; master core concepts and syntax.',
+      startLearning: 'Start Learning'
+    },
+    trainingResources: {
+      title: 'Training Resources',
+      description: 'Rich resources to help you improve skills quickly.',
+      githubRepoTitle: 'GitHub Repository',
+      githubRepoDesc: 'View project source code and contribute.',
+      visitGithub: 'Visit GitHub',
+      docsTitle: 'Technical Documentation',
+      docsDesc: 'Detailed technical docs and API references.',
+      viewDocs: 'View Docs',
+      videosTitle: 'Video Tutorials',
+      videosDesc: 'Watch hands-on project video tutorials.',
+      watchVideos: 'Watch Videos',
+      communityTitle: 'Community Discussions',
+      communityDesc: 'Join community discussions and exchanges.',
+      joinDiscussion: 'Join Discussion'
     }
   },
   dashboard: {

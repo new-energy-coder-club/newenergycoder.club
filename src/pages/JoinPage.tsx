@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle, Users, Code, Heart, MessageCircle, ArrowRight, Calendar, Target, Send } from 'lucide-react'
+import { CheckCircle, Users, Code, Heart, MessageCircle, ArrowRight, Calendar, Target, Send, Download } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import WeChatIcon from '@/wechat.svg?url'
@@ -139,84 +139,28 @@ export function JoinPage() {
 
             <div className="max-w-4xl mx-auto">
               <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-accent hidden md:block"></div>
-                
-                {/* Steps */}
-                <div className="space-y-12">
-                  {roadmapSteps.map((step, index) => (
-                    <div key={step.id} className="relative flex flex-col md:flex-row items-center">
-                      {/* Left side (odd steps) */}
-                      {index % 2 === 0 && (
-                        <div className="hidden md:flex w-1/2 pr-8 justify-end">
-                          <Card className="w-full max-w-sm glass-card">
-                            <CardHeader>
-                              <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                  <step.icon className="h-5 w-5 text-primary" />
-                                </div>
-                                <div>
-                                  <CardTitle className="text-lg">{t.joinPage.roadmap.steps[step.id - 1]?.title || step.title}</CardTitle>
-                  <CardDescription>{t.joinPage.roadmap.steps[step.id - 1]?.duration || step.duration}</CardDescription>
-                                </div>
-                              </div>
-                            </CardHeader>
-                            <CardContent>
-                              <p className="text-sm text-muted-foreground">{t.joinPage.roadmap.steps[step.id - 1]?.description || step.description}</p>
-                            </CardContent>
-                          </Card>
+                {/* Steps as a two-column grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {roadmapSteps.map((step) => (
+                    <Card key={step.id} className="w-full glass-card">
+                      <CardHeader>
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <step.icon className="h-5 w-5 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <CardTitle className="text-lg flex items-center gap-6">
+                              <span className="flex-1">{t.joinPage.roadmap.steps[step.id - 1]?.title || step.title}</span>
+                              <span className="font-bold text-primary ml-2">{String(step.id).padStart(2, '0')}</span>
+                            </CardTitle>
+                            <CardDescription>{t.joinPage.roadmap.steps[step.id - 1]?.duration || step.duration}</CardDescription>
+                          </div>
                         </div>
-                      )}
-
-                      {/* Center circle */}
-                      <div className="relative z-10 flex items-center justify-center mb-4 md:mb-0">
-                        <div className="h-12 w-12 rounded-full bg-primary text-white flex items-center justify-center font-bold">
-                          {step.id}
-                        </div>
-                      </div>
-
-                      {/* Right side (even steps) */}
-                      {index % 2 === 1 && (
-                        <div className="hidden md:flex w-1/2 pl-8">
-                          <Card className="w-full max-w-sm glass-card">
-                            <CardHeader>
-                              <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                  <step.icon className="h-5 w-5 text-primary" />
-                                </div>
-                                <div>
-                                  <CardTitle className="text-lg">{step.title}</CardTitle>
-                                  <CardDescription>{step.duration}</CardDescription>
-                                </div>
-                              </div>
-                            </CardHeader>
-                            <CardContent>
-                              <p className="text-sm text-muted-foreground">{step.description}</p>
-                            </CardContent>
-                          </Card>
-                        </div>
-                      )}
-
-                      {/* Mobile view */}
-                      <div className="md:hidden w-full">
-                        <Card className="glass-card">
-                          <CardHeader>
-                            <div className="flex items-center gap-3">
-                              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                <step.icon className="h-5 w-5 text-primary" />
-                              </div>
-                              <div>
-                                <CardTitle className="text-lg">{step.title}</CardTitle>
-                                <CardDescription>{step.duration}</CardDescription>
-                              </div>
-                            </div>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-muted-foreground">{step.description}</p>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">{t.joinPage.roadmap.steps[step.id - 1]?.description || step.description}</p>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </div>
@@ -276,7 +220,8 @@ export function JoinPage() {
                       添加我们的maintainer，获取最新官方飞书群和一对一咨询
                     </a>
                   </CardDescription>
-                  <div className="mt-2 flex justify-center">
+                  <p className="mt-1 font-bold text-primary">加入下载飞书并扫码哦</p>
+                  <div className="mt-2 flex justify-center gap-3">
                     <a
                       href="https://www.feishu.cn/invitation/page/add_contact/?token=509lcd75-d319-41ee-9748-c202b40efa48&unique_id=svYaQwpsgXlyP2H56Oyssg=="
                       target="_blank"
@@ -284,6 +229,15 @@ export function JoinPage() {
                       className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90"
                     >
                       打开飞书邀请
+                    </a>
+                    <a
+                      href="https://www.feishu.cn/download"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-md border border-primary/60 text-primary px-4 py-2 hover:bg-primary/10"
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      下载飞书
                     </a>
                   </div>
                   <div className="mt-4 flex justify-center">

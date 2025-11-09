@@ -121,7 +121,7 @@ export function ContactPage() {
                   <CardHeader>
                     <h2 className="text-2xl font-bold mb-2">{t.contact.getInTouch}</h2>
                     <p className="text-muted-foreground">
-                      Fill out the form below and we'll get back to you as soon as possible.
+                      {t.contact.form.introText}
                     </p>
                   </CardHeader>
                   <CardContent>
@@ -207,9 +207,9 @@ export function ContactPage() {
                 {/* NEC官网上线申请表 */}
                 <Card className="glass-card">
                   <CardHeader>
-                    <h2 className="text-2xl font-bold mb-2">NEC官网上线申请</h2>
+                    <h2 className="text-2xl font-bold mb-2">{t.contact.application.title}</h2>
                     <p className="text-muted-foreground">
-                      申请加入NEC官网，展示您的项目和成果。
+                      {t.contact.application.description}
                     </p>
                   </CardHeader>
                   <CardContent>
@@ -227,7 +227,7 @@ export function ContactPage() {
                         rel="noopener noreferrer"
                         className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium"
                       >
-                        立即申请
+                        {t.contact.application.applyNow}
                       </a>
                     </div>
                   </CardContent>
@@ -241,7 +241,7 @@ export function ContactPage() {
                   <CardHeader>
                     <h2 className="text-2xl font-bold mb-2">{t.contact.contactInfo}</h2>
                     <p className="text-muted-foreground">
-                      You can also reach us through the following channels.
+                      {t.contact.channelsDescription}
                     </p>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -250,7 +250,7 @@ export function ContactPage() {
                         <MapPin className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Address</h3>
+                        <h3 className="font-semibold mb-1">{t.contact.infoLabels.address}</h3>
                         <p className="text-muted-foreground">{t.contact.info.address}</p>
                       </div>
                     </div>
@@ -260,7 +260,7 @@ export function ContactPage() {
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Phone</h3>
+                        <h3 className="font-semibold mb-1">{t.contact.infoLabels.phone}</h3>
                         <p className="text-muted-foreground">{t.contact.info.phone}</p>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export function ContactPage() {
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Email</h3>
+                        <h3 className="font-semibold mb-1">{t.contact.infoLabels.email}</h3>
                         <p className="text-muted-foreground">{t.contact.info.email}</p>
                       </div>
                     </div>
@@ -280,7 +280,7 @@ export function ContactPage() {
                         <Clock className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Office Hours</h3>
+                        <h3 className="font-semibold mb-1">{t.contact.infoLabels.hours}</h3>
                         <p className="text-muted-foreground">{t.contact.info.hours}</p>
                       </div>
                     </div>
@@ -292,7 +292,7 @@ export function ContactPage() {
                   <CardHeader>
                     <h2 className="text-2xl font-bold mb-2">{t.contact.followUs}</h2>
                     <p className="text-muted-foreground">
-                      Stay connected with us on social media for updates and news.
+                      {t.contact.followUsDescription}
                     </p>
                   </CardHeader>
                   <CardContent>
@@ -308,7 +308,9 @@ export function ContactPage() {
                             className="bg-primary/10 hover:bg-primary/20 p-3 rounded-lg transition-all duration-200 hover-lift group"
                           >
                             <Icon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform duration-200" />
-                            <span className="sr-only">{social.label}</span>
+                            <span className="sr-only">
+                              {social.label === 'Gitee' ? t.contact.social.gitee : social.label === 'WeChat' ? t.contact.social.wechat : t.contact.social.email}
+                            </span>
                           </a>
                         )
                       })}
