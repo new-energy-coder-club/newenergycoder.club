@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
+import wechatImg from '@/assets/wechat.png'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import { AmapLocation } from '@/components/ui/amap-location'
@@ -29,14 +30,7 @@ const GiteeIcon = ({ className }: { className?: string }) => (
 )
 
 const WechatIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.882-1.932 7.621-.55-.302-2.676-2.476-4.81-5.722-6.04C10.138 2.462 9.420 2.188 8.691 2.188z" fill="#07C160"/>
-    <path d="M23.999 14.6c0-3.573-3.248-6.425-7.249-6.425S9.5 11.027 9.5 14.6c0 3.564 3.249 6.426 7.25 6.426a8.863 8.863 0 0 0 2.5-.361c.21-.059.427-.027.617.086l1.332.78c.055.033.109.044.162.044.118 0 .214-.093.214-.207a.199.199 0 0 0-.035-.109l-.273-1.094a.436.436 0 0 1 .157-.492C22.819 18.918 23.999 16.82 23.999 14.6z" fill="#07C160"/>
-    <circle cx="6.827" cy="9.53" r=".951" fill="white"/>
-    <circle cx="10.559" cy="9.53" r=".951" fill="white"/>
-    <circle cx="14.75" cy="14.6" r=".794" fill="white"/>
-    <circle cx="18.999" cy="14.6" r=".794" fill="white"/>
-  </svg>
+  <img src={wechatImg} alt="WeChat" className={className ? `${className} object-contain` : 'object-contain'} style={{ width: 'auto' }} />
 )
 
 const socialLinks = [

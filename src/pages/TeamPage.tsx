@@ -257,15 +257,16 @@ export function TeamPage() {
 
   // 将长段说明文字按句分段，以提升可读性
   const renderDescriptionParagraphs = (text: string) => {
-    // 以中文句号为分隔，保留句号并按句渲染
+    // 以中英文常见句末符号为分隔，保留句末并按句渲染
     const sentences = text
-      .split(/(?<=。)\s*/)
+      .split(/(?<=[。.!?])\s+/)
       .map(s => s.trim())
       .filter(Boolean)
 
     const renderCurlyEmphasis = (t: string) => {
       const targetPhrase = "如何让世界更高效、更清洁";
       const actionSentenceRegex = /^我们，是一个行动动词/;
+      const englishFuturePhrase = "a greener, fairer, and smarter future";
 
       if (t.includes(targetPhrase)) {
         const parts = t.split(targetPhrase);
@@ -293,6 +294,18 @@ export function TeamPage() {
         );
       }
 
+      // 英文短语强调：将 "a greener, fairer, and smarter future" 加粗并设置主题色
+      if (t.includes(englishFuturePhrase)) {
+        const parts = t.split(englishFuturePhrase);
+        return (
+          <>
+            {renderBracketStyled(parts[0])}
+            <span className="text-primary font-bold">{englishFuturePhrase}</span>
+            {renderBracketStyled(parts.slice(1).join(englishFuturePhrase))}
+          </>
+        );
+      }
+
       return renderBracketStyled(t);
     }
 
@@ -309,6 +322,10 @@ export function TeamPage() {
       // 用户要求：“我们，是一个行动动词。” 改为主题色的加粗文字
       if (/^我们，是一个行动动词/.test(s)) {
         cls = "mt-2 leading-relaxed tracking-wide font-bold text-primary"
+      }
+      // 英文版本：将 “Yet we are the same — we believe in technology for good, in the power of youth, and that sustainability is not a choice but a necessity.” 这句加粗
+      if (/^Yet we are the same — we believe in technology for good/.test(s)) {
+        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
       }
 
       return (
@@ -383,6 +400,17 @@ export function TeamPage() {
           <div className="mt-4"></div>
           <div className="text-xl text-muted-foreground max-w-3xl mx-auto dark:text-gray-200 drop-shadow-md">
             {renderDescriptionParagraphs(t.team.description)}
+          </div>
+          {/* 用户要求：在 img 下面增加图片 https://darrenpig.github.io/files/news10.jpg */}
+          <div className="mt-6 max-w-4xl mx-auto">
+            <img
+              src="https://darrenpig.github.io/files/news10.jpg"
+              alt="社区展示图"
+              className="w-full h-auto object-contain rounded-lg shadow-sm"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = TeamPhoto2
+              }}
+            />
           </div>
         </div>
 

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { CheckCircle, Users, Code, Heart, MessageCircle, ArrowRight, Calendar, Target, Send, Download } from 'lucide-react'
+import { CheckCircle, Users, Code, Heart, ArrowRight, Calendar, Target, Send, Download } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
-import WeChatIcon from '@/wechat.svg?url'
+import WeChatIcon from '@/assets/wechat.png?url'
 import FeishuIcon from '@/feishu.png?url'
 import DarrenPigFeishu from '@/DarrenPig_Feishu.png?url'
 
@@ -92,7 +92,7 @@ export function JoinPage() {
               <Card className="glass-card border-primary/20">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <MessageCircle className="h-8 w-8 text-primary" />
+                    <img src={WeChatIcon} alt="WeChat" className="h-8 w-auto object-contain" />
                   </div>
                   <CardTitle className="text-2xl">{t.joinPage.wechat.title}</CardTitle>
                   <CardDescription>
@@ -100,13 +100,13 @@ export function JoinPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="text-center space-y-4">
+                  <div className="flex flex-wrap items-center justify-center gap-4">
                     <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-lg">
                       <span className="font-mono text-lg font-bold text-primary">{feishuGroupId}</span>
                     </div>
                     <Button 
                        onClick={copyToClipboard}
-                       className="w-full sm:w-auto"
+                       className="w-auto"
                        variant={copied ? "secondary" : "default"}
                      >
                        {copied ? t.joinPage.wechat.copied : t.joinPage.wechat.copyButton}
@@ -249,14 +249,14 @@ export function JoinPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="text-center space-y-4">
+                  <div className="flex flex-wrap items-center justify-center gap-4">
                     <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-lg">
-                      <img src={WeChatIcon} alt="WeChat" className="h-7 w-6 mr-2" />
+                      <img src={WeChatIcon} alt="WeChat" className="h-7 w-auto object-contain mr-2" />
                       <span className="font-mono text-lg font-bold text-primary">{feishuGroupId}</span>
                     </div>
                     <Button 
                       onClick={copyToClipboard}
-                      className="w-full sm:w-auto"
+                      className="w-auto"
                       variant={copied ? "secondary" : "default"}
                     >
                       {copied ? "已复制 ✓" : "复制maintainer 微信"}

@@ -37,7 +37,7 @@ export function Header() {
   ]
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center gap-8">
         <Link to="/" className="flex items-center gap-2">
           <Zap className="h-6 w-6 text-primary" />
           <span className="text-lg font-semibold tracking-tight truncate">
@@ -46,7 +46,7 @@ export function Header() {
         </Link>
         
         {isMobile ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto">
             <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>

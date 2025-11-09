@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Zap, Mail, MapPin } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
+import bonjourIcon from '../../bonjour.ico'
+import wechatImg from '../../assets/wechat.png'
 
 // Custom icon components
 const GiteeIcon = ({ className }: { className?: string }) => (
@@ -9,16 +11,7 @@ const GiteeIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const WechatIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.882-1.932 7.621-.55-.302-2.676-2.476-4.81-5.722-6.04C10.138 2.462 9.420 2.188 8.691 2.188z" fill="#07C160"/>
-    <path d="M23.999 14.6c0-3.573-3.248-6.425-7.249-6.425S9.5 11.027 9.5 14.6c0 3.564 3.249 6.426 7.25 6.426a8.863 8.863 0 0 0 2.5-.361c.21-.059.427-.027.617.086l1.332.78c.055.033.109.044.162.044.118 0 .214-.093.214-.207a.199.199 0 0 0-.035-.109l-.273-1.094a.436.436 0 0 1 .157-.492C22.819 18.918 23.999 16.82 23.999 14.6z" fill="#07C160"/>
-    <circle cx="6.827" cy="9.53" r=".951" fill="white"/>
-    <circle cx="10.559" cy="9.53" r=".951" fill="white"/>
-    <circle cx="14.75" cy="14.6" r=".794" fill="white"/>
-    <circle cx="18.999" cy="14.6" r=".794" fill="white"/>
-  </svg>
-)
+// Deprecated inline SVG replaced by image asset usage
 
 export function Footer() {
   const { t } = useLanguage()
@@ -42,7 +35,7 @@ export function Footer() {
               Gitee No.24 机器人开源仓库
             </a>
           </div>
-          <p className="text-muted-foreground text-sm mt-2">
+          <p className="text-primary font-bold text-sm mt-2">
             {t.footer.description}
           </p>
           <div className="flex items-center gap-4 mt-4">
@@ -50,12 +43,16 @@ export function Footer() {
               <GiteeIcon className="h-5 w-5" />
             </a>
             <a href="#" className="text-muted-foreground hover:text-foreground">
-              <WechatIcon className="h-5 w-5" />
+              <img src={wechatImg} alt="WeChat" className="h-5 w-auto object-contain" />
             </a>
             <a href="mailto:22230635@czu.cn" className="text-muted-foreground hover:text-foreground">
               <Mail className="h-5 w-5" />
             </a>
           </div>
+          <a href="https://bonjour.bio/darrenpig" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground mt-2 inline-flex items-center gap-2">
+            <img src={bonjourIcon} alt="Bonjour" className="h-5 w-5" />
+            <span>Bonjour</span>
+          </a>
 
         </div>
         
@@ -91,6 +88,14 @@ export function Footer() {
             <div className="flex items-start gap-2">
               <Mail className="h-4 w-4 mt-0.5 shrink-0" />
               <span>22230635@czu.cn</span>
+            </div>
+            <div className="flex items-start gap-2 mt-2">
+              <span>Tel: +86 158 96000818</span>
+            </div>
+            <div className="flex items-start gap-2 mt-2">
+              <img src={wechatImg} alt="WeChat" className="h-4 w-auto object-contain mt-0.5 shrink-0" />
+              <span>Wechat:</span>
+              <span className="ml-1">Pei-pei-Zhu-Pig</span>
             </div>
           </div>
         </div>

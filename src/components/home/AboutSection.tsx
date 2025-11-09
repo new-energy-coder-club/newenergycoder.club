@@ -20,7 +20,7 @@ export function AboutSection() {
                   {t.about.title}
                 </h2>
                 <div className="mt-6 max-w-4xl mx-auto">
-                  <p className="leading-relaxed text-left">
+                  <p className="leading-relaxed text-left font-bold text-primary">
                     {t.about.paragraph1}
                   </p>
                 </div>
