@@ -146,18 +146,20 @@ export function ProjectsPage() {
       {/* 主容器div - 设置最小高度为全屏，添加从背景色到强调色的渐变背景 */}
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
       {/* Hero Section - 页面顶部英雄区域 */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 relative overflow-hidden">
         {/* 背景装饰div - 创建径向渐变背景效果，绝对定位覆盖整个section */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_75%_75%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
         
         {/* 内容容器div - 相对定位，z-index为10确保在背景之上，文本居中对齐 */}
-        <div className="container relative z-10 text-center">
-          <h1 className="text-4xl font-bold gradient-text sm:text-5xl lg:text-6xl mb-6">
-            {t.projects.title}
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {t.projects.description}
-          </p>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              {t.projects.title}
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              {t.projects.description}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -171,61 +173,20 @@ export function ProjectsPage() {
 
 
       {/* Filter Section - 筛选器区域 */}
-      <section className="py-4 border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40">
-        {/* 筛选器容器div - 使用container类进行响应式布局 */}
-        <div className="container">
-          {/* 筛选器内容div - 垂直排列，间距为4 */}
-          <div className="flex flex-col gap-4">
-            {/* Toggle Button - 切换按钮区域 */}
-             {/* 标题和切换按钮容器div - 水平排列，两端对齐，垂直居中 */}
-             <div className="flex justify-between items-center">
-               <h3 className="text-lg font-semibold">{t.projects.filterTitle}</h3>
-               {/* 筛选器展开/收起按钮 - 幽灵样式，小尺寸，带悬停效果和过渡动画 */}
-               <Button
-                 variant="ghost"
-                 size="sm"
-                 onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                 className="hover-lift transition-all duration-200"
-               >
-                 {isFilterExpanded ? (
-                   <>
-                     <ChevronUp className="h-4 w-4 mr-2" />
-                     {t.projects.collapseFilters}
-                   </>
-                 ) : (
-                   <>
-                     <ChevronDown className="h-4 w-4 mr-2" />
-                     {t.projects.expandFilters}
-                   </>
-                 )}
-               </Button>
-             </div>
-            
-            {/* Collapsible Filter Content - 可折叠的筛选器内容 */}
-            {/* 可折叠内容容器div - 根据展开状态动态调整最大高度和透明度，带过渡动画 */}
-            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
-              isFilterExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            }`}>
-              {/* 筛选器内容div - 垂直排列，间距为6，底部内边距为4 */}
-              <div className="flex flex-col gap-6 pb-4">
-                {/* 筛选按钮容器div - 水平排列可换行，间距为2，居中对齐（小屏幕）或左对齐（大屏幕） */}
-                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                  {categoryFilters.map((filter) => (
-                    /* 分类筛选按钮 - 根据选中状态切换样式，带悬停效果和过渡动画 */
-                    <Button
-                      key={filter.key}
-                      variant={selectedCategory === filter.key ? 'default' : 'outline'}
-                      onClick={() => setSelectedCategory(filter.key)}
-                      className="hover-lift transition-all duration-200"
-                    >
-                      {t.projects[filter.labelKey]}
-                    </Button>
-                  ))}
-                </div>
-                
-
-              </div>
-            </div>
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categoryFilters.map((filter) => (
+              <Button
+                key={filter.key}
+                variant={selectedCategory === filter.key ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setSelectedCategory(filter.key)}
+                className="transition-all duration-200 hover-lift"
+              >
+                {t.projects[filter.labelKey]}
+              </Button>
+            ))}
           </div>
         </div>
       </section>

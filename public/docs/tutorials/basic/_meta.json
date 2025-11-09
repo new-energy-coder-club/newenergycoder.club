@@ -1,0 +1,19 @@
+{
+  "title": "基础教程",
+  "description": "编程基础知识和入门教程",
+  "order": 1,
+  "items": [
+    {
+      "slug": "introduction",
+      "title": "编程入门",
+      "description": "编程基础概念和思维方式",
+      "order": 1
+    },
+    {
+      "slug": "fundamentals",
+      "title": "编程基础",
+      "description": "变量、函数、控制结构等基础知识",
+      "order": 2
+    }
+  ]
+}

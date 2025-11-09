@@ -13,6 +13,8 @@ style: "modern-tech"
 theme: "green-energy"
 ---
 
+![NEC Home](../../../src/NEC-home.gif)
+
 <div class="gradient-bg-primary p-8 rounded-lg mb-8">
   <h1 class="gradient-text text-4xl font-bold mb-4">🌱 新能源编程入门</h1>
   <p class="text-white/90 text-lg">探索新能源编程的无限可能，从零开始构建可持续的技术未来</p>

@@ -1,0 +1,25 @@
+{
+  "title": "教程指南",
+  "description": "深入的编程教程和实践指南",
+  "order": 2,
+  "subcategories": [
+    {
+      "slug": "basic",
+      "title": "基础教程",
+      "description": "编程基础知识和入门教程",
+      "order": 1
+    },
+    {
+      "slug": "intermediate",
+      "title": "进阶教程",
+      "description": "中级编程概念和实践技巧",
+      "order": 2
+    },
+    {
+      "slug": "advanced",
+      "title": "高级教程",
+      "description": "高级编程技术和架构设计",
+      "order": 3
+    }
+  ]
+}

@@ -335,3 +335,6 @@ export const sponsors: TeamMember[] = [
     github: 'https://oshwhub.com/explore'
   }
 ];
+
+// NEC Home GIF 资源引用
+export const necHomeGif = '/src/NEC-home.gif';

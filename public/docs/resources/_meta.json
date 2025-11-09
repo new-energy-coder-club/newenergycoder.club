@@ -1,0 +1,25 @@
+{
+  "title": "资源库",
+  "description": "工具、库和参考资料",
+  "order": 3,
+  "items": [
+    {
+      "slug": "tools",
+      "title": "开发工具",
+      "description": "推荐的开发工具和IDE配置",
+      "order": 1
+    },
+    {
+      "slug": "libraries",
+      "title": "库和框架",
+      "description": "常用的编程库和框架介绍",
+      "order": 2
+    },
+    {
+      "slug": "references",
+      "title": "参考资料",
+      "description": "学习资源、文档和参考链接",
+      "order": 3
+    }
+  ]
+}

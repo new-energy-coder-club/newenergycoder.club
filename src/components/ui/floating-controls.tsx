@@ -267,12 +267,19 @@ export function FloatingControls({
       setLastScrollY(currentScrollY)
     }
 
-    // 添加滚动事件监听器
-    window.addEventListener('scroll', handleScroll)
+    // 检查是否在浏览器环境中
+    if (typeof window === 'undefined') return;
+    
+    // 安全地添加滚动事件监听器
+    if (window && typeof window.addEventListener === 'function') {
+      window.addEventListener('scroll', handleScroll)
+    }
     
     // 清理函数：移除事件监听器和清除定时器
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (window && typeof window.removeEventListener === 'function') {
+        window.removeEventListener('scroll', handleScroll)
+      }
       if (scrollTimeout) {
         clearTimeout(scrollTimeout)
       }

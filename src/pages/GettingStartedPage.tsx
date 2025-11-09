@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -408,16 +409,20 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <Users className="mr-2 h-5 w-5" />
-              加入俱乐部
+            <Button size="lg" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
+              <Link to="/join">
+                <Users className="mr-2 h-5 w-5" />
+                加入俱乐部
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-primary/5 transition-all duration-300">
-              <Code className="mr-2 h-5 w-5" />
-              查看项目
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-primary/5 transition-all duration-300" asChild>
+              <Link to="/projects">
+                <Code className="mr-2 h-5 w-5" />
+                查看项目
+              </Link>
             </Button>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.newenergycoder.club/" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-5 w-5" />
                 访问官网
               </a>
@@ -631,7 +636,7 @@ export default function GettingStartedPage() {
                   <h3 className="font-semibold mb-2">GitHub 仓库</h3>
                   <p className="text-sm text-muted-foreground mb-4">查看项目源码和贡献代码</p>
                   <Button variant="outline" size="sm" asChild>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer">
                       访问 GitHub
                     </a>
                   </Button>
@@ -690,8 +695,7 @@ export default function GettingStartedPage() {
         </div>
       </section>
       
-      {/* Floating Controls */}
-      <FloatingControls />
+
     </div>
   )
 }

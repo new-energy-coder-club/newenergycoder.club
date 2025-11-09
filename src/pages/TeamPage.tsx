@@ -1,7 +1,6 @@
-import { Header } from '@/components/layout/Header'
 import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
-import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
+import React from 'react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -13,6 +12,8 @@ import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { ImageProxy } from '@/components/ui/image-proxy'
+import { Header } from '@/components/layout/Header'
 import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg?url'
 import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
@@ -67,10 +68,11 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
-          <AvatarImage 
+          <ImageProxy 
             src={member.image} 
             alt={member.name}
             className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+            fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
           />
           <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
             {member.name.slice(0, 2)}
@@ -218,10 +220,11 @@ function PhotoCard({ src, alt }: PhotoCardProps) {
     <Card className={CARD_STYLES.photo}>
       <CardContent className="p-0">
         <div className="relative overflow-hidden">
-          <img
+          <ImageProxy
             src={src}
             alt={alt}
             className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+            fallbackSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
         </div>
@@ -338,7 +341,7 @@ export function TeamPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <div className="flex-1 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Background with team photos */}
         <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
@@ -633,14 +636,8 @@ export function TeamPage() {
           </div>
           <ThreeJsAnimation />
         </div>
-
-        <FloatingControls 
-          showAspectRatio={true}
-          aspectRatio={selectedRatio}
-          onAspectRatioChange={setSelectedRatio}
-        />
       </div>
-      </main>
+    </div>
     </div>
   )
 }

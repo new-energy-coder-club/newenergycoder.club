@@ -33,47 +33,41 @@ export const DocumentPage: React.FC = () => {
   const documentCache = DocumentCache.getInstance();
 
   useEffect(() => {
-    if (!category || !slug) {
-      setError('Invalid document parameters');
-      return;
-    }
-
-    loadDocument();
-  }, [category, subcategory, slug]);
-
-  const loadDocument = async () => {
-    if (!category || !slug) return;
-
-    setLoadState('loading');
-    setError(null);
-
-    try {
-      // 首先尝试从缓存获取
-      const cachedDoc = documentCache.get(category, slug, subcategory);
-      if (cachedDoc) {
-        setDocument(cachedDoc);
-        setLoadState('success');
-        return;
-      }
-
-      // 从服务器加载
-      const result = await documentLoader.loadDocument(category, slug, subcategory);
+    const loadDocument = async () => {
+      if (!category || !slug) return;
       
-      if (result.state === 'success' && result.data) {
-        setDocument(result.data);
-        setLoadState('success');
-        // 缓存文档
-        documentCache.set(category, slug, result.data, subcategory);
-      } else {
-        setError(result.error || 'Failed to load document');
+      setLoadState('loading');
+      setError(null);
+      
+      try {
+        // 检查缓存
+        const cachedDoc = documentCache.get(category, slug, subcategory);
+        if (cachedDoc) {
+          setDocument(cachedDoc);
+          setLoadState('success');
+          return;
+        }
+        
+        const result = await documentLoader.loadDocument(category, slug, subcategory);
+        if (result.state === 'success' && result.data) {
+          setDocument(result.data);
+          setLoadState('success');
+          documentCache.set(category, slug, result.data, subcategory);
+        } else {
+          setError(result.error || 'Failed to load document');
+          setLoadState('error');
+        }
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
+        setError(errorMessage);
         setLoadState('error');
       }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred';
-      setError(errorMessage);
-      setLoadState('error');
+    };
+    
+    if (category && slug) {
+      loadDocument();
     }
-  };
+  }, [category, subcategory, slug]);
 
   const handleBack = () => {
     navigate(-1);
@@ -95,13 +89,13 @@ export const DocumentPage: React.FC = () => {
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
       case 'beginner':
-        return 'bg-green-100 text-green-800';
+        return 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary';
       case 'intermediate':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent';
       case 'advanced':
-        return 'bg-red-100 text-red-800';
+        return 'bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-muted text-muted-foreground';
     }
   };
 
@@ -136,8 +130,8 @@ export const DocumentPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300">正在加载文档...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">正在加载文档...</p>
         </div>
       </div>
     );
@@ -147,14 +141,14 @@ export const DocumentPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
-          <div className="text-red-500 text-6xl mb-4">📄</div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">文档未找到</h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
+          <div className="text-destructive text-6xl mb-4">📄</div>
+          <h1 className="text-2xl font-bold text-foreground mb-2">文档未找到</h1>
+          <p className="text-muted-foreground mb-6">
             {error || '抱歉，请求的文档不存在或暂时无法访问。'}
           </p>
           <button
             onClick={handleBack}
-            className="inline-flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+            className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
           >
             <ChevronLeft className="w-4 h-4 mr-2" />
             返回上一页
@@ -165,14 +159,14 @@ export const DocumentPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* 头部导航 */}
-      <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-card shadow-sm border-b border-border">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex justify-between items-start mb-4">
             <button
               onClick={handleBack}
-              className="inline-flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors"
             >
               <ChevronLeft className="w-4 h-4 mr-1" />
               返回
@@ -181,7 +175,7 @@ export const DocumentPage: React.FC = () => {
           </div>
           
           {/* 面包屑导航 */}
-          <nav className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <nav className="text-sm text-muted-foreground mb-2">
             <span>文档</span>
             <span className="mx-2">/</span>
             <span className="capitalize">{category}</span>
@@ -192,28 +186,28 @@ export const DocumentPage: React.FC = () => {
               </>
             )}
             <span className="mx-2">/</span>
-            <span className="text-gray-900 dark:text-white">{document.title}</span>
+            <span className="text-foreground">{document.title}</span>
           </nav>
         </div>
       </div>
 
       {/* 主要内容 */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-card rounded-xl shadow-lg overflow-hidden">
           {/* 文档头部 */}
-          <div className="px-8 py-6 border-b border-gray-200 dark:border-gray-700">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <div className="px-8 py-6 border-b border-border">
+            <h1 className="text-3xl font-bold text-card-foreground mb-4">
               {document.title}
             </h1>
             
             {document.description && (
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-lg text-muted-foreground mb-6">
                 {document.description}
               </p>
             )}
 
             {/* 元信息 */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               {document.frontMatter.author && (
                 <div className="flex items-center">
                   <User className="w-4 h-4 mr-1" />
@@ -240,12 +234,12 @@ export const DocumentPage: React.FC = () => {
             {/* 标签 */}
             {document.frontMatter.tags && document.frontMatter.tags.length > 0 && (
               <div className="flex items-center gap-2 mt-4">
-                <Tag className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                <Tag className="w-4 h-4 text-muted-foreground" />
                 <div className="flex flex-wrap gap-2">
                   {document.frontMatter.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                      className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
                     >
                       {tag}
                     </span>
@@ -257,7 +251,7 @@ export const DocumentPage: React.FC = () => {
 
           {/* 文档内容 */}
           <div className="px-8 py-6">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-blockquote:text-foreground prose-a:text-primary hover:prose-a:text-primary/80">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -266,40 +260,40 @@ export const DocumentPage: React.FC = () => {
                     <HeaderWithAnchor 
                       level={1} 
                       difficulty={mapDifficultyToEnum(document.frontMatter.difficulty)}
-                      className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4 first:mt-0"
+                      className="text-2xl font-bold text-foreground mt-8 mb-4 first:mt-0"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h2: ({ children, ...props }) => (
                     <HeaderWithAnchor 
                       level={2} 
                       difficulty={mapDifficultyToEnum(document.frontMatter.difficulty)}
-                      className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3"
+                      className="text-xl font-semibold text-foreground mt-6 mb-3"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h3: ({ children, ...props }) => (
                     <HeaderWithAnchor 
                       level={3} 
                       difficulty={mapDifficultyToEnum(document.frontMatter.difficulty)}
-                      className="text-lg font-medium text-gray-900 dark:text-white mt-4 mb-2"
+                      className="text-lg font-medium text-foreground mt-4 mb-2"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h4: ({ children, ...props }) => (
                     <HeaderWithAnchor 
                       level={4} 
                       difficulty={mapDifficultyToEnum(document.frontMatter.difficulty)}
-                      className="text-base font-medium text-gray-900 dark:text-white mt-3 mb-2"
+                      className="text-base font-medium text-foreground mt-3 mb-2"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h5: ({ children, ...props }) => (
@@ -309,7 +303,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-sm font-medium text-gray-900 dark:text-white mt-2 mb-1"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   h6: ({ children, ...props }) => (
@@ -319,7 +313,7 @@ export const DocumentPage: React.FC = () => {
                       className="text-xs font-medium text-gray-900 dark:text-white mt-2 mb-1"
                       {...props}
                     >
-                      {children}
+                      {children as React.ReactNode}
                     </HeaderWithAnchor>
                   ),
                   // 自定义代码块样式
@@ -382,9 +376,7 @@ export const DocumentPage: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* 悬浮控制组件 */}
-      <FloatingControls />
+
     </div>
   );
 };

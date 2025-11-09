@@ -11,3 +11,5 @@ export const translations: Record<'en' | 'zh', Translations> = {
   en: enTranslations,
   zh: zhTranslations,
 };
+
+export const defaultLanguage = 'en' as const;

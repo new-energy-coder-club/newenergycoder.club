@@ -1,6 +1,6 @@
 import { maintainers, developers, designers, contributors, sponsors } from '../constants/team';
 import { Translations } from '../types/translations';
-import { learningTranslations } from './learning';
+import { learningTranslations } from '../constants/learning';
 
 export const enTranslations: Translations = {
   join: {

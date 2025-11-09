@@ -397,6 +397,16 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* 页面头部 */}
       <div className="mb-8">
+        {/* NEC Home 图片 */}
+        <div className="mb-6 text-center">
+          <img 
+            src="/src/NEC-home.gif" 
+            alt="NEC Home" 
+            className="mx-auto max-w-full h-auto rounded-lg shadow-lg"
+            style={{ maxHeight: '300px' }}
+          />
+        </div>
+        
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
           {t('learning.resources.title')}
         </h1>

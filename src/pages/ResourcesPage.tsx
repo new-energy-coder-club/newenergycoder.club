@@ -7,6 +7,7 @@ import { ExternalLink, Download, Search, Star, BookOpen, Code, Wrench, Graduatio
 import { useTranslation } from '@/contexts/LanguageContext'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type AspectRatio } from '@/components/ui/floating-controls'
+import { ImageProxy } from '@/components/ui/image-proxy'
 
 type ResourceCategory = 'all' | 'tutorials' | 'tools' | 'books' | 'courses' | 'documentation'
 type ResourceDifficulty = 'beginner' | 'intermediate' | 'advanced'
@@ -1262,9 +1263,18 @@ export function ResourcesPage() {
       timeoutId = setTimeout(handleScroll, 10)
     }
 
-    window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+    // 检查是否在浏览器环境中
+    if (typeof window === 'undefined') return;
+    
+    // 安全地添加事件监听器
+    if (window && typeof window.addEventListener === 'function') {
+      window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+    }
+    
     return () => {
-      window.removeEventListener('scroll', debouncedHandleScroll)
+      if (window && typeof window.removeEventListener === 'function') {
+        window.removeEventListener('scroll', debouncedHandleScroll)
+      }
       clearTimeout(timeoutId)
     }
   }, [lastScrollY])
@@ -1292,140 +1302,56 @@ export function ResourcesPage() {
     >
       <div className="min-h-screen bg-gradient-to-br from-background to-accent/5">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 to-accent/10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_75%_75%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
+        <section className="py-16 lg:py-20 bg-gradient-to-r from-primary/5 to-accent/5 relative">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
           
-          <div className="container relative z-10 text-center">
-            <h1 className="text-4xl font-bold gradient-text sm:text-5xl lg:text-6xl mb-6">
+          <div className="container relative text-center">
+            <h1 className="text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl mb-4">
               {t.resources.title}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.resources.description}
             </p>
           </div>
         </section>
 
         {/* Filter Section */}
-        <section 
-          ref={filterRef}
-          className={`py-6 border-b bg-background/95 backdrop-blur-sm sticky top-16 z-40 transition-all duration-500 ease-in-out transform ${
-            isFilterVisible 
-              ? 'translate-y-0 opacity-100 scale-100' 
-              : '-translate-y-full opacity-0 scale-95'
-          }`}
-          style={{
-            transformOrigin: 'top center',
-            willChange: 'transform, opacity'
-          }}
-        >
+        <section className="py-6 border-b bg-background/95 backdrop-blur-sm sticky top-16 z-40">
           <div className="container">
-            {/* Integrated Search and Controls */}
-            <div className="space-y-4">
-              {/* Top Row: Search, Sort, and Toggle */}
-              <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                {/* Left: Search Bar */}
-                <div className="flex-1 max-w-md relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                  <Input
-                    type="text"
-                    placeholder={t.resources.searchPlaceholder}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40"
-                  />
-                </div>
-                
-                {/* Right: Sort Controls and Filter Toggle */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <Badge variant="secondary" className="text-xs">
-                    {filteredResources.length} 个资源
-                  </Badge>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-muted-foreground">{t.resources.sortBy}:</span>
-                    <select 
-                      value={sortBy} 
-                      onChange={(e) => setSortBy(e.target.value as 'rating' | 'title' | 'difficulty' | 'type')}
-                      className="px-3 py-1 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                    >
-                      <option value="rating">{t.resources.sortByRating}</option>
-                      <option value="title">{t.resources.sortByTitle}</option>
-                      <option value="difficulty">{t.resources.sortByDifficulty}</option>
-                      <option value="type">{t.resources.sortByType}</option>
-                    </select>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-muted-foreground">{t.resources.sortOrder}:</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                      className="h-8 px-3 text-xs"
-                    >
-                      {sortOrder === 'desc' ? `↓ ${t.resources.descending}` : `↑ ${t.resources.ascending}`}
-                    </Button>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors h-8 px-3 text-xs"
-                  >
-                    筛选
-                    {isFilterExpanded ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4">
+              <div className="flex-1 max-w-md relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  type="text"
+                  placeholder={t.resources.searchPlaceholder}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40"
+                />
               </div>
-              
-
+              <Badge variant="secondary" className="text-xs">
+                {filteredResources.length} 个资源
+              </Badge>
             </div>
-            {/* Collapsible Filter Content */}
-             <div className={`overflow-hidden transition-all duration-500 ease-in-out transform ${
-               isFilterExpanded 
-                 ? 'max-h-96 opacity-100 translate-y-0' 
-                 : 'max-h-0 opacity-0 -translate-y-2'
-             }`}>
-              <div className="space-y-4 pt-4 border-t border-border/30">
-                {/* Category Filter Buttons */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-                  {categoryFilters.map((filter) => {
-                    const Icon = filter.icon
-                    const isActive = selectedCategory === filter.key
-                    return (
-                      <Button
-                        key={filter.key}
-                        variant={isActive ? 'default' : 'outline'}
-                        onClick={() => setSelectedCategory(filter.key)}
-                        className={`hover-lift transition-all duration-200 flex items-center justify-center gap-2 h-10 text-xs ${
-                          isActive ? 'shadow-lg scale-105' : 'hover:scale-105'
-                        }`}
-                      >
-                        <Icon className="h-3 w-3" />
-                        <span className="hidden sm:inline">{t.resources[filter.labelKey]}</span>
-                      </Button>
-                    )
-                  })}
-                </div>
-                
-                {/* Quick Stats */}
-                <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>免费资源: {mockResources.filter(r => r.type === 'free').length}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>付费资源: {mockResources.filter(r => r.type === 'paid').length}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>高评分: {mockResources.filter(r => r.rating >= 4.5).length}</span>
-                  </div>
-                </div>
-              </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+              {categoryFilters.map((filter) => {
+                const Icon = filter.icon
+                const isActive = selectedCategory === filter.key
+                return (
+                  <Button
+                    key={filter.key}
+                    variant={isActive ? 'default' : 'outline'}
+                    onClick={() => setSelectedCategory(filter.key)}
+                    className={`transition-all duration-200 flex items-center justify-center gap-2 h-10 text-xs ${
+                      isActive ? 'shadow-lg' : ''
+                    }`}
+                  >
+                    <Icon className="h-3 w-3" />
+                    <span className="hidden sm:inline">{t.resources[filter.labelKey]}</span>
+                  </Button>
+                )
+              })}
             </div>
           </div>
         </section>

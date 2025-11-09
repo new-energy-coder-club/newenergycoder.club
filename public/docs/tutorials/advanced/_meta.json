@@ -1,0 +1,19 @@
+{
+  "title": "高级教程",
+  "description": "高级编程技术和架构设计",
+  "order": 3,
+  "items": [
+    {
+      "slug": "optimization",
+      "title": "性能优化",
+      "description": "代码优化、性能调优和资源管理",
+      "order": 1
+    },
+    {
+      "slug": "architecture",
+      "title": "系统架构",
+      "description": "软件架构设计和系统设计原则",
+      "order": 2
+    }
+  ]
+}

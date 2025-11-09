@@ -163,7 +163,7 @@ const practiceCategory: TrainingCategory = {
       title: 'IoT智能气象站项目',
       description: '基于ESP32的完整IoT项目，包含传感器、云端和移动应用',
       type: ResourceType.PRACTICE,
-      url: 'https://github.com/newenergycoder/iot-weather-station',
+      url: 'https://github.com/Darrenpig/new_energy_coder_club',
       difficulty: DifficultyLevel.MEDIUM,
       estimatedHours: 30,
       isFree: true,
@@ -177,7 +177,7 @@ const practiceCategory: TrainingCategory = {
       title: '简单有限元求解器',
       description: '用Python实现的2D有限元求解器项目',
       type: ResourceType.PRACTICE,
-      url: 'https://github.com/newenergycoder/simple-fem-solver',
+      url: 'https://github.com/Darrenpig/new_energy_coder_club',
       difficulty: DifficultyLevel.HARD,
       estimatedHours: 50,
       isFree: true,
@@ -191,7 +191,7 @@ const practiceCategory: TrainingCategory = {
       title: 'Qt多媒体播放器',
       description: '使用Qt开发的跨平台多媒体播放器',
       type: ResourceType.PRACTICE,
-      url: 'https://github.com/newenergycoder/qt-media-player',
+      url: 'https://github.com/Darrenpig/new_energy_coder_club',
       difficulty: DifficultyLevel.MEDIUM,
       estimatedHours: 25,
       isFree: true,
@@ -205,7 +205,7 @@ const practiceCategory: TrainingCategory = {
       title: '设计师作品集网站',
       description: '响应式设计师作品集网站模板',
       type: ResourceType.PRACTICE,
-      url: 'https://github.com/newenergycoder/designer-portfolio',
+      url: 'https://github.com/Darrenpig/new_energy_coder_club',
       difficulty: DifficultyLevel.EASY,
       estimatedHours: 20,
       isFree: true,
@@ -543,7 +543,7 @@ export const quickStartGuides: QuickStartGuide[] = [
       description: '通过定时器控制多个LED按顺序闪烁',
       difficulty: DifficultyLevel.EASY,
       estimatedHours: 2,
-      githubUrl: 'https://github.com/newenergycoder/stm32-led-demo'
+      githubUrl: 'https://github.com/Darrenpig/new_energy_coder_club'
     }
   },
   {
@@ -589,7 +589,7 @@ export const quickStartGuides: QuickStartGuide[] = [
       description: '使用有限元方法分析悬臂梁的自由振动',
       difficulty: DifficultyLevel.MEDIUM,
       estimatedHours: 4,
-      githubUrl: 'https://github.com/newenergycoder/beam-vibration-analysis'
+      githubUrl: 'https://github.com/Darrenpig/new_energy_coder_club'
     }
   },
   {
@@ -635,7 +635,7 @@ export const quickStartGuides: QuickStartGuide[] = [
       description: '设计一个现代化的天气预报应用界面',
       difficulty: DifficultyLevel.EASY,
       estimatedHours: 3,
-      githubUrl: 'https://github.com/newenergycoder/weather-app-design'
+      githubUrl: 'https://github.com/Darrenpig/new_energy_coder_club'
     }
   }
 ];

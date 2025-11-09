@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, Suspense } from 'react';
 import { cn } from '@/lib/utils';
 import { MarkdownPageProps, DEFAULT_MARKDOWN_CONFIG } from '@/types/markdown';
-import { MarkdownRenderer } from './MarkdownRenderer';
+const MarkdownRenderer = React.lazy(() => import('./MarkdownRenderer').then(module => ({ default: module.MarkdownRenderer })));
 
 
 
@@ -26,10 +26,19 @@ export function MarkdownPage({
   return (
     <div className={cn("flex flex-col h-full", className)}>
       <div className="flex-1 overflow-y-auto p-6">
-        <MarkdownRenderer
-          content={content}
-          config={config}
-        />
+        <Suspense fallback={
+          <div className="flex items-center justify-center h-64">
+            <div className="text-center">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-muted-foreground">加载Markdown渲染器中...</p>
+            </div>
+          </div>
+        }>
+          <MarkdownRenderer
+            content={content}
+            config={config}
+          />
+        </Suspense>
       </div>
     </div>
   );
