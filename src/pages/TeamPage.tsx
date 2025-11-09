@@ -26,7 +26,8 @@ import AmassLogo from '@/image/sponsor/Amass.png?url'
 import BenqLogo from '@/image/sponsor/benq-logo.png?url'
 import YibainaLogo from '@/image/sponsor/易百纳.png?url'
 import RCBBLogo from '@/RCBB.png?url'
-import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
+// 已移除Three.js，保留GIF版本动画组件
+import GifAnimation from '@/components/ui/GifAnimation'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -693,7 +694,7 @@ export function TeamPage() {
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
           </div>
-          <ThreeJsAnimation />
+        <GifAnimation />
         </div>
       </div>
     </div>

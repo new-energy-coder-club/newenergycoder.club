@@ -2,7 +2,7 @@ import React from 'react';
 import homeGifUrl from '../../NEC-home.gif';
 
 // 替换后的动画展示：使用 GIF 代替 Canvas
-export default function ThreeJsAnimation() {
+export default function GifAnimation() {
   return (
     <div className="container_distortion-T_UT23 w-full">
       <div className="content-rrUxd3">

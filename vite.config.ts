@@ -13,21 +13,6 @@ export default defineConfig({
     // 确保只加载单实例的 React，避免依赖中重复引入导致运行时异常
     dedupe: ["react", "react-dom"],
   },
-  // 稳定依赖预打包，避免 Radix 等依赖在开发模式下出现不一致
-  optimizeDeps: {
-    include: [
-      "react",
-      "react-dom",
-      "@radix-ui/react-tooltip",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-select",
-      "@radix-ui/react-tabs",
-      "@radix-ui/react-toast"
-    ],
-    // 排除 Node 内置模块，防止被不必要地预打包到浏览器运行环境
-    exclude: ["path", "fs", "crypto", "util"],
-  },
   server: {
     // 配置静态文件服务，允许访问docs目录
     fs: {
@@ -184,78 +169,8 @@ export default defineConfig({
           
           // 按使用频率和大小分组的vendor chunks - 更细粒度拆分
           if (id.includes('node_modules')) {
-            // 大型但不常变化的库
-            if (id.includes('typescript') || id.includes('terser')) {
-              return 'build-tools';
-            }
-            
-            // 测试相关库
-            if (id.includes('@testing-library') || id.includes('vitest') || id.includes('jsdom')) {
-              return 'testing-libs';
-            }
-            
-            // 类型定义文件
-            if (id.includes('@types/')) {
-              return 'type-definitions';
-            }
-            
-            // ESLint 相关
-            if (id.includes('eslint') || id.includes('globals')) {
-              return 'linting-tools';
-            }
-            
-            // PostCSS 和 Autoprefixer
-            if (id.includes('postcss') || id.includes('autoprefixer')) {
-              return 'css-processors';
-            }
-            
-            // Wrangler 和 Cloudflare 相关
-            if (id.includes('wrangler') || id.includes('cloudflare')) {
-              return 'cloudflare-tools';
-            }
-            
-            // 覆盖率工具
-            if (id.includes('coverage') || id.includes('c8') || id.includes('v8')) {
-              return 'coverage-tools';
-            }
-            
-            // 剩余的小型工具库按功能分类
-            if (id.includes('path') || id.includes('fs') || id.includes('util') || id.includes('crypto')) {
-              return 'node-utils';
-            }
-          
-            // 进一步细分大型依赖库
-            if (id.includes('lodash') || id.includes('ramda') || id.includes('underscore')) {
-              return 'utility-libs';
-            }
-            
-            // 日期处理库
-            if (id.includes('moment') || id.includes('dayjs') || id.includes('date-fns')) {
-              return 'date-libs';
-            }
-            
-            // HTTP 客户端
-            if (id.includes('axios') || id.includes('fetch') || id.includes('request')) {
-              return 'http-clients';
-            }
-            
-            // 表单处理
-            if (id.includes('formik') || id.includes('react-hook-form') || id.includes('yup')) {
-              return 'form-libs';
-            }
-            
-            // 图表库
-            if (id.includes('chart') || id.includes('d3') || id.includes('recharts')) {
-              return 'chart-libs';
-            }
-            
-            // 数据处理
-            if (id.includes('immutable') || id.includes('immer') || id.includes('normalizr')) {
-              return 'data-libs';
-            }
-            
-            // 其他未分类的小型依赖
-             return 'vendor-misc';
+            // 其余依赖交由默认策略处理，减少开发模式分块复杂度
+            return undefined;
           }
         },
       },
