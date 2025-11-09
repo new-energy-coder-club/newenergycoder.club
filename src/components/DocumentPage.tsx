@@ -26,8 +26,10 @@ function DocTaskListItem({ children, checked }: { children: React.ReactNode; che
       <input
         type="checkbox"
         checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        onChange={(e) => setIsChecked((e.target as HTMLInputElement).checked)}
         className="mt-1 rounded border-border cursor-pointer"
+        title="切换任务完成状态"
+        aria-label="切换任务完成状态"
       />
       <span className={isChecked ? 'line-through text-muted-foreground' : ''}>
         {children as React.ReactNode}

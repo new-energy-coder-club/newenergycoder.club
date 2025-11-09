@@ -10,6 +10,23 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    // 确保只加载单实例的 React，避免依赖中重复引入导致运行时异常
+    dedupe: ["react", "react-dom"],
+  },
+  // 稳定依赖预打包，避免 Radix 等依赖在开发模式下出现不一致
+  optimizeDeps: {
+    include: [
+      "react",
+      "react-dom",
+      "@radix-ui/react-tooltip",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-select",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-toast"
+    ],
+    // 排除 Node 内置模块，防止被不必要地预打包到浏览器运行环境
+    exclude: ["path", "fs", "crypto", "util"],
   },
   server: {
     // 配置静态文件服务，允许访问docs目录
