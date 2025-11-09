@@ -25,6 +25,7 @@ import MettaLogo from '@/image/sponsor/麦塔智能.png?url'
 import AmassLogo from '@/image/sponsor/Amass.png?url'
 import BenqLogo from '@/image/sponsor/benq-logo.png?url'
 import YibainaLogo from '@/image/sponsor/易百纳.png?url'
+import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
 
 // 样式常量定义
 const CARD_STYLES = {

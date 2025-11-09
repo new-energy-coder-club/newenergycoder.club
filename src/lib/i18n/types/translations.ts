@@ -4,9 +4,11 @@ export interface TeamMember {
   bio: string;
   image: string;
   tags?: string[];
+  gitee?: string;
   github?: string;
   linkedin?: string;
   email?: string;
+  bonjour?: string;
 }
 
 export interface Translations {
