@@ -172,6 +172,9 @@ export const TechnicalDocsSearch: React.FC<TechnicalDocsSearchProps> = ({ classN
         <input
           ref={inputRef}
           type="text"
+          id="technical-docs-search"
+          name="search"
+          aria-label="搜索技术文档"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="搜索技术文档..."
