@@ -30,7 +30,11 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
             <a href="https://gitee.com/darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-primary transition-colors">
+              <span className="text-primary">{'{'}
+              </span>
               {t.footer.clubName}
+              <span className="text-primary">{'}'}
+              </span>
             </a>
           </div>
           <div className="mt-2">
