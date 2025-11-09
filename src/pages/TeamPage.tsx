@@ -25,6 +25,7 @@ import MettaLogo from '@/image/sponsor/麦塔智能.png?url'
 import AmassLogo from '@/image/sponsor/Amass.png?url'
 import BenqLogo from '@/image/sponsor/benq-logo.png?url'
 import YibainaLogo from '@/image/sponsor/易百纳.png?url'
+import RCBBLogo from '@/RCBB.png?url'
 import ThreeJsAnimation from '@/components/ui/ThreeJsAnimation'
 
 // 样式常量定义
@@ -628,9 +629,18 @@ export function TeamPage() {
                 萝马车圈
               </a>
             </h2>
+            {/* RCBB 图片展示：置于标题下方 */}
+            <div className="flex justify-center mb-6">
+              <img
+                src={RCBBLogo}
+                alt="萝马车圈 RCBB"
+                className="w-full h-auto max-w-[1600px] drop-shadow"
+              />
+            </div>
             <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              <a href="https://rcbbs.top/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
-                萝马车圈
+              <span className="text-primary font-semibold mr-2">网页链接：</span>
+              <a href="https://rcbbs.top/" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 transition-colors">
+                https://rcbbs.top/
               </a>
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
