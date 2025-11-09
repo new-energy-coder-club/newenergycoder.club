@@ -273,6 +273,9 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
   const t = useTranslation()
   const Icon = guide.icon
   const [isExpanded, setIsExpanded] = useState(false)
+  const guideKey = guide.id === 'first-good-issue' ? 'firstGoodIssue' : (guide.id === 'first-project' ? 'firstProject' : guide.id)
+  const item = (t as any).gettingStarted?.quickGuides?.items?.[guideKey]
+  const itemSteps = (item?.steps as string[]) || guide.steps
   
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -307,7 +310,7 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
                 <Icon className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-lg">{(t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].title}</CardTitle>
+                <CardTitle className="text-lg">{item?.title ?? guide.title}</CardTitle>
                 <div className="flex items-center gap-2 mt-1">
                   <Badge className={getDifficultyColor(guide.difficulty)}>
                     {getDifficultyText(guide.difficulty)}
@@ -331,11 +334,11 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
               transition={{ duration: 0.2 }}
             >
               <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-4">{(t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].description}</p>
+                <p className="text-muted-foreground mb-4">{item?.description ?? guide.description}</p>
                 <div className="space-y-2">
                   <h4 className="font-medium text-sm">{(t as any).gettingStarted.quickGuides.stepsLabel}</h4>
                   <ol className="space-y-2">
-                    {((t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].steps as string[]).map((step: string, index: number) => (
+                    {itemSteps.map((step: string, index: number) => (
                       <li key={index} className="flex items-start gap-2 text-sm">
                         <span className="flex-shrink-0 w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center text-xs font-medium">
                           {index + 1}

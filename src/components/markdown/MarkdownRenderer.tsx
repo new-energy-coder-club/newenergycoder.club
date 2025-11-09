@@ -197,15 +197,16 @@ function TableCell({ children, ...props }: { children: React.ReactNode; [key: st
 
 // 任务列表组件
 function TaskListItem({ children, checked }: { children: React.ReactNode; checked?: boolean }) {
+  const [isChecked, setIsChecked] = useState(!!checked);
   return (
     <li className="flex items-start gap-2 list-none">
       <input
         type="checkbox"
-        checked={checked}
-        disabled
-        className="mt-1 rounded border-border"
+        checked={isChecked}
+        onChange={() => setIsChecked(!isChecked)}
+        className="mt-1 rounded border-border cursor-pointer"
       />
-      <span className={checked ? 'line-through text-muted-foreground' : ''}>
+      <span className={isChecked ? 'line-through text-muted-foreground' : ''}>
         {children}
       </span>
     </li>

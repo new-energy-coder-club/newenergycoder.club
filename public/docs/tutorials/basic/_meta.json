@@ -14,6 +14,12 @@
       "title": "编程基础",
       "description": "变量、函数、控制结构等基础知识",
       "order": 2
+    },
+    {
+      "slug": "learning-links",
+      "title": "基础学习链接清单",
+      "description": "官方与B站热门教程合集，支持折叠与勾选划线",
+      "order": 3
     }
   ]
 }

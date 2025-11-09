@@ -18,6 +18,24 @@ import { LinkDetectorComponent } from './LinkDetectorComponent';
 import { HeaderWithAnchor } from './HeaderWithAnchor';
 import { DocumentDifficulty } from '../types/link-detection';
 
+// 交互式任务列表项组件（避免在映射函数中直接调用 Hook）
+function DocTaskListItem({ children, checked }: { children: React.ReactNode; checked?: boolean }) {
+  const [isChecked, setIsChecked] = useState(!!checked);
+  return (
+    <li className="flex items-start gap-2 list-none">
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={() => setIsChecked(!isChecked)}
+        className="mt-1 rounded border-border cursor-pointer"
+      />
+      <span className={isChecked ? 'line-through text-muted-foreground' : ''}>
+        {children as React.ReactNode}
+      </span>
+    </li>
+  );
+}
+
 /**
  * 文档页面组件
  * 负责显示单个文档内容，集成加载和缓存功能
@@ -255,6 +273,13 @@ export const DocumentPage: React.FC = () => {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  li: ({ children, className, ...props }) => {
+                    if (className?.includes('task-list-item')) {
+                      const checked = (props as any)['data-checked'] !== undefined;
+                      return <DocTaskListItem checked={checked}>{children as React.ReactNode}</DocTaskListItem>;
+                    }
+                    return <li className="ml-4" {...props}>{children as React.ReactNode}</li>;
+                  },
                   // 使用HeaderWithAnchor组件渲染标题
                   h1: ({ children, ...props }) => (
                     <HeaderWithAnchor 

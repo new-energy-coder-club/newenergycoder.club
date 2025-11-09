@@ -356,3 +356,33 @@
     @apply text-black underline;
   }
 }
+
+/* 折叠组件样式（details/summary） */
+.prose details {
+  @apply my-4 rounded-lg border border-border bg-card shadow-sm;
+}
+
+.prose summary {
+  @apply cursor-pointer select-none px-4 py-2 font-medium text-foreground flex items-center justify-between;
+}
+
+.prose details[open] summary {
+  @apply border-b border-border bg-muted/40;
+}
+
+.prose details > *:not(summary) {
+  @apply px-4 py-3 text-foreground;
+}
+
+.prose summary::marker {
+  content: '';
+}
+
+.prose summary::after {
+  content: '▸';
+  transition: transform 0.2s ease;
+}
+
+.prose details[open] summary::after {
+  transform: rotate(90deg);
+}
