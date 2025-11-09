@@ -5,7 +5,7 @@ import { defineConfig } from "vite"
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -58,6 +58,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
+          // 简化拆分策略以对齐 2113f5d，降低运行时分块加载风险
           // React 核心拆分 - 保持不变
           if (id.includes('react-dom/client')) {
             return 'react-dom-client';
@@ -68,50 +69,11 @@ export default defineConfig({
           if (id.includes('react/jsx-runtime')) {
             return 'react-jsx';
           }
-          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router') && !id.includes('@react-three')) {
+          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router')) {
             return 'react-core';
           }
           
-          // Three.js 超细粒度拆分 - 解决three-vendor过大问题
-          if (id.includes('three/examples/jsm/controls')) {
-            return 'three-controls';
-          }
-          if (id.includes('three/examples/jsm/loaders')) {
-            return 'three-loaders';
-          }
-          if (id.includes('three/examples/jsm/geometries')) {
-            return 'three-geometries';
-          }
-          if (id.includes('three/examples/jsm/materials')) {
-            return 'three-materials';
-          }
-          if (id.includes('three/examples/jsm/postprocessing')) {
-            return 'three-postprocessing';
-          }
-          if (id.includes('three/examples/jsm/helpers')) {
-            return 'three-helpers';
-          }
-          if (id.includes('three/examples/jsm')) {
-            return 'three-examples-misc';
-          }
-          if (id.includes('@react-three/fiber')) {
-            return 'r3f-fiber';
-          }
-          if (id.includes('@react-three/drei')) {
-            return 'r3f-drei';
-          }
-          if (id.includes('three/src/core')) {
-            return 'three-core';
-          }
-          if (id.includes('three/src/math')) {
-            return 'three-math';
-          }
-          if (id.includes('three/src/renderers')) {
-            return 'three-renderers';
-          }
-          if (id.includes('three') && !id.includes('@react-three') && !id.includes('three/examples')) {
-            return 'three-base';
-          }
+          // 移除Three.js相关细分，当前项目已移除3D动画依赖
           
           // 路由相关细分
           if (id.includes('react-router-dom')) {
@@ -261,7 +223,7 @@ export default defineConfig({
             if (id.includes('path') || id.includes('fs') || id.includes('util') || id.includes('crypto')) {
               return 'node-utils';
             }
-            
+          
             // 进一步细分大型依赖库
             if (id.includes('lodash') || id.includes('ramda') || id.includes('underscore')) {
               return 'utility-libs';

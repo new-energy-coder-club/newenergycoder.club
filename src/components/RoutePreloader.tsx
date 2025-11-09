@@ -127,8 +127,11 @@ const useIntelligentPreload = () => {
       requestIdleCallback(() => {
         // 预加载首页相关路由
         ROUTE_PRELOAD_MAP['/']?.forEach(route => {
-          const link = createPrefetchLink(route);
-          document.head.appendChild(link);
+          // 仅在生产环境插入预取链接，避免开发环境产生404/ERR_ABORTED日志噪音
+          if (import.meta.env.PROD) {
+            const link = createPrefetchLink(route);
+            document.head.appendChild(link);
+          }
           // 同时预加载组件
           preloadRoute(route);
         });
@@ -153,9 +156,11 @@ const useHoverPreload = () => {
           // 预加载路由组件
           preloadRoute(url.pathname);
           
-          // 创建预取链接
-          const prefetchLink = createPrefetchLink(url.pathname);
-          document.head.appendChild(prefetchLink);
+          // 仅在生产环境创建预取链接，开发环境依赖动态 import 即可
+          if (import.meta.env.PROD) {
+            const prefetchLink = createPrefetchLink(url.pathname);
+            document.head.appendChild(prefetchLink);
+          }
         }
       }
     };
