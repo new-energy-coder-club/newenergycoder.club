@@ -470,6 +470,12 @@ export const enTranslations: Translations = {
         description: 'Dive deep into algorithm design and optimization to enhance problem-solving and programming thinking.',
         skills: ['Algorithm Design', 'Data Structures', 'Performance Optimization', 'Mathematical Modeling'],
         duration: '8-12 months'
+      },
+      structurePrint: {
+        title: 'Structural Printing Development',
+        description: 'Design, slicing, and control development for 3D structural printing',
+        skills: ['CAD Modeling', 'Slicing Software', 'Material Process', 'G-code/Control'],
+        duration: '5-7 months'
       }
     },
     quickGuides: {

@@ -14,6 +14,8 @@ const ContactPage = React.lazy(() => import("@/pages/ContactPage").then(module =
 const GettingStartedPage = React.lazy(() => import("@/pages/GettingStartedPage"));
 const EmbeddedDetailPage = React.lazy(() => import("@/pages/EmbeddedDetailPage"));
 const MechanicalDetailPage = React.lazy(() => import("@/pages/MechanicalDetailPage"));
+const GuiDetailPage = React.lazy(() => import("@/pages/GuiDetailPage"));
+const AlgorithmDetailPage = React.lazy(() => import("@/pages/AlgorithmDetailPage"));
 const DesignerDetailPage = React.lazy(() => import("@/pages/DesignerDetailPage"));
 const TeamPage = React.lazy(() => import("@/pages/TeamPage").then(module => ({ default: module.TeamPage })));
 const InnovationShowcasePage = React.lazy(() => import("@/pages/InnovationShowcasePage").then(module => ({ default: module.InnovationShowcasePage })));
@@ -64,6 +66,8 @@ function App() {
             <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
             <Route path="/learning/embedded" element={<PageLayout><EmbeddedDetailPage /></PageLayout>} />
             <Route path="/learning/mechanical" element={<PageLayout><MechanicalDetailPage /></PageLayout>} />
+            <Route path="/learning/gui" element={<PageLayout><GuiDetailPage /></PageLayout>} />
+            <Route path="/learning/algorithm" element={<PageLayout><AlgorithmDetailPage /></PageLayout>} />
             <Route path="/learning/designer" element={<PageLayout><DesignerDetailPage /></PageLayout>} />
             
             {/* Document Routes */}

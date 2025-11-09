@@ -27,7 +27,8 @@ import {
   Play,
   ChevronRight,
   Award,
-  TrendingUp
+  TrendingUp,
+  Printer
 } from 'lucide-react'
 // 导入技术路线图组件
 import TechRoadmapOverview from '@/components/TechRoadmapOverview'
@@ -83,7 +84,7 @@ const techDirections: TechDirection[] = [
     difficulty: 'intermediate',
     duration: '6-8个月',
     projects: 12,
-    link: '/docs/tutorials/basic'
+    link: '/learning/embedded'
   },
   {
     id: 'gui',
@@ -96,7 +97,7 @@ const techDirections: TechDirection[] = [
     difficulty: 'beginner',
     duration: '4-6个月',
     projects: 10,
-    link: '/docs/tutorials/intermediate'
+    link: '/learning/gui'
   },
   {
     id: 'algorithm',
@@ -109,7 +110,20 @@ const techDirections: TechDirection[] = [
     difficulty: 'advanced',
     duration: '8-12个月',
     projects: 15,
-    link: '/docs/tutorials/advanced'
+    link: '/learning/algorithm'
+  },
+  {
+    id: 'structurePrint',
+    title: '结构打印开发',
+    description: '面向3D结构打印的设计、切片与控制开发',
+    icon: Printer,
+    color: 'orange',
+    gradient: 'from-orange-500 to-amber-500',
+    skills: ['CAD建模', '切片软件', '材料工艺', 'G-code/控制'],
+    difficulty: 'intermediate',
+    duration: '5-7个月',
+    projects: 8,
+    link: '/learning/mechanical'
   }
 ]
 

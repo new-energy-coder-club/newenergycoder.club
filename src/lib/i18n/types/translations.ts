@@ -533,6 +533,12 @@ export interface Translations {
         skills: string[];
         duration: string;
       };
+      structurePrint: {
+        title: string;
+        description: string;
+        skills: string[];
+        duration: string;
+      };
     };
     quickGuides: {
       title: string;

@@ -663,6 +663,12 @@ export const zhTranslations: Translations = {
         description: '深入学习算法设计与优化，提升编程思维和解决问题的能力',
         skills: ['算法设计', '数据结构', '性能优化', '数学建模'],
         duration: '8-12个月'
+      },
+      structurePrint: {
+        title: '结构打印开发',
+        description: '面向3D结构打印的设计、切片与控制开发',
+        skills: ['CAD建模', '切片软件', '材料工艺', 'G-code/控制'],
+        duration: '5-7个月'
       }
     },
     quickGuides: {
