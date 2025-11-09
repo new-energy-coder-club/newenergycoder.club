@@ -376,6 +376,8 @@ export interface Translations {
     getInTouch: string;
     contactInfo: string;
     followUs: string;
+    channelsDescription: string;
+    followUsDescription: string;
     form: {
       name: string;
       email: string;
@@ -389,12 +391,31 @@ export interface Translations {
       sending: string;
       messageSent: string;
       messageError: string;
+      introText: string;
+      toastSuccessDescription: string;
+      toastErrorDescription: string;
     };
     info: {
       address: string;
       phone: string;
       email: string;
       hours: string;
+    };
+    infoLabels: {
+      address: string;
+      phone: string;
+      email: string;
+      hours: string;
+    };
+    social: {
+      gitee: string;
+      wechat: string;
+      email: string;
+    };
+    application: {
+      title: string;
+      description: string;
+      applyNow: string;
     };
   };
   
@@ -464,6 +485,110 @@ export interface Translations {
       portrait: string;
       widescreen: string;
       ultrawide: string;
+    };
+  };
+
+  // Getting Started Page
+  gettingStarted: {
+    hero: {
+      title: string;
+      description: string;
+      buttons: {
+        joinClub: string;
+        viewProjects: string;
+        visitSite: string;
+      };
+    };
+    stats: {
+      learnersTitle: string;
+      learnersDesc: string;
+      completedProjectsTitle: string;
+      completedProjectsDesc: string;
+      averageRatingTitle: string;
+      averageRatingDesc: string;
+      successRateTitle: string;
+      successRateDesc: string;
+    };
+    directions: {
+      title: string;
+      description: string;
+      coreSkills: string;
+      projectsSuffix: string;
+      startLearning: string;
+      embedded: {
+        title: string;
+        description: string;
+        skills: string[];
+        duration: string;
+      };
+      gui: {
+        title: string;
+        description: string;
+        skills: string[];
+        duration: string;
+      };
+      algorithm: {
+        title: string;
+        description: string;
+        skills: string[];
+        duration: string;
+      };
+    };
+    quickGuides: {
+      title: string;
+      description: string;
+      stepsLabel: string;
+      items: {
+        setup: {
+          title: string;
+          description: string;
+          steps: string[];
+          estimatedTime: string;
+        };
+        firstGoodIssue: {
+          title: string;
+          description: string;
+          steps: string[];
+          estimatedTime: string;
+        };
+        firstProject: {
+          title: string;
+          description: string;
+          steps: string[];
+          estimatedTime: string;
+        };
+        community: {
+          title: string;
+          description: string;
+          steps: string[];
+          estimatedTime: string;
+        };
+      };
+    };
+    baseTutorials: {
+      title: string;
+      description: string;
+      introTitle: string;
+      introDesc: string;
+      fundamentalsTitle: string;
+      fundamentalsDesc: string;
+      startLearning: string;
+    };
+    trainingResources: {
+      title: string;
+      description: string;
+      githubRepoTitle: string;
+      githubRepoDesc: string;
+      visitGithub: string;
+      docsTitle: string;
+      docsDesc: string;
+      viewDocs: string;
+      videosTitle: string;
+      videosDesc: string;
+      watchVideos: string;
+      communityTitle: string;
+      communityDesc: string;
+      joinDiscussion: string;
     };
   };
   

@@ -1151,6 +1151,19 @@ const mockResources: Resource[] = [
     rating: 4.6,
     url: 'https://www.rust-lang.org/',
     tags: ['Rust', '系统编程', '内存安全', '并发编程']
+  },
+  {
+    id: '86',
+    title: 'RCBBS 论坛主题 956',
+    description: 'RCBBS社区主题帖，相关讨论与资料聚合。',
+    image: 'https://images.unsplash.com/photo-1547658719-7df6cd927d2d?w=400&h=250&fit=crop',
+    category: 'documentation',
+    difficulty: 'beginner',
+    type: 'free',
+    author: 'RCBBS',
+    rating: 4.2,
+    url: 'https://rcbbs.top/t/topic/956',
+    tags: ['RCBBS', '论坛', '资源', '讨论']
   }
 ]
 
