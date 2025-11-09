@@ -186,6 +186,7 @@ const learningStats: LearningStats = {
 
 // 技术方向卡片组件
 function TechDirectionCard({ direction }: { direction: TechDirection }) {
+  const t = useTranslation()
   const Icon = direction.icon
   
   const getDifficultyColor = (difficulty: string) => {
@@ -222,9 +223,9 @@ function TechDirectionCard({ direction }: { direction: TechDirection }) {
               {getDifficultyText(direction.difficulty)}
             </Badge>
           </div>
-          <CardTitle className="text-xl mb-2">{direction.title}</CardTitle>
+          <CardTitle className="text-xl mb-2">{(t as any).gettingStarted.directions[direction.id].title}</CardTitle>
           <CardDescription className="text-muted-foreground leading-relaxed">
-            {direction.description}
+            {(t as any).gettingStarted.directions[direction.id].description}
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-0">
@@ -232,18 +233,21 @@ function TechDirectionCard({ direction }: { direction: TechDirection }) {
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{direction.duration}</span>
+                <span>{(t as any).gettingStarted.directions[direction.id].duration}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Target className="h-4 w-4" />
-                <span>{direction.projects}个项目</span>
+                <span>
+                  {direction.projects}
+                  {(t as any).gettingStarted.directions.projectsSuffix}
+                </span>
               </div>
             </div>
             
             <div>
-              <h4 className="font-medium text-sm mb-2">核心技能</h4>
+              <h4 className="font-medium text-sm mb-2">{(t as any).gettingStarted.directions.coreSkills}</h4>
               <div className="flex flex-wrap gap-1">
-                {direction.skills.map((skill, index) => (
+                {((t as any).gettingStarted.directions[direction.id].skills as string[]).map((skill, index) => (
                   <Badge key={index} variant="secondary" className="text-xs">
                     {skill}
                   </Badge>
@@ -253,7 +257,7 @@ function TechDirectionCard({ direction }: { direction: TechDirection }) {
             
             <Button className="w-full mt-4" asChild>
               <a href={direction.link}>
-                开始学习
+                {(t as any).gettingStarted.directions.startLearning}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </a>
             </Button>
@@ -266,6 +270,7 @@ function TechDirectionCard({ direction }: { direction: TechDirection }) {
 
 // 快速指南卡片组件
 function QuickGuideCard({ guide }: { guide: QuickGuide }) {
+  const t = useTranslation()
   const Icon = guide.icon
   const [isExpanded, setIsExpanded] = useState(false)
   
@@ -302,7 +307,7 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
                 <Icon className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-lg">{guide.title}</CardTitle>
+                <CardTitle className="text-lg">{(t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].title}</CardTitle>
                 <div className="flex items-center gap-2 mt-1">
                   <Badge className={getDifficultyColor(guide.difficulty)}>
                     {getDifficultyText(guide.difficulty)}
@@ -326,11 +331,11 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
               transition={{ duration: 0.2 }}
             >
               <CardContent className="pt-0">
-                <p className="text-muted-foreground mb-4">{guide.description}</p>
+                <p className="text-muted-foreground mb-4">{(t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].description}</p>
                 <div className="space-y-2">
-                  <h4 className="font-medium text-sm">步骤：</h4>
+                  <h4 className="font-medium text-sm">{(t as any).gettingStarted.quickGuides.stepsLabel}</h4>
                   <ol className="space-y-2">
-                    {guide.steps.map((step, index) => (
+                    {((t as any).gettingStarted.quickGuides.items[guide.id === 'first-good-issue' ? 'firstGoodIssue' : guide.id].steps as string[]).map((step: string, index: number) => (
                       <li key={index} className="flex items-start gap-2 text-sm">
                         <span className="flex-shrink-0 w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center text-xs font-medium">
                           {index + 1}
@@ -379,6 +384,7 @@ function StatsCard({ icon: Icon, title, value, description }: {
 
 export default function GettingStartedPage() {
   const [selectedDirection, setSelectedDirection] = useState<string | null>(null)
+  const t = useTranslation()
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
@@ -396,10 +402,10 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              新能源编程俱乐部
+              {(t as any).gettingStarted.hero.title}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              探索新能源技术的无限可能，从编程开始改变世界
+              {(t as any).gettingStarted.hero.description}
             </p>
           </motion.div>
           
@@ -412,19 +418,19 @@ export default function GettingStartedPage() {
             <Button size="lg" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/join">
                 <Users className="mr-2 h-5 w-5" />
-                加入俱乐部
+                {(t as any).gettingStarted.hero.buttons.joinClub}
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-primary/5 transition-all duration-300" asChild>
               <Link to="/projects">
                 <Code className="mr-2 h-5 w-5" />
-                查看项目
+                {(t as any).gettingStarted.hero.buttons.viewProjects}
               </Link>
             </Button>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <a href="https://www.newenergycoder.club/" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-5 w-5" />
-                访问官网
+                {(t as any).gettingStarted.hero.buttons.visitSite}
               </a>
             </Button>
           </motion.div>
@@ -442,27 +448,27 @@ export default function GettingStartedPage() {
           >
             <StatsCard
               icon={Users}
-              title="学习者"
+              title={(t as any).gettingStarted.stats.learnersTitle}
               value={learningStats.totalStudents}
-              description="活跃学习者"
+              description={(t as any).gettingStarted.stats.learnersDesc}
             />
             <StatsCard
               icon={Target}
-              title="完成项目"
+              title={(t as any).gettingStarted.stats.completedProjectsTitle}
               value={learningStats.completedProjects}
-              description="项目完成数"
+              description={(t as any).gettingStarted.stats.completedProjectsDesc}
             />
             <StatsCard
               icon={Star}
-              title="平均评分"
+              title={(t as any).gettingStarted.stats.averageRatingTitle}
               value={learningStats.averageRating}
-              description="学员满意度"
+              description={(t as any).gettingStarted.stats.averageRatingDesc}
             />
             <StatsCard
               icon={TrendingUp}
-              title="成功率"
+              title={(t as any).gettingStarted.stats.successRateTitle}
               value={`${learningStats.successRate}%`}
-              description="学习成功率"
+              description={(t as any).gettingStarted.stats.successRateDesc}
             />
           </motion.div>
         </div>
@@ -477,9 +483,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">选择你的技术方向</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{(t as any).gettingStarted.directions.title}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              根据你的兴趣和职业规划，选择最适合的学习路径
+              {(t as any).gettingStarted.directions.description}
             </p>
           </motion.div>
           
@@ -508,9 +514,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">快速上手指南</h2>
+            <h2 className="text-3xl font-bold mb-4">{(t as any).gettingStarted.quickGuides.title}</h2>
             <p className="text-lg text-muted-foreground">
-              跟随我们的指南，快速开始你的新能源编程之旅
+              {(t as any).gettingStarted.quickGuides.description}
             </p>
           </motion.div>
           
@@ -538,9 +544,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">基础教程</h2>
+            <h2 className="text-3xl font-bold mb-4">{(t as any).gettingStarted.baseTutorials.title}</h2>
             <p className="text-lg text-muted-foreground">
-              从零开始学习编程基础知识和核心概念
+              {(t as any).gettingStarted.baseTutorials.description}
             </p>
           </motion.div>
           
@@ -560,13 +566,13 @@ export default function GettingStartedPage() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2">编程入门</h3>
+                      <h3 className="text-xl font-semibold mb-2">{(t as any).gettingStarted.baseTutorials.introTitle}</h3>
                       <p className="text-muted-foreground mb-4">
-                        编程基础概念和思维方式，了解新能源编程的应用领域和发展前景
+                        {(t as any).gettingStarted.baseTutorials.introDesc}
                       </p>
                       <Button variant="outline" size="sm" asChild>
                         <a href="/docs/tutorials/basic/introduction">
-                          开始学习
+                          {(t as any).gettingStarted.baseTutorials.startLearning}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </a>
                       </Button>
@@ -591,13 +597,13 @@ export default function GettingStartedPage() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-2">编程基础</h3>
+                      <h3 className="text-xl font-semibold mb-2">{(t as any).gettingStarted.baseTutorials.fundamentalsTitle}</h3>
                       <p className="text-muted-foreground mb-4">
-                        变量、函数、控制结构等基础知识，掌握编程的核心概念和语法
+                        {(t as any).gettingStarted.baseTutorials.fundamentalsDesc}
                       </p>
                       <Button variant="outline" size="sm" asChild>
                         <a href="/docs/tutorials/basic/fundamentals">
-                          开始学习
+                          {(t as any).gettingStarted.baseTutorials.startLearning}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </a>
                       </Button>
@@ -619,9 +625,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">培训资源</h2>
+            <h2 className="text-3xl font-bold mb-4">{(t as any).gettingStarted.trainingResources.title}</h2>
             <p className="text-lg text-muted-foreground">
-              丰富的学习资源，助你快速提升技能
+              {(t as any).gettingStarted.trainingResources.description}
             </p>
           </motion.div>
           
@@ -633,11 +639,11 @@ export default function GettingStartedPage() {
               <Card className="hover:shadow-lg transition-all duration-300 text-center">
                 <CardContent className="p-6">
                   <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">GitHub 仓库</h3>
-                  <p className="text-sm text-muted-foreground mb-4">查看项目源码和贡献代码</p>
+                  <h3 className="font-semibold mb-2">{(t as any).gettingStarted.trainingResources.githubRepoTitle}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{(t as any).gettingStarted.trainingResources.githubRepoDesc}</p>
                   <Button variant="outline" size="sm" asChild>
                     <a href="https://github.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer">
-                      访问 GitHub
+                      {(t as any).gettingStarted.trainingResources.visitGithub}
                     </a>
                   </Button>
                 </CardContent>
@@ -651,10 +657,10 @@ export default function GettingStartedPage() {
               <Card className="hover:shadow-lg transition-all duration-300 text-center">
                 <CardContent className="p-6">
                   <BookOpen className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">技术文档</h3>
-                  <p className="text-sm text-muted-foreground mb-4">详细的技术文档和API参考</p>
+                  <h3 className="font-semibold mb-2">{(t as any).gettingStarted.trainingResources.docsTitle}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{(t as any).gettingStarted.trainingResources.docsDesc}</p>
                   <Button variant="outline" size="sm">
-                    查看文档
+                    {(t as any).gettingStarted.trainingResources.viewDocs}
                   </Button>
                 </CardContent>
               </Card>
@@ -667,10 +673,10 @@ export default function GettingStartedPage() {
               <Card className="hover:shadow-lg transition-all duration-300 text-center">
                 <CardContent className="p-6">
                   <Play className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">视频教程</h3>
-                  <p className="text-sm text-muted-foreground mb-4">观看实战项目视频教程</p>
+                  <h3 className="font-semibold mb-2">{(t as any).gettingStarted.trainingResources.videosTitle}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{(t as any).gettingStarted.trainingResources.videosDesc}</p>
                   <Button variant="outline" size="sm">
-                    观看视频
+                    {(t as any).gettingStarted.trainingResources.watchVideos}
                   </Button>
                 </CardContent>
               </Card>
@@ -683,10 +689,10 @@ export default function GettingStartedPage() {
               <Card className="hover:shadow-lg transition-all duration-300 text-center">
                 <CardContent className="p-6">
                   <Users className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">社区交流</h3>
-                  <p className="text-sm text-muted-foreground mb-4">加入社区讨论和交流</p>
+                  <h3 className="font-semibold mb-2">{(t as any).gettingStarted.trainingResources.communityTitle}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{(t as any).gettingStarted.trainingResources.communityDesc}</p>
                   <Button variant="outline" size="sm">
-                    加入讨论
+                    {(t as any).gettingStarted.trainingResources.joinDiscussion}
                   </Button>
                 </CardContent>
               </Card>
