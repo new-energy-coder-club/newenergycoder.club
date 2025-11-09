@@ -233,8 +233,8 @@ export const zhTranslations: Translations = {
     conferencesDesc: '参加可持续技术活动'
   },
   team: {
-    title: '我们的团队',
-    description: '认识我们多元化团队的学生、开发者和可持续技术爱好者',
+    title: '我们是谁？',
+    description: '一群在代码与梦想交汇处相遇的人。这里有深夜调试的学生，有追求优雅的开发者，有痴迷于「如何让世界更高效、更清洁」的可持续技术信徒。 我们不同——专业、背景、甚至喜欢的编程语言都可能不一样。但我们相同——相信技术向善，相信年轻的力量，相信可持续不是选择而是必须。 在这里，好奇心是通行证，实践是通用语。我们不只是构建产品，更是在构建心中那个更绿色、更公平、更智能的未来。 我们，是一个行动动词。',
     maintainerTitle: '维护者',
     developerTitle: '开发者',
     designerTitle: '设计师',
@@ -262,7 +262,7 @@ export const zhTranslations: Translations = {
       {
         name: 'DarrenPig',
         role: 'Club Founder & BSP 嵌软工程师',
-        bio: 'Renewable energy researcher with a focus on AI applications for energy optimization.',
+        bio: '专注于将人工智能应用于能源优化的可再生能源研究者。',
         image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpg',
         tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
         gitee: 'https://gitee.com/darrenpig',

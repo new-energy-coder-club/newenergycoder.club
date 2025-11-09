@@ -23,6 +23,7 @@ import TeamPhoto6 from '@/image/合照4.jpg?url'
 import MettaLogo from '@/image/sponsor/麦塔智能.png?url'
 import AmassLogo from '@/image/sponsor/Amass.png?url'
 import BenqLogo from '@/image/sponsor/benq-logo.png?url'
+import YibainaLogo from '@/image/sponsor/易百纳.png?url'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -233,6 +234,86 @@ export function TeamPage() {
   const t = useTranslation()
   const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
 
+  // 仅将中文角引号「」着色为主题色，其余文本保持原样
+  const renderBracketStyled = (text: string) => {
+    return (
+      <>
+        {Array.from(text).map((ch, idx) => {
+          if (ch === '「' || ch === '」') {
+            return (
+              <span key={idx} className="text-primary">{ch}</span>
+            )
+          }
+          return <span key={idx}>{ch}</span>
+        })}
+      </>
+    )
+  }
+
+  // 将长段说明文字按句分段，以提升可读性
+  const renderDescriptionParagraphs = (text: string) => {
+    // 以中文句号为分隔，保留句号并按句渲染
+    const sentences = text
+      .split(/(?<=。)\s*/)
+      .map(s => s.trim())
+      .filter(Boolean)
+
+    const renderCurlyEmphasis = (t: string) => {
+      const targetPhrase = "如何让世界更高效、更清洁";
+      const actionSentenceRegex = /^我们，是一个行动动词/;
+
+      if (t.includes(targetPhrase)) {
+        const parts = t.split(targetPhrase);
+        return (
+          <>
+            {renderBracketStyled(parts[0])}
+            <span className="text-primary font-bold">{"{ "}</span>
+            <span className="font-bold">{targetPhrase}</span>
+            <span className="text-primary font-bold">{" }"}</span>
+            {renderBracketStyled(parts.slice(1).join(targetPhrase))}
+          </>
+        );
+      }
+
+      if (actionSentenceRegex.test(t)) {
+        const hasPeriod = /。$/.test(t);
+        const core = hasPeriod ? t.replace(/。$/, "") : t;
+        return (
+          <>
+            <span className="text-primary font-bold">{"{ "}</span>
+            <span className="text-primary font-bold">{core}</span>
+            <span className="text-primary font-bold">{" }"}</span>
+            {hasPeriod && <span>。</span>}
+          </>
+        );
+      }
+
+      return renderBracketStyled(t);
+    }
+
+    return sentences.map((s, idx) => {
+      let cls = "mt-2 text-muted-foreground leading-relaxed tracking-wide"
+      // 新增：将“一群在代码与梦想交汇处相遇的人。”加粗
+      if (/^一群在代码与梦想交汇处相遇的人/.test(s)) {
+        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
+      }
+      // 用户要求：以下两句加粗
+      if (/^我们不同——/.test(s) || /^但我们相同——/.test(s)) {
+        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
+      }
+      // 用户要求：“我们，是一个行动动词。” 改为主题色的加粗文字
+      if (/^我们，是一个行动动词/.test(s)) {
+        cls = "mt-2 leading-relaxed tracking-wide font-bold text-primary"
+      }
+
+      return (
+        <p key={idx} className={cls}>
+          {renderCurlyEmphasis(s)}
+        </p>
+      )
+    })
+  }
+
   // 使用 useMemo 优化统计计算
   const teamStats = useMemo(() => {
     const counts = {
@@ -261,10 +342,19 @@ export function TeamPage() {
         {/* Background with team photos */}
         <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
+        {/* Light mode background uses external image, dark mode keeps local photo */}
+        <img
+          src="https://darrenpig.github.io/files/news10.jpg"
+          alt="社区背景图"
+          className="w-full h-full object-cover opacity-20 block dark:hidden"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = TeamPhoto1
+          }}
+        />
         <img
           src={TeamPhoto1}
           alt="团队校门合照"
-          className="w-full h-full object-cover opacity-20 dark:opacity-25"
+          className="w-full h-full object-cover opacity-25 hidden dark:block"
           onError={(e) => {
             (e.target as HTMLImageElement).src = TeamPhoto2
           }}
@@ -273,16 +363,22 @@ export function TeamPage() {
       
       <div className="container py-12 relative z-20">
         {/* Hero Section with Theme Toggle */}
-        <div className="text-center mb-12 relative">
-          <div className="absolute top-0 right-0">
+        <div className="mb-12 relative">
+          <div className="flex items-center justify-center gap-3">
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-xl md:text-2xl font-bold shadow hover:glow-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label={`{ ${t.about.title} }`}
+            >
+              {`{ ${t.about.title} }`}
+            </Button>
             <ThemeToggle />
           </div>
-          <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-            {t.about.title}
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto dark:text-gray-200 drop-shadow-md">
-            {t.team.description}
-          </p>
+          <div className="mt-4"></div>
+          <div className="text-xl text-muted-foreground max-w-3xl mx-auto dark:text-gray-200 drop-shadow-md">
+            {renderDescriptionParagraphs(t.team.description)}
+          </div>
         </div>
 
         {/* Team Title */}
@@ -424,10 +520,10 @@ export function TeamPage() {
         <div className="mt-20 mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              帮助我们的合作伙伴
+              给予我们帮助的合作伙伴
             </h2>
             <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              麦塔科技 常州艾迈斯科技 南京启诺科技 明基显示器
+              麦塔科技 艾迈斯 易百纳社区 明基
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
@@ -435,34 +531,61 @@ export function TeamPage() {
           {/* Sponsors Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
             {[
-              { name: '麦塔科技', logo: MettaLogo },
-              { name: '常州艾迈斯科技', logo: AmassLogo },
-              { name: '南京启诺科技', logo: undefined },
-              { name: '明基显示器', logo: BenqLogo }
+              { name: '麦塔科技', logo: MettaLogo, website: 'https://www.myactuator.cn/' },
+              { name: '艾迈斯', logo: AmassLogo, website: 'https://www.china-amass.com/' },
+              { name: '易百纳社区', logo: YibainaLogo, website: 'https://www.ebaina.com/' },
+              { name: '明基', logo: BenqLogo, website: 'https://www.benq.com.cn/' }
             ].map((sponsor, index) => (
               <div key={index} className="group">
-                <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
-                  <div className="flex flex-col items-center space-y-3">
-                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
-                      {sponsor.logo ? (
-                        <img
-                          src={sponsor.logo}
-                          alt={`${sponsor.name} logo`}
-                          className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                        />
-                      ) : (
+                {sponsor.website ? (
+                  <a href={sponsor.website} target="_blank" rel="noopener noreferrer" className="block" aria-label={`${sponsor.name} 官网`}>
+                    <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
+                      <div className="flex flex-col items-center space-y-3">
+                        <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                          {sponsor.logo ? (
+                            <img
+                              src={sponsor.logo}
+                              alt={`${sponsor.name} logo`}
+                              className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                            />
+                          ) : (
+                            <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                              {sponsor.name}
+                            </span>
+                          )}
+                        </div>
+                        {sponsor.logo && (
+                          <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                            {sponsor.name}
+                          </span>
+                        )}
+                      </div>
+                    </Card>
+                  </a>
+                ) : (
+                  <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
+                    <div className="flex flex-col items-center space-y-3">
+                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                        {sponsor.logo ? (
+                          <img
+                            src={sponsor.logo}
+                            alt={`${sponsor.name} logo`}
+                            className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                          />
+                        ) : (
+                          <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                            {sponsor.name}
+                          </span>
+                        )}
+                      </div>
+                      {sponsor.logo && (
                         <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
                           {sponsor.name}
                         </span>
                       )}
                     </div>
-                    {sponsor.logo && (
-                      <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                        {sponsor.name}
-                      </span>
-                    )}
-                  </div>
-                </Card>
+                  </Card>
+                )}
               </div>
             ))}
           </div>
@@ -497,10 +620,14 @@ export function TeamPage() {
         <div className="mt-20 mb-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              创新技术展示
+              <a href="https://rcbbs.top/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                萝马车圈
+              </a>
             </h2>
             <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              体验我们在新能源技术领域的创新成果
+              <a href="https://rcbbs.top/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+                萝马车圈
+              </a>
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm mb-8"></div>
           </div>

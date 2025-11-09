@@ -169,8 +169,8 @@ export const enTranslations: Translations = {
     conferencesDesc: 'Attend exclusive events and conferences on sustainable technology trends',
   },
   team: {
-    title: 'Meet Our Team',
-    description: 'The passionate individuals driving our mission forward',
+    title: 'Who Are We?',
+    description: 'We are a group meeting at the intersection of code and dreams. There are students debugging late at night, developers chasing elegance, and sustainability believers obsessed with "how to make the world more efficient and cleaner". We differ — in majors, backgrounds, and even the programming languages we love. Yet we are the same — we believe in technology for good, in the power of youth, and that sustainability is not a choice but a necessity. Here, curiosity is a passport and practice is the common language. We are not only building products; we are building a greener, fairer, and smarter future. We are a verb in action.',
     maintainerTitle: 'Maintainer',
     developerTitle: 'Developer',
     designerTitle: 'Designer',
