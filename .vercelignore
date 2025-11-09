@@ -1,7 +1,18 @@
+# Ignore dependencies and build outputs
 node_modules
 build
 dist
-.git
+.vercel
 .trae
-.log
 .figma
+
+# Ignore VCS and git objects (prevent large pack files)
+.git
+.git/**
+**/.git/**
+**/*.pack
+
+# Ignore logs and temp files
+*.log
+.cache
+.tmp

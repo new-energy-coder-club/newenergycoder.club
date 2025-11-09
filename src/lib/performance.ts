@@ -24,10 +24,26 @@ export class PerformanceMonitor {
 
   // 初始化性能监控
   init() {
-    this.observeWebVitals();
-    this.observeResourceTiming();
-    this.observeNavigationTiming();
-    this.observeLongTasks();
+    try {
+      this.observeWebVitals();
+    } catch (e) {
+      console.warn('[Performance] WebVitals 观察初始化失败：', e);
+    }
+    try {
+      this.observeResourceTiming();
+    } catch (e) {
+      console.warn('[Performance] ResourceTiming 观察初始化失败：', e);
+    }
+    try {
+      this.observeNavigationTiming();
+    } catch (e) {
+      console.warn('[Performance] NavigationTiming 观察初始化失败：', e);
+    }
+    try {
+      this.observeLongTasks();
+    } catch (e) {
+      console.warn('[Performance] LongTasks 观察初始化失败：', e);
+    }
   }
 
   // 监控 Web Vitals 指标
@@ -237,27 +253,39 @@ export const performanceMonitor = PerformanceMonitor.getInstance();
 // 页面可见性变化监控
 export const observePageVisibility = () => {
   if (typeof document !== 'undefined') {
-    let startTime = Date.now();
-    
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // 页面变为不可见
-        const visibleTime = Date.now() - startTime;
-        performanceMonitor.recordCustomMetric('Page_Visible_Time', visibleTime);
-      } else {
-        // 页面变为可见
-        startTime = Date.now();
-      }
-    };
-    
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    
-    // 页面卸载时记录总停留时间
-    window.addEventListener('beforeunload', () => {
-      if (!document.hidden) {
-        const totalTime = Date.now() - startTime;
-        performanceMonitor.recordCustomMetric('Page_Total_Time', totalTime);
-      }
-    });
+    try {
+      let startTime = Date.now();
+      
+      const handleVisibilityChange = () => {
+        try {
+          if (document.hidden) {
+            // 页面变为不可见
+            const visibleTime = Date.now() - startTime;
+            performanceMonitor.recordCustomMetric('Page_Visible_Time', visibleTime);
+          } else {
+            // 页面变为可见
+            startTime = Date.now();
+          }
+        } catch (e) {
+          // 指标记录失败不应影响可见性监听
+        }
+      };
+      
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      
+      // 页面卸载时记录总停留时间
+      window.addEventListener('beforeunload', () => {
+        try {
+          if (!document.hidden) {
+            const totalTime = Date.now() - startTime;
+            performanceMonitor.recordCustomMetric('Page_Total_Time', totalTime);
+          }
+        } catch (e) {
+          // 卸载时的记录失败也应被忽略
+        }
+      });
+    } catch (e) {
+      console.warn('[Performance] 页面可见性监听初始化失败：', e);
+    }
   }
 };
