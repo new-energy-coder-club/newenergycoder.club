@@ -1,0 +1,58 @@
+{
+  "mainPage": {
+    "url": "https://newenergycoder-club.vercel.app",
+    "success": false,
+    "error": "Request timeout",
+    "code": "TIMEOUT",
+    "responseTime": 10029
+  },
+  "resources": [
+    {
+      "url": "https://newenergycoder-club.vercel.app/assets/index.css",
+      "success": false,
+      "error": "read ECONNRESET",
+      "code": "ECONNRESET",
+      "responseTime": 5019
+    },
+    {
+      "url": "https://newenergycoder-club.vercel.app/assets/index.js",
+      "success": false,
+      "error": "read ECONNRESET",
+      "code": "ECONNRESET",
+      "responseTime": 5006
+    },
+    {
+      "url": "https://newenergycoder-club.vercel.app/favicon.ico",
+      "success": false,
+      "error": "read ECONNRESET",
+      "code": "ECONNRESET",
+      "responseTime": 5005
+    },
+    {
+      "url": "https://newenergycoder-club.vercel.app/og-image.svg",
+      "success": false,
+      "error": "read ECONNRESET",
+      "code": "ECONNRESET",
+      "responseTime": 5007
+    }
+  ],
+  "performance": {
+    "error": "所有性能测试都失败了",
+    "successRate": 0
+  },
+  "errors": [
+    "主页面加载失败: Request timeout",
+    "资源加载失败 https://newenergycoder-club.vercel.app/assets/index.css: read ECONNRESET",
+    "资源加载失败 https://newenergycoder-club.vercel.app/assets/index.js: read ECONNRESET",
+    "资源加载失败 https://newenergycoder-club.vercel.app/favicon.ico: read ECONNRESET",
+    "资源加载失败 https://newenergycoder-club.vercel.app/og-image.svg: read ECONNRESET"
+  ],
+  "summary": {
+    "overallStatus": "FAIL",
+    "mainPageStatus": "FAIL",
+    "resourcesStatus": "0/4 成功",
+    "performanceStatus": "FAIL",
+    "totalErrors": 5,
+    "timestamp": "2025-09-25T13:18:01.352Z"
+  }
+}
