@@ -7,6 +7,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart } from 'lucide-react'
+import BonjourIcon from '@/bonjour.ico?url'
+import GithubIcon from '@/github.ico?url'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -18,6 +20,9 @@ import TeamPhoto3 from '@/image/合照1.jpg?url'
 import TeamPhoto4 from '@/image/合照2.jpg?url'
 import TeamPhoto5 from '@/image/合照3.jpg?url'
 import TeamPhoto6 from '@/image/合照4.jpg?url'
+import MettaLogo from '@/image/sponsor/麦塔智能.png?url'
+import AmassLogo from '@/image/sponsor/Amass.png?url'
+import BenqLogo from '@/image/sponsor/benq-logo.png?url'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -41,9 +46,11 @@ interface TeamMember {
   bio: string
   image: string
   tags?: string[]
+  gitee?: string
   github?: string
   linkedin?: string
   email?: string
+  bonjour?: string
 }
 
 // 团队成员卡片组件属性
@@ -72,7 +79,20 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <CardHeader className="text-center relative z-10">
-         <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">{member.name}</CardTitle>
+         <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">
+           {member.github ? (
+             <a
+               href={member.github}
+               target="_blank"
+               rel="noopener noreferrer"
+               className="hover:underline"
+             >
+               {member.name}
+             </a>
+           ) : (
+             member.name
+           )}
+         </CardTitle>
          <div className="text-base font-medium flex justify-center">
            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
              {member.role}
@@ -103,10 +123,24 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         )}
         
         <div className="flex justify-center gap-2">
+          {member.gitee && (
+            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+              <a href={member.gitee} target="_blank" rel="noopener noreferrer">
+                <GiteeIcon className="h-4 w-4" />
+              </a>
+            </Button>
+          )}
           {member.github && (
             <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={member.github} target="_blank" rel="noopener noreferrer">
-                <GiteeIcon className="h-4 w-4" />
+              <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                <img src={GithubIcon} alt="GitHub" className="h-4 w-4 object-contain dark:invert" />
+              </a>
+            </Button>
+          )}
+          {member.bonjour && (
+            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+              <a href={member.bonjour} target="_blank" rel="noopener noreferrer" aria-label="Bonjour profile">
+                <img src={BonjourIcon} alt="Bonjour" className="h-4 w-4" />
               </a>
             </Button>
           )}
@@ -390,47 +424,45 @@ export function TeamPage() {
         <div className="mt-20 mb-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              感谢赞助商
+              帮助我们的合作伙伴
             </h2>
             <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              感谢以下赞助商对新能源编程俱乐部的支持与信任
+              麦塔科技 常州艾迈斯科技 南京启诺科技 明基显示器
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
           
           {/* Sponsors Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
-            {/* Placeholder sponsors - will be replaced with actual data */}
             {[
-              { name: "TRAE AI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20tech%20company%20logo%20TRAE%20AI%20minimalist%20design%20green%20accent&image_size=square", website: "https://trae.ai" },
-              { name: "OpenAI", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=OpenAI%20logo%20artificial%20intelligence%20company%20minimalist%20design&image_size=square", website: "https://openai.com" },
-              { name: "GitHub", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=GitHub%20logo%20code%20repository%20platform%20minimalist%20design&image_size=square", website: "https://github.com" },
-              { name: "Microsoft", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Microsoft%20logo%20technology%20company%20minimalist%20design&image_size=square", website: "https://microsoft.com" },
-              { name: "Google", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Google%20logo%20search%20engine%20company%20minimalist%20design&image_size=square", website: "https://google.com" },
-              { name: "Tesla", logo: "https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Tesla%20logo%20electric%20vehicle%20company%20minimalist%20design&image_size=square", website: "https://tesla.com" }
+              { name: '麦塔科技', logo: MettaLogo },
+              { name: '常州艾迈斯科技', logo: AmassLogo },
+              { name: '南京启诺科技', logo: undefined },
+              { name: '明基显示器', logo: BenqLogo }
             ].map((sponsor, index) => (
               <div key={index} className="group">
-                <a 
-                  href={sponsor.website} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
-                    <div className="flex flex-col items-center space-y-3">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
-                        <img 
-                          src={sponsor.logo} 
+                <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                      {sponsor.logo ? (
+                        <img
+                          src={sponsor.logo}
                           alt={`${sponsor.name} logo`}
                           className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
                         />
-                      </div>
+                      ) : (
+                        <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                          {sponsor.name}
+                        </span>
+                      )}
+                    </div>
+                    {sponsor.logo && (
                       <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
                         {sponsor.name}
                       </span>
-                    </div>
-                  </Card>
-                </a>
+                    )}
+                  </div>
+                </Card>
               </div>
             ))}
           </div>
@@ -441,10 +473,10 @@ export function TeamPage() {
               <div className="flex flex-col items-center space-y-4">
                 <Heart className="h-8 w-8 text-primary" />
                 <h3 className="text-xl font-semibold text-foreground dark:text-white">
-                  成为我们的赞助商
+                  成为我们的合作伙伴
                 </h3>
                 <p className="text-muted-foreground dark:text-gray-300 text-center max-w-lg">
-                  如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解赞助合作机会
+                  如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解合作机会
                 </p>
                 <Button 
                   variant="outline" 

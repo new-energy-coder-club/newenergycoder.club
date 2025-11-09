@@ -7,6 +7,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import WeChatIcon from '@/wechat.svg?url'
 import FeishuIcon from '@/feishu.png?url'
+import DarrenPigFeishu from '@/DarrenPig_Feishu.png?url'
 
 const roadmapSteps = [
   {
@@ -51,7 +52,7 @@ export function JoinPage() {
   const [copied, setCopied] = useState(false)
   const t = useTranslation()
 
-  const feishuGroupId = "L-Ch-2023-1124"
+  const feishuGroupId = "WeChat ID: Pei-pei-Zhu-Pig"
   
   const copyToClipboard = async () => {
     try {
@@ -266,8 +267,32 @@ export function JoinPage() {
                   </div>
                   <CardTitle className="text-2xl">联系加入我们</CardTitle>
                   <CardDescription>
-                    添加我们的运营maintainer，获取最新官方飞书群和一对一咨询
+                    <a
+                      href="https://www.feishu.cn/invitation/page/add_contact/?token=509lcd75-d319-41ee-9748-c202b40efa48&unique_id=svYaQwpsgXlyP2H56Oyssg=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      添加我们的maintainer，获取最新官方飞书群和一对一咨询
+                    </a>
                   </CardDescription>
+                  <div className="mt-2 flex justify-center">
+                    <a
+                      href="https://www.feishu.cn/invitation/page/add_contact/?token=509lcd75-d319-41ee-9748-c202b40efa48&unique_id=svYaQwpsgXlyP2H56Oyssg=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90"
+                    >
+                      打开飞书邀请
+                    </a>
+                  </div>
+                  <div className="mt-4 flex justify-center">
+                    <img
+                      src={DarrenPigFeishu}
+                      alt="Maintainer WeChat"
+                      className="h-40 w-auto rounded-md shadow-sm border border-muted"
+                    />
+                  </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="text-center space-y-4">
@@ -280,7 +305,7 @@ export function JoinPage() {
                       className="w-full sm:w-auto"
                       variant={copied ? "secondary" : "default"}
                     >
-                      {copied ? "已复制 ✓" : "复制运营微信"}
+                      {copied ? "已复制 ✓" : "复制maintainer 微信"}
                     </Button>
                   </div>
                   

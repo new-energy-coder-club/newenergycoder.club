@@ -7,7 +7,9 @@ export const maintainers: TeamMember[] = [
     bio: 'Renewable energy researcher with a focus on AI applications for energy optimization.',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/DarrenPig.jpg',
     tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
+    gitee: 'https://gitee.com/darrenpig',
     github: 'https://github.com/Darrenpig',
+    bonjour: 'https://bonjour.bio/darrenpig',
     email: '22230635@czu.cn'
   },
   {
@@ -264,6 +266,14 @@ export const contributors: TeamMember[] = [
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/contributer/郑邵凯.png',
     tags: ['算法研究', '最优化', '竞赛选手', '问题求解', '算法优化', '数学建模'],
     github: 'https://github.com/zhengshaokai'
+  },
+  {
+    name: '郭童童',
+    role: '场控FD',
+    bio: '专注于嵌入式、机器视觉与硬件研发。',
+    image: 'src/image/contributer/郭童童.jpg',
+    tags: ['场控FD', '嵌入式', '机器视觉', '硬件'],
+    gitee: 'https://gitee.com/guo--tongtong'
   },
   {
     name: '杨鑫海',

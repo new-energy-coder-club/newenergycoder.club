@@ -265,7 +265,9 @@ export const zhTranslations: Translations = {
         bio: 'Renewable energy researcher with a focus on AI applications for energy optimization.',
         image: 'https://raw.githubusercontent.com/Darrenpig/Energy-Coder-Club-Website/main/src/image/maintainer/DarrenPig.jpg',
         tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
+        gitee: 'https://gitee.com/darrenpig',
         github: 'https://github.com/Darrenpig',
+        bonjour: 'https://bonjour.bio/darrenpig',
         email: '22230635@czu.cn'
       },
       {
