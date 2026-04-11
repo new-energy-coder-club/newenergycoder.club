@@ -28,6 +28,57 @@ export function AboutSection() {
                   <p className="leading-relaxed text-left">
                     {t.about.paragraph1}
                   </p>
+                  <div className="mt-6 max-w-4xl mx-auto text-left">
+                    <h2 className="text-3xl font-bold tracking-tight mb-4">
+                      <span className="gradient-text mr-2">{`{`}</span>
+                      {t.about.core_competencies_title}
+                      <span className="gradient-text ml-2">{`}`}</span>
+                    </h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 text-slate-300">
+                      <div>
+                        <strong className="text-emerald-400">{t.about.processing_manufacturing}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about['3d_printing']}</li>
+                          <li>{t.about.smt_welding}</li>
+                          <li>{t.about.laser_engraving}</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400">{t.about.motor_drive}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about.m3508_motor}</li>
+                          <li>{t.about.dm3519_rail}</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400">{t.about.electronic_control}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about.esp32_embedded}</li>
+                          <li>{t.about.daplink_wireless}</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400">{t.about.vision}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about.odin1_module}</li>
+                          <li>{t.about.raspberry_pi}</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400">{t.about.software_tools}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about.platformio_vscode}</li>
+                          <li>{t.about.ros2_docker}</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400">{t.about.ai_development}</strong>
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>{t.about.vibe_coding}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="mt-8 flex">
                   <Button asChild className="bg-white/10 border-white/20 hover:bg-white/20 hover-lift glow-hover" variant="outline">
