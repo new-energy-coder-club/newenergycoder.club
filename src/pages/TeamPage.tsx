@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { BarChart3, Users, Code, Palette, Heart, ExternalLink, Building2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Header } from '@/components/layout/Header'
 import ChangzhouNECImg from '@/常州工NEC1.png'
 import CURCRobocon1Img from '@/1.19CURC-ROBOCON线上例会_01(1).png'
@@ -398,6 +399,14 @@ export function TeamPage() {
     return grouped
   }, [sponsors])
 
+  // 生成招商手册图片列表
+  const brochureImages = useMemo(() => {
+    return Array.from({ length: 11 }, (_, i) => ({
+      src: `/image/brochures/brochure-${String(i + 1).padStart(2, '0')}.png.png`,
+      alt: `招商手册第 ${i + 1} 页`
+    }));
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -554,12 +563,39 @@ export function TeamPage() {
                     <h4 className="font-semibold mb-1">成为我们的合作伙伴</h4>
                     <p className="text-sm text-muted-foreground">支持开源工程教育，与 NEC 社区共同成长</p>
                   </div>
-                  <Button asChild>
-                    <a href="mailto:22230635@czu.cn">
-                      <Heart className="h-4 w-4 mr-2" />
-                      联系我们
-                    </a>
-                  </Button>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild>
+                      <a href="mailto:22230635@czu.cn">
+                        <Heart className="h-4 w-4 mr-2" />
+                        联系我们
+                      </a>
+                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          查看招商手册
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl h-[90vh] flex flex-col">
+                        <DialogHeader>
+                          <DialogTitle>招商手册</DialogTitle>
+                        </DialogHeader>
+                        <div className="flex-1 min-h-0 overflow-y-auto p-4">
+                          <div className="flex flex-col items-center gap-4">
+                            {brochureImages.map((image, index) => (
+                              <img
+                                key={index}
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-auto rounded-md shadow-lg"
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                 </Card>
               </div>
             </div>
