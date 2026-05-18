@@ -650,16 +650,6 @@ export const sponsors: Sponsor[] = [
     tags: ['SolidWorks'],
     supports: [],
     website: '#'
-  },
-  {
-    name: '个人赞助者',
-    role: '个人赞助',
-    level: 'partner',
-    bio: '感谢您对开源社区的支持！',
-    image: '/image/sponsor/personal.png',
-    tags: ['个人赞助'],
-    supports: [],
-    website: '#'
   }
 ];
 
