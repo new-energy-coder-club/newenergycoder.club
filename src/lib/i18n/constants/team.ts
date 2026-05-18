@@ -559,6 +559,19 @@ export const sponsors: Sponsor[] = [
     website: 'https://www.cubemars.com/'
   },
   {
+    name: '留形科技',
+    role: 'Gold Sponsor',
+    level: 'gold',
+    bio: '专注于智能空间感知与三维重建技术的研发与应用',
+    image: '/image/sponsor/留形科技.png',
+    tags: ['3D打印', '创新科技'],
+    supports: [
+      { item: '空间记忆模组' },
+      { item: '技术咨询支持' },
+    ],
+    website: 'https://www.manifoldtech.cn/'
+  },
+  {
     name: '萝卜小酱',
     role: 'Tool Partner',
     level: 'silver',

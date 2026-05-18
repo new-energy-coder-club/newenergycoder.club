@@ -112,7 +112,6 @@ export const zhTranslations: Translations = {
     learnMore: '了解更多',
     projectOrigin: {
       title: '第一阶段：项目起源',
-      description: '解锁我们的故事，从这里开始',
       content: 'NEC编程俱乐部最初是一个专注于太阳能监测的小型项目，现在已发展成为一个综合性的可持续技术社区。我们的成长是由学生、教育工作者和行业专业人士的共同推动的。'
     },
     phase2: {
@@ -143,42 +142,6 @@ export const zhTranslations: Translations = {
       limitations: ['责任', '担保'],
       conditions: ['许可证和版权声明']
     },
-    coreCapabilities: {
-      title: '团队核心能力',
-      description: '我们具备从硬件到软件的全栈研发能力',
-      items: [
-        {
-          title: '加工制造',
-          icon: 'Wrench',
-          points: ['3D打印', 'SMT焊接贴片', '激光雕刻机切割']
-        },
-        {
-          title: '电机与驱动',
-          icon: 'Fan',
-          points: ['M3508直流无刷电机', 'DM3519直线导轨']
-        },
-        {
-          title: '电控开发',
-          icon: 'Cpu',
-          points: ['ESP32嵌入式 (配套HXC-A板)', 'DAPLink无线烧录/调试']
-        },
-        {
-          title: '视觉',
-          icon: 'Camera',
-          points: ['Odin1视觉导航模组', '树莓派']
-        },
-        {
-          title: '软件工具',
-          icon: 'TerminalSquare',
-          points: ['PlatformIO + VS Code', 'ROS2 + Docker']
-        },
-        {
-          title: 'AI开发',
-          icon: 'BrainCircuit',
-          points: ['Vibe coding']
-        }
-      ]
-    }
   },
 
   features: {

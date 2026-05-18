@@ -36,7 +36,6 @@ export const enTranslations: Translations = {
     learnMore: 'Learn More About Us',
     projectOrigin: {
       title: 'Phase 1: Project Origin',
-      description: 'Unlock our story, it starts here.',
       content: 'The NEC Programming Club was originally a small project focused on solar monitoring, and has now grown into a comprehensive sustainable technology community. Our growth is driven by the collaborative efforts of students, educators, and industry professionals.'
     },
     phase2: {
@@ -79,42 +78,6 @@ export const enTranslations: Translations = {
         'Disclose source'
       ]
     },
-    coreCapabilities: {
-      title: 'Core Capabilities',
-      description: 'We have full-stack R&D capabilities from hardware to software',
-      items: [
-        {
-          title: 'Manufacturing',
-          icon: 'Wrench',
-          points: ['3D Printing', 'SMT Soldering', 'Laser Engraving/Cutting']
-        },
-        {
-          title: 'Motor & Drive',
-          icon: 'Fan',
-          points: ['M3508 DC Brushless Motor', 'DM3519 Linear Rail']
-        },
-        {
-          title: 'Electronic Control Development',
-          icon: 'Cpu',
-          points: ['ESP32 Embedded (with HXC-A board)', 'DAPLink Wireless Flashing/Debugging']
-        },
-        {
-          title: 'Vision',
-          icon: 'Camera',
-          points: ['Odin1 Vision Navigation Module', 'Raspberry Pi']
-        },
-        {
-          title: 'Software Tools',
-          icon: 'TerminalSquare',
-          points: ['PlatformIO + VS Code', 'ROS2 + Docker']
-        },
-        {
-          title: 'AI Development',
-          icon: 'BrainCircuit',
-          points: ['Vibe coding']
-        }
-      ]
-    }
   },
   features: {
     title: 'Why Join Our Community?',

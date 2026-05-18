@@ -44,17 +44,7 @@ export function AboutSection() {
                     {t.about.paragraph1}
                   </p>
                   <div className="mt-6 leading-relaxed text-left space-y-4">
-                    {t.about.coreCapabilities.items.map((item, index) => (
-                      <div key={index} className="flex items-center gap-4">
-                        <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
-                          {renderIcon(item.icon as keyof typeof iconComponents)}
-                        </div>
-                        <p>
-                          <span className="font-semibold text-primary">{item.title}: </span>
-                          <span className="text-muted-foreground">{item.points.join(' / ')}</span>
-                        </p>
-                      </div>
-                    ))}
+                    {t.about.paragraph2}
                   </div>
                 </div>
                 <div className="mt-8 flex">
@@ -78,7 +68,6 @@ export function AboutSection() {
                     </div>
                     <div>
                       <CardTitle className="gradient-text">{t.about.projectOrigin.title}</CardTitle>
-                      <CardDescription>{t.about.projectOrigin.description}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
