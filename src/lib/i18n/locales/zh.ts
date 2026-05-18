@@ -106,7 +106,7 @@ export const zhTranslations: Translations = {
   },
   about: {
     title: '关于我们',
-    paragraph1: 'NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区。我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具。',
+    paragraph1: '【V2版】NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区。我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具。',
     core_competencies_title: '团队核心能力',
     processing_manufacturing: '加工制造',
     '3d_printing': '3D打印',
