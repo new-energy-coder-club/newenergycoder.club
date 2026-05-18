@@ -49,6 +49,25 @@ export interface Translations {
     paragraph1: string;
     paragraph2?: string;
     paragraph3?: string;
+    core_competencies_title: string;
+    processing_manufacturing: string;
+    '3d_printing': string;
+    smt_welding: string;
+    laser_engraving: string;
+    motor_drive: string;
+    m3508_motor: string;
+    dm3519_rail: string;
+    electronic_control: string;
+    esp32_embedded: string;
+    daplink_wireless: string;
+    vision: string;
+    odin1_module: string;
+    raspberry_pi: string;
+    software_tools: string;
+    platformio_vscode: string;
+    ros2_docker: string;
+    ai_development: string;
+    vibe_coding: string;
     learnMore: string;
     projectOrigin: {
       title: string;

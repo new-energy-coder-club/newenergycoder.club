@@ -106,13 +106,32 @@ export const zhTranslations: Translations = {
   },
   about: {
     title: '关于我们',
-    paragraph1: 'NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区，我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具，同时我们具备以下专业能力：',
+    paragraph1: 'NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区。我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具。',
+    core_competencies_title: '团队核心能力',
+    processing_manufacturing: '加工制造',
+    '3d_printing': '3D打印',
+    smt_welding: 'SMT焊接贴片',
+    laser_engraving: '激光雕刻机切割',
+    motor_drive: '电机与驱动',
+    m3508_motor: 'M3508直流无刷电机',
+    dm3519_rail: 'DM3519直线导轨',
+    electronic_control: '电控开发',
+    esp32_embedded: 'ESP32嵌入式 (配套HXC-A板)',
+    daplink_wireless: 'DAPLink无线烧录/调试',
+    vision: '视觉',
+    odin1_module: 'Odin1视觉导航模组',
+    raspberry_pi: '树莓派',
+    software_tools: '软件工具',
+    platformio_vscode: 'PlatformIO + VS Code',
+    ros2_docker: 'ROS2 + Docker',
+    ai_development: 'AI开发',
+    vibe_coding: 'Vibe coding',
     paragraph2: 'NEC 新能源开发者社区 从 2024 年开始系统性地开源 ROBOCON 竞赛中的技术积累，目前代码库已获得 260+ commits，服务多所高校的竞赛队伍。',
     paragraph3: '我们的开源项目覆盖嵌入式控制、计算机视觉、机械设计、电机控制等领域，所有方案均经过实际竞赛环境验证，可直接复用或二次开发。',
     learnMore: '了解更多',
     projectOrigin: {
-      title: '第一阶段：项目起源',
-      content: 'NEC编程俱乐部最初是一个专注于太阳能监测的小型项目，现在已发展成为一个综合性的可持续技术社区。我们的成长是由学生、教育工作者和行业专业人士的共同推动的。'
+      title: '项目起源',
+      content: '我们的编程俱乐部最初是一个专注于太阳能监测的小型项目，现在已发展成为一个综合性的可持续技术社区。我们的成长是由学生、教育工作者和行业专业人士的合作努力推动的。'
     },
     phase2: {
       title: '第二阶段：社区扩展',
@@ -141,9 +160,8 @@ export const zhTranslations: Translations = {
       permissions: ['商业使用', '修改', '分发', '个人使用'],
       limitations: ['责任', '担保'],
       conditions: ['许可证和版权声明']
-    },
+    }
   },
-
   features: {
     title: '开源工程基础设施',
     subtitle: '不是「社团活动」，而是可复用的工程方案',
