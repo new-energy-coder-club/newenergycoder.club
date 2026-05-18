@@ -106,7 +106,7 @@ export const zhTranslations: Translations = {
   },
   about: {
     title: '关于我们',
-    paragraph1: 'NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区。我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具。',
+    paragraph1: 'NEC（New Energy Coder Club）是一个面向 ROBOCON 机器人竞赛与新能源工程的开源技术社区，我们提供经过真实竞赛验证的模块化代码基线、硬件方案与协作工具，同时我们具备以下专业能力：',
     paragraph2: 'NEC 新能源开发者社区 从 2024 年开始系统性地开源 ROBOCON 竞赛中的技术积累，目前代码库已获得 260+ commits，服务多所高校的竞赛队伍。',
     paragraph3: '我们的开源项目覆盖嵌入式控制、计算机视觉、机械设计、电机控制等领域，所有方案均经过实际竞赛环境验证，可直接复用或二次开发。',
     learnMore: '了解更多',
@@ -141,8 +141,39 @@ export const zhTranslations: Translations = {
       permissions: ['商业使用', '修改', '分发', '个人使用'],
       limitations: ['责任', '担保'],
       conditions: ['许可证和版权声明']
+    },
+    coreCapabilities: {
+      title: '团队核心能力',
+      description: '我们具备从硬件到软件的全栈研发能力',
+      items: [
+        {
+          title: '加工制造',
+          points: ['3D打印', 'SMT焊接贴片', '激光雕刻机切割']
+        },
+        {
+          title: '电机与驱动',
+          points: ['M3508直流无刷电机', 'DM3519直线导轨']
+        },
+        {
+          title: '电控开发',
+          points: ['ESP32嵌入式 (配套HXC-A板)', 'DAPLink无线烧录/调试']
+        },
+        {
+          title: '视觉',
+          points: ['Odin1视觉导航模组', '树莓派']
+        },
+        {
+          title: '软件工具',
+          points: ['PlatformIO + VS Code', 'ROS2 + Docker']
+        },
+        {
+          title: 'AI开发',
+          points: ['Vibe coding']
+        }
+      ]
     }
   },
+
   features: {
     title: '开源工程基础设施',
     subtitle: '不是「社团活动」，而是可复用的工程方案',

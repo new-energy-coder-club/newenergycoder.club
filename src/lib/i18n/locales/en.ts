@@ -77,6 +77,36 @@ export const enTranslations: Translations = {
         'State changes',
         'Disclose source'
       ]
+    },
+    coreCapabilities: {
+      title: 'Core Capabilities',
+      description: 'We have full-stack R&D capabilities from hardware to software',
+      items: [
+        {
+          title: 'Manufacturing',
+          points: ['3D Printing', 'SMT Soldering', 'Laser Engraving/Cutting']
+        },
+        {
+          title: 'Motor & Drive',
+          points: ['M3508 DC Brushless Motor', 'DM3519 Linear Rail']
+        },
+        {
+          title: 'Electronic Control Development',
+          points: ['ESP32 Embedded (with HXC-A board)', 'DAPLink Wireless Flashing/Debugging']
+        },
+        {
+          title: 'Vision',
+          points: ['Odin1 Vision Navigation Module', 'Raspberry Pi']
+        },
+        {
+          title: 'Software Tools',
+          points: ['PlatformIO + VS Code', 'ROS2 + Docker']
+        },
+        {
+          title: 'AI Development',
+          points: ['Vibe coding']
+        }
+      ]
     }
   },
   features: {

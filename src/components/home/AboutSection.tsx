@@ -28,6 +28,17 @@ export function AboutSection() {
                   <p className="leading-relaxed text-left">
                     {t.about.paragraph1}
                   </p>
+                  <div className="mt-4 leading-relaxed text-left space-y-2">
+                    {t.about.coreCapabilities.items.map((item, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary/60"></span>
+                        <p>
+                          <span className="font-semibold text-primary">{item.title}: </span>
+                          <span className="text-muted-foreground">{item.points.join(' / ')}</span>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="mt-8 flex">
                   <Button asChild className="bg-white/10 border-white/20 hover:bg-white/20 hover-lift glow-hover" variant="outline">
