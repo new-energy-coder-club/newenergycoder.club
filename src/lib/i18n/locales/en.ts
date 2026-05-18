@@ -84,26 +84,32 @@ export const enTranslations: Translations = {
       items: [
         {
           title: 'Manufacturing',
+          icon: 'Wrench',
           points: ['3D Printing', 'SMT Soldering', 'Laser Engraving/Cutting']
         },
         {
           title: 'Motor & Drive',
+          icon: 'Fan',
           points: ['M3508 DC Brushless Motor', 'DM3519 Linear Rail']
         },
         {
           title: 'Electronic Control Development',
+          icon: 'Cpu',
           points: ['ESP32 Embedded (with HXC-A board)', 'DAPLink Wireless Flashing/Debugging']
         },
         {
           title: 'Vision',
+          icon: 'Camera',
           points: ['Odin1 Vision Navigation Module', 'Raspberry Pi']
         },
         {
           title: 'Software Tools',
+          icon: 'TerminalSquare',
           points: ['PlatformIO + VS Code', 'ROS2 + Docker']
         },
         {
           title: 'AI Development',
+          icon: 'BrainCircuit',
           points: ['Vibe coding']
         }
       ]

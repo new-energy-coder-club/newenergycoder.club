@@ -148,26 +148,32 @@ export const zhTranslations: Translations = {
       items: [
         {
           title: '加工制造',
+          icon: 'Wrench',
           points: ['3D打印', 'SMT焊接贴片', '激光雕刻机切割']
         },
         {
           title: '电机与驱动',
+          icon: 'Fan',
           points: ['M3508直流无刷电机', 'DM3519直线导轨']
         },
         {
           title: '电控开发',
+          icon: 'Cpu',
           points: ['ESP32嵌入式 (配套HXC-A板)', 'DAPLink无线烧录/调试']
         },
         {
           title: '视觉',
+          icon: 'Camera',
           points: ['Odin1视觉导航模组', '树莓派']
         },
         {
           title: '软件工具',
+          icon: 'TerminalSquare',
           points: ['PlatformIO + VS Code', 'ROS2 + Docker']
         },
         {
           title: 'AI开发',
+          icon: 'BrainCircuit',
           points: ['Vibe coding']
         }
       ]

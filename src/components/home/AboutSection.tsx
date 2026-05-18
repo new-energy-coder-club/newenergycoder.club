@@ -1,12 +1,27 @@
-import { ArrowRight, GitBranch, Scale, Users, Code, BookOpen, Clock, Trophy, FolderGit2, Map, MapPin, ExternalLink } from 'lucide-react'
+import { ArrowRight, GitBranch, Scale, Users, Code, BookOpen, Clock, Trophy, FolderGit2, Map, MapPin, ExternalLink, Wrench, Fan, Cpu, Camera, TerminalSquare, BrainCircuit } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
+// Helper to map icon names to components
+const iconComponents = {
+  Wrench,
+  Fan,
+  Cpu,
+  Camera,
+  TerminalSquare,
+  BrainCircuit
+};
+
 export function AboutSection() {
   const t = useTranslation();
   
+  const renderIcon = (iconName: keyof typeof iconComponents) => {
+    const IconComponent = iconComponents[iconName];
+    return IconComponent ? <IconComponent className="h-5 w-5 text-primary" /> : null;
+  }
+
   return (
     <section className="py-24 bg-gradient-to-br from-secondary/20 to-accent/10 relative overflow-hidden">
       {/* Background decoration */}
@@ -28,10 +43,12 @@ export function AboutSection() {
                   <p className="leading-relaxed text-left">
                     {t.about.paragraph1}
                   </p>
-                  <div className="mt-4 leading-relaxed text-left space-y-2">
+                  <div className="mt-6 leading-relaxed text-left space-y-4">
                     {t.about.coreCapabilities.items.map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-primary/60"></span>
+                      <div key={index} className="flex items-center gap-4">
+                        <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                          {renderIcon(item.icon as keyof typeof iconComponents)}
+                        </div>
                         <p>
                           <span className="font-semibold text-primary">{item.title}: </span>
                           <span className="text-muted-foreground">{item.points.join(' / ')}</span>
