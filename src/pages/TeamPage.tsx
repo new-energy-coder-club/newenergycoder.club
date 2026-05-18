@@ -198,12 +198,17 @@ const SPONSOR_LEVEL_STYLES: Record<SponsorLevel, { badge: string; name: string }
   partner: { 
     badge: "bg-gradient-to-r from-blue-400 to-cyan-500 text-white border-0",
     name: "Community Partner"
+  },
+  personal: { 
+    badge: "bg-gradient-to-r from-pink-400 to-rose-500 text-white border-0",
+    name: "Personal Sponsorship"
   }
 }
 
 // 赞助商卡片组件
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   const levelStyle = SPONSOR_LEVEL_STYLES[sponsor.level];
+  const isPersonal = sponsor.level === 'personal';
   
   return (
     <Card className="group overflow-hidden border border-gray-200 dark:border-gray-700 
@@ -217,7 +222,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
             <img 
               src={sponsor.image} 
               alt={`${sponsor.name} logo`}
-              className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              className={`max-w-full max-h-full object-contain transition-all duration-300 ${!isPersonal ? 'filter grayscale group-hover:grayscale-0' : ''}`}
               onError={(e) => {
                 // Logo 加载失败时显示文字
                 (e.target as HTMLImageElement).style.display = 'none';
@@ -250,22 +255,24 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
         </p>
         
         {/* 支持内容 - 核心改进 */}
-        <div className="border-t border-gray-100 dark:border-gray-800 pt-3">
-          <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">支持内容</p>
-          <ul className="space-y-1.5">
-            {sponsor.supports.slice(0, 3).map((support, idx) => (
-              <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>
-                  {support.item}
-                  {support.quantity && (
-                    <span className="text-xs text-gray-500 ml-1">({support.quantity})</span>
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {!isPersonal && sponsor.supports && sponsor.supports.length > 0 && (
+          <div className="border-t border-gray-100 dark:border-gray-800 pt-3">
+            <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">支持内容</p>
+            <ul className="space-y-1.5">
+              {sponsor.supports.slice(0, 3).map((support, idx) => (
+                <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>
+                    {support.item}
+                    {support.quantity && (
+                      <span className="text-xs text-gray-500 ml-1">({support.quantity})</span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         
         {/* 访问链接 */}
         {sponsor.website && sponsor.website !== '#' && (
@@ -389,7 +396,8 @@ export function TeamPage() {
       gold: [],
       silver: [],
       bronze: [],
-      partner: []
+      partner: [],
+      personal: []
     }
     sponsors.forEach(s => {
       if (grouped[s.level]) {
@@ -549,6 +557,22 @@ export function TeamPage() {
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                       {sponsorsByLevel.partner.map((sponsor, idx) => (
+                        <SponsorCard key={idx} sponsor={sponsor} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Personal Sponsorship */}
+                {sponsorsByLevel.personal.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4 text-center">
+                      <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-pink-400 to-rose-500 text-white text-sm">
+                        Personal Sponsorship
+                      </span>
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {sponsorsByLevel.personal.map((sponsor, idx) => (
                         <SponsorCard key={idx} sponsor={sponsor} />
                       ))}
                     </div>

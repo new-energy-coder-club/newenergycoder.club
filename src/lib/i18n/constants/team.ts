@@ -1,7 +1,7 @@
 import { TeamMember } from '../types/translations';
 
 // 赞助商等级类型
-export type SponsorLevel = 'strategic' | 'gold' | 'silver' | 'bronze' | 'partner';
+export type SponsorLevel = 'strategic' | 'gold' | 'silver' | 'bronze' | 'partner' | 'personal';
 
 // 赞助商支持内容
 export interface SponsorSupport {
@@ -631,10 +631,20 @@ export const sponsors: Sponsor[] = [
   {
     name: '王浩',
     role: '赞助商',
-    level: 'partner',
+    level: 'personal',
     bio: 'FA社团，睿抗社团在职队员，熟练运用sw',
     image: '/image/sponsor/王浩.jpg',
     tags: ['SolidWorks'],
+    supports: [],
+    website: '#'
+  },
+  {
+    name: '个人赞助者',
+    role: '个人赞助',
+    level: 'partner',
+    bio: '感谢您对开源社区的支持！',
+    image: '/image/sponsor/personal.png',
+    tags: ['个人赞助'],
     supports: [],
     website: '#'
   }
