@@ -58,3 +58,4 @@ vercel-render-analysis.md
 
 # Local config
 *.local
+.env*.local

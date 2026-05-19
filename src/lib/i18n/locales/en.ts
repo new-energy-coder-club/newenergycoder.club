@@ -31,72 +31,40 @@ export const enTranslations: Translations = {
     industryConnectionsDesc: 'Network with leading energy sector professionals',
   },
   about: {
-    title: 'About Our Club',
-    paragraph1: 'The New Energy Coder Club was founded in 2024 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy. Our mission is to build a community that develops open-source software solutions for renewable energy applications, smart grid technologies, energy efficiency, and sustainability. Through workshops, hackathons, collaborative projects, and partnerships with energy companies, we aim to create a platform where technology meets sustainability for a better future.',
-    core_competencies_title: 'Our Team\'s Core Competencies',
-    processing_manufacturing: 'Processing & Manufacturing',
-    '3d_printing': '3D Printing',
-    smt_welding: 'SMT Welding',
-    laser_engraving: 'Laser Engraving & Cutting',
-    motor_drive: 'Motor & Drive',
-    m3508_motor: 'M3508 DC Brushless Motor',
-    dm3519_rail: 'DM3519 Linear Guide Rail',
-    electronic_control: 'Electronic Control Development',
-    esp32_embedded: 'ESP32 Embedded (with HXC-A board)',
-    daplink_wireless: 'DAPLink Wireless Flashing/Debugging',
-    vision: 'Vision',
-    odin1_module: 'Odin1 Vision Navigation Module',
-    raspberry_pi: 'Raspberry Pi',
-    software_tools: 'Software Tools',
-    platformio_vscode: 'PlatformIO + VS Code',
-    ros2_docker: 'ROS2 + Docker',
-    ai_development: 'AI Development',
-    vibe_coding: 'Vibe coding',
-    learnMore: 'Learn More About Us',
-    projectOrigin: {
-      title: 'Phase 1: Project Origin',
-      content: 'The NEC Programming Club was originally a small project focused on solar monitoring, and has now grown into a comprehensive sustainable technology community. Our growth is driven by the collaborative efforts of students, educators, and industry professionals.'
-    },
-    phase2: {
-      title: 'Phase 2 Development',
-      description: 'Future enhancements and expanded features coming soon',
-      content: 'A community of developers and designers building open-source projects and robots'
-    },
-    contributing: {
-      title: 'Contributing Guidelines',
-      description: 'We welcome contributions from developers of all skill levels who share our passion for sustainable technology.',
-      howToContribute: 'How to Contribute',
-      steps: [
-        'Fork the repository and create a new branch for your feature',
-        'Follow our coding standards and best practices',
-        'Write comprehensive tests for your code',
-        'Submit a pull request with a clear description',
-        'Participate in code review discussions'
-      ],
-      codeOfConduct: 'Please follow our Code of Conduct to maintain a welcoming environment for all contributors.',
-      reportIssues: 'Report bugs and suggest features through our issue tracker.',
-      submitPR: 'Submit pull requests following our contribution workflow.'
-    },
-    license: {
-      title: 'Open Source License',
-      description: 'Our projects are released under open source licenses to promote collaboration and innovation.',
-      openSource: 'We believe in the power of open source to drive sustainable technology forward.',
-      permissions: [
-        'Commercial use',
-        'Modification',
-        'Distribution',
-        'Private use'
-      ],
-      limitations: [
-        'Liability',
-        'Warranty'
-      ],
-      conditions: [
-        'License and copyright notice',
-        'State changes',
-        'Disclose source'
-      ]
-    },
+    title: 'About Us',
+    paragraph1: 'NEC (New Energy Coder Club) is an open-source technology community for ROBOCON robotics competition and new energy engineering. We provide battle-tested modular codebases, hardware solutions, and collaboration tools. We also have the following professional capabilities:',
+    core_competencies: [
+      {
+        category: 'Processing & Manufacturing',
+        skills: '3D Printing / SMT Welding / Laser Engraving & Cutting',
+        icon: 'Wrench'
+      },
+      {
+        category: 'Motor & Drive',
+        skills: 'M3508 DC Brushless Motor / DM3519 Linear Guide Rail',
+        icon: 'RotateCw'
+      },
+      {
+        category: 'Electronic Control Development',
+        skills: 'ESP32 Embedded (with HXC-A board) / DAPLink Wireless Flashing/Debugging',
+        icon: 'Cpu'
+      },
+      {
+        category: 'Vision',
+        skills: 'Odin1 Vision Navigation Module / Raspberry Pi',
+        icon: 'Camera'
+      },
+      {
+        category: 'Software Tools',
+        skills: 'PlatformIO + VS Code / ROS2 + Docker',
+        icon: 'TerminalSquare'
+      },
+      {
+        category: 'AI Development',
+        skills: 'Vibe coding',
+        icon: 'Sparkles'
+      }
+    ]
   },
   features: {
     title: 'Why Join Our Community?',
