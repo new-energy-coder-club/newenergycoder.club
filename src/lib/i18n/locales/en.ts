@@ -33,38 +33,71 @@ export const enTranslations: Translations = {
   about: {
     title: 'About Us',
     paragraph1: 'NEC (New Energy Coder Club) is an open-source technology community for ROBOCON robotics competition and new energy engineering. We provide battle-tested modular codebases, hardware solutions, and collaboration tools. We also have the following professional capabilities:',
-    core_competencies: [
+    coreAbilities: [
       {
-        category: 'Processing & Manufacturing',
-        skills: '3D Printing / SMT Welding / Laser Engraving & Cutting',
-        icon: 'Wrench'
+        icon: 'Wrench',
+        title: 'Processing & Manufacturing',
+        description: '3D Printing / SMT Welding / Laser Engraving & Cutting',
       },
       {
-        category: 'Motor & Drive',
-        skills: 'M3508 DC Brushless Motor / DM3519 Linear Guide Rail',
-        icon: 'RotateCw'
+        icon: 'Cpu',
+        title: 'Motor & Drive',
+        description: 'M3508 DC Brushless Motor / DM3519 Linear Guide Rail',
       },
       {
-        category: 'Electronic Control Development',
-        skills: 'ESP32 Embedded (with HXC-A board) / DAPLink Wireless Flashing/Debugging',
-        icon: 'Cpu'
+        icon: 'CircuitBoard',
+        title: 'Electronic Control Development',
+        description: 'ESP32 Embedded (with HXC-A board) / DAPLink Wireless Flashing/Debugging',
       },
       {
-        category: 'Vision',
-        skills: 'Odin1 Vision Navigation Module / Raspberry Pi',
-        icon: 'Camera'
+        icon: 'Camera',
+        title: 'Vision',
+        description: 'Odin1 Vision Navigation Module / Raspberry Pi',
       },
       {
-        category: 'Software Tools',
-        skills: 'PlatformIO + VS Code / ROS2 + Docker',
-        icon: 'TerminalSquare'
+        icon: 'Codepen',
+        title: 'Software Tools',
+        description: 'PlatformIO + VS Code / ROS2 + Docker',
       },
       {
-        category: 'AI Development',
-        skills: 'Vibe coding',
-        icon: 'Sparkles'
-      }
-    ]
+        icon: 'BrainCircuit',
+        title: 'AI Development',
+        description: 'Vibe coding',
+      },
+    ],
+    learnMore: 'Learn More',
+    projectOrigin: {
+      title: 'Phase 1: Project Origin',
+      content: 'Our programming club started as a small project focused on solar energy monitoring and has now grown into a comprehensive sustainable technology community. Our growth is driven by the collaborative efforts of students, educators, and industry professionals.'
+    },
+    phase2: {
+      title: 'Current Phase: Community Expansion',
+      description: 'Beyond the Initial Project',
+      content: 'Following the success of our early projects, we will expand to include wind energy optimization, smart grid technology, and sustainable transportation solutions, while maintaining a passionate focus on open-source development.'
+    },
+    contributing: {
+      title: 'Contributing',
+      description: 'How We Build Our Community',
+      howToContribute: 'How to Contribute',
+      steps: [
+        'Join via our Gitee repository',
+        'Participate in weekly workshops',
+        'Contribute to open-source projects',
+        'Collaborate with team members',
+        'Share knowledge and best practices'
+      ],
+      codeOfConduct: 'Code of Conduct',
+      reportIssues: 'Report Issues',
+      submitPR: 'Submit a Pull Request'
+    },
+    license: {
+      title: 'License',
+      description: 'Open Source Licensing',
+      openSource: 'All our projects are open-source under the MIT License',
+      permissions: ['Commercial use', 'Modification', 'Distribution', 'Private use'],
+      limitations: ['Liability', 'Warranty'],
+      conditions: ['License and copyright notice']
+    }
   },
   features: {
     title: 'Why Join Our Community?',
