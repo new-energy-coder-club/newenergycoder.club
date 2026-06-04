@@ -97,7 +97,7 @@ export function ContactPage() {
     } catch (error) {
       toast({
         title: t.contact.form.messageError,
-        description: error instanceof Error && error.message ? error.message : "请检查网络或服务配置(.env)后重试。",
+        description: error instanceof Error && error.message ? error.message : t.contact.form.toastErrorDescription,
         variant: "destructive",
       })
     } finally {
@@ -234,7 +234,7 @@ export function ContactPage() {
                       <div className={`${selectedRatio} overflow-hidden relative w-full max-w-sm bg-background/60 rounded-lg p-2 shadow-md hover:shadow-lg transition-shadow duration-200`}>
                         <img 
                           src={NECApplicationForm} 
-                          alt="NEC官网上线申请表" 
+                          alt={t.contact.application.title} 
                           className="w-full h-full object-contain rounded-md"
                         />
                       </div>

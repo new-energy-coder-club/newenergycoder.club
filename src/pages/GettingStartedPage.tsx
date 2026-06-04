@@ -165,7 +165,7 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
   const Icon = guide.icon
   const [isExpanded, setIsExpanded] = useState(false)
   const guideKey = guide.id === 'first-good-issue' ? 'firstGoodIssue' : (guide.id === 'first-project' ? 'firstProject' : guide.id)
-  const item = (t as any).gettingStarted?.quickGuides?.items?.[guideKey]
+  const item = t.gettingStarted?.quickGuides?.items?.[guideKey as 'setup' | 'firstGoodIssue' | 'firstProject' | 'community']
   const itemSteps = (item?.steps as string[]) || guide.steps
   
   const getDifficultyColor = (difficulty: string) => {
@@ -227,7 +227,7 @@ function QuickGuideCard({ guide }: { guide: QuickGuide }) {
               <CardContent className="pt-0">
                 <p className="text-muted-foreground mb-4">{item?.description ?? guide.description}</p>
                 <div className="space-y-2">
-                  <h4 className="font-medium text-sm">{(t as any).gettingStarted.quickGuides.stepsLabel}</h4>
+                  <h4 className="font-medium text-sm">{t.gettingStarted.quickGuides.stepsLabel}</h4>
                   <ol className="space-y-2">
                     {itemSteps.map((step: string, index: number) => (
                       <li key={index} className="flex items-start gap-2 text-sm">
@@ -329,10 +329,10 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              {(t as any).gettingStarted.hero.title}
+              {t.gettingStarted.hero.title}
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              {(t as any).gettingStarted.hero.description}
+              {t.gettingStarted.hero.description}
             </p>
           </motion.div>
           
@@ -345,19 +345,19 @@ export default function GettingStartedPage() {
             <Button size="lg" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <Link to="/join">
                 <Users className="mr-2 h-5 w-5" />
-                {(t as any).gettingStarted.hero.buttons.joinClub}
+                {t.gettingStarted.hero.buttons.joinClub}
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-primary/5 transition-all duration-300" asChild>
               <Link to="/projects">
                 <Code className="mr-2 h-5 w-5" />
-                {(t as any).gettingStarted.hero.buttons.viewProjects}
+                {t.gettingStarted.hero.buttons.viewProjects}
               </Link>
             </Button>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" asChild>
               <a href="https://www.newenergycoder.club/" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-5 w-5" />
-                {(t as any).gettingStarted.hero.buttons.visitSite}
+                {t.gettingStarted.hero.buttons.visitSite}
               </a>
             </Button>
           </motion.div>
@@ -375,27 +375,27 @@ export default function GettingStartedPage() {
           >
             <StatsCard
               icon={Users}
-              title={(t as any).gettingStarted.stats.learnersTitle}
+              title={t.gettingStarted.stats.learnersTitle}
               value={isLoading ? '...' : watchersCount}
-              description={(t as any).gettingStarted.stats.learnersDesc}
+              description={t.gettingStarted.stats.learnersDesc}
             />
             <StatsCard
               icon={Eye}
-              title="CSDN 访问量"
+              title={t.gettingStarted.stats.csdnVisitsTitle}
               value={isLoading ? '...' : csdnVisits.toLocaleString()}
-              description="博客总访问次数"
+              description={t.gettingStarted.stats.csdnVisitsDesc}
             />
             <StatsCard
               icon={Star}
-              title={(t as any).gettingStarted.stats.averageRatingTitle}
+              title={t.gettingStarted.stats.averageRatingTitle}
               value={learningStats.averageRating}
-              description={(t as any).gettingStarted.stats.averageRatingDesc}
+              description={t.gettingStarted.stats.averageRatingDesc}
             />
             <StatsCard
               icon={TrendingUp}
-              title={(t as any).gettingStarted.stats.successRateTitle}
+              title={t.gettingStarted.stats.successRateTitle}
               value={`${learningStats.successRate}%`}
-              description={(t as any).gettingStarted.stats.successRateDesc}
+              description={t.gettingStarted.stats.successRateDesc}
             />
           </motion.div>
         </div>
@@ -410,9 +410,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">{(t as any).gettingStarted.quickGuides.title}</h2>
+            <h2 className="text-3xl font-bold mb-4">{t.gettingStarted.quickGuides.title}</h2>
             <p className="text-lg text-muted-foreground">
-              {(t as any).gettingStarted.quickGuides.description}
+              {t.gettingStarted.quickGuides.description}
             </p>
           </motion.div>
           
@@ -440,9 +440,9 @@ export default function GettingStartedPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">{(t as any).gettingStarted.trainingResources.title}</h2>
+            <h2 className="text-3xl font-bold mb-4">{t.gettingStarted.trainingResources.title}</h2>
             <p className="text-lg text-muted-foreground">
-              {(t as any).gettingStarted.trainingResources.description}
+              {t.gettingStarted.trainingResources.description}
             </p>
           </motion.div>
           
@@ -549,11 +549,11 @@ export default function GettingStartedPage() {
               <Card className="hover:shadow-lg transition-all duration-300 text-center">
                 <CardContent className="p-6">
                   <Github className="h-12 w-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold mb-2">{(t as any).gettingStarted.trainingResources.githubRepoTitle}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{(t as any).gettingStarted.trainingResources.githubRepoDesc}</p>
+                  <h3 className="font-semibold mb-2">{t.gettingStarted.trainingResources.githubRepoTitle}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{t.gettingStarted.trainingResources.githubRepoDesc}</p>
                   <Button variant="outline" size="sm" asChild>
                     <a href="https://github.com/Darrenpig/new_energy_coder_club" target="_blank" rel="noopener noreferrer">
-                      {(t as any).gettingStarted.trainingResources.visitGithub}
+                      {t.gettingStarted.trainingResources.visitGithub}
                     </a>
                   </Button>
                 </CardContent>

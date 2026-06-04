@@ -192,7 +192,7 @@ export function Header() {
                     {t.nav.login}
                   </LoginButton>
                   <Button size="sm" asChild>
-                    <Link to="/join">加入协作</Link>
+                    <Link to="/join">{t.nav.joinCollab}</Link>
                   </Button>
                 </>
               )}
@@ -301,7 +301,7 @@ export function Header() {
                   </LoginButton>
                   <Button size="sm" asChild>
                     <Link to="/join" onClick={() => setMobileMenuOpen(false)}>
-                      加入协作
+                      {t.nav.joinCollab}
                     </Link>
                   </Button>
                 </>

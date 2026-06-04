@@ -33,7 +33,7 @@ export function Footer() {
           </div>
           <div className="mt-2">
             <a href="https://gitee.com/explore/robot?order=starred&page=2" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Gitee No.24 机器人开源仓库
+              {t.footer.giteeRobotRepo}
             </a>
           </div>
           <p className="text-primary font-bold text-sm mt-2">

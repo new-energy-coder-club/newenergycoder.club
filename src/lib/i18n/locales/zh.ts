@@ -58,6 +58,17 @@ export const zhTranslations: Translations = {
       viewProject: '先看项目',
       tip: '💡 提示：加群后记得自我介绍，说说你烧过几块板子'
     },
+    github: {
+      title: '加入 GitHub 组织',
+      button: '前往 GitHub'
+    },
+    contact: {
+      title: '联系加入我们',
+      openFeishu: '打开飞书邀请',
+      downloadFeishu: '下载飞书',
+      copied: '已复制 ✓',
+      copyButton: '复制 maintainer 微信'
+    },
     form: {
       name: '姓名',
       email: '邮箱',
@@ -88,6 +99,7 @@ export const zhTranslations: Translations = {
     login: '登录',
     logout: '退出',
     joinClub: '加入俱乐部',
+    joinCollab: '加入协作',
     dashboard: '控制台'
   },
   hero: {
@@ -111,22 +123,22 @@ export const zhTranslations: Translations = {
       {
         icon: 'Wrench',
         title: '加工制造',
-        description: '3D打印 / SMT焊接贴片 / 激光雕刻机切割',
+        description: '3D 打印 / SMT 焊接贴片 / 激光雕刻机切割',
       },
       {
         icon: 'Cpu',
         title: '电机与驱动',
-        description: 'M3508直流无刷电机 / DM3519直线导轨',
+        description: 'M3508 直流无刷电机 / DM3519 直线导轨',
       },
       {
         icon: 'CircuitBoard',
         title: '电控开发',
-        description: 'ESP32嵌入式 (配套HXC-A板) / DAPLink无线烧录/调试',
+        description: 'ESP32 嵌入式（配套 HXC-A 板）/ DAPLink 无线烧录与调试',
       },
       {
         icon: 'Camera',
         title: '视觉',
-        description: 'Odin1视觉导航模组 / 树莓派',
+        description: 'Odin1 视觉导航模组 / 树莓派',
       },
       {
         icon: 'Codepen',
@@ -135,28 +147,53 @@ export const zhTranslations: Translations = {
       },
       {
         icon: 'BrainCircuit',
-        title: 'AI开发',
+        title: 'AI 开发',
         description: 'Vibe coding',
       },
     ],
-    paragraph2: 'NEC 新能源开发者社区 从 2024 年开始系统性地开源 ROBOCON 竞赛中的技术积累，目前代码库已获得 260+ commits，服务多所高校的竞赛队伍。',
-    paragraph3: '我们的开源项目覆盖嵌入式控制、计算机视觉、机械设计、电机控制等领域，所有方案均经过实际竞赛环境验证，可直接复用或二次开发。',
     learnMore: '了解更多',
     projectOrigin: {
       title: '第一阶段：项目起源',
-      content: 'NEC编程俱乐部最初是一个专注于太阳能监测的小型组织，现已发展成为一个综合性的可持续技术社区。我们的成长离不开团队成员、教育工作者和行业专业人士的共同推动。'
+      subtitle: '解锁我们的故事，从这里开始',
+      content: 'NEC 编程俱乐部最初是一个专注于太阳能监测的小型组织，现已发展成为一个综合性的可持续技术社区。我们的成长离不开团队成员、教育工作者和行业专业人士的共同推动。'
     },
     phase2: {
       title: '当前阶段：社区扩展',
       description: '超越初始项目',
       content: '随着我们早期项目的成功，我们将扩展到包括风能优化、智能电网技术和可持续交通解决方案，同时保持对开源开发的热情关注。'
     },
+    coreAdvantages: {
+      title: '我们有什么？',
+      subtitle: '不是 polished 的演示，是沾满松香和焊锡膏的真实资产',
+      dualTrack: {
+        title: '比赛 + 项目双轨',
+        description: 'competitions/ 是血泪赛场，projects/ 是长期沉淀。每个文件夹里都有 README 记录着当时为什么踩了这个坑。不是「赛题仓库」，是「错题本」。'
+      },
+      fullProcess: {
+        title: '过程全记录',
+        description: '不是只有「最终版」。v0.1 到 v2.0 的全部 commit 都留着，包括那些「哎呀这个方案不行」的 revert。失败的路径和成功的一样有价值。'
+      },
+      onboarding: {
+        title: '入坑有路',
+        description: '我们写了「踩坑手册」，记录了每一块板子是怎么烧的。不看也没事，反正你来了我们也会再带你踩一遍（笑）。'
+      },
+      base: {
+        title: 'A416 据点',
+        description: '不是「创客空间」，是个堆满板子、线材、还有泡面味儿的实验室。来这你能闻到松香，看到我们是怎么把 200 块活成 2000 块的效果。'
+      },
+      knowledgeBase: {
+        title: '知识库',
+        description: '飞书知识库里有我们整理的「失败案例集」，比成功案例厚三倍。官网和仓库只是入口，真正的血泪史都在文档里。'
+      },
+      feishuLink: '飞书知识库',
+      escapeManualLink: '踩坑手册'
+    },
     contributing: {
       title: '贡献',
       description: '我们如何构建社区',
       howToContribute: '如何贡献',
       steps: [
-        '通过我们的Gitee仓库加入',
+        '通过我们的 Gitee 仓库加入',
         '参加每周工作坊',
         '参与开源项目',
         '与团队成员合作',
@@ -169,10 +206,13 @@ export const zhTranslations: Translations = {
     license: {
       title: '许可证',
       description: '开源许可',
-      openSource: '我们所有的项目都在MIT许可证下开源',
+      openSource: '我们所有的项目都在 MIT 许可证下开源',
       permissions: ['商业使用', '修改', '分发', '个人使用'],
       limitations: ['责任', '担保'],
-      conditions: ['许可证和版权声明']
+      conditions: ['许可证和版权声明'],
+      permissionsTitle: '许可',
+      limitationsTitle: '限制',
+      conditionsTitle: '条件'
     }
   },
   features: {
@@ -181,19 +221,19 @@ export const zhTranslations: Translations = {
     weeklyWorkshops: '模块化代码库',
     weeklyWorkshopsDesc: '经过竞赛验证的嵌入式、视觉、控制算法',
     openSource: '硬件方案开源',
-    openSourceDesc: '机械结构、电路原理图、PCB布局完全开源',
+    openSourceDesc: '机械结构、电路原理图、PCB 布局完全开源',
     hackathons: '协作工具链',
     hackathonsDesc: '光伏排布、型材计算等工程辅助工具',
     guestSpeakers: '分层贡献体系',
-    guestSpeakersDesc: '从Good First Issue到核心模块维护的清晰路径',
+    guestSpeakersDesc: '从 Good First Issue 到核心模块维护的清晰路径',
     networking: '线上线下结合',
-    networkingDesc: 'A416实验室提供实体开发环境',
+    networkingDesc: 'A416 实验室提供实体开发环境',
     conferences: '技术文档中心',
-    conferencesDesc: '详细的API文档、赛题解析、开发笔记'
+    conferencesDesc: '详细的 API 文档、赛题解析、开发笔记'
   },
   team: {
     title: '我们是谁？',
-    description: '我们最吸引人的从来不是「完美」，而是「在至暗时刻还能笑着调板子的那股劲」。预算只有其他团队1/10却敢坚持到赛场并完赛的那口劲；是一群人躺在实验室地面上，醒来的人紧张忙碌着传递工具，用Gitee跨时区远程协作，拼命要把项目弄好的那口劲。这才是NEC开源社区的灵魂。',
+    description: '我们最吸引人的从来不是「完美」，而是「在至暗时刻还能笑着调板子的那股劲」。预算只有其他团队 1/10 却敢坚持到赛场并完赛的那口劲；是一群人躺在实验室地面上，醒来的人紧张忙碌着传递工具，用 Gitee 跨时区远程协作，拼命要把项目弄好的那口劲。这才是 NEC 开源社区的灵魂。',
     maintainerTitle: '维护者',
     developerTitle: '开发者',
     designerTitle: '设计师',
@@ -203,18 +243,23 @@ export const zhTranslations: Translations = {
     sponsorTitle: '赞助商',
     viewFullTeam: '查看完整团队',
     teamPhoto: '团队照片',
+    brochure: {
+      viewButton: '查看招商手册',
+      title: '招商手册',
+      pageAlt: '招商手册第 {n} 页'
+    },
     analytics: {
       title: '团队分析',
       description: '我们社区成长的详细统计',
       totalMembers: '总成员',
       activeContributors: '活跃贡献者',
-      giteeReference: 'Gitee参考',
+      giteeReference: 'Gitee 参考',
       lastUpdated: '最后更新',
       roleDistribution: '角色分布',
       contributionStats: '贡献统计',
       mainResponsibilities: '主要职责',
       maintainerResponsibilities: '项目管理、代码审查、技术决策',
-      developerResponsibilities: '功能开发、Bug修复、技术实现',
+      developerResponsibilities: '功能开发、Bug 修复、技术实现',
       designerResponsibilities: '界面设计、用户体验、视觉规范',
       contributorResponsibilities: '文档编写、测试反馈、社区支持'
     },
@@ -229,7 +274,7 @@ export const zhTranslations: Translations = {
   },
   cta: {
     title: '来吧，别光看',
-    description: '200块都能玩机器人，你还怕啥？ broken board 是常态，调通的那一刻才是高潮',
+    description: '200 块都能玩机器人，你还怕啥？ broken board 是常态，调通的那一刻才是高潮',
     getStarted: '入坑指南'
   },
   common: {
@@ -262,7 +307,7 @@ export const zhTranslations: Translations = {
     filterEmbedded: '嵌入式系统',
     filterRobotics: '机器人技术',
     filterResearch: '研究',
-    filterWeb: 'Web开发',
+    filterWeb: 'Web 开发',
     filterMobile: '移动应用',
     filterOther: '其他',
     viewProject: '查看项目',
@@ -273,7 +318,7 @@ export const zhTranslations: Translations = {
   },
   events: {
     title: '活动',
-    description: '技术分享、工作坊与ROBOCON备赛活动',
+    description: '技术分享、工作坊与 ROBOCON 备赛活动',
     filterTitle: '筛选活动',
     expandFilters: '展开筛选',
     collapseFilters: '收起筛选',
@@ -356,7 +401,7 @@ export const zhTranslations: Translations = {
       toastErrorDescription: '请检查您的网络连接并重试。'
     },
     info: {
-      address: '江苏省常州市新北区辽河路666号玉衡楼A416',
+      address: '江苏省常州市新北区辽河路666号玉衡楼 A416',
       phone: '+86 158 9600 0818',
       email: '22230635@czu.cn',
       hours: '周一至周六：上午9点- 下午6点'
@@ -373,8 +418,8 @@ export const zhTranslations: Translations = {
       email: '邮箱'
     },
     application: {
-      title: 'NEC官网上线申请',
-      description: '申请加入NEC官网，展示您的项目与成果。',
+      title: 'NEC 官网上线申请',
+      description: '申请加入 NEC 官网，展示您的项目与成果。',
       applyNow: '立即申请'
     }
   },
@@ -387,7 +432,7 @@ export const zhTranslations: Translations = {
       title: '我的项目',
       description: '管理和跟踪您对我们开源项目的贡献',
       noProjects: '无项目',
-      viewGithub: '查看Gitee'
+      viewGithub: '查看 Gitee'
     },
     upcomingEvents: {
       title: '即将开始的活动',
@@ -417,9 +462,10 @@ export const zhTranslations: Translations = {
     resources: '资源',
     contact: '联系',
     learningMaterials: '学习材料',
-    joinClub: '加入NEC仓库实验室',
+    joinClub: '加入 NEC 仓库实验室',
     documentation: '文档中心',
     gettingStarted: '入门文档',
+    giteeRobotRepo: 'Gitee No.24 机器人开源仓库',
     techRoadmap: {
       title: '技术路线',
       description: '专业的技术发展指导'
@@ -461,7 +507,9 @@ export const zhTranslations: Translations = {
       averageRatingTitle: '平均评分',
       averageRatingDesc: '学员满意度',
       successRateTitle: '成功率',
-      successRateDesc: '学习成功率'
+      successRateDesc: '学习成功率',
+      csdnVisitsTitle: 'CSDN 访问量',
+      csdnVisitsDesc: '博客总访问次数'
     },
     directions: {
       title: '选择您的技术方向',
@@ -476,9 +524,9 @@ export const zhTranslations: Translations = {
         duration: '6-8个月'
       },
       gui: {
-        title: 'GUI界面开发',
+        title: 'GUI 界面开发',
         description: '掌握跨平台图形界面开发，创建美观实用的桌面应用',
-        skills: ['Qt/QML', 'UI设计', '跨平台开发', '用户体验'],
+        skills: ['Qt/QML', 'UI 设计', '跨平台开发', '用户体验'],
         duration: '4-6个月'
       },
       algorithm: {
@@ -489,8 +537,8 @@ export const zhTranslations: Translations = {
       },
       structurePrint: {
         title: '结构打印开发',
-        description: '面向3D结构打印的设计、切片与控制开发',
-        skills: ['CAD建模', '切片软件', '材料工艺', 'G-code/控制'],
+        description: '面向 3D 结构打印的设计、切片与控制开发',
+        skills: ['CAD 建模', '切片软件', '材料工艺', 'G-code/控制'],
         duration: '5-7个月'
       }
     },
@@ -512,14 +560,14 @@ export const zhTranslations: Translations = {
         },
         firstGoodIssue: {
           title: '第一个好的问题',
-          description: '寻找并解决您的第一个Good Issue，开始为开源项目做贡献',
+          description: '寻找并解决您的第一个 Good Issue，开始为开源项目做贡献',
           steps: [
-            '浏览项目Issue列表',
-            '筛选Good First Issue标签',
+            '浏览项目 Issue 列表',
+            '筛选 Good First Issue 标签',
             '理解问题描述和要求',
-            'Fork项目并创建分支',
+            'Fork 项目并创建分支',
             '实现解决方案',
-            '提交Pull Request'
+            '提交 Pull Request'
           ],
           estimatedTime: '25分钟'
         },
@@ -565,7 +613,7 @@ export const zhTranslations: Translations = {
       githubRepoDesc: '查看项目源码和贡献代码',
       visitGithub: '访问 GitHub',
       docsTitle: '技术文档',
-      docsDesc: '详细的技术文档和API参考',
+      docsDesc: '详细的技术文档和 API 参考',
       viewDocs: '查看文档',
       videosTitle: '视频教程',
       videosDesc: '观看实战项目视频教程',

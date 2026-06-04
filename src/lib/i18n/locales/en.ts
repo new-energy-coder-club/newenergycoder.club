@@ -14,6 +14,7 @@ export const enTranslations: Translations = {
     login: 'Log in',
     logout: 'Log out',
     joinClub: 'Join Club',
+    joinCollab: 'Join Us',
     dashboard: 'Dashboard',
   },
   hero: {
@@ -68,12 +69,39 @@ export const enTranslations: Translations = {
     learnMore: 'Learn More',
     projectOrigin: {
       title: 'Phase 1: Project Origin',
+      subtitle: 'Unlock our story — it starts here',
       content: 'Our programming club started as a small project focused on solar energy monitoring and has now grown into a comprehensive sustainable technology community. Our growth is driven by the collaborative efforts of students, educators, and industry professionals.'
     },
     phase2: {
       title: 'Current Phase: Community Expansion',
       description: 'Beyond the Initial Project',
       content: 'Following the success of our early projects, we will expand to include wind energy optimization, smart grid technology, and sustainable transportation solutions, while maintaining a passionate focus on open-source development.'
+    },
+    coreAdvantages: {
+      title: 'What Do We Have?',
+      subtitle: 'Not polished demos — real assets covered in rosin and solder paste',
+      dualTrack: {
+        title: 'Competitions + Projects Dual Track',
+        description: 'competitions/ is the bloody battlefield, projects/ is the long-term sediment. Every folder has a README documenting why we fell into that pit. Not a "competition repo" — a "mistake notebook".'
+      },
+      fullProcess: {
+        title: 'Full Process Recorded',
+        description: 'Not just the "final version". All commits from v0.1 to v2.0 are kept, including the "oops this approach won\'t work" reverts. Failed paths are as valuable as the successful ones.'
+      },
+      onboarding: {
+        title: 'A Path Into the Pit',
+        description: 'We wrote a "Pitfall Manual" recording how each board got fried. Not reading it is fine — when you join, we\'ll walk you through the same pits anyway (laugh).'
+      },
+      base: {
+        title: 'A416 Outpost',
+        description: 'Not a "maker space" — it\'s a lab full of boards, wires, and the smell of instant noodles. Come here, smell the rosin, and see how we make 200 RMB feel like 2000 RMB worth of results.'
+      },
+      knowledgeBase: {
+        title: 'Knowledge Base',
+        description: 'Our Feishu knowledge base has a "failure case collection" three times thicker than the success cases. The website and repo are just the entrance — the real bloody history lives in the docs.'
+      },
+      feishuLink: 'Feishu Knowledge Base',
+      escapeManualLink: 'Pitfall Manual'
     },
     contributing: {
       title: 'Contributing',
@@ -96,7 +124,10 @@ export const enTranslations: Translations = {
       openSource: 'All our projects are open-source under the MIT License',
       permissions: ['Commercial use', 'Modification', 'Distribution', 'Private use'],
       limitations: ['Liability', 'Warranty'],
-      conditions: ['License and copyright notice']
+      conditions: ['License and copyright notice'],
+      permissionsTitle: 'Permissions',
+      limitationsTitle: 'Limitations',
+      conditionsTitle: 'Conditions'
     }
   },
   features: {
@@ -127,6 +158,11 @@ export const enTranslations: Translations = {
     sponsorTitle: 'Sponsor',
     viewFullTeam: 'View Full Team',
     teamPhoto: 'Team Photo',
+    brochure: {
+      viewButton: 'View Sponsorship Brochure',
+      title: 'Sponsorship Brochure',
+      pageAlt: 'Sponsorship Brochure Page {n}'
+    },
     analytics: {
       title: 'Team Analytics',
       description: 'Team composition analysis based on Gitee project contributor data',
@@ -228,6 +264,17 @@ export const enTranslations: Translations = {
       addWechat: 'Add WeChat Contact',
       viewProject: 'View Our Projects',
       tip: '💡 Pro tip: Adding our WeChat contact is the fastest way to get started!'
+    },
+    github: {
+      title: 'Join Our GitHub Organization',
+      button: 'Go to GitHub'
+    },
+    contact: {
+      title: 'Contact Us to Join',
+      openFeishu: 'Open Feishu Invite',
+      downloadFeishu: 'Download Feishu',
+      copied: 'Copied ✓',
+      copyButton: 'Copy Maintainer WeChat'
     }
   },
   common: {
@@ -396,7 +443,9 @@ export const enTranslations: Translations = {
       averageRatingTitle: 'Average Rating',
       averageRatingDesc: 'Learner satisfaction',
       successRateTitle: 'Success Rate',
-      successRateDesc: 'Learning success rate'
+      successRateDesc: 'Learning success rate',
+      csdnVisitsTitle: 'CSDN Visits',
+      csdnVisitsDesc: 'Total blog visits'
     },
     directions: {
       title: 'Choose Your Tech Direction',
@@ -551,6 +600,7 @@ export const enTranslations: Translations = {
     joinClub: 'Join Club',
     documentation: 'Documentation',
     gettingStarted: 'Getting Started',
+    giteeRobotRepo: 'Gitee Top 24 Robotics Open-Source Repo',
     techRoadmap: {
       title: 'Tech Roadmap',
       description: 'Explore our technology learning paths'

@@ -75,7 +75,7 @@ export function AboutSection() {
                     </div>
                     <div>
                       <CardTitle className="gradient-text">{t.about.projectOrigin.title}</CardTitle>
-                      <CardDescription>解锁我们的故事，从这里开始</CardDescription>
+                      <CardDescription>{t.about.projectOrigin.subtitle}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
@@ -118,8 +118,8 @@ export function AboutSection() {
         {/* Core Advantages */}
         <div className="mt-12">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold gradient-text mb-2">我们有什么？</h3>
-            <p className="text-muted-foreground">不是 polished 的演示，是沾满松香和焊锡膏的真实资产</p>
+            <h3 className="text-2xl font-bold gradient-text mb-2">{t.about.coreAdvantages.title}</h3>
+            <p className="text-muted-foreground">{t.about.coreAdvantages.subtitle}</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* 双驱动结构 */}
@@ -129,12 +129,12 @@ export function AboutSection() {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <Trophy className="h-5 w-5 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">比赛+项目双轨</CardTitle>
+                  <CardTitle className="text-lg">{t.about.coreAdvantages.dualTrack.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  competitions/ 是血泪赛场，projects/ 是长期沉淀。每个文件夹里都有 README 记录着当时为什么踩了这个坑。不是「赛题仓库」，是「错题本」。
+                  {t.about.coreAdvantages.dualTrack.description}
                 </p>
               </CardContent>
             </Card>
@@ -146,12 +146,12 @@ export function AboutSection() {
                   <div className="p-2 rounded-lg bg-accent/10">
                     <FolderGit2 className="h-5 w-5 text-accent" />
                   </div>
-                  <CardTitle className="text-lg">过程全记录</CardTitle>
+                  <CardTitle className="text-lg">{t.about.coreAdvantages.fullProcess.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  不是只有「最终版」。v0.1 到 v2.0 的全部 commit 都留着，包括那些「哎呀这个方案不行」的 revert。失败的路径和成功的一样有价值。
+                  {t.about.coreAdvantages.fullProcess.description}
                 </p>
               </CardContent>
             </Card>
@@ -163,12 +163,12 @@ export function AboutSection() {
                   <div className="p-2 rounded-lg bg-green-500/10">
                     <Map className="h-5 w-5 text-green-500" />
                   </div>
-                  <CardTitle className="text-lg">入坑有路</CardTitle>
+                  <CardTitle className="text-lg">{t.about.coreAdvantages.onboarding.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  我们写了「踩坑手册」，记录了每一块板子是怎么烧的。不看也没事，反正你来了我们也会再带你踩一遍（笑）。
+                  {t.about.coreAdvantages.onboarding.description}
                 </p>
               </CardContent>
             </Card>
@@ -180,12 +180,12 @@ export function AboutSection() {
                   <div className="p-2 rounded-lg bg-orange-500/10">
                     <MapPin className="h-5 w-5 text-orange-500" />
                   </div>
-                  <CardTitle className="text-lg">A416 据点</CardTitle>
+                  <CardTitle className="text-lg">{t.about.coreAdvantages.base.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  不是「创客空间」，是个堆满板子、线材、还有泡面味儿的实验室。来这你能闻到松香，看到我们是怎么把 200 块活成 2000 块的效果。
+                  {t.about.coreAdvantages.base.description}
                 </p>
               </CardContent>
             </Card>
@@ -197,24 +197,24 @@ export function AboutSection() {
                   <div className="p-2 rounded-lg bg-purple-500/10">
                     <ExternalLink className="h-5 w-5 text-purple-500" />
                   </div>
-                  <CardTitle className="text-lg">知识库</CardTitle>
+                  <CardTitle className="text-lg">{t.about.coreAdvantages.knowledgeBase.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  飞书知识库里有我们整理的「失败案例集」，比成功案例厚三倍。官网和仓库只是入口，真正的血泪史都在文档里。
+                  {t.about.coreAdvantages.knowledgeBase.description}
                 </p>
                 <div className="mt-4 flex gap-3">
                   <Button variant="outline" size="sm" asChild>
                     <a href="https://scn0bdoc8zxg.feishu.cn/wiki/S10LwzVZdiWLwxkEnEqcTcmEn6e" target="_blank" rel="noopener noreferrer">
                       <BookOpen className="mr-2 h-4 w-4" />
-                      飞书知识库
+                      {t.about.coreAdvantages.feishuLink}
                     </a>
                   </Button>
                   <Button variant="outline" size="sm" asChild>
                     <Link to="/getting-started">
                       <Code className="mr-2 h-4 w-4" />
-                      踩坑手册
+                      {t.about.coreAdvantages.escapeManualLink}
                     </Link>
                   </Button>
                 </div>
@@ -282,7 +282,7 @@ export function AboutSection() {
                 <div>
                   <h5 className="font-medium text-green-600 mb-2 flex items-center gap-1">
                     <Users className="h-4 w-4" />
-                    Permissions
+                    {t.about.license.permissionsTitle}
                   </h5>
                   <ul className="space-y-1 text-xs text-muted-foreground">
                     {t.about.license.permissions.map((permission, index) => (
@@ -295,7 +295,7 @@ export function AboutSection() {
                 </div>
                 
                 <div>
-                  <h5 className="font-medium text-red-600 mb-2">Limitations</h5>
+                  <h5 className="font-medium text-red-600 mb-2">{t.about.license.limitationsTitle}</h5>
                   <ul className="space-y-1 text-xs text-muted-foreground">
                     {t.about.license.limitations.map((limitation, index) => (
                       <li key={index} className="flex items-center gap-1">
@@ -307,7 +307,7 @@ export function AboutSection() {
                 </div>
                 
                 <div>
-                  <h5 className="font-medium text-blue-600 mb-2">Conditions</h5>
+                  <h5 className="font-medium text-blue-600 mb-2">{t.about.license.conditionsTitle}</h5>
                   <ul className="space-y-1 text-xs text-muted-foreground">
                     {t.about.license.conditions.map((condition, index) => (
                       <li key={index} className="flex items-center gap-1">

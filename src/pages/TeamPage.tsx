@@ -411,9 +411,9 @@ export function TeamPage() {
   const brochureImages = useMemo(() => {
     return Array.from({ length: 11 }, (_, i) => ({
       src: `/image/brochures/brochure-${String(i + 1).padStart(2, '0')}.png.png`,
-      alt: `招商手册第 ${i + 1} 页`
+      alt: t.team.brochure.pageAlt.replace('{n}', String(i + 1))
     }));
-  }, []);
+  }, [t.team.brochure.pageAlt]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -598,12 +598,12 @@ export function TeamPage() {
                       <DialogTrigger asChild>
                         <Button variant="outline">
                           <ExternalLink className="h-4 w-4 mr-2" />
-                          查看招商手册
+                          {t.team.brochure.viewButton}
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl h-[90vh] flex flex-col">
                         <DialogHeader>
-                          <DialogTitle>招商手册</DialogTitle>
+                          <DialogTitle>{t.team.brochure.title}</DialogTitle>
                         </DialogHeader>
                         <div className="flex-1 min-h-0 overflow-y-auto p-4">
                           <div className="flex flex-col items-center gap-4">

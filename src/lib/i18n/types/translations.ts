@@ -23,6 +23,7 @@ export interface Translations {
     login: string;
     logout: string;
     joinClub: string;
+    joinCollab: string;
     dashboard: string;
     innovation: string;
   };
@@ -47,8 +48,6 @@ export interface Translations {
   about: {
     title: string;
     paragraph1: string;
-    paragraph2?: string;
-    paragraph3?: string;
     coreAbilities: Array<{
       icon: string;
       title: string;
@@ -57,12 +56,24 @@ export interface Translations {
     learnMore: string;
     projectOrigin: {
       title: string;
+      subtitle: string;
       content: string;
     };
     phase2: {
       title: string;
       description: string;
       content: string;
+    };
+    coreAdvantages: {
+      title: string;
+      subtitle: string;
+      dualTrack: { title: string; description: string };
+      fullProcess: { title: string; description: string };
+      onboarding: { title: string; description: string };
+      base: { title: string; description: string };
+      knowledgeBase: { title: string; description: string };
+      feishuLink: string;
+      escapeManualLink: string;
     };
     contributing: {
       title: string;
@@ -80,6 +91,9 @@ export interface Translations {
       permissions: string[];
       limitations: string[];
       conditions: string[];
+      permissionsTitle: string;
+      limitationsTitle: string;
+      conditionsTitle: string;
     };
   };
   
@@ -115,6 +129,11 @@ export interface Translations {
     viewFullTeam: string;
     teamPhoto: string;
     teamPhotoDescription: string;
+    brochure: {
+      viewButton: string;
+      title: string;
+      pageAlt: string;
+    };
     analytics: {
       title: string;
       description: string;
@@ -192,6 +211,17 @@ export interface Translations {
       addWechat: string
       viewProject: string
       tip: string
+    }
+    github: {
+      title: string
+      button: string
+    }
+    contact: {
+      title: string
+      openFeishu: string
+      downloadFeishu: string
+      copied: string
+      copyButton: string
     };
   };
   
@@ -398,6 +428,7 @@ export interface Translations {
     joinClub: string;
     documentation: string;
     gettingStarted: string;
+    giteeRobotRepo: string;
     techRoadmap: {
       title: string;
       description: string;
@@ -443,6 +474,8 @@ export interface Translations {
       averageRatingDesc: string;
       successRateTitle: string;
       successRateDesc: string;
+      csdnVisitsTitle: string;
+      csdnVisitsDesc: string;
     };
     directions: {
       title: string;

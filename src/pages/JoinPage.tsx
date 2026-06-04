@@ -138,7 +138,7 @@ export function JoinPage() {
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
                     <Code className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-2xl">加入 GitHub 组织</CardTitle>
+                  <CardTitle className="text-2xl">{t.joinPage.github.title}</CardTitle>
                   <CardDescription>
                     加入我们的 GitHub 组织，参与开源项目协作与贡献
                   </CardDescription>
@@ -149,7 +149,7 @@ export function JoinPage() {
                     className="group"
                     onClick={() => window.open('https://github.com/new-energy-coder-club', '_blank')}
                   >
-                    前往 GitHub
+                    {t.joinPage.github.button}
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <div className="text-sm text-muted-foreground">
@@ -170,7 +170,7 @@ export function JoinPage() {
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
                     <img src={FeishuIcon} alt="Feishu" className="h-8 w-8" />
                   </div>
-                  <CardTitle className="text-2xl">联系加入我们</CardTitle>
+                  <CardTitle className="text-2xl">{t.joinPage.contact.title}</CardTitle>
                   <CardDescription>
                     <a
                       href="https://www.feishu.cn/invitation/page/add_contact/?token=509lcd75-d319-41ee-9748-c202b40efa48&unique_id=svYaQwpsgXlyP2H56Oyssg=="
@@ -189,7 +189,7 @@ export function JoinPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90"
                     >
-                      打开飞书邀请
+                      {t.joinPage.contact.openFeishu}
                     </a>
                     <a
                       href="https://www.feishu.cn/download"
@@ -198,7 +198,7 @@ export function JoinPage() {
                       className="inline-flex items-center rounded-md border border-primary/60 text-primary px-4 py-2 hover:bg-primary/10"
                     >
                       <Download className="h-4 w-4 mr-2" />
-                      下载飞书
+                      {t.joinPage.contact.downloadFeishu}
                     </a>
                   </div>
                   <div className="mt-4 flex justify-center gap-6">
@@ -231,7 +231,7 @@ export function JoinPage() {
                       className="w-auto"
                       variant={copied ? "secondary" : "default"}
                     >
-                      {copied ? "已复制 ✓" : "复制maintainer 微信"}
+                      {copied ? t.joinPage.contact.copied : t.joinPage.contact.copyButton}
                     </Button>
                   </div>
                   

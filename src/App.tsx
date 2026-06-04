@@ -59,10 +59,8 @@ function App() {
             <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
             <Route path="/story" element={<StoryPage />} />
             
-            {/* Document Routes -->
+            {/* Document Routes */}
             <Route path="/docs/technical" element={<PageLayout><TechnicalDocsLayout /></PageLayout>} />
-
-            
 
             <Route path="/join" element={<JoinPage />} />
             
