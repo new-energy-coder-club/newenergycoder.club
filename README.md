@@ -22,30 +22,44 @@
 - **提供资源共享**：汇集学习资料、开发工具和行业报告。
 - **促进社区互动**：提供一个平台，让成员可以交流思想、协作项目。
 
+## 🎯 项目特性
+
+- **现代化技术栈**: React 18 + TypeScript + Vite 6 + Tailwind CSS 3
+- **流畅动画体验**: GSAP + ScrollTrigger 驱动的首页滚动动画、Hero 入场动画
+- **响应式设计**: 适配桌面端、平板端和移动端
+- **多语言支持**: 基于 LanguageContext 的中英文切换
+- **SEO 优化**: robots.txt、sitemap.xml、manifest.json、Open Graph / Twitter Card
+- **性能监控**: Sentry 错误监控 + Vercel Analytics / Speed Insights + 自定义 PerformanceMonitor
+- **组件化 UI**: 基于 shadcn/ui + Radix UI 的可复用组件库
+- **文档系统**: Markdown 渲染 + 技术文档分类浏览
+
 ## 📊 仓库信息
 
 ### 仓库大小
-- **总文件数**: 23,950 个文件
-- **仓库大小**: 477.22 MB
-- **源代码大小**: ~16.39 MB (不含 node_modules)
-- **依赖包大小**: ~455 MB (node_modules)
+- **总文件数**: ~52,000 个文件（含 node_modules）
+- **仓库大小**: ~812 MB（含 node_modules）
+- **源代码大小**: ~22 MB（不含 node_modules / dist / .git）
+- **依赖包大小**: ~790 MB（node_modules）
 
 ### 优化说明
-本项目已进行仓库大小优化，包括：
-- ✅ 清理重复的 logo 文件和图片资源
-- ✅ 删除不必要的测试文件
+本项目已进行持续优化，包括：
+- ✅ 统一使用 pnpm 管理依赖，移除 `package-lock.json`
+- ✅ 清理重复的 `docs/` 目录，统一使用 `public/docs/`
+- ✅ 移除 GitHub Pages 部署配置，统一使用 Vercel
+- ✅ 删除未使用的依赖（wrangler）和备份文件
 - ✅ 优化图片资源存储结构
-- ✅ 保持合理的依赖包大小
 
-> **注意**: node_modules 目录占用大部分空间是正常现象，实际源代码仅占用约 16MB。
+> **注意**: `node_modules` 目录占用大部分空间是正常现象，实际源代码仅占用约 22MB。
 
 ## 🚀 快速启动
 
 ### 环境要求
 
 - **Node.js**: >= 20.0.0 (推荐使用最新 LTS 版本)
-- **包管理器**: npm (内置) 或 pnpm/bun (可选，更快)
+- **包管理器**: [pnpm](https://pnpm.io/)（推荐）/ npm / bun
 - **操作系统**: Windows, macOS, Linux
+
+> 本项目已统一使用 `pnpm`，并移除了 `package-lock.json`。
 
 ### 本地开发
 
@@ -57,45 +71,58 @@ cd newenergycoder.club
 
 2. **安装依赖**
 ```bash
-# 使用 npm
-npm install
-
-# 或使用 pnpm（推荐，更快）
 pnpm install
-
-# 或使用 bun（最快）
-bun install
 ```
+
+> 也可以使用 `npm install` 或 `bun install`，但推荐使用 pnpm。
 
 3. **启动开发服务器**
 ```bash
-npm run dev
-# 或 pnpm dev
-# 或 bun dev
+pnpm dev
 ```
 
 开发服务器将在 `http://localhost:5173` 启动，支持热重载。
 
 4. **构建生产版本**
 ```bash
-npm run build
-# 或 pnpm build
-# 或 bun run build
+pnpm build
 ```
 
 5. **预览生产构建**
 ```bash
-npm run preview
-# 或 pnpm preview
-# 或 bun preview
+pnpm preview
 ```
 
 6. **代码检查**
 ```bash
-npm run lint
-# 或 pnpm lint
-# 或 bun lint
+pnpm lint
 ```
+
+### 环境变量配置
+
+项目使用 Vite 环境变量，在 `.env.example` 中提供了模板。本地开发时请复制为 `.env.local` 并填入真实值：
+
+```bash
+cp .env.example .env.local
+```
+
+| 变量名 | 说明 | 是否必填 |
+|---|---|---|
+| `VITE_SENTRY_DSN` | Sentry 错误监控 DSN | 可选 |
+| `VITE_API_BASE_URL` | 后端 API 基础地址 | 可选，默认 `http://localhost:3001/api` |
+| `VITE_APP_VERSION` | 应用版本号 | 可选 |
+| `VITE_APP_NAME` | 应用名称 | 可选 |
+
+### 部署
+
+本项目使用 **Vercel** 进行自动化部署，推送至 `main` 分支后会自动触发生产部署。
+
+- **生产地址**: [https://www.newenergycoder.club/](https://www.newenergycoder.club/)
+- **部署平台**: Vercel
+- **构建命令**: `pnpm build`
+- **输出目录**: `dist`
+
+> 已移除 GitHub Pages 相关配置，避免与 Vercel 部署冲突。
 
 ### 本地测试指南
 
