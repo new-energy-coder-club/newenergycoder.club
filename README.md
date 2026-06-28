@@ -2,10 +2,10 @@
 
 # New Energy Coder Club 官方网站
 
-[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+[![React](https://img.shields.io/badge/React-18.3.1-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.3.5-purple.svg)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-cyan.svg)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-6.4.3-purple.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.19-cyan.svg)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-black.svg)](https://vercel.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -43,7 +43,7 @@
 
 ### 环境要求
 
-- **Node.js**: >= 22.0.0 (推荐使用最新 LTS 版本)
+- **Node.js**: >= 20.0.0 (推荐使用最新 LTS 版本)
 - **包管理器**: npm (内置) 或 pnpm/bun (可选，更快)
 - **操作系统**: Windows, macOS, Linux
 

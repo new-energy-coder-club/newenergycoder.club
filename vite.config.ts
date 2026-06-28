@@ -14,9 +14,9 @@ export default defineConfig({
     dedupe: ["react", "react-dom"],
   },
   server: {
-    // 配置静态文件服务，允许访问docs目录
+    // 配置静态文件服务
     fs: {
-      allow: ['..', 'docs']
+      allow: ['..']
     },
     proxy: {
       // 高德地图API代理配置
