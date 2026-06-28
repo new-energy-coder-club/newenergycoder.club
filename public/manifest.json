@@ -1,0 +1,20 @@
+{
+  "name": "新能源编程俱乐部",
+  "short_name": "NEC Club",
+  "description": "新能源编程俱乐部官方网站 - 连接、启发和赋能新能源领域开发者",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/og-image.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

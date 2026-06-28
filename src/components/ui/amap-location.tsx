@@ -256,6 +256,7 @@ export function AmapLocation({ className }: AmapLocationProps) {
         
         {/* 获取位置按钮 */}
         <Button 
+          type="button"
           onClick={getUserLocation} 
           disabled={isLoading}
           className="w-full"
@@ -280,6 +281,7 @@ export function AmapLocation({ className }: AmapLocationProps) {
             <p className="text-sm font-medium text-center">选择导航应用</p>
             <div className="grid grid-cols-1 gap-2">
               <Button 
+                type="button"
                 onClick={openAmapNavigation}
                 className="w-full justify-start"
                 variant="default"
@@ -290,6 +292,7 @@ export function AmapLocation({ className }: AmapLocationProps) {
               </Button>
               
               <Button 
+                type="button"
                 onClick={openBaiduNavigation}
                 className="w-full justify-start"
                 variant="outline"
@@ -300,6 +303,7 @@ export function AmapLocation({ className }: AmapLocationProps) {
               </Button>
               
               <Button 
+                type="button"
                 onClick={openQQNavigation}
                 className="w-full justify-start"
                 variant="outline"

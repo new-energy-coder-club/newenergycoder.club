@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /markdown
+Disallow: /markdown/editor
+Disallow: /markdown/viewer
+
+Sitemap: https://newenergycoder.club/sitemap.xml
