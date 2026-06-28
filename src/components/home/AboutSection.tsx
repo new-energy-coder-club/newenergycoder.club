@@ -1,19 +1,67 @@
+import { useRef } from 'react'
 import { ArrowRight, GitBranch, Scale, Users, Code, BookOpen, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap'
 
 export function AboutSection() {
   const t = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // Header + intro content entrance
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+
+      // Cards stagger entrance
+      gsap.fromTo(
+        cardsRef.current?.children || [],
+        { opacity: 0, y: 60, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          stagger: 0.12,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, { scope: sectionRef })
   
   return (
-    <section className="py-24 bg-gradient-to-br from-secondary/20 to-accent/10 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-secondary/20 to-accent/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
       
       <div className="container relative z-10">
-        <div className="relative rounded-lg shadow-lg overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm border border-white/10">
+        <div ref={headerRef} className="relative rounded-lg shadow-lg overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm border border-white/10">
           <div className="relative z-10 p-12">
             <div className="text-foreground mb-8">
                 <h2 className="text-3xl font-bold tracking-tight">
@@ -58,8 +106,8 @@ export function AboutSection() {
           </div>
         </div>
         
-        {/* Phase 2 Development */}
-        <div className="mt-12">
+        <div ref={cardsRef} className="mt-12 space-y-12">
+          {/* Phase 2 Development */}
           <Card className="glass-card hover-lift">
             <CardHeader className="pb-4">
               <div className="flex items-center gap-3">
@@ -80,105 +128,105 @@ export function AboutSection() {
               </div>
             </CardContent>
           </Card>
-        </div>
-        
-        {/* Contributing and License Section */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {/* Contributing Guidelines */}
-          <Card className="glass-card hover-lift">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <GitBranch className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <CardTitle className="gradient-text">{t.about.contributing.title}</CardTitle>
-                  <CardDescription>{t.about.contributing.description}</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3 pt-0">
-              <div>
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <Code className="h-4 w-4" />
-                  {t.about.contributing.howToContribute}
-                </h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {t.about.contributing.steps.map((step, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center mt-0.5">
-                        {index + 1}
-                      </span>
-                      {step}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-4 border-t border-border/50">
-                <p className="text-sm text-muted-foreground mb-2">{t.about.contributing.codeOfConduct}</p>
-                <p className="text-sm text-muted-foreground">{t.about.contributing.reportIssues}</p>
-              </div>
-            </CardContent>
-          </Card>
           
-          {/* License Information */}
-          <Card className="glass-card hover-lift">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-accent/10">
-                  <Scale className="h-6 w-6 text-accent" />
+          {/* Contributing and License Section */}
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Contributing Guidelines */}
+            <Card className="glass-card hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <GitBranch className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="gradient-text">{t.about.contributing.title}</CardTitle>
+                    <CardDescription>{t.about.contributing.description}</CardDescription>
+                  </div>
                 </div>
+              </CardHeader>
+              <CardContent className="space-y-3 pt-0">
                 <div>
-                  <CardTitle className="gradient-text">{t.about.license.title}</CardTitle>
-                  <CardDescription>{t.about.license.description}</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3 pt-0">
-              <p className="text-sm text-muted-foreground">{t.about.license.openSource}</p>
-              
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <h5 className="font-medium text-green-600 mb-2 flex items-center gap-1">
-                    <Users className="h-4 w-4" />
-                    Permissions
-                  </h5>
-                  <ul className="space-y-1 text-xs text-muted-foreground">
-                    {t.about.license.permissions.map((permission, index) => (
-                      <li key={index} className="flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-green-500"></span>
-                        {permission}
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Code className="h-4 w-4" />
+                    {t.about.contributing.howToContribute}
+                  </h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    {t.about.contributing.steps.map((step: string, index: number) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center mt-0.5">
+                          {index + 1}
+                        </span>
+                        {step}
                       </li>
                     ))}
                   </ul>
                 </div>
+                <div className="pt-4 border-t border-border/50">
+                  <p className="text-sm text-muted-foreground mb-2">{t.about.contributing.codeOfConduct}</p>
+                  <p className="text-sm text-muted-foreground">{t.about.contributing.reportIssues}</p>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* License Information */}
+            <Card className="glass-card hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-accent/10">
+                    <Scale className="h-6 w-6 text-accent" />
+                  </div>
+                  <div>
+                    <CardTitle className="gradient-text">{t.about.license.title}</CardTitle>
+                    <CardDescription>{t.about.license.description}</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3 pt-0">
+                <p className="text-sm text-muted-foreground">{t.about.license.openSource}</p>
                 
-                <div>
-                  <h5 className="font-medium text-red-600 mb-2">Limitations</h5>
-                  <ul className="space-y-1 text-xs text-muted-foreground">
-                    {t.about.license.limitations.map((limitation, index) => (
-                      <li key={index} className="flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-red-500"></span>
-                        {limitation}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <h5 className="font-medium text-green-600 mb-2 flex items-center gap-1">
+                      <Users className="h-4 w-4" />
+                      Permissions
+                    </h5>
+                    <ul className="space-y-1 text-xs text-muted-foreground">
+                      {t.about.license.permissions.map((permission: string, index: number) => (
+                        <li key={index} className="flex items-center gap-1">
+                          <span className="w-1 h-1 rounded-full bg-green-500"></span>
+                          {permission}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h5 className="font-medium text-red-600 mb-2">Limitations</h5>
+                    <ul className="space-y-1 text-xs text-muted-foreground">
+                      {t.about.license.limitations.map((limitation: string, index: number) => (
+                        <li key={index} className="flex items-center gap-1">
+                          <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                          {limitation}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h5 className="font-medium text-blue-600 mb-2">Conditions</h5>
+                    <ul className="space-y-1 text-xs text-muted-foreground">
+                      {t.about.license.conditions.map((condition: string, index: number) => (
+                        <li key={index} className="flex items-center gap-1">
+                          <span className="w-1 h-1 rounded-full bg-blue-500"></span>
+                          {condition}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                
-                <div>
-                  <h5 className="font-medium text-blue-600 mb-2">Conditions</h5>
-                  <ul className="space-y-1 text-xs text-muted-foreground">
-                    {t.about.license.conditions.map((condition, index) => (
-                      <li key={index} className="flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-blue-500"></span>
-                        {condition}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

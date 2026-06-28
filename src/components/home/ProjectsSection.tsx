@@ -1,5 +1,8 @@
+import { useRef } from 'react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ExternalLink, Star, Users } from 'lucide-react'
@@ -123,6 +126,70 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ selectedRatio = 'aspect-[3/4]' }: ProjectsSectionProps) {
   const t = useTranslation()
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const buttonsRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // Header entrance
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+
+      // Project cards stagger entrance
+      gsap.fromTo(
+        gridRef.current?.children || [],
+        { opacity: 0, y: 60, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+
+      // Buttons entrance
+      gsap.fromTo(
+        buttonsRef.current?.children || [],
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: buttonsRef.current,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, { scope: sectionRef })
 
   // 基于Gitee仓库信息的热门项目数据
   const hotProjects: Project[] = [
@@ -183,10 +250,10 @@ export function ProjectsSection({ selectedRatio = 'aspect-[3/4]' }: ProjectsSect
   ]
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-muted/20">
+    <section ref={sectionRef} className="py-16 bg-gradient-to-b from-background to-muted/20">
       <div className="container">
         {/* 标题部分 */}
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">
             🔥 热门项目
           </h2>
@@ -197,14 +264,14 @@ export function ProjectsSection({ selectedRatio = 'aspect-[3/4]' }: ProjectsSect
         </div>
 
         {/* 项目网格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {hotProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
 
         {/* 查看更多按钮 */}
-        <div className="text-center">
+        <div ref={buttonsRef} className="text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="lg" className="min-w-[200px]">
               <a 

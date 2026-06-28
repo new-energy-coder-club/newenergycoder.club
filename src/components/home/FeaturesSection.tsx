@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { 
   Calendar, 
   Code2, 
@@ -8,6 +9,9 @@ import {
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useTranslation } from '@/contexts/LanguageContext'
+import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const getFeatures = (t: any) => [
   {
@@ -45,21 +49,66 @@ const getFeatures = (t: any) => [
 export function FeaturesSection() {
   const t = useTranslation();
   const features = getFeatures(t);
-  
+  const sectionRef = useRef<HTMLElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // Header entrance
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+
+      // Cards stagger entrance
+      gsap.fromTo(
+        cardsRef.current?.children || [],
+        { opacity: 0, y: 60, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, { scope: sectionRef })
+
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,hsl(var(--accent)/0.1),transparent_50%),radial-gradient(circle_at_80%_50%,hsl(var(--primary)/0.1),transparent_50%)]"></div>
       
       <div className="container relative z-10">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-3xl font-bold gradient-text sm:text-4xl">{t.features.title}</h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t.features.subtitle}
           </p>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={cardsRef} className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <Card key={i} className="glass-card hover-lift glow-hover group transition-all duration-300">
               <CardHeader className="pb-4">
