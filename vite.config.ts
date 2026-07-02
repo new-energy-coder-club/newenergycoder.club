@@ -44,18 +44,13 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           // 简化拆分策略以对齐 2113f5d，降低运行时分块加载风险
-          // React 核心拆分 - 保持不变
-          if (id.includes('react-dom/client')) {
-            return 'react-dom-client';
-          }
-          if (id.includes('react-dom')) {
-            return 'react-dom';
-          }
-          if (id.includes('react/jsx-runtime')) {
-            return 'react-jsx';
-          }
-          if (id.includes('react') && !id.includes('react-dom') && !id.includes('react-router')) {
-            return 'react-core';
+          // React 全家桶合并为一个 vendor chunk，避免 react-core / react-dom / react-jsx 之间循环引用
+          if (
+            id.includes('react-dom') ||
+            id.includes('react/jsx-runtime') ||
+            (id.includes('react') && !id.includes('react-router') && !id.includes('react-helmet') && !id.includes('react-i18next') && !id.includes('react-markdown') && !id.includes('react-syntax-highlighter'))
+          ) {
+            return 'react-vendor';
           }
           
           // 移除Three.js相关细分，当前项目已移除3D动画依赖
@@ -129,12 +124,9 @@ export default defineConfig({
             return 'markdown-processors';
           }
           
-          // 代码高亮 - 细分
-          if (id.includes('react-syntax-highlighter')) {
+          // 代码高亮合并，避免 prismjs 与 syntax-highlighter / react 之间循环引用
+          if (id.includes('react-syntax-highlighter') || id.includes('prismjs')) {
             return 'syntax-highlighter';
-          }
-          if (id.includes('prismjs')) {
-            return 'prism';
           }
           
           // 监控和分析工具分离
