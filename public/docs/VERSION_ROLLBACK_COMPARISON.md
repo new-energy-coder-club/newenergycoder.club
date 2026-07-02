@@ -43,7 +43,7 @@
 
 #### 图片和资源文件
 - `src/components/ui/image-proxy.tsx` - 图片代理组件
-- `public/og-image.svg` - Open Graph图片
+- `https://cdn.newenergycoder.club/images/public/og-image.svg` - Open Graph图片
 - 大量文档图片文件 (docs/images/...)
 
 ### 2. 修改文件 (M)

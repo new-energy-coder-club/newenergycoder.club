@@ -410,7 +410,7 @@ const LearningResources: React.FC<LearningResourcesProps> = ({
         {/* NEC Home 图片 */}
         <div className="mb-6 text-center">
           <img 
-            src="/src/NEC-home.gif" 
+            src="https://cdn.newenergycoder.club/images/src/NEC-home.gif" 
             alt="NEC Home" 
             className="mx-auto max-w-full h-auto rounded-lg shadow-lg"
             style={{ maxHeight: '300px' }}

@@ -11,7 +11,7 @@
   "lang": "zh-CN",
   "icons": [
     {
-      "src": "/og-image.svg",
+      "src": "https://cdn.newenergycoder.club/images/public/og-image.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

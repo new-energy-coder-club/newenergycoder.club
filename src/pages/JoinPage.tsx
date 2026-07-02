@@ -5,9 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Users, Code, Heart, ArrowRight, Calendar, Target, Send, Download } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
-import WeChatIcon from '@/assets/wechat.png?url'
-import FeishuIcon from '@/feishu.png?url'
-import DarrenPigFeishu from '@/DarrenPig_Feishu.png?url'
+import WeChatIcon from 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
+import FeishuIcon from 'https://cdn.newenergycoder.club/images/src/feishu.png'
+import DarrenPigFeishu from 'https://cdn.newenergycoder.club/images/src/DarrenPig_Feishu.png'
 
 const roadmapSteps = [
   {

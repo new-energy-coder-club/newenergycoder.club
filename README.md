@@ -1,4 +1,4 @@
-![NEC Home](./src/NEC-home.gif)
+![NEC Home](.https://cdn.newenergycoder.club/images/src/NEC-home.gif)
 
 # New Energy Coder Club 官方网站
 

@@ -23,7 +23,7 @@
 | CSS | `/assets/index.css` | ❌ | ECONNRESET | 5,019ms |
 | JavaScript | `/assets/index.js` | ❌ | ECONNRESET | 5,006ms |
 | Favicon | `/favicon.ico` | ❌ | ECONNRESET | 5,005ms |
-| OG Image | `/og-image.svg` | ❌ | ECONNRESET | 5,007ms |
+| OG Image | `https://cdn.newenergycoder.club/images/public/og-image.svg` | ❌ | ECONNRESET | 5,007ms |
 
 ### 3. 网络连通性测试
 
