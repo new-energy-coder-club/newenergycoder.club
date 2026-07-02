@@ -90,11 +90,11 @@ export const enTranslations: Translations = {
     dashboard: 'Dashboard',
   },
   hero: {
-    tagline: 'Where Code Meets Clean Energy',
-    title: 'Coding for a',
-    titleHighlight: 'Sustainable Future',
+    tagline: 'From broke student stipend to competition robots',
+    title: 'Code is born on the',
+    titleHighlight: 'engineering floor',
     description: 'Join a community of developers passionate about creating innovative software solutions for renewable energy, sustainability, and a greener tomorrow.',
-    joinCommunity: 'Join Our Community',
+    joinCommunity: 'Steal Our Code',
     viewGithub: 'View on Gitee',
     codingWorkshops: 'Coding Workshops',
     codingWorkshopsDesc: 'Weekly sessions to learn sustainable tech development',
@@ -102,6 +102,12 @@ export const enTranslations: Translations = {
     innovationProjectsDesc: 'Collaborate on open-source green energy solutions',
     industryConnections: 'Industry Connections',
     industryConnectionsDesc: 'Network with leading energy sector professionals',
+    stats: {
+      commits: { value: 260, suffix: '+', label: 'Commits' },
+      contributors: { value: 45, suffix: '+', label: 'Contributors' },
+      projects: { value: 12, suffix: '+', label: 'Open Source Projects' }
+    },
+    techStack: ['Embedded C/C++', 'ROS/ROS2', 'Mechanical Design', 'Python', 'STM32', 'Machine Vision', 'PCB Design']
   },
   about: {
     title: 'About Our Club',

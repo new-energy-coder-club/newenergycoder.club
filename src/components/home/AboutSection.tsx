@@ -6,6 +6,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 
 export function AboutSection() {
   const t = useTranslation();
@@ -15,34 +16,112 @@ export function AboutSection() {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      // Header + intro content entrance
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      )
+      const titleEl = headerRef.current?.querySelector('h2')
+      const paragraphEl = headerRef.current?.querySelector('.about-paragraph')
+      const originTitleEl = headerRef.current?.querySelector('.origin-title')
+      const originContentEl = headerRef.current?.querySelector('.origin-content')
 
-      // Cards stagger entrance
+      const splits: SplitText[] = []
+
+      // 1. 标题字符级 SplitText 入场
+      if (titleEl) {
+        const titleSplit = SplitText.create(titleEl, { type: 'chars' })
+        splits.push(titleSplit)
+        gsap.fromTo(
+          titleSplit.chars,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.03,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      // 2. 段落按行 SplitText 入场
+      if (paragraphEl) {
+        const paragraphSplit = SplitText.create(paragraphEl, { type: 'lines' })
+        splits.push(paragraphSplit)
+        gsap.fromTo(
+          paragraphSplit.lines,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      // 3. Project Origin 标题 + 内容 SplitText
+      if (originTitleEl) {
+        const originTitleSplit = SplitText.create(originTitleEl, { type: 'chars' })
+        splits.push(originTitleSplit)
+        gsap.fromTo(
+          originTitleSplit.chars,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.02,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: originTitleEl,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      if (originContentEl) {
+        const originContentSplit = SplitText.create(originContentEl, { type: 'lines' })
+        splits.push(originContentSplit)
+        gsap.fromTo(
+          originContentSplit.lines,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: originContentEl,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      // 4. 下方卡片稳重科技 stagger 入场
       gsap.fromTo(
         cardsRef.current?.children || [],
-        { opacity: 0, y: 60, scale: 0.96 },
+        { opacity: 0, y: 60, scale: 0.96, rotateX: 8 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
+          rotateX: 0,
           duration: 0.75,
           stagger: 0.12,
-          ease: 'back.out(1.4)',
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: cardsRef.current,
             start: 'top 80%',
@@ -50,16 +129,20 @@ export function AboutSection() {
           },
         }
       )
+
+      return () => {
+        splits.forEach(split => split.revert())
+      }
     }, sectionRef)
 
     return () => ctx.revert()
   }, { scope: sectionRef })
-  
+
   return (
     <section ref={sectionRef} className="py-24 bg-gradient-to-br from-secondary/20 to-accent/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
-      
+
       <div className="container relative z-10">
         <div ref={headerRef} className="relative rounded-lg shadow-lg overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm border border-white/10">
           <div className="relative z-10 p-12">
@@ -68,7 +151,7 @@ export function AboutSection() {
                   {t.about.title}
                 </h2>
                 <div className="mt-6 max-w-4xl mx-auto">
-                  <p className="leading-relaxed text-left font-bold text-primary">
+                  <p className="about-paragraph leading-relaxed text-left font-bold text-primary">
                     {t.about.paragraph1}
                   </p>
                 </div>
@@ -90,14 +173,14 @@ export function AboutSection() {
                      <BookOpen className="h-6 w-6 text-primary" />
                    </div>
                    <div>
-                     <CardTitle className="gradient-text">{t.about.projectOrigin.title}</CardTitle>
+                     <CardTitle className="origin-title gradient-text">{t.about.projectOrigin.title}</CardTitle>
                      <CardDescription>如果你对本项目还不是那么的了解，我希望你能好好看完下面这部分内容</CardDescription>
                    </div>
                 </div>
               </CardHeader>
                <CardContent className="pt-0">
                  <div className="prose prose-sm max-w-none text-muted-foreground">
-                   <p className="leading-relaxed whitespace-pre-line">
+                   <p className="origin-content leading-relaxed whitespace-pre-line">
                      {t.about.projectOrigin.content}
                    </p>
                  </div>
@@ -105,8 +188,8 @@ export function AboutSection() {
              </Card>
           </div>
         </div>
-        
-        <div ref={cardsRef} className="mt-12 space-y-12">
+
+        <div ref={cardsRef} className="mt-12 space-y-12" style={{ perspective: '1000px' }}>
           {/* Phase 2 Development */}
           <Card className="glass-card hover-lift">
             <CardHeader className="pb-4">
@@ -128,7 +211,7 @@ export function AboutSection() {
               </div>
             </CardContent>
           </Card>
-          
+
           {/* Contributing and License Section */}
           <div className="grid gap-6 md:grid-cols-2">
             {/* Contributing Guidelines */}
@@ -167,7 +250,7 @@ export function AboutSection() {
                 </div>
               </CardContent>
             </Card>
-            
+
             {/* License Information */}
             <Card className="glass-card hover-lift">
               <CardHeader className="pb-4">
@@ -183,7 +266,7 @@ export function AboutSection() {
               </CardHeader>
               <CardContent className="space-y-3 pt-0">
                 <p className="text-sm text-muted-foreground">{t.about.license.openSource}</p>
-                
+
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
                     <h5 className="font-medium text-green-600 mb-2 flex items-center gap-1">
@@ -199,7 +282,7 @@ export function AboutSection() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   <div>
                     <h5 className="font-medium text-red-600 mb-2">Limitations</h5>
                     <ul className="space-y-1 text-xs text-muted-foreground">
@@ -211,7 +294,7 @@ export function AboutSection() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   <div>
                     <h5 className="font-medium text-blue-600 mb-2">Conditions</h5>
                     <ul className="space-y-1 text-xs text-muted-foreground">

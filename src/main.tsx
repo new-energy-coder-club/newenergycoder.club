@@ -6,10 +6,12 @@ import { initSentry } from './lib/sentry'
 import { performanceMonitor, observePageVisibility } from './lib/performance'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
+import { Flip } from 'gsap/Flip'
 
 // 注册 GSAP 插件（仅在客户端执行）
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger, SplitText, Flip)
 }
 
 // 初始化Sentry错误监控（防止初始化失败阻断启动）

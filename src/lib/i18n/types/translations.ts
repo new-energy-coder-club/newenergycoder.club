@@ -4,6 +4,8 @@ export interface TeamMember {
   bio: string;
   image: string;
   tags?: string[];
+  /** 技能条：name 为技能名，level 为 0-100 */
+  skills?: { name: string; level: number }[];
   gitee?: string;
   github?: string;
   linkedin?: string;
@@ -41,6 +43,12 @@ export interface Translations {
     innovationProjectsDesc: string;
     industryConnections: string;
     industryConnectionsDesc: string;
+    stats: {
+      commits: { value: number; suffix: string; label: string };
+      contributors: { value: number; suffix: string; label: string };
+      projects: { value: number; suffix: string; label: string };
+    };
+    techStack: string[];
   };
   
   // About Section

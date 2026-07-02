@@ -164,18 +164,24 @@ export const zhTranslations: Translations = {
     dashboard: '控制台'
   },
   hero: {
-    tagline: '欢迎来到新能源编程俱乐部',
-    title: '构建可持续',
-    titleHighlight: '未来',
+    tagline: '从200块生活费到竞赛机器人',
+    title: '代码诞生于工程现场',
+    titleHighlight: '而非PPT',
     description: '加入我们的社区，通过开源项目、技术研讨会和协作学习，推动可再生能源和可持续技术的发展。',
-    joinCommunity: '加入社区',
+    joinCommunity: '抄我们代码',
     viewGithub: '查看Gitee',
     codingWorkshops: '编程工作坊',
     codingWorkshopsDesc: '每周动手编程工作坊',
     innovationProjects: '创新项目',
     innovationProjectsDesc: '可再生能源开源项目',
     industryConnections: '行业联系',
-    industryConnectionsDesc: '与可持续技术领导者建立联系'
+    industryConnectionsDesc: '与可持续技术领导者建立联系',
+    stats: {
+      commits: { value: 260, suffix: '+', label: 'Commits' },
+      contributors: { value: 45, suffix: '+', label: '贡献者' },
+      projects: { value: 12, suffix: '+', label: '开源项目' }
+    },
+    techStack: ['嵌入式 C/C++', 'ROS/ROS2', '机械设计', 'Python', 'STM32', '机器视觉', 'PCB 设计']
   },
   about: {
     title: '关于我们',

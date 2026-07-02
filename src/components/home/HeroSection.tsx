@@ -1,104 +1,176 @@
 import { useRef } from 'react'
-import { ChevronRight, Code, Lightbulb, Zap } from 'lucide-react'
+import { ChevronRight, Code, Lightbulb, Zap, Bot, Settings } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-
-function SplitText({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: string
-  className?: string
-  delay?: number
-}) {
-  const containerRef = useRef<HTMLSpanElement>(null)
-
-  const chars = children.split('')
-
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        containerRef.current?.querySelectorAll('.char') || [],
-        {
-          y: 80,
-          opacity: 0,
-          rotateX: -90,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotateX: 0,
-          duration: 0.8,
-          ease: 'back.out(1.7)',
-          stagger: 0.03,
-          delay,
-        }
-      )
-    },
-    { scope: containerRef }
-  )
-
-  return (
-    <span ref={containerRef} className={`inline-block ${className}`}>
-      {chars.map((char, index) => (
-        <span
-          key={index}
-          className="char inline-block"
-          style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
-    </span>
-  )
-}
+import { SplitText } from 'gsap/SplitText'
 
 export function HeroSection() {
   const t = useTranslation()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const buttonsRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
   const badgeRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const highlightRef = useRef<HTMLSpanElement>(null)
+  const subtitleRef = useRef<HTMLParagraphElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const buttonsRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const marqueeRef = useRef<HTMLDivElement>(null)
   const glowRef = useRef<HTMLDivElement>(null)
+  const robotRef = useRef<HTMLButtonElement>(null)
+  const gearRef = useRef<HTMLButtonElement>(null)
+
   const magneticTweens = useRef<Map<HTMLElement, gsap.core.Tween>>(new Map())
   const hoverTweens = useRef<Map<HTMLElement, gsap.core.Tween>>(new Map())
+  const arrowTween = useRef<gsap.core.Tween | null>(null)
+  const marqueeTween = useRef<gsap.core.Tween | null>(null)
 
   useGSAP(
     () => {
       const ctx = gsap.context(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+        // ========== 0. Background grid ambient drift ==========
+        if (gridRef.current) {
+          gsap.to(gridRef.current, {
+            backgroundPosition: '60px 60px',
+            duration: 20,
+            repeat: -1,
+            ease: 'none',
+          })
+        }
 
-        // Badge entrance
-        tl.fromTo(
+        // ========== Master Timeline: entrance choreography ==========
+        const master = gsap.timeline({
+          defaults: { ease: 'power3.out' },
+          delay: 0.15,
+        })
+
+        // 1. Badge pops in like a physical badge
+        master.fromTo(
           badgeRef.current,
-          { opacity: 0, y: 30, scale: 0.9 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.8 },
-          0.2
+          { opacity: 0, y: 30, scale: 0.8, rotateX: -15 },
+          { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.7, ease: 'back.out(1.7)' },
+          0
         )
 
-        // Subtitle entrance
-        tl.fromTo(
+        // 2. Headline: SplitText by words, slam down with physical weight
+        let titleSplit: SplitText | null = null
+        let highlightSplit: SplitText | null = null
+
+        if (titleRef.current) {
+          titleSplit = new SplitText(titleRef.current, { type: 'words', wordsClass: 'title-word' })
+          master.fromTo(
+            titleSplit.words,
+            { y: 80, opacity: 0, rotateX: -80, skewY: 8 },
+            {
+              y: 0,
+              opacity: 1,
+              rotateX: 0,
+              skewY: 0,
+              duration: 0.9,
+              ease: 'back.out(1.4)',
+              stagger: 0.08,
+            },
+            0.25
+          )
+        }
+
+        // 3. Highlight words get extra mechanical snap + subtle glitch on the last word
+        if (highlightRef.current) {
+          highlightSplit = new SplitText(highlightRef.current, { type: 'words', wordsClass: 'highlight-word' })
+          master.fromTo(
+            highlightSplit.words,
+            { y: 90, opacity: 0, rotateX: -90, skewX: -12 },
+            {
+              y: 0,
+              opacity: 1,
+              rotateX: 0,
+              skewX: 0,
+              duration: 1,
+              ease: 'back.out(1.2)',
+              stagger: 0.1,
+            },
+            0.55
+          )
+
+          // Extra glitch skew on the final word (PPT / floor)
+          const lastWord = highlightSplit.words[highlightSplit.words.length - 1]
+          if (lastWord) {
+            master.to(
+              lastWord,
+              {
+                skewX: 8,
+                x: 3,
+                duration: 0.06,
+                ease: 'steps(1)',
+                yoyo: true,
+                repeat: 3,
+              },
+              1.1
+            )
+          }
+        }
+
+        // 4. Subtitle fades up
+        master.fromTo(
           subtitleRef.current,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.9 },
-          0.8
+          { opacity: 1, y: 0, duration: 0.8 },
+          0.95
         )
 
-        // Buttons entrance
-        tl.fromTo(
+        // 5. Stats row: slide up + counters roll
+        const statItems = statsRef.current?.querySelectorAll('.stat-item')
+        const statValues = statsRef.current?.querySelectorAll('.stat-value')
+        if (statItems?.length) {
+          master.fromTo(
+            statItems,
+            { opacity: 0, y: 50, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.12, ease: 'back.out(1.4)' },
+            1.15
+          )
+        }
+
+        if (statValues?.length) {
+          statValues.forEach((el) => {
+            const target = Number(el.getAttribute('data-value'))
+            const suffix = el.getAttribute('data-suffix') || ''
+            const proxy = { val: 0 }
+            master.to(
+              proxy,
+              {
+                val: target,
+                duration: 1.6,
+                ease: 'power2.out',
+                onUpdate: () => {
+                  el.textContent = Math.round(proxy.val) + suffix
+                },
+              },
+              1.35
+            )
+          })
+        }
+
+        // 6. CTA buttons enter
+        master.fromTo(
           buttonsRef.current?.children || [],
           { opacity: 0, y: 40, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.12 },
-          1.0
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.12, ease: 'back.out(1.4)' },
+          1.45
         )
 
-        // Cards entrance
-        tl.fromTo(
+        // 7. Tech stack marquee fades in and starts rolling
+        master.fromTo(
+          marqueeRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          1.75
+        )
+
+        // 8. Feature cards enter last
+        master.fromTo(
           cardsRef.current?.children || [],
           { opacity: 0, y: 60, scale: 0.9 },
           {
@@ -106,13 +178,15 @@ export function HeroSection() {
             y: 0,
             scale: 1,
             duration: 0.8,
-            stagger: 0.15,
+            stagger: 0.12,
             ease: 'back.out(1.4)',
           },
-          1.3
+          1.95
         )
 
-        // Background glow ambient animation with yoyo + easeReverse
+        // ========== Ambient loops (not in master timeline) ==========
+
+        // Background glow drifts
         gsap.to(glowRef.current, {
           x: 60,
           y: -40,
@@ -121,10 +195,9 @@ export function HeroSection() {
           repeat: -1,
           yoyo: true,
           ease: 'sine.inOut',
-          easeReverse: true,
         })
 
-        // Feature icons subtle breathing pulse with yoyo + easeReverse
+        // Feature icons breathing pulse
         const iconContainers = cardsRef.current?.querySelectorAll('.feature-icon')
         if (iconContainers) {
           gsap.to(iconContainers, {
@@ -133,12 +206,49 @@ export function HeroSection() {
             repeat: -1,
             yoyo: true,
             ease: 'sine.inOut',
-            easeReverse: true,
-            stagger: {
-              each: 0.4,
-              from: 'start',
-            },
+            stagger: { each: 0.4, from: 'start' },
           })
+        }
+
+        // Marquee infinite scroll
+        const track = marqueeRef.current?.querySelector('.marquee-track') as HTMLElement | null
+        if (track) {
+          const totalWidth = track.scrollWidth / 2
+          marqueeTween.current = gsap.to(track, {
+            x: -totalWidth,
+            duration: 30,
+            repeat: -1,
+            ease: 'none',
+          })
+        }
+
+        // Floating robot hover
+        if (robotRef.current) {
+          gsap.to(robotRef.current, {
+            y: -10,
+            duration: 2.2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+          })
+        }
+
+        // Floating gear slow rotation
+        if (gearRef.current) {
+          const icon = gearRef.current.querySelector('svg')
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 360,
+              duration: 20,
+              repeat: -1,
+              ease: 'none',
+            })
+          }
+        }
+
+        return () => {
+          titleSplit?.revert()
+          highlightSplit?.revert()
         }
       }, sectionRef)
 
@@ -170,7 +280,6 @@ export function HeroSection() {
         y: y * 0.25,
         duration: 0.4,
         ease: 'power2.out',
-        easeReverse: true,
       }
     )
 
@@ -193,7 +302,7 @@ export function HeroSection() {
     }
   }
 
-  // Hover scale effect with easeReverse for smooth reverse playback
+  // Hover scale + glow burst
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
 
@@ -203,13 +312,34 @@ export function HeroSection() {
     }
 
     const tween = gsap.to(el, {
-      scale: 1.04,
+      scale: 1.05,
       duration: 0.3,
       ease: 'power2.out',
-      easeReverse: true,
     })
 
     hoverTweens.current.set(el, tween)
+
+    // Glow burst on the button surface
+    const glow = el.querySelector('.btn-glow') as HTMLElement | null
+    if (glow) {
+      gsap.fromTo(
+        glow,
+        { opacity: 0, scale: 0.5 },
+        { opacity: 0.6, scale: 1.5, duration: 0.4, ease: 'power2.out' }
+      )
+    }
+
+    // Arrow nudge loop for primary CTA
+    const arrow = el.querySelector('.cta-arrow') as HTMLElement | null
+    if (arrow && !arrowTween.current) {
+      arrowTween.current = gsap.to(arrow, {
+        x: 4,
+        repeat: -1,
+        yoyo: true,
+        duration: 0.55,
+        ease: 'sine.inOut',
+      })
+    }
   }
 
   const handleHoverLeave = (e: React.MouseEvent<HTMLElement>) => {
@@ -220,6 +350,30 @@ export function HeroSection() {
       tween.reverse()
     } else {
       gsap.to(el, { scale: 1, duration: 0.3, ease: 'power2.out' })
+    }
+
+    const glow = el.querySelector('.btn-glow') as HTMLElement | null
+    if (glow) {
+      gsap.to(glow, { opacity: 0, scale: 0.5, duration: 0.3 })
+    }
+
+    const arrow = el.querySelector('.cta-arrow') as HTMLElement | null
+    if (arrow && arrowTween.current) {
+      arrowTween.current.kill()
+      arrowTween.current = null
+      gsap.to(arrow, { x: 0, duration: 0.3, ease: 'power2.out' })
+    }
+  }
+
+  // Marquee hover: slow the track, not the whole page
+  const handleMarqueeEnter = () => {
+    if (marqueeTween.current) {
+      gsap.to(marqueeTween.current, { timeScale: 0.2, duration: 0.4, ease: 'power2.out' })
+    }
+  }
+  const handleMarqueeLeave = () => {
+    if (marqueeTween.current) {
+      gsap.to(marqueeTween.current, { timeScale: 1, duration: 0.4, ease: 'power2.out' })
     }
   }
 
@@ -241,13 +395,25 @@ export function HeroSection() {
     },
   ]
 
+  const stats = [
+    { key: 'commits', ...t.hero.stats.commits },
+    { key: 'contributors', ...t.hero.stats.contributors },
+    { key: 'projects', ...t.hero.stats.projects },
+  ]
+
+  const techStack = [...t.hero.techStack, ...t.hero.techStack]
+
   return (
     <div
       ref={sectionRef}
       className="relative overflow-hidden bg-background pt-20 pb-28"
     >
       {/* Animated grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.06)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      <div
+        ref={gridRef}
+        className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.06)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.06)_1px,transparent_1px)] bg-[size:40px_40px]"
+        style={{ willChange: 'background-position' }}
+      />
 
       {/* Dynamic gradient glows */}
       <div
@@ -258,11 +424,12 @@ export function HeroSection() {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
 
       <div className="container relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           <div className="flex items-center justify-center mb-8">
             <div
               ref={badgeRef}
               className="inline-flex items-center rounded-full px-5 py-2.5 text-sm bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 backdrop-blur-sm hover-lift glow-hover opacity-0"
+              style={{ perspective: '1000px' }}
             >
               <Zap className="mr-2 h-4 w-4 text-primary" />
               <span className="font-medium">{t.hero.tagline}</span>
@@ -270,12 +437,14 @@ export function HeroSection() {
           </div>
 
           <h1
+            ref={titleRef}
             className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
             style={{ perspective: '1000px' }}
           >
-            <SplitText delay={0.4}>{t.hero.title}</SplitText>
-            <span className="gradient-text">
-              <SplitText delay={0.8}>{` ${t.hero.titleHighlight}`}</SplitText>
+            {t.hero.title}
+            <span ref={highlightRef} className="gradient-text block sm:inline">
+              {' '}
+              {t.hero.titleHighlight}
             </span>
           </h1>
 
@@ -286,13 +455,37 @@ export function HeroSection() {
             {t.hero.description}
           </p>
 
+          {/* Stats row */}
+          <div
+            ref={statsRef}
+            className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.key}
+                className="stat-item flex flex-col items-center rounded-xl border border-primary/10 bg-card/40 px-6 py-4 backdrop-blur-sm opacity-0"
+              >
+                <span
+                  className="stat-value text-3xl font-bold tracking-tight gradient-text"
+                  data-value={stat.value}
+                  data-suffix={stat.suffix}
+                >
+                  0{stat.suffix}
+                </span>
+                <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
           <div
             ref={buttonsRef}
             className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Button
               size="lg"
-              className="gradient-bg-primary hover-lift glow-hover text-base px-8 py-6 will-change-transform"
+              className="relative overflow-hidden gradient-bg-primary hover-lift glow-hover text-base px-8 py-6 will-change-transform"
               asChild
             >
               <Link
@@ -302,14 +495,15 @@ export function HeroSection() {
                 onMouseEnter={handleMouseEnter}
                 onMouseOut={handleHoverLeave}
               >
-                {t.hero.joinCommunity}
-                <ChevronRight className="ml-2 h-5 w-5" />
+                <span className="btn-glow absolute inset-0 rounded-md bg-white/20 opacity-0 pointer-events-none" />
+                <span className="relative z-10">{t.hero.joinCommunity}</span>
+                <ChevronRight className="cta-arrow relative z-10 ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="hover-lift border-primary/20 hover:border-primary/40 text-base px-8 py-6 will-change-transform"
+              className="relative overflow-hidden hover-lift border-primary/20 hover:border-primary/40 text-base px-8 py-6 will-change-transform"
               asChild
             >
               <a
@@ -321,9 +515,29 @@ export function HeroSection() {
                 onMouseEnter={handleMouseEnter}
                 onMouseOut={handleHoverLeave}
               >
-                {t.hero.viewGithub}
+                <span className="btn-glow absolute inset-0 rounded-md bg-primary/10 opacity-0 pointer-events-none" />
+                <span className="relative z-10">{t.hero.viewGithub}</span>
               </a>
             </Button>
+          </div>
+
+          {/* Tech stack marquee */}
+          <div
+            ref={marqueeRef}
+            className="mt-14 overflow-hidden rounded-full border border-primary/10 bg-card/30 py-3 backdrop-blur-sm opacity-0"
+            onMouseEnter={handleMarqueeEnter}
+            onMouseLeave={handleMarqueeLeave}
+          >
+            <div className="marquee-track flex w-max items-center gap-6 px-3">
+              {techStack.map((tech, index) => (
+                <span
+                  key={index}
+                  className="whitespace-nowrap rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary/90 border border-primary/10"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div
@@ -350,6 +564,23 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Floating actions anchored to hero section bottom */}
+      <button
+        ref={robotRef}
+        className="absolute bottom-6 left-6 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-card/80 text-primary shadow-lg backdrop-blur-md transition-colors hover:bg-primary/10 hover:text-primary"
+        aria-label="Robot assistant"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <Bot className="h-5 w-5" />
+      </button>
+      <button
+        ref={gearRef}
+        className="absolute bottom-6 right-6 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-card/80 text-primary shadow-lg backdrop-blur-md transition-colors hover:bg-primary/10 hover:text-primary"
+        aria-label="Settings"
+      >
+        <Settings className="h-5 w-5" />
+      </button>
     </div>
   )
 }

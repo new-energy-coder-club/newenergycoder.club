@@ -7,6 +7,12 @@ export const maintainers: TeamMember[] = [
     bio: 'Renewable energy researcher with a focus on AI applications for energy optimization.',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/DarrenPig.jpg',
     tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
+    skills: [
+      { name: 'AI', level: 92 },
+      { name: 'BSP', level: 88 },
+      { name: '嵌入式', level: 85 },
+      { name: '能源监测', level: 90 }
+    ],
     gitee: 'https://gitee.com/darrenpig',
     github: 'https://github.com/Darrenpig',
     bonjour: 'https://bonjour.bio/darrenpig',
@@ -18,6 +24,12 @@ export const maintainers: TeamMember[] = [
     bio: '专注于AI在能源优化应用的可再生能源研究员。',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/殷统创.jpg',
     tags: ['AI', 'BSP', '能源优化', '可再生能源', '华为云AI'],
+    skills: [
+      { name: 'AI', level: 90 },
+      { name: 'BSP', level: 95 },
+      { name: '能源优化', level: 93 },
+      { name: '华为云AI', level: 85 }
+    ],
     github: 'https://github.com/yintongchuang'
   },
   {
@@ -26,6 +38,12 @@ export const maintainers: TeamMember[] = [
     bio: '专注于机器人算法研发部署以及业务逻辑设计。',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/许珑译.jpg',
     tags: ['机器人算法', 'ROBOCON', '人形机器人', '算法部署', 'ROS'],
+    skills: [
+      { name: '机器人算法', level: 94 },
+      { name: 'ROS', level: 88 },
+      { name: '算法部署', level: 90 },
+      { name: 'ROBOCON', level: 86 }
+    ],
     github: 'https://github.com/xulongyi'
   },
   {
@@ -34,6 +52,12 @@ export const maintainers: TeamMember[] = [
     bio: '负责项目的核心技术攻坚，保障电控系统的稳定运行。',
     image: 'https://raw.githubusercontent.com/Darrenpig/newenergycoder.club/main/src/image/maintainer/张旺旺.png',
     tags: ['电控系统', '运行时', 'ROBOCON', '嵌入式', '系统稳定性'],
+    skills: [
+      { name: '电控系统', level: 93 },
+      { name: '运行时', level: 91 },
+      { name: '嵌入式', level: 87 },
+      { name: '系统稳定性', level: 92 }
+    ],
     github: 'https://github.com/zhangwangwang'
   }
 ];

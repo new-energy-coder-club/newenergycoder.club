@@ -1,8 +1,7 @@
-import { FloatingControls } from '@/components/ui/floating-controls'
 import { AspectRatio } from '@/types/ui'
-import React from 'react'
+import React, { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from '@/contexts/LanguageContext'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone } from 'lucide-react'
@@ -14,7 +13,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { ImageProxy } from '@/components/ui/image-proxy'
 import { Header } from '@/components/layout/Header'
-import { useState, useMemo } from 'react'
 import TeamPhoto1 from '@/image/校门合照.jpg?url'
 import TeamPhoto2 from '@/image/横向项目合照.jpg?url'
 import TeamPhoto3 from '@/image/合照1.jpg?url'
@@ -26,12 +24,16 @@ import AmassLogo from '@/image/sponsor/Amass.png?url'
 import BenqLogo from '@/image/sponsor/benq-logo.png?url'
 import YibainaLogo from '@/image/sponsor/易百纳.png?url'
 import RCBBLogo from '@/RCBB.png?url'
-// 已移除Three.js，保留GIF版本动画组件
 import GifAnimation from '@/components/ui/GifAnimation'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { SplitText } from 'gsap/SplitText'
+import { Flip } from 'gsap/Flip'
+import type { TeamMember as TeamMemberType } from '@/lib/i18n/types/translations'
 
 // 样式常量定义
 const CARD_STYLES = {
-  base: "group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg",
+  base: "team-card group overflow-hidden hover:shadow-lg transition-colors duration-300 bg-card/90 backdrop-blur-md border-primary/30 hover:border-primary/50 shadow-lg",
   analytics: "bg-card/90 backdrop-blur-md border-primary/30 shadow-lg",
   photo: "bg-card/90 backdrop-blur-md border-primary/30 shadow-lg overflow-hidden"
 }
@@ -44,42 +46,122 @@ const TEAM_PHOTOS = [
   { src: TeamPhoto6, alt: "团队合照4" }
 ]
 
-// 团队成员数据类型定义
-interface TeamMember {
-  name: string
-  role: string
-  bio: string
-  image: string
-  tags?: string[]
-  gitee?: string
-  github?: string
-  linkedin?: string
-  email?: string
-  bonjour?: string
+// 过滤分类
+const FILTER_CATEGORIES = ['all', 'maintainers', 'developers', 'designers', 'contributors'] as const
+type FilterCategory = typeof FILTER_CATEGORIES[number]
+
+const FILTER_LABELS: Record<FilterCategory, string> = {
+  all: '全部成员',
+  maintainers: '核心团队',
+  developers: '开发设计',
+  designers: 'UI/UX',
+  contributors: '贡献者'
 }
 
 // 团队成员卡片组件属性
 interface TeamMemberCardProps {
-  member: TeamMember
+  member: TeamMemberType
   isSponsors?: boolean
   selectedRatio?: AspectRatio
 }
 
 function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: TeamMemberCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const avatarRef = useRef<HTMLDivElement>(null)
+  const barsRef = useRef<HTMLDivElement[]>([])
+  const timelineRef = useRef<gsap.core.Timeline | null>(null)
+
+  // 技能条数据：优先使用 skills，否则基于 tags 生成
+  const skills = useMemo(() => {
+    if (member.skills && member.skills.length > 0) return member.skills.slice(0, 4)
+    if (member.tags && member.tags.length > 0) {
+      return member.tags.slice(0, 4).map((tag, i) => ({
+        name: tag,
+        level: [78, 85, 70, 92][i % 4]
+      }))
+    }
+    return []
+  }, [member.skills, member.tags])
+
+  // Hover timeline：头像放大 + 浮动 + 卡片上浮 + 技能条高亮
+  useLayoutEffect(() => {
+    const card = cardRef.current
+    const avatar = avatarRef.current
+    if (!card) return
+
+    const tl = gsap.timeline({ paused: true })
+    tl.to(card, {
+      y: -10,
+      scale: 1.015,
+      boxShadow: '0 24px 48px -12px rgba(0,0,0,0.35), 0 0 40px hsl(var(--primary) / 0.35)',
+      borderColor: 'hsl(var(--primary) / 0.6)',
+      duration: 0.35,
+      ease: 'power2.out',
+    })
+
+    if (avatar) {
+      tl.to(avatar, {
+        scale: 1.05,
+        y: -4,
+        duration: 0.35,
+        ease: 'power2.out',
+      }, 0)
+      // 持续轻微浮动
+      tl.to(avatar, {
+        y: -8,
+        duration: 0.8,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      }, 0.35)
+    }
+
+    if (barsRef.current.length > 0) {
+      tl.fromTo(
+        barsRef.current,
+        { filter: 'brightness(1)' },
+        {
+          filter: 'brightness(1.3) drop-shadow(0 0 8px hsl(var(--primary) / 0.7))',
+          duration: 0.4,
+          stagger: 0.05,
+          ease: 'expo.out',
+        },
+        0
+      )
+    }
+
+    timelineRef.current = tl
+
+    const onEnter = () => tl.play()
+    const onLeave = () => tl.reverse()
+
+    card.addEventListener('mouseenter', onEnter)
+    card.addEventListener('mouseleave', onLeave)
+
+    return () => {
+      card.removeEventListener('mouseenter', onEnter)
+      card.removeEventListener('mouseleave', onLeave)
+      tl.kill()
+      barsRef.current = []
+    }
+  }, [skills.length])
+
   return (
-    <Card className={CARD_STYLES.base}>
+    <Card ref={cardRef} className={CARD_STYLES.base}>
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
-          <ImageProxy 
-            src={member.image} 
-            alt={member.name}
-            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-            fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
-          />
-          <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
-            {member.name.slice(0, 2)}
-          </AvatarFallback>
+            <div ref={avatarRef} className="w-full h-full">
+              <ImageProxy
+                src={member.image}
+                alt={member.name}
+                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+                fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
+              />
+            </div>
+            <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
+              {member.name.slice(0, 2)}
+            </AvatarFallback>
           </Avatar>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -109,16 +191,16 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         <p className="text-sm text-muted-foreground dark:text-gray-200 text-center mb-4 leading-relaxed drop-shadow-sm">
           {member.bio}
         </p>
-        
+
         {/* 技术栈标签 */}
         {member.tags && member.tags.length > 0 && (
           <div className="mb-4">
             <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center drop-shadow-sm">技能标签</h4>
             <div className="flex flex-wrap gap-2 justify-center">
               {member.tags.map((tag, index) => (
-                <Badge 
-                  key={index} 
-                  variant="outline" 
+                <Badge
+                  key={index}
+                  variant="outline"
                   className="text-xs px-3 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 border-primary/30 hover:border-primary/50 hover:scale-105 hover:shadow-lg backdrop-blur-sm bg-white/20 font-medium cursor-default shadow-sm hover:shadow-md"
                 >
                   {tag}
@@ -127,7 +209,29 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
             </div>
           </div>
         )}
-        
+
+        {/* 技能条：绿色能量注入 */}
+        {skills.length > 0 && (
+          <div className="mb-5 space-y-2">
+            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 text-center">能力矩阵</h4>
+            {skills.map((skill, index) => (
+              <div key={index} className="space-y-1">
+                <div className="flex justify-between text-[10px] text-muted-foreground dark:text-gray-400">
+                  <span>{skill.name}</span>
+                  <span>{skill.level}%</span>
+                </div>
+                <div className="h-1.5 w-full rounded-full bg-muted/50 overflow-hidden">
+                  <div
+                    ref={(el) => { if (el) barsRef.current[index] = el }}
+                    className="skill-bar h-full rounded-full bg-gradient-to-r from-primary to-accent origin-left"
+                    style={{ width: `${skill.level}%`, transform: 'scaleX(0)' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="flex justify-center gap-2">
           {member.gitee && (
             <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
@@ -170,17 +274,107 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
   )
 }
 
-function TeamSection({ title, members, selectedRatio }: { title: string; members: any[]; selectedRatio?: AspectRatio }) {
+interface TeamSectionProps {
+  title: string
+  members: TeamMemberType[]
+  selectedRatio?: AspectRatio
+}
+
+function TeamSection({ title, members, selectedRatio }: TeamSectionProps) {
   const isSponsors = title.includes('Sponsor') || title.includes('赞助')
+  const sectionRef = useRef<HTMLElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      const titleEl = sectionRef.current?.querySelector('h2')
+      const cards = gridRef.current?.querySelectorAll('.team-card')
+      const skillBars = sectionRef.current?.querySelectorAll('.skill-bar')
+      const splits: SplitText[] = []
+
+      if (titleEl) {
+        const titleSplit = SplitText.create(titleEl, { type: 'chars' })
+        splits.push(titleSplit)
+        gsap.fromTo(
+          titleSplit.chars,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.02,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      if (cards && cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 100, rotateX: 15, transformOrigin: 'center bottom' },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+            onComplete: () => {
+              // 入场完成后将技能条恢复为可交互状态
+              if (skillBars) {
+                gsap.set(skillBars, { scaleX: 1 })
+              }
+            }
+          }
+        )
+      }
+
+      // 技能条从 0 生长到目标值
+      if (skillBars && skillBars.length > 0) {
+        gsap.fromTo(
+          skillBars,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 0.9,
+            stagger: 0.04,
+            ease: 'expo.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      }
+
+      return () => {
+        splits.forEach(split => split.revert())
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="mb-16">
+    <section ref={sectionRef} className="mb-16" style={{ perspective: '1200px' }}>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{title}</h2>
         <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {members.map((member, index) => (
-          <TeamMemberCard key={index} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} />
+          <TeamMemberCard key={`${member.name}-${index}`} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} />
         ))}
       </div>
     </section>
@@ -197,8 +391,30 @@ interface StatCardProps {
 
 // 统计卡片组件
 function StatCard({ title, count, description, icon: Icon }: StatCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    if (!cardRef.current) return
+    gsap.fromTo(
+      cardRef.current,
+      { opacity: 0, y: 40, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, { scope: cardRef })
+
   return (
-    <Card className={CARD_STYLES.analytics}>
+    <Card ref={cardRef} className={CARD_STYLES.analytics}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <Icon className="h-4 w-4 text-muted-foreground" />
@@ -238,7 +454,93 @@ function PhotoCard({ src, alt }: PhotoCardProps) {
 
 export function TeamPage() {
   const t = useTranslation()
-  const [selectedRatio, setSelectedRatio] = useState<AspectRatio>('aspect-[3/4]')
+  const [selectedRatio] = useState<AspectRatio>('aspect-[3/4]')
+  const [filter, setFilter] = useState<FilterCategory>('all')
+  const heroRef = useRef<HTMLDivElement>(null)
+  const pageRef = useRef<HTMLDivElement>(null)
+
+  // 过滤后的成员
+  const filteredMembers = useMemo(() => {
+    switch (filter) {
+      case 'maintainers': return { maintainers: t.team.maintainers, developers: [], designers: [], contributors: [], sponsors: [] }
+      case 'developers': return { maintainers: [], developers: t.team.developers, designers: [], contributors: [], sponsors: [] }
+      case 'designers': return { maintainers: [], developers: [], designers: t.team.designers, contributors: [], sponsors: [] }
+      case 'contributors': return { maintainers: [], developers: [], designers: [], contributors: t.team.contributors, sponsors: [] }
+      default: return {
+        maintainers: t.team.maintainers,
+        developers: t.team.developers,
+        designers: t.team.designers,
+        contributors: t.team.contributors,
+        sponsors: t.team.sponsors
+      }
+    }
+  }, [filter, t.team])
+
+  // Flip 过滤切换
+  const handleFilterChange = (nextFilter: FilterCategory) => {
+    if (nextFilter === filter || !pageRef.current) return
+
+    // 获取当前所有团队卡片的 Flip 状态
+    const state = Flip.getState('.team-card')
+
+    setFilter(nextFilter)
+
+    // 在下一帧 DOM 更新后执行 Flip
+    requestAnimationFrame(() => {
+      Flip.from(state, {
+        duration: 0.65,
+        ease: 'power3.inOut',
+        stagger: 0.04,
+        absolute: true,
+        scale: true,
+        onEnter: (elements) => {
+          gsap.fromTo(
+            elements,
+            { opacity: 0, scale: 0.8, y: 40 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'back.out(1.4)' }
+          )
+        },
+        onLeave: (elements) => {
+          gsap.to(elements, { opacity: 0, scale: 0.8, duration: 0.35, ease: 'power2.in' })
+        },
+      })
+    })
+  }
+
+  // Hero 描述 SplitText 入场
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      const paragraphs = heroRef.current?.querySelectorAll('.hero-desc-paragraph')
+      const splits: SplitText[] = []
+
+      paragraphs?.forEach((p) => {
+        const split = SplitText.create(p, { type: 'lines' })
+        splits.push(split)
+        gsap.fromTo(
+          split.lines,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.06,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        )
+      })
+
+      return () => {
+        splits.forEach(split => split.revert())
+      }
+    }, heroRef)
+
+    return () => ctx.revert()
+  }, [])
 
   // 仅将中文角引号「」着色为主题色，其余文本保持原样
   const renderBracketStyled = (text: string) => {
@@ -258,7 +560,6 @@ export function TeamPage() {
 
   // 将长段说明文字按句分段，以提升可读性
   const renderDescriptionParagraphs = (text: string) => {
-    // 以中英文常见句末符号为分隔，保留句末并按句渲染
     const sentences = text
       .split(/(?<=[。.!?])\s+/)
       .map(s => s.trim())
@@ -295,7 +596,6 @@ export function TeamPage() {
         );
       }
 
-      // 英文短语强调：将 "a greener, fairer, and smarter future" 加粗并设置主题色
       if (t.includes(englishFuturePhrase)) {
         const parts = t.split(englishFuturePhrase);
         return (
@@ -311,22 +611,18 @@ export function TeamPage() {
     }
 
     return sentences.map((s, idx) => {
-      let cls = "mt-2 text-muted-foreground leading-relaxed tracking-wide"
-      // 新增：将“一群在代码与梦想交汇处相遇的人。”加粗
+      let cls = "hero-desc-paragraph mt-2 text-muted-foreground leading-relaxed tracking-wide"
       if (/^一群在代码与梦想交汇处相遇的人/.test(s)) {
-        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
+        cls = "hero-desc-paragraph mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
       }
-      // 用户要求：以下两句加粗
       if (/^我们不同——/.test(s) || /^但我们相同——/.test(s)) {
-        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
+        cls = "hero-desc-paragraph mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
       }
-      // 用户要求：“我们，是一个行动动词。” 改为主题色的加粗文字
       if (/^我们，是一个行动动词/.test(s)) {
-        cls = "mt-2 leading-relaxed tracking-wide font-bold text-primary"
+        cls = "hero-desc-paragraph mt-2 leading-relaxed tracking-wide font-bold text-primary"
       }
-      // 英文版本：将 “Yet we are the same — we believe in technology for good, in the power of youth, and that sustainability is not a choice but a necessity.” 这句加粗
       if (/^Yet we are the same — we believe in technology for good/.test(s)) {
-        cls = "mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
+        cls = "hero-desc-paragraph mt-2 leading-relaxed tracking-wide font-bold text-foreground dark:text-white"
       }
 
       return (
@@ -345,21 +641,21 @@ export function TeamPage() {
       designers: t.team.designers?.length || 0,
       contributors: t.team.contributors?.length || 0
     }
-    
+
     const total = Object.values(counts).reduce((sum, count) => sum + count, 0)
-    
+
     const percentages = Object.fromEntries(
       Object.entries(counts).map(([key, count]) => [
         key,
         total > 0 ? ((count / total) * 100).toFixed(1) : '0.0'
       ])
     )
-    
+
     return { counts, percentages, total }
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div ref={pageRef} className="flex min-h-screen flex-col">
       <Header />
       <div className="flex-1 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Background with team photos */}
@@ -383,10 +679,10 @@ export function TeamPage() {
           }}
         />
       </div>
-      
+
       <div className="container py-12 relative z-20">
         {/* Hero Section with Theme Toggle */}
-        <div className="mb-12 relative">
+        <div ref={heroRef} className="mb-12 relative">
           <div className="flex items-center justify-center gap-3">
             <Button
               type="button"
@@ -416,19 +712,40 @@ export function TeamPage() {
         </div>
 
         {/* Team Title */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
             {t.team.title}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
         </div>
 
+        {/* Filter Controls */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {FILTER_CATEGORIES.map((category) => (
+            <Button
+              key={category}
+              variant={filter === category ? 'default' : 'outline'}
+              size="sm"
+              className={`
+                filter-button relative overflow-hidden rounded-full px-5 transition-all duration-300
+                ${filter === category
+                  ? 'bg-primary text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.4)]'
+                  : 'border-primary/30 hover:border-primary/60 hover:bg-primary/10'
+                }
+              `}
+              onClick={() => handleFilterChange(category)}
+            >
+              {FILTER_LABELS[category]}
+            </Button>
+          ))}
+        </div>
+
         {/* Team Sections */}
-        <TeamSection title={t.team.maintainerTitle} members={t.team.maintainers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.developerTitle} members={t.team.developers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.designerTitle} members={t.team.designers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.contributorTitle} members={t.team.contributors} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.sponsorTitle} members={t.team.sponsors} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.sponsorTitle} members={filteredMembers.sponsors} selectedRatio={selectedRatio} />
 
         {/* Team Analytics Section */}
         <div className="mt-16 mb-12">
@@ -514,7 +831,7 @@ export function TeamPage() {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
-          
+
           <Card className={CARD_STYLES.photo}>
             <CardContent className="p-0">
               <div className="relative overflow-hidden">
@@ -542,7 +859,7 @@ export function TeamPage() {
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {TEAM_PHOTOS.map((photo, index) => (
               <PhotoCard key={index} src={photo.src} alt={photo.alt} />
@@ -561,7 +878,7 @@ export function TeamPage() {
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
           </div>
-          
+
           {/* Sponsors Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
             {[
@@ -636,8 +953,8 @@ export function TeamPage() {
                   如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解合作机会
                 </p>
                 <div className="mt-1 flex flex-wrap justify-center gap-3">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
                     asChild
                   >
@@ -646,8 +963,8 @@ export function TeamPage() {
                       联系我们
                     </a>
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
                     asChild
                   >
