@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Lazy load pages for code splitting
@@ -11,7 +11,6 @@ const ProjectsPage = React.lazy(() => import("@/pages/ProjectsPage").then(module
 const EventsPage = React.lazy(() => import("@/pages/EventsPage").then(module => ({ default: module.EventsPage })));
 const ResourcesPage = React.lazy(() => import("@/pages/ResourcesPage").then(module => ({ default: module.ResourcesPage })));
 const ContactPage = React.lazy(() => import("@/pages/ContactPage").then(module => ({ default: module.ContactPage })));
-const GettingStartedPage = React.lazy(() => import("@/pages/GettingStartedPage"));
 const EmbeddedDetailPage = React.lazy(() => import("@/pages/EmbeddedDetailPage"));
 const MechanicalDetailPage = React.lazy(() => import("@/pages/MechanicalDetailPage"));
 const GuiDetailPage = React.lazy(() => import("@/pages/GuiDetailPage"));
@@ -38,6 +37,13 @@ import './styles/LinkDetection.css'
 
 
 
+function ExternalRedirect({ to }: { to: string }) {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return null;
+}
+
 function App() {
   // 初始化字体优化
   React.useEffect(() => {
@@ -63,7 +69,7 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/innovation" element={<PageLayout><InnovationShowcasePage /></PageLayout>} />
-            <Route path="/getting-started" element={<PageLayout><GettingStartedPage /></PageLayout>} />
+            <Route path="/getting-started" element={<ExternalRedirect to="https://docs.newenergycoder.club/start-here" />} />
             <Route path="/learning/embedded" element={<PageLayout><EmbeddedDetailPage /></PageLayout>} />
             <Route path="/learning/mechanical" element={<PageLayout><MechanicalDetailPage /></PageLayout>} />
             <Route path="/learning/gui" element={<PageLayout><GuiDetailPage /></PageLayout>} />

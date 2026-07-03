@@ -64,10 +64,10 @@ export function Header() {
             ))}
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" className="gap-2" asChild>
-                <Link to="/getting-started">
+                <a href="https://docs.newenergycoder.club/start-here" target="_blank" rel="noopener noreferrer">
                   <BookOpen className="h-4 w-4" />
                   <span className="hidden sm:inline">入门文档</span>
-                </Link>
+                </a>
               </Button>
               <LanguageSwitcher />
               {isAuthenticated ? (
@@ -100,10 +100,10 @@ export function Header() {
           ))}
           <div className="flex items-center gap-2 mt-2">
             <Button variant="ghost" size="sm" className="gap-2" asChild>
-              <Link to="/getting-started" onClick={() => setMobileMenuOpen(false)}>
+              <a href="https://docs.newenergycoder.club/start-here" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                 <BookOpen className="h-4 w-4" />
                 <span>入门文档</span>
-              </Link>
+              </a>
             </Button>
             <LanguageSwitcher />
           </div>

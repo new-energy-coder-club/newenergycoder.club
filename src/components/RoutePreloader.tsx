@@ -88,9 +88,6 @@ const preloadRoute = async (path: string) => {
       case '/dashboard':
         await import('@/pages/DashboardPage');
         break;
-      case '/getting-started':
-        await import('@/pages/GettingStartedPage');
-        break;
       default:
         console.log(`No preload configuration for route: ${path}`);
     }

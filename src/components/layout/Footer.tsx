@@ -74,7 +74,7 @@ export function Footer() {
             <li><Link to="/innovation" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.innovation}</Link></li>
             <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.contact}</Link></li>
             <li><Link to="/join" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.joinClub}</Link></li>
-            <li><Link to="/getting-started" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.gettingStarted}</Link></li>
+            <li><a href="https://docs.newenergycoder.club/start-here" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">{t.footer.gettingStarted}</a></li>
           </ul>
         </div>
         
