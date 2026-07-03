@@ -7,13 +7,13 @@ import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
 import { useTranslation } from '@/contexts/LanguageContext'
-import wechatImg from 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
+const wechatImg = 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { type FloatingControls, type AspectRatio } from '@/components/ui/floating-controls'
 import { AmapLocation } from '@/components/ui/amap-location'
-import NECApplicationForm from 'https://cdn.newenergycoder.club/images/src/image/NEC官网上线申请表.png'
-import TeamPhoto1 from 'https://cdn.newenergycoder.club/images/src/image/校门合照.jpg'
-import TeamPhoto2 from 'https://cdn.newenergycoder.club/images/src/image/横向项目合照.jpg'
+const NECApplicationForm = 'https://cdn.newenergycoder.club/images/src/image/NEC官网上线申请表.png'
+const TeamPhoto1 = 'https://cdn.newenergycoder.club/images/src/image/校门合照.jpg'
+const TeamPhoto2 = 'https://cdn.newenergycoder.club/images/src/image/横向项目合照.jpg'
 
 interface ContactFormData {
   name: string

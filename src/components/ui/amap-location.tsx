@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin, Navigation, Clock, Route, ExternalLink, Compass } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
-import NECBuilding from 'https://cdn.newenergycoder.club/images/src/image/NEC-A416.png'
+const NECBuilding = 'https://cdn.newenergycoder.club/images/src/image/NEC-A416.png'
 
 interface LocationInfo {
   latitude: number

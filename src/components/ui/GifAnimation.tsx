@@ -1,5 +1,5 @@
 import React from 'react';
-import homeGifUrl from 'https://cdn.newenergycoder.club/images/src/NEC-home.gif';
+const homeGifUrl = 'https://cdn.newenergycoder.club/images/src/NEC-home.gif'
 
 // 替换后的动画展示：使用 GIF 代替 Canvas
 export default function GifAnimation() {

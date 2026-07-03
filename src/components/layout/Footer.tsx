@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Zap, Mail, MapPin } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import bonjourIcon from '../../bonjour.ico'
-import wechatImg from 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
+const wechatImg = 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
 
 // Custom icon components
 const GiteeIcon = ({ className }: { className?: string }) => (

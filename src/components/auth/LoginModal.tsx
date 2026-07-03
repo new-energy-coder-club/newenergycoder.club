@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/store/auth-store'
-import GoogleLogo from 'https://cdn.newenergycoder.club/images/src/assets/google-logo.svg'
-import WeChatLogo from 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
+const GoogleLogo = 'https://cdn.newenergycoder.club/images/src/assets/google-logo.svg'
+const WeChatLogo = 'https://cdn.newenergycoder.club/images/src/assets/wechat.png'
 
 interface LoginButtonProps {
   children: React.ReactNode
