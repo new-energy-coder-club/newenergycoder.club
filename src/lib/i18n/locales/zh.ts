@@ -168,7 +168,7 @@ export const zhTranslations: Translations = {
     title: '代码诞生于工程现场',
     titleHighlight: '而非PPT',
     description: '加入我们的社区，通过开源项目、技术研讨会和协作学习，推动可再生能源和可持续技术的发展。',
-    joinCommunity: '抄我们代码',
+    joinCommunity: '探索开源项目',
     viewGithub: '查看Gitee',
     codingWorkshops: '编程工作坊',
     codingWorkshopsDesc: '每周动手编程工作坊',
@@ -177,7 +177,7 @@ export const zhTranslations: Translations = {
     industryConnections: '行业联系',
     industryConnectionsDesc: '与可持续技术领导者建立联系',
     stats: {
-      commits: { value: 260, suffix: '+', label: 'Commits' },
+      commits: { value: 1350, suffix: '+', label: '次提交' },
       contributors: { value: 45, suffix: '+', label: '贡献者' },
       projects: { value: 12, suffix: '+', label: '开源项目' }
     },

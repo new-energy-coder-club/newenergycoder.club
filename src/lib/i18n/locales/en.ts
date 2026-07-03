@@ -94,7 +94,7 @@ export const enTranslations: Translations = {
     title: 'Code is born on the',
     titleHighlight: 'engineering floor',
     description: 'Join a community of developers passionate about creating innovative software solutions for renewable energy, sustainability, and a greener tomorrow.',
-    joinCommunity: 'Steal Our Code',
+    joinCommunity: 'Explore Open Source',
     viewGithub: 'View on Gitee',
     codingWorkshops: 'Coding Workshops',
     codingWorkshopsDesc: 'Weekly sessions to learn sustainable tech development',
@@ -103,7 +103,7 @@ export const enTranslations: Translations = {
     industryConnections: 'Industry Connections',
     industryConnectionsDesc: 'Network with leading energy sector professionals',
     stats: {
-      commits: { value: 260, suffix: '+', label: 'Commits' },
+      commits: { value: 1350, suffix: '+', label: 'Commits' },
       contributors: { value: 45, suffix: '+', label: 'Contributors' },
       projects: { value: 12, suffix: '+', label: 'Open Source Projects' }
     },
