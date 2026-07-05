@@ -338,6 +338,20 @@ export const contributors: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/contributer/孙诗睿.jpg',
     tags: ['嵌入式硬件', '单片机', 'AIC', '工业视觉', 'SIG', '硬件开发'],
     github: 'https://github.com/sunshirui'
+  },
+  {
+    name: '凌敏菲',
+    role: 'Contributor',
+    bio: '硬件组成员，积极参与NEC社区建设与项目贡献。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/凌敏菲.jpg',
+    tags: ['硬件组', 'Contributor', 'NEC社区', '项目贡献']
+  },
+  {
+    name: '崇瑶',
+    role: 'Contributor',
+    bio: 'NEC新人，正在练习，期待在可持续能源与机器人领域持续成长。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/崇瑶.jpg',
+    tags: ['NEC新人', 'Contributor', '学习成长', '可持续能源']
   }
 ];
 

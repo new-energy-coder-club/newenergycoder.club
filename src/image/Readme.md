@@ -78,6 +78,8 @@ src/image/
 | `杨鑫海.jpg` | 杨鑫海 | Developer | 专注于Arduino和ESP32等开发板的代码例程开发。 | `https://cdn.newenergycoder.club/images/src/image/contributer/杨鑫海.jpg` |
 | `殷子豪.jpg` | 殷子豪 | Developer&文艺工作者 | 运营宣传与文字编辑，负责团队内容创作和对外传播。 | `https://cdn.newenergycoder.club/images/src/image/contributer/殷子豪.jpg` |
 | `孙如婕.jpg` | 孙如婕 | 灵巧手横向开发贡献者 | 专注于灵巧手的横向开发，为项目提供创新的技术解决方案和开发支持。 | `https://cdn.newenergycoder.club/images/src/image/contributer/孙如婕.jpg` |
+| `凌敏菲.jpg` | 凌敏菲 | Contributor | 硬件组成员，积极参与NEC社区建设与项目贡献。 | `https://cdn.newenergycoder.club/images/src/image/contributer/凌敏菲.jpg` |
+| `崇瑶.jpg` | 崇瑶 | Contributor | NEC新人，正在练习，期待在可持续能源与机器人领域持续成长。 | `https://cdn.newenergycoder.club/images/src/image/contributer/崇瑶.jpg` |
 
 ### 💰 赞助商团队 (Sponsors Team)
 对应i18n.ts中的 `team.sponsors` 数组
@@ -161,7 +163,7 @@ src/image/
 
 ---
 
-**最后更新**: 2024年12月
+**最后更新**: 2026年7月
 **文档维护**: Energy Coder Club团队
         
 
