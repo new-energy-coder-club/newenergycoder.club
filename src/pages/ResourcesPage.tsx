@@ -1164,6 +1164,20 @@ const mockResources: Resource[] = [
     rating: 4.2,
     url: 'https://rcbbs.top/t/topic/956',
     tags: ['RCBBS', '论坛', '资源', '讨论']
+  },
+  {
+    id: 'whitepaper-nec-robotics',
+    title: 'NEC 新能源开发者社区 · 机器人白皮书',
+    description: 'NEC 新能源开发者社区机器人方向白皮书，系统介绍社区愿景、技术路线、机器人项目规划、开源协作模式与人才成长体系。',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop',
+    category: 'documentation',
+    difficulty: 'intermediate',
+    type: 'free',
+    author: 'New Energy Coder Club',
+    rating: 4.9,
+    url: '/whitepapers/NEC新能源开发者社区-机器人.pdf',
+    downloadUrl: '/whitepapers/NEC新能源开发者社区-机器人.pdf',
+    tags: ['白皮书', 'Whitepaper', 'PDF', '机器人', '新能源', '社区介绍']
   }
 ]
 

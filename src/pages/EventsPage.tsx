@@ -38,7 +38,7 @@ const mockEvents: Event[] = [
   {
     id: '1',
     title: 'AGIROS II 智元开发者社区',
-    description: 'AGIROS开源社区X智元开发者社区Meetup·上海站',
+    description: 'AGIROS 开源社区与智元开发者社区联合举办的上海站 Meetup，聚焦人形机器人、具身智能与开源生态，连接开发者、研究者与产业伙伴。',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
     category: 'workshop',
     date: '2025-09-20',
@@ -46,9 +46,7 @@ const mockEvents: Event[] = [
     location: '模速空间，上海市徐汇区龙台路180号F2栋2层',
     participants: 25,
     maxParticipants: 30,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/ai-workshop',
-    detailsUrl: 'https://example.com/events/ai-workshop'
+    status: 'upcoming'
   },
   {
     id: '7',
@@ -61,14 +59,12 @@ const mockEvents: Event[] = [
     location: 'A416会议室',
     participants: 15,
     maxParticipants: 25,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/weekly-meeting',
-    detailsUrl: 'https://example.com/events/weekly-meeting'
+    status: 'upcoming'
   },
   {
     id: '8',
     title: '2026ROBOCON NEC-RC竞赛',
-    description: '面向2026年ROBOCON机器人竞赛的专业训练小组，专注于机器人设计、编程和团队协作能力培养。',
+    description: '面向 2026 年 ROBOCON 机器人竞赛的专业训练小组，专注于机器人设计、编程和团队协作能力培养。点击查看 NEC 机器人社区白皮书了解技术路线与人才体系。',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop',
     category: 'competition',
     date: '2025-10-01',
@@ -77,8 +73,7 @@ const mockEvents: Event[] = [
     participants: 8,
     maxParticipants: 8,
     status: 'upcoming',
-    registrationUrl: 'https://example.com/register/robocon-2026',
-    detailsUrl: 'https://example.com/events/robocon-2026'
+    detailsUrl: '/whitepapers/NEC新能源开发者社区-机器人.pdf'
   },
   {
     id: '9',
@@ -91,9 +86,7 @@ const mockEvents: Event[] = [
     location: '计算机视觉实验室',
     participants: 3,
     maxParticipants: 3,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/aic-vision',
-    detailsUrl: 'https://example.com/events/aic-vision'
+    status: 'upcoming'
   },
   {
     id: '10',
@@ -106,9 +99,7 @@ const mockEvents: Event[] = [
     location: '图书馆',
     participants: 3,
     maxParticipants: 3,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/aic-agent',
-    detailsUrl: 'https://example.com/events/aic-agent'
+    status: 'upcoming'
   },
   {
     id: '2',
@@ -121,9 +112,7 @@ const mockEvents: Event[] = [
     location: 'Innovation Hub',
     participants: 45,
     maxParticipants: 60,
-    status: 'upcoming',
-    registrationUrl: 'https://example.com/register/green-hackathon',
-    detailsUrl: 'https://example.com/events/green-hackathon'
+    status: 'upcoming'
   },
   {
     id: '4',
@@ -136,8 +125,7 @@ const mockEvents: Event[] = [
     location: 'Computer Lab B',
     participants: 28,
     maxParticipants: 30,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/web-bootcamp'
+    status: 'past'
   },
   {
     id: '5',
@@ -149,8 +137,7 @@ const mockEvents: Event[] = [
     time: '10:00 - 16:00',
     location: 'Main Hall',
     participants: 85,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/coding-competition'
+    status: 'past'
   },
   {
     id: '6',
@@ -162,8 +149,7 @@ const mockEvents: Event[] = [
     time: '18:00 - 21:00',
     location: 'Student Center',
     participants: 65,
-    status: 'past',
-    detailsUrl: 'https://example.com/events/networking-night'
+    status: 'past'
   },
   {
     id: '11',
@@ -294,7 +280,12 @@ export function EventsPage() {
                 </FeishuForm>
               )}
               {event.detailsUrl && (
-                <Button size="sm" variant="outline" className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30">
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="bg-white/20 backdrop-blur-sm hover:bg-white/30 border-white/30"
+                  onClick={() => window.open(event.detailsUrl, '_blank')}
+                >
                   {t.events.viewDetails}
                 </Button>
               )}
@@ -334,7 +325,11 @@ export function EventsPage() {
             </span>
           </div>
           {event.status === 'past' && event.detailsUrl && (
-            <Button size="sm" variant="outline">
+            <Button 
+              size="sm" 
+              variant="outline"
+              onClick={() => window.open(event.detailsUrl, '_blank')}
+            >
               {t.events.viewDetails}
             </Button>
           )}

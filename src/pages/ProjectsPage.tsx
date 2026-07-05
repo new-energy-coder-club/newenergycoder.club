@@ -50,12 +50,13 @@ const mockProjects: Project[] = [
   {
     id: '3',
     title: '20241201人形机器人主线',
-    description: '人形机器人核心开发项目，涵盖机器人运动控制、感知系统、决策算法等关键技术，致力于打造智能化的人形机器人平台。',
+    description: '人形机器人核心开发项目，涵盖机器人运动控制、感知系统、决策算法等关键技术，致力于打造智能化的人形机器人平台。项目配套白皮书详细介绍了 NEC 机器人社区的技术路线与协作模式。',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center',
     category: 'robotics',
     technologies: ['ROS', '运动控制', '计算机视觉', '深度学习', '传感器融合'],
     author: '新能源编程俱乐部',
     date: '2024-12-01',
+    projectUrl: '/whitepapers/NEC新能源开发者社区-机器人.pdf',
     githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/humanoid-robot/人形机器人主线'
   },
   {
@@ -249,7 +250,11 @@ export function ProjectsPage() {
                           - mr-2: 图标右侧边距8px，与文字保持间距
                           作用：提供访问项目详情的快捷入口，视觉效果现代且优雅
                         */
-                        <Button size="sm" className="bg-white/20 backdrop-blur-sm hover:bg-white/30">
+                        <Button 
+                          size="sm" 
+                          className="bg-white/20 backdrop-blur-sm hover:bg-white/30"
+                          onClick={() => window.open(project.projectUrl, '_blank')}
+                        >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           {t.projects.viewProject}
                         </Button>
