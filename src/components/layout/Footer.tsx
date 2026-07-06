@@ -63,6 +63,7 @@ export function Footer() {
             <li><Link to="/team" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.team}</Link></li>
             <li><Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.projects}</Link></li>
             <li><Link to="/events" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.events}</Link></li>
+            <li><Link to="/gallery" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.gallery}</Link></li>
             <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-foreground">{t.nav.resources}</Link></li>
           </ul>
         </div>

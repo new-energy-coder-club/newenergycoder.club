@@ -158,10 +158,25 @@ export const zhTranslations: Translations = {
     resources: '资源',
     contact: '合作',
     team: '团队',
+    gallery: '照片墙',
     login: '登录',
     logout: '退出',
     joinClub: '加入俱乐部',
     dashboard: '控制台'
+  },
+  gallery: {
+    title: '照片墙',
+    description: '记录 NEC 机器人社区在 ROBOCON 赛场内外的精彩瞬间，见证代码与机械碰撞出的火花。',
+    allAlbums: '全部相册',
+    photoCount: '张照片',
+    openLightbox: '查看大图',
+    closeLightbox: '关闭',
+    previousPhoto: '上一张',
+    nextPhoto: '下一张',
+    loading: '加载中...',
+    loadError: '图片加载失败',
+    noPhotos: '暂无照片',
+    backToAlbums: '返回相册'
   },
   hero: {
     tagline: '从200块生活费到竞赛机器人',

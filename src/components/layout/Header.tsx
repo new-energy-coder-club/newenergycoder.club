@@ -32,6 +32,8 @@ export function Header() {
     { label: t.nav.resources, href: '/resources' },
     // 活动页面导航项
     { label: t.nav.events, href: '/events' },
+    // 照片墙页面导航项
+    { label: t.nav.gallery, href: '/gallery' },
     // 联系我们页面导航项
     { label: t.nav.contact, href: '/contact' },
   ]

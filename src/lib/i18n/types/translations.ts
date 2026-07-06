@@ -24,11 +24,28 @@ export interface Translations {
     resources: string;
     contact: string;
     team: string;
+    gallery: string;
     login: string;
     logout: string;
     joinClub: string;
     dashboard: string;
     innovation: string;
+  };
+
+  // Gallery Page
+  gallery: {
+    title: string;
+    description: string;
+    allAlbums: string;
+    photoCount: string;
+    openLightbox: string;
+    closeLightbox: string;
+    previousPhoto: string;
+    nextPhoto: string;
+    loading: string;
+    loadError: string;
+    noPhotos: string;
+    backToAlbums: string;
   };
   
   // Hero Section

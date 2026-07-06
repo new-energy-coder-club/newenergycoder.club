@@ -17,6 +17,7 @@ const GuiDetailPage = React.lazy(() => import("@/pages/GuiDetailPage"));
 const AlgorithmDetailPage = React.lazy(() => import("@/pages/AlgorithmDetailPage"));
 const DesignerDetailPage = React.lazy(() => import("@/pages/DesignerDetailPage"));
 const TeamPage = React.lazy(() => import("@/pages/TeamPage").then(module => ({ default: module.TeamPage })));
+const GalleryPage = React.lazy(() => import("@/pages/GalleryPage").then(module => ({ default: module.GalleryPage })));
 const InnovationShowcasePage = React.lazy(() => import("@/pages/InnovationShowcasePage").then(module => ({ default: module.InnovationShowcasePage })));
 const AdminDashboard = React.lazy(() => import("@/pages/AdminDashboard"));
 const MarkdownViewer = React.lazy(() => import("@/pages/MarkdownViewer").then(module => ({ default: module.MarkdownViewer })));
@@ -68,6 +69,7 @@ function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/team" element={<TeamPage />} />
+            <Route path="/gallery" element={<PageLayout><GalleryPage /></PageLayout>} />
             <Route path="/innovation" element={<PageLayout><InnovationShowcasePage /></PageLayout>} />
             <Route path="/getting-started" element={<ExternalRedirect to="https://docs.newenergycoder.club/start-here" />} />
             <Route path="/learning/embedded" element={<PageLayout><EmbeddedDetailPage /></PageLayout>} />
