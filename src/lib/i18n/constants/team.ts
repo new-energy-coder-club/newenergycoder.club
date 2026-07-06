@@ -1,5 +1,18 @@
 import { TeamMember } from '../types/translations';
 
+export type SponsorLevel = 'strategic' | 'gold' | 'silver' | 'bronze' | 'partner';
+
+export interface SponsorSupport {
+  item: string;
+  quantity?: string;
+}
+
+export interface Sponsor extends TeamMember {
+  level: SponsorLevel;
+  supports: SponsorSupport[];
+  website?: string;
+}
+
 export const maintainers: TeamMember[] = [
   {
     name: 'DarrenPig',
@@ -392,22 +405,34 @@ export const contributors: TeamMember[] = [
   }
 ];
 
-export const sponsors: TeamMember[] = [
+export const sponsors: Sponsor[] = [
   {
     name: '开源之夏',
     role: 'Gold Sponsor - ¥12,000',
+    level: 'gold',
     bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办的开源活动。',
     image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/开源之夏Logo.png',
     tags: ['开源软件', '供应链点亮', '学生项目', '技术孵化', '创新推动', '人才培养'],
-    github: 'https://summer-ospp.ac.cn/'
+    supports: [
+      { item: '开源项目资助', quantity: '年度项目名额' },
+      { item: '导师资源对接' },
+      { item: '社区活动支持' }
+    ],
+    website: 'https://summer-ospp.ac.cn/'
   },
   {
     name: '立创开源硬件平台',
     role: 'Silver Sponsor - ¥8,000',
+    level: 'silver',
     bio: '专业的开源硬件开发平台，提供丰富的开发板和技术资源。',
     image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/立创开源广场.png',
     tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
-    github: 'https://oshwhub.com/explore'
+    supports: [
+      { item: 'PCB打样券', quantity: '年度额度' },
+      { item: '元器件采购支持' },
+      { item: '开源硬件推广' }
+    ],
+    website: 'https://oshwhub.com/explore'
   }
 ];
 

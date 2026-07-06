@@ -4,7 +4,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone, ExternalLink } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone, ExternalLink, Building2 } from 'lucide-react'
 import BonjourIcon from '@/bonjour.ico?url'
 import GithubIcon from '@/github.ico?url'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
@@ -30,6 +30,8 @@ import { useGSAP } from '@gsap/react'
 import { SplitText } from 'gsap/SplitText'
 import { Flip } from 'gsap/Flip'
 import type { TeamMember as TeamMemberType } from '@/lib/i18n/types/translations'
+import type { Sponsor } from '@/lib/i18n/constants/team'
+import { sponsors } from '@/lib/i18n/constants/team'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -45,6 +47,114 @@ const TEAM_PHOTOS = [
   { src: TeamPhoto5, alt: "团队合照3" },
   { src: TeamPhoto6, alt: "团队合照4" }
 ]
+
+// 赞助商等级徽章样式
+const SPONSOR_LEVEL_STYLES: Record<Sponsor['level'], { badge: string; name: string }> = {
+  strategic: {
+    badge: "bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0",
+    name: "战略合作伙伴"
+  },
+  gold: {
+    badge: "bg-gradient-to-r from-amber-400 to-yellow-500 text-amber-950 border-0",
+    name: "Gold Sponsor"
+  },
+  silver: {
+    badge: "bg-gradient-to-r from-slate-300 to-slate-400 text-slate-800 border-0",
+    name: "Silver Sponsor"
+  },
+  bronze: {
+    badge: "bg-gradient-to-r from-orange-400 to-amber-600 text-white border-0",
+    name: "Bronze Sponsor"
+  },
+  partner: {
+    badge: "bg-gradient-to-r from-blue-400 to-cyan-500 text-white border-0",
+    name: "Community Partner"
+  }
+}
+
+// 赞助商卡片组件
+function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
+  const levelStyle = SPONSOR_LEVEL_STYLES[sponsor.level]
+
+  return (
+    <Card className="group overflow-hidden border border-gray-200 dark:border-gray-700
+      hover:shadow-xl hover:-translate-y-1 transition-all duration-300
+      bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+
+      {/* Logo 区域 - 统一尺寸 */}
+      <div className="p-6 flex justify-center items-center h-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900/50">
+        <div className="relative w-32 h-16 flex items-center justify-center">
+          {sponsor.image ? (
+            <img
+              src={sponsor.image}
+              alt={`${sponsor.name} logo`}
+              className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none'
+                ;(e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden')
+              }}
+            />
+          ) : null}
+          <span className={`text-lg font-bold text-center text-gray-400 ${sponsor.image ? 'hidden' : ''}`}>
+            {sponsor.name}
+          </span>
+        </div>
+      </div>
+
+      <CardContent className="p-5">
+        {/* 赞助商名称 */}
+        <h3 className="text-lg font-bold text-center text-gray-900 dark:text-gray-100 mb-2">
+          {sponsor.name}
+        </h3>
+
+        {/* 等级徽章 */}
+        <div className="flex justify-center mb-3">
+          <Badge className={`text-xs px-3 py-1 font-semibold ${levelStyle.badge}`}>
+            {levelStyle.name}
+          </Badge>
+        </div>
+
+        {/* 简介 */}
+        <p className="text-sm text-gray-600 dark:text-gray-400 text-center mb-4 line-clamp-2">
+          {sponsor.bio}
+        </p>
+
+        {/* 支持内容 */}
+        <div className="border-t border-gray-100 dark:border-gray-800 pt-3">
+          <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">支持内容</p>
+          <ul className="space-y-1.5">
+            {sponsor.supports.slice(0, 3).map((support, idx) => (
+              <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
+                <span className="text-primary mt-1">•</span>
+                <span>
+                  {support.item}
+                  {support.quantity && (
+                    <span className="text-xs text-gray-500 ml-1">({support.quantity})</span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 访问链接 */}
+        {sponsor.website && sponsor.website !== '#' && (
+          <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800">
+            <a
+              href={sponsor.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              访问官网
+            </a>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
 
 // 过滤分类
 const FILTER_CATEGORIES = ['all', 'maintainers', 'developers', 'designers', 'contributors'] as const
@@ -678,6 +788,15 @@ export function TeamPage() {
     return { counts, percentages, total }
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
+  // 赞助商按等级分组
+  const sponsorsByLevel = useMemo(() => ({
+    strategic: sponsors.filter(s => s.level === 'strategic'),
+    gold: sponsors.filter(s => s.level === 'gold'),
+    silver: sponsors.filter(s => s.level === 'silver'),
+    bronze: sponsors.filter(s => s.level === 'bronze'),
+    partner: sponsors.filter(s => s.level === 'partner')
+  }), [])
+
   return (
     <div ref={pageRef} className="flex min-h-screen flex-col">
       <Header />
@@ -892,124 +1011,86 @@ export function TeamPage() {
         </div>
 
         {/* Sponsors Section */}
-        <div className="mt-20 mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">
-              给予我们帮助的合作伙伴
-            </h2>
-            <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              麦塔科技 艾迈斯 易百纳社区 明基
-            </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
-          </div>
+        {sponsors.length > 0 && (
+          <div className="mt-20 mb-16 pt-12 border-t border-gray-200 dark:border-gray-800">
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <Building2 className="h-6 w-6 text-primary" />
+                <h2 className="text-2xl font-bold">合作伙伴 & 赞助商</h2>
+              </div>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                感谢以下组织为 NEC 社区提供的技术支持与资源赞助
+              </p>
+            </div>
 
-          {/* Sponsors Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mb-12">
-            {[
-              { name: '麦塔科技', logo: MettaLogo, website: 'https://www.myactuator.cn/' },
-              { name: '艾迈斯', logo: AmassLogo, website: 'https://www.china-amass.com/' },
-              { name: '易百纳社区', logo: YibainaLogo, website: 'https://www.ebaina.com/' },
-              { name: '明基', logo: BenqLogo, website: 'https://www.benq.com.cn/' }
-            ].map((sponsor, index) => (
-              <div key={index} className="group">
-                {sponsor.website ? (
-                  <a href={sponsor.website} target="_blank" rel="noopener noreferrer" className="block" aria-label={`${sponsor.name} 官网`}>
-                    <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
-                      <div className="flex flex-col items-center space-y-3">
-                        <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
-                          {sponsor.logo ? (
-                            <img
-                              src={sponsor.logo}
-                              alt={`${sponsor.name} logo`}
-                              className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                            />
-                          ) : (
-                            <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                              {sponsor.name}
-                            </span>
-                          )}
-                        </div>
-                        {sponsor.logo && (
-                          <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                            {sponsor.name}
-                          </span>
-                        )}
-                      </div>
-                    </Card>
+            {/* 按等级分组展示 */}
+            <div className="space-y-10">
+              {/* 战略合作伙伴 */}
+              {sponsorsByLevel.strategic.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-center">
+                    <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-sm">
+                      战略合作伙伴
+                    </span>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {sponsorsByLevel.strategic.map((sponsor, idx) => (
+                      <SponsorCard key={idx} sponsor={sponsor} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Gold Sponsors */}
+              {sponsorsByLevel.gold.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-center">
+                    <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-amber-950 text-sm">
+                      Gold Sponsors
+                    </span>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {sponsorsByLevel.gold.map((sponsor, idx) => (
+                      <SponsorCard key={idx} sponsor={sponsor} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Silver & Bronze */}
+              {(sponsorsByLevel.silver.length > 0 || sponsorsByLevel.bronze.length > 0) && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-4 text-center">
+                    <span className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-slate-300 to-slate-400 text-slate-800 text-sm">
+                      Silver & Bronze
+                    </span>
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {[...sponsorsByLevel.silver, ...sponsorsByLevel.bronze].map((sponsor, idx) => (
+                      <SponsorCard key={idx} sponsor={sponsor} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 成为赞助商 CTA */}
+            <div className="mt-12 text-center">
+              <Card className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-primary/20">
+                <div className="text-left">
+                  <h4 className="font-semibold mb-1">成为我们的合作伙伴</h4>
+                  <p className="text-sm text-muted-foreground">支持开源工程教育，与 NEC 社区共同成长</p>
+                </div>
+                <Button asChild>
+                  <a href="mailto:22230635@czu.cn">
+                    <Heart className="h-4 w-4 mr-2" />
+                    联系我们
                   </a>
-                ) : (
-                  <Card className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105 p-6">
-                    <div className="flex flex-col items-center space-y-3">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
-                        {sponsor.logo ? (
-                          <img
-                            src={sponsor.logo}
-                            alt={`${sponsor.name} logo`}
-                            className="w-12 h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                          />
-                        ) : (
-                          <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                            {sponsor.name}
-                          </span>
-                        )}
-                      </div>
-                      {sponsor.logo && (
-                        <span className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
-                          {sponsor.name}
-                        </span>
-                      )}
-                    </div>
-                  </Card>
-                )}
-              </div>
-            ))}
+                </Button>
+              </Card>
+            </div>
           </div>
-
-          {/* Sponsor CTA */}
-          <div className="text-center">
-            <Card className="bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 border-primary/30 p-8 max-w-2xl mx-auto">
-              <div className="flex flex-col items-center space-y-4">
-                <Heart className="h-8 w-8 text-primary" />
-                <h3 className="text-xl font-semibold text-foreground dark:text-white">
-                  成为我们的合作伙伴
-                </h3>
-                <p className="text-muted-foreground dark:text-gray-300 text-center max-w-lg">
-                  如果您的企业或组织愿意支持新能源编程俱乐部的发展，欢迎联系我们了解合作机会
-                </p>
-                <div className="mt-1 flex flex-wrap justify-center gap-3">
-                  <Button
-                    variant="outline"
-                    className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
-                    asChild
-                  >
-                    <a href="mailto:22230635@czu.cn">
-                      <Mail className="h-4 w-4 mr-2" />
-                      联系我们
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-primary/50 hover:bg-primary/10 hover:border-primary transition-all duration-300"
-                    asChild
-                  >
-                    <a href="tel:+8615896000818">
-                      <Phone className="h-4 w-4 mr-2" />
-                      电话：+86 15896000818
-                    </a>
-                  </Button>
-                </div>
-                <div className="mt-2 text-center space-y-1">
-                  <p className="text-sm text-muted-foreground dark:text-gray-300">
-                    电话：<span className="font-medium text-foreground dark:text-white">+86 15896000818</span>
-                  </p>
-                  <p className="text-sm text-muted-foreground dark:text-gray-300">
-                    微信 WeChat：<span className="font-medium text-foreground dark:text-white">Pei-pei-Zhu-Pig</span>
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
+        )}
 
         {/* Three.js Animation Section */}
         <div className="mt-20 mb-16">
