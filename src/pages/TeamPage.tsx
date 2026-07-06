@@ -173,9 +173,10 @@ interface TeamMemberCardProps {
   member: TeamMemberType
   isSponsors?: boolean
   selectedRatio?: AspectRatio
+  compact?: boolean
 }
 
-function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: TeamMemberCardProps) {
+function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', compact = false }: TeamMemberCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const avatarRef = useRef<HTMLDivElement>(null)
   const barsRef = useRef<HTMLDivElement[]>([])
@@ -259,7 +260,7 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
   return (
     <Card ref={cardRef} className={CARD_STYLES.base}>
       <div className="relative overflow-hidden">
-        <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
+        <div className={isSponsors ? "h-[88px] w-auto" : compact ? "aspect-square overflow-hidden relative" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none bg-muted/40 dark:bg-muted/20"}>
             <div ref={avatarRef} className="w-full h-full">
               <ImageProxy
@@ -276,8 +277,8 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
-      <CardHeader className="text-center relative z-10">
-         <CardTitle className="text-xl text-foreground dark:text-white drop-shadow-md">
+      <CardHeader className={compact ? "text-center relative z-10 py-3 px-2" : "text-center relative z-10"}>
+         <CardTitle className={compact ? "text-sm text-foreground dark:text-white drop-shadow-md truncate" : "text-xl text-foreground dark:text-white drop-shadow-md"}>
            {member.github ? (
              <a
                href={member.github}
@@ -291,12 +292,13 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
              member.name
            )}
          </CardTitle>
-         <div className="text-base font-medium flex justify-center">
-           <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors">
+         <div className={compact ? "text-xs font-medium flex justify-center mt-1" : "text-base font-medium flex justify-center"}>
+           <Badge variant="secondary" className={compact ? "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors text-[10px] px-1.5 py-0.5 truncate max-w-full" : "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"}>
              {member.role}
            </Badge>
          </div>
        </CardHeader>
+      {!compact && (
       <CardContent>
         <p className="text-sm text-muted-foreground dark:text-gray-200 text-center mb-4 leading-relaxed drop-shadow-sm">
           {member.bio}
@@ -404,6 +406,7 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
           )}
         </div>
       </CardContent>
+      )}
     </Card>
   )
 }
@@ -443,10 +446,12 @@ interface TeamSectionProps {
   title: string
   members: TeamMemberType[]
   selectedRatio?: AspectRatio
+  gridCols?: 4 | 6 | 8
 }
 
-function TeamSection({ title, members, selectedRatio }: TeamSectionProps) {
+function TeamSection({ title, members, selectedRatio, gridCols = 4 }: TeamSectionProps) {
   const isSponsors = title.includes('Sponsor') || title.includes('赞助')
+  const compact = gridCols === 6 || gridCols === 8
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
@@ -537,9 +542,15 @@ function TeamSection({ title, members, selectedRatio }: TeamSectionProps) {
         <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{title}</h2>
         <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
       </div>
-      <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div ref={gridRef} className={`grid ${
+        gridCols === 6
+          ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3'
+          : gridCols === 8
+            ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2'
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+      }`}>
         {members.map((member, index) => (
-          <TeamMemberCard key={`${member.name}-${index}`} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} />
+          <TeamMemberCard key={`${member.name}-${index}`} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} compact={compact} />
         ))}
       </div>
     </section>
@@ -929,9 +940,9 @@ export function TeamPage() {
 
         {/* Team Sections */}
         <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} />
         <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} />
         <TeamSection title={t.team.sponsorTitle} members={filteredMembers.sponsors} selectedRatio={selectedRatio} />
 
         {/* Team Analytics Section */}
