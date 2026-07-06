@@ -1,4 +1,4 @@
-import { maintainers, developers, designers, contributors, sponsors } from '../constants/team';
+import { contributors } from '../constants/team';
 import { Translations } from '../types/translations';
 import { learningTranslations } from '../constants/learning';
 
@@ -206,12 +206,14 @@ export const zhTranslations: Translations = {
     learnMore: '了解更多',
     projectOrigin: {
       title: '项目起源',
+      description: '代码、文档与协作',
       content: '我们的俱乐部最初是一个专注于太阳能预测的小型项目，现已发展成为一个综合性的可持续技术社区。我们的成长是由学生、教育工作者和行业专业人士的协作努力推动的。'
     },
     phase2: {
       title: '第二阶段：社区扩展',
       description: '超越初始项目',
-      content: '随着我们早期项目的成功，我们将范围扩展到包括风能优化、智能电网技术和可持续交通解决方案，同时保持对开源开发的强烈关注。'
+      content: '随着我们早期项目的成功，我们将范围扩展到包括风能优化、智能电网技术和可持续交通解决方案，同时保持对开源开发的强烈关注。',
+      viewRepos: '浏览 Gitee 仓库'
     },
     contributing: {
       title: '贡献',

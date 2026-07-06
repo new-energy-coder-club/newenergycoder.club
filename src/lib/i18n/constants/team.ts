@@ -289,6 +289,7 @@ export const contributors: TeamMember[] = [
     bio: '专注于Arduino和ESP32等开发板的代码例程开发。',
     image: 'https://cdn.newenergycoder.club/images/src/image/contributer/杨鑫海.jpg',
     tags: ['Arduino', 'ESP32', '代码例程', '嵌入式开发', '物联网', '开发板'],
+    avatarStyle: 'bilevel',
     github: 'https://github.com/yangxinhai'
   },
   {
@@ -343,6 +344,7 @@ export const contributors: TeamMember[] = [
     bio: '机器人行业电控驱动开发以及硬件电路设计。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/单广志.jpg',
     tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
+    avatarStyle: 'bilevel',
     projects: [
   { id: '2', name: '20250426星闪手柄', role: '电控驱动开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
     ],
@@ -376,6 +378,7 @@ export const contributors: TeamMember[] = [
     bio: '专注于机电设计开发，为用户提供优质的移动端体验。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/郑钦文.jpg',
     tags: ['React Native', 'Flutter', 'iOS', 'Android', '移动端优化', '跨平台开发'],
+    avatarStyle: 'bilevel',
     projects: [
   { id: '6', name: '人形机器人UMI低成本灵巧手', role: '机电一体化', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
     ],
@@ -387,6 +390,7 @@ export const contributors: TeamMember[] = [
     bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/杨力滔.JPG',
     tags: ['星闪手柄', 'STM32', 'RTOS', 'C语言', '嵌入式开发', '硬件控制'],
+    avatarStyle: 'bilevel',
     projects: [
   { id: '2', name: '20250426星闪手柄', role: '核心开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
     ],
@@ -398,6 +402,7 @@ export const contributors: TeamMember[] = [
     bio: '新加入的开发团队成员，积极参与机器人项目开发，学习新技术。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/彭柯颖.jpg',
     tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
+    avatarStyle: 'bilevel',
     projects: [
   { id: '3', name: '20241201人形机器人主线', role: '机械开发', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' }
     ],
