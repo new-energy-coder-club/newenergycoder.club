@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/home/HeroSection'
 import { AboutSection } from '@/components/home/AboutSection'
 import { FeaturesSection } from '@/components/home/FeaturesSection'
 import { TeamSection } from '@/components/home/TeamSection'
+import { TeamAnalysisSection } from '@/components/home/TeamAnalysisSection'
 import { ProjectsSection } from '@/components/home/ProjectsSection'
 import { CTASection } from '@/components/home/CTASection'
 import { type AspectRatio } from '@/components/ui/floating-controls'
@@ -26,6 +27,7 @@ function HomePage() {
       <AboutSection />
       <FeaturesSection />
       <TeamSection selectedRatio={selectedRatio} />
+      <TeamAnalysisSection />
       <ProjectsSection selectedRatio={selectedRatio} />
       <CTASection />
     </PageLayout>

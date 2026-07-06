@@ -14,12 +14,6 @@
       "title": "库和框架",
       "description": "常用的编程库和框架介绍",
       "order": 2
-    },
-    {
-      "slug": "references",
-      "title": "参考资料",
-      "description": "学习资源、文档和参考链接",
-      "order": 3
     }
   ]
 }

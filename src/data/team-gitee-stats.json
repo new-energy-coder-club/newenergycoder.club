@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-07-06T17:46:32.452Z",
+  "repo": {
+    "owner": "Darrenpig",
+    "name": "new_energy_coder_club",
+    "fullName": "darrenpig/new_energy_coder_club",
+    "url": "https://gitee.com/darrenpig/new_energy_coder_club.git",
+    "stars": 54,
+    "forks": 18,
+    "watches": 138,
+    "openIssues": 15
+  },
+  "commits": {
+    "total": 1351,
+    "human": 90
+  },
+  "contributors": {
+    "totalOnGitee": 10,
+    "humans": 5,
+    "top": [
+      {
+        "name": "DarrenPig",
+        "contributions": 80
+      },
+      {
+        "name": "单广志",
+        "contributions": 6
+      },
+      {
+        "name": "7.",
+        "contributions": 2
+      },
+      {
+        "name": "韩祺冉",
+        "contributions": 1
+      },
+      {
+        "name": "王欣怡",
+        "contributions": 1
+      }
+    ]
+  },
+  "projects": {
+    "total": 4,
+    "necRelated": [
+      {
+        "name": "new_energy_coder_club",
+        "url": "https://gitee.com/darrenpig/new_energy_coder_club.git",
+        "description": "NEC · New Energy Coder Community\r\nOpen-source engineering community for Robotics × New Energy\r\nNEC 是一个面向 机器人竞赛（ROBOCON 等） 与 真实工程项目 的开源开发者社区，\r\n以 模块化工程基线 + 新手友好贡献路径 + 线上协作 × A416 线下实验室 为核心特色。"
+      },
+      {
+        "name": "newenergycoder.club",
+        "url": "https://gitee.com/darrenpig/newenergycoder.club.git",
+        "description": "newenergycoder.club"
+      },
+      {
+        "name": "robocon25_proof",
+        "url": "https://gitee.com/darrenpig/robocon25_proof.git",
+        "description": ""
+      }
+    ]
+  }
+}

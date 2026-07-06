@@ -26,6 +26,12 @@
       "title": "资源中心",
       "description": "学习资源和参考资料",
       "order": 4
+    },
+    {
+      "slug": "events",
+      "title": "赛事活动",
+      "description": "NEC 参与的竞赛、工作坊与社区活动资料",
+      "order": 5
     }
   ]
 }

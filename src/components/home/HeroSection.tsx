@@ -6,6 +6,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import giteeStats from '@/data/team-gitee-stats.json'
 
 export function HeroSection() {
   const t = useTranslation()
@@ -396,9 +397,24 @@ export function HeroSection() {
   ]
 
   const stats = [
-    { key: 'commits', ...t.hero.stats.commits },
-    { key: 'contributors', ...t.hero.stats.contributors },
-    { key: 'projects', ...t.hero.stats.projects },
+    {
+      key: 'commits',
+      value: giteeStats.commits.total,
+      suffix: '+',
+      label: t.hero.stats.commits.label,
+    },
+    {
+      key: 'contributors',
+      value: t.hero.stats.contributors.value,
+      suffix: t.hero.stats.contributors.suffix,
+      label: t.hero.stats.contributors.label,
+    },
+    {
+      key: 'projects',
+      value: t.hero.stats.projects.value,
+      suffix: t.hero.stats.projects.suffix,
+      label: t.hero.stats.projects.label,
+    },
   ]
 
   const techStack = [...t.hero.techStack, ...t.hero.techStack]

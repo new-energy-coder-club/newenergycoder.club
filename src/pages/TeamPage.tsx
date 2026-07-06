@@ -4,7 +4,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone, ExternalLink, Building2 } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, ExternalLink, Building2 } from 'lucide-react'
 import BonjourIcon from '@/bonjour.ico?url'
 import GithubIcon from '@/github.ico?url'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
@@ -13,16 +13,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { ImageProxy } from '@/components/ui/image-proxy'
 import { Header } from '@/components/layout/Header'
+import { cn } from '@/lib/utils'
 const TeamPhoto1 = 'https://cdn.newenergycoder.club/images/src/image/校门合照.jpg'
 const TeamPhoto2 = 'https://cdn.newenergycoder.club/images/src/image/横向项目合照.jpg'
 const TeamPhoto3 = 'https://cdn.newenergycoder.club/images/src/image/合照1.jpg'
 const TeamPhoto4 = 'https://cdn.newenergycoder.club/images/src/image/合照2.jpg'
 const TeamPhoto5 = 'https://cdn.newenergycoder.club/images/src/image/合照3.jpg'
 const TeamPhoto6 = 'https://cdn.newenergycoder.club/images/src/image/合照4.jpg'
-const MettaLogo = 'https://cdn.newenergycoder.club/images/src/image/sponsor/麦塔智能.png'
-const AmassLogo = 'https://cdn.newenergycoder.club/images/src/image/sponsor/Amass.png'
-const BenqLogo = 'https://cdn.newenergycoder.club/images/src/image/sponsor/benq-logo.png'
-const YibainaLogo = 'https://cdn.newenergycoder.club/images/src/image/sponsor/易百纳.png'
 const RCBBLogo = 'https://cdn.newenergycoder.club/images/src/RCBB.png'
 import GifAnimation from '@/components/ui/GifAnimation'
 import { gsap } from 'gsap'
@@ -32,6 +29,8 @@ import { Flip } from 'gsap/Flip'
 import type { TeamMember as TeamMemberType } from '@/lib/i18n/types/translations'
 import type { Sponsor } from '@/lib/i18n/constants/team'
 import { maintainers, developers, designers, contributors, sponsors } from '@/lib/i18n/constants/team'
+import { getProjectById } from '@/data/projects'
+import { MemberTechDetail } from '@/components/team/MemberTechDetail'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -174,9 +173,10 @@ interface TeamMemberCardProps {
   isSponsors?: boolean
   selectedRatio?: AspectRatio
   compact?: boolean
+  onClick?: () => void
 }
 
-function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', compact = false }: TeamMemberCardProps) {
+function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', compact = false, onClick }: TeamMemberCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const avatarRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -230,7 +230,19 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
   }, [])
 
   return (
-    <Card ref={cardRef} className={CARD_STYLES.base}>
+    <Card
+      ref={cardRef}
+      className={cn(
+        CARD_STYLES.base,
+        onClick ? 'cursor-pointer' : ''
+      )}
+      onClick={e => {
+        // 点击链接、按钮等交互元素时不触发卡片详情弹窗
+        const target = e.target as HTMLElement
+        if (target.closest('a, button')) return
+        onClick?.()
+      }}
+    >
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : compact ? "aspect-square overflow-hidden relative" : `${selectedRatio} overflow-hidden relative`}>
           <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none bg-muted/40 dark:bg-muted/20"}>
@@ -238,7 +250,11 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
               <ImageProxy
                 src={member.image}
                 alt={member.name}
-                className={`${compact || isSponsors ? 'object-contain' : 'object-cover'} w-full h-full group-hover:scale-105 transition-transform duration-500`}
+                className={cn(
+                  compact || isSponsors ? 'object-contain' : 'object-cover',
+                  'w-full h-full group-hover:scale-105 transition-transform duration-500',
+                  member.avatarStyle === 'bilevel' && 'avatar-bilevel'
+                )}
                 fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
               />
             </div>
@@ -299,21 +315,30 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
           <div className="mb-5">
             <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center">代表作</h4>
             <div className="flex flex-wrap gap-2 justify-center">
-              {member.projects.slice(0, 2).map((project) => (
-                <a
-                  key={project.id}
-                  href={project.url || `/projects#project-${project.id}`}
-                  target={project.url?.startsWith('http') ? '_blank' : undefined}
-                  rel={project.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="group/badge inline-flex flex-col items-center px-3 py-1.5 rounded-md bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 border border-primary/30 hover:border-primary/50 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm"
-                >
-                  <span className="text-xs font-medium text-foreground dark:text-white leading-tight flex items-center gap-1">
-                    {project.name}
-                    <ExternalLink className="h-2.5 w-2.5 opacity-60 group-hover/badge:opacity-100 transition-opacity" />
-                  </span>
-                  <span className="text-[10px] text-primary/80 dark:text-primary/90 leading-tight">{project.role}</span>
-                </a>
-              ))}
+              {member.projects.slice(0, 2).map((project) => {
+                const fullProject = getProjectById(project.id)
+                return (
+                  <a
+                    key={project.id}
+                    href={project.url || fullProject?.projectUrl || fullProject?.githubUrl || `/projects#project-${project.id}`}
+                    target={project.url?.startsWith('http') || fullProject?.githubUrl?.startsWith('http') ? '_blank' : undefined}
+                    rel={project.url?.startsWith('http') || fullProject?.githubUrl?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    onClick={e => e.stopPropagation()}
+                    className="group/badge inline-flex flex-col items-center px-3 py-1.5 rounded-md bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 border border-primary/30 hover:border-primary/50 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm"
+                  >
+                    <span className="text-xs font-medium text-foreground dark:text-white leading-tight flex items-center gap-1">
+                      {project.name}
+                      <ExternalLink className="h-2.5 w-2.5 opacity-60 group-hover/badge:opacity-100 transition-opacity" />
+                    </span>
+                    <span className="text-[10px] text-primary/80 dark:text-primary/90 leading-tight">{project.role}</span>
+                  </a>
+                )
+              })}
+              {member.projects.length > 2 && (
+                <span className="inline-flex items-center px-2 py-1 rounded-md text-[10px] text-muted-foreground bg-muted/50 border border-border/50">
+                  +{member.projects.length - 2}
+                </span>
+              )}
             </div>
           </div>
         )}
@@ -361,6 +386,7 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
   )
 }
 
+
 // 成员徽章（头像 + @姓名）
 function MemberBadge({ member }: { member: TeamMemberType }) {
   return (
@@ -374,7 +400,7 @@ function MemberBadge({ member }: { member: TeamMemberType }) {
         <ImageProxy
           src={member.image}
           alt={member.name}
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover ${member.avatarStyle === 'bilevel' ? 'avatar-bilevel' : ''}`}
           fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
         />
       </div>
@@ -446,9 +472,10 @@ interface TeamSectionProps {
   members: TeamMemberType[]
   selectedRatio?: AspectRatio
   gridCols?: 4 | 6 | 8
+  onMemberClick?: (member: TeamMemberType) => void
 }
 
-function TeamSection({ title, members, selectedRatio, gridCols = 4 }: TeamSectionProps) {
+function TeamSection({ title, members, selectedRatio, gridCols = 4, onMemberClick }: TeamSectionProps) {
   const isSponsors = title.includes('Sponsor') || title.includes('赞助')
   const compact = gridCols === 6 || gridCols === 8
   const sectionRef = useRef<HTMLElement>(null)
@@ -526,7 +553,14 @@ function TeamSection({ title, members, selectedRatio, gridCols = 4 }: TeamSectio
             : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
       }`}>
         {members.map((member, index) => (
-          <TeamMemberCard key={`${member.name}-${index}`} member={member} isSponsors={isSponsors} selectedRatio={selectedRatio} compact={compact} />
+          <TeamMemberCard
+            key={`${member.name}-${index}`}
+            member={member}
+            isSponsors={isSponsors}
+            selectedRatio={selectedRatio}
+            compact={compact}
+            onClick={onMemberClick ? () => onMemberClick(member) : undefined}
+          />
         ))}
       </div>
     </section>
@@ -608,6 +642,7 @@ export function TeamPage() {
   const t = useTranslation()
   const [selectedRatio] = useState<AspectRatio>('aspect-[3/4]')
   const [filter, setFilter] = useState<FilterCategory>('all')
+  const [selectedMember, setSelectedMember] = useState<TeamMemberType | null>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const pageRef = useRef<HTMLDivElement>(null)
 
@@ -828,25 +863,25 @@ export function TeamPage() {
       <div className="flex-1 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Background with team photos */}
         <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/85 dark:from-background/95 dark:to-background/90"></div>
-        {/* Light mode background uses external image, dark mode keeps local photo */}
-        <img
-          src="https://darrenpig.github.io/files/news10.jpg"
-          alt="社区背景图"
-          className="w-full h-full object-cover opacity-20 block dark:hidden"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = TeamPhoto1
-          }}
-        />
-        <img
-          src={TeamPhoto1}
-          alt="团队校门合照"
-          className="w-full h-full object-cover opacity-25 hidden dark:block"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = TeamPhoto2
-          }}
-        />
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-background/90 dark:from-background/98 dark:to-background/95"></div>
+          {/* Light mode background uses external image, dark mode keeps local photo */}
+          <img
+            src="https://darrenpig.github.io/files/news10.jpg"
+            alt="社区背景图"
+            className="w-full h-full object-cover opacity-[0.07] blur-sm block dark:hidden"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = TeamPhoto1
+            }}
+          />
+          <img
+            src={TeamPhoto1}
+            alt="团队校门合照"
+            className="w-full h-full object-cover opacity-[0.10] blur-sm hidden dark:block"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = TeamPhoto2
+            }}
+          />
+        </div>
 
       <div className="container py-12 relative z-20">
         {/* Hero Section with Theme Toggle */}
@@ -914,10 +949,18 @@ export function TeamPage() {
         </div>
 
         {/* Team Sections */}
-        <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} />
-        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} />
-        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} gridCols={6} />
-        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} />
+        <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} gridCols={6} onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} onMemberClick={setSelectedMember} />
+
+        <MemberTechDetail
+          member={selectedMember}
+          open={!!selectedMember}
+          onOpenChange={open => {
+            if (!open) setSelectedMember(null)
+          }}
+        />
 
         {/* Team Analytics Section */}
         <div className="mt-16 mb-12">
@@ -1012,7 +1055,9 @@ export function TeamPage() {
                   alt="团队横向项目合照"
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-black/60 dark:bg-black/70" />
+                <div className="absolute inset-0 backdrop-blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
               </div>
               <div className="p-6">
                 <p className="text-center text-muted-foreground dark:text-gray-200">

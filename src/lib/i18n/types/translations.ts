@@ -8,6 +8,8 @@ export interface TeamMember {
   skills?: { name: string; level: number }[];
   /** 成员参与的代表作/项目 */
   projects?: { id: string; name: string; role: string; url?: string }[];
+  /** 头像视觉风格 */
+  avatarStyle?: 'normal' | 'bilevel' | 'duotone';
   gitee?: string;
   github?: string;
   linkedin?: string;
@@ -79,12 +81,14 @@ export interface Translations {
     learnMore: string;
     projectOrigin: {
       title: string;
+      description: string;
       content: string;
     };
     phase2: {
       title: string;
       description: string;
       content: string;
+      viewRepos: string;
     };
     contributing: {
       title: string;

@@ -35,6 +35,25 @@ interface Album {
 const typedGalleryData = galleryData as Album[]
 const PHOTOS_PER_PAGE = 30
 
+/**
+ * Derive a thumbnail URL from the original CDN URL.
+ * Thumbnails are expected to live in `/images/gallery-thumbnails/...`,
+ * mirroring the original `/images/gallery/...` structure.
+ * Falls back to the original URL if parsing fails.
+ */
+function getThumbnailUrl(src: string): string {
+  try {
+    const url = new URL(src)
+    url.pathname = url.pathname.replace(
+      /^\/images\/gallery\//,
+      '/images/gallery-thumbnails/'
+    )
+    return url.toString()
+  } catch {
+    return src
+  }
+}
+
 export function GalleryPage() {
   const t = useTranslation()
   const { language } = useLanguage()
@@ -43,6 +62,7 @@ export function GalleryPage() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(PHOTOS_PER_PAGE)
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+  const [loadedOriginals, setLoadedOriginals] = useState<Set<string>>(new Set())
 
   const isZh = language === 'zh'
 
@@ -114,6 +134,10 @@ export function GalleryPage() {
     setLoadedImages(prev => new Set(prev).add(src))
   }, [])
 
+  const handleOriginalLoad = useCallback((src: string) => {
+    setLoadedOriginals(prev => new Set(prev).add(src))
+  }, [])
+
   const handleAlbumChange = useCallback((value: string) => {
     setSelectedAlbumId(value)
     setVisibleCount(PHOTOS_PER_PAGE)
@@ -175,10 +199,14 @@ export function GalleryPage() {
                   <div className="aspect-video relative overflow-hidden">
                     {album.cover ? (
                       <img
-                        src={album.cover}
+                        src={getThumbnailUrl(album.cover)}
                         alt={isZh ? album.title : album.titleEn}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         loading="lazy"
+                        decoding="async"
+                        onError={e => {
+                          e.currentTarget.src = album.cover
+                        }}
                       />
                     ) : (
                       <div className="absolute inset-0 bg-muted flex items-center justify-center">
@@ -243,7 +271,7 @@ export function GalleryPage() {
                         </div>
                       )}
                       <img
-                        src={photo.src}
+                        src={getThumbnailUrl(photo.src)}
                         alt={photo.alt}
                         className={cn(
                           'w-full h-auto object-cover transition-all duration-500 group-hover:scale-105',
@@ -252,6 +280,9 @@ export function GalleryPage() {
                         loading="lazy"
                         decoding="async"
                         onLoad={() => handleImageLoad(photo.src)}
+                        onError={e => {
+                          e.currentTarget.src = photo.src
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                         <Badge variant="secondary" className="bg-white/90 text-foreground">
@@ -301,11 +332,23 @@ export function GalleryPage() {
 
           <div className="relative flex items-center justify-center w-[95vw] h-[95vh]">
             {currentPhoto && (
-              <img
-                src={currentPhoto.src}
-                alt={currentPhoto.alt}
-                className="max-w-full max-h-full object-contain"
-              />
+              <>
+                {!loadedOriginals.has(currentPhoto.src) && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white/80 z-10">
+                    <ImageIcon className="h-12 w-12 animate-pulse mb-3" />
+                    <span className="text-sm">{t.gallery.loading}</span>
+                  </div>
+                )}
+                <img
+                  src={currentPhoto.src}
+                  alt={currentPhoto.alt}
+                  className={cn(
+                    'max-w-full max-h-full object-contain transition-opacity duration-300',
+                    loadedOriginals.has(currentPhoto.src) ? 'opacity-100' : 'opacity-0'
+                  )}
+                  onLoad={() => handleOriginalLoad(currentPhoto.src)}
+                />
+              </>
             )}
 
             {displayedPhotos.length > 1 && (

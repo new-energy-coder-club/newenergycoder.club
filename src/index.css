@@ -197,3 +197,11 @@
     overflow: hidden;
   }
 }
+
+@layer utilities {
+  /* 高对比黑白 / 二值化 / 像素风头像 */
+  .avatar-bilevel {
+    filter: grayscale(100%) contrast(6) brightness(1.1);
+    image-rendering: pixelated;
+  }
+}

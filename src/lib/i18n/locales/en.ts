@@ -118,7 +118,7 @@ export const enTranslations: Translations = {
     industryConnections: 'Industry Connections',
     industryConnectionsDesc: 'Network with leading energy sector professionals',
     stats: {
-      commits: { value: 1350, suffix: '+', label: 'Commits' },
+      commits: { value: 1351, suffix: '+', label: 'Commits' },
       contributors: { value: 45, suffix: '+', label: 'Contributors' },
       projects: { value: 12, suffix: '+', label: 'Open Source Projects' }
     },
@@ -126,16 +126,18 @@ export const enTranslations: Translations = {
   },
   about: {
     title: 'About Our Club',
-    paragraph1: 'The New Energy Coder Club was founded in 2024 by a group of passionate developers and engineers who wanted to combine their love for coding with their commitment to sustainability and renewable energy. Our mission is to build a community that develops open-source software solutions for renewable energy applications, smart grid technologies, energy efficiency, and sustainability. Through workshops, hackathons, collaborative projects, and partnerships with energy companies, we aim to create a platform where technology meets sustainability for a better future.',
+    paragraph1: 'New Energy Coder Club (NEC) is a hands-on technical community of student developers and engineers. We work on real engineering problems across robotics, embedded systems, energy monitoring, and edge computing: from 48V power architecture design to local-first 3D solar array visualization, from ROBOCON robot competitions to open-source hardware drivers. We believe the best sustainable-technology education happens where circuit boards, code, and real data meet.',
     learnMore: 'Learn More About Us',
     projectOrigin: {
-      title: 'Project Origin Story',
-      content: 'Project Source: A promise with @haolei, 2024 we have to do a good project! We hit it off right away, prepared the materials on the same day, and had the enrollment form ready by the end of the night. However, the reality is incredibly cruel, our one-two punch could not defeat our past selves, and the chemical design materials we made were handed in intact, and according to our teacher\'s words, we flopped... Thanks to Ms. Dai Orchid (the teacher who taught me my introduction to new energy science and engineering in my freshman year), we didn\'t give up under her encouragement, and after many contacts and discussions with our instructors and teammates, we decided to compete for the recommended place in the national competition directly --- to reach the top 15 in the school competition. Then, we just went all out. That 20 hours on May 12th, we never stopped. The light in the all-night laboratory seemed to never go out, and time crawled on the ground like ants. We persevered through the spirit, and it seemed like there was only me, a lamp, and a laptop in the world. After drawing all the diagrams and writing most of the content, dawn quietly drowned in the darkness before dawn...'
+      title: 'Open Source Repository',
+      description: 'Code, docs, and collaboration',
+      content: 'All NEC practices revolve around our Gitee open-source repository. From the first all-nighter competition proposal in 2024 to today\'s projects spanning robotics, embedded systems, and energy monitoring, we turn every engineering experience into reusable code, documentation, and training materials. Feel free to visit the repository, check the implementations, open issues, or submit PRs.'
     },
     phase2: {
-      title: 'Phase 2 Development',
-      description: 'Future enhancements and expanded features coming soon',
-      content: '一群做开源项目养机器人的开发者&设计师们'
+      title: 'Phase 2: Engineering Depth',
+      description: 'From a single project to multi-stack parallel development',
+      content: 'Building on early projects, we are pushing deeper into engineering: deploying edge-computing nodes in microgrids, real-time control algorithms for robotic scenes, local-first renewable-energy data visualization, and the full mechanical-electronic-visual pipeline for ROBOCON. All outcomes are open-sourced on Gitee — feel free to browse the code, open issues, or submit PRs.',
+      viewRepos: 'Browse Gitee Repositories'
     },
     contributing: {
       title: 'Contributing Guidelines',

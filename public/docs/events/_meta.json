@@ -1,0 +1,13 @@
+{
+  "title": "赛事活动",
+  "description": "NEC 参与的机器人竞赛、工作坊与社区活动资料",
+  "order": 5,
+  "items": [
+    {
+      "slug": "robocon-2026",
+      "title": "ROBOCON 2026 参赛指南",
+      "description": "第25届全国大学生机器人大赛 ROBOCON 暨 ABU ROBOCON 2026 国内选拔赛参赛指南",
+      "order": 1
+    }
+  ]
+}

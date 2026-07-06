@@ -13,7 +13,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ],
@@ -48,7 +48,6 @@
 
 
   "trailingSlash": false,
-  "cleanUrls": true,
   "github": {
     "autoAlias": false
   }

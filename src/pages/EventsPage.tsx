@@ -64,7 +64,7 @@ const mockEvents: Event[] = [
   {
     id: '8',
     title: '2026ROBOCON NEC-RC竞赛',
-    description: '面向 2026 年 ROBOCON 机器人竞赛的专业训练小组，专注于机器人设计、编程和团队协作能力培养。点击查看 NEC 机器人社区白皮书了解技术路线与人才体系。',
+    description: '面向 2026 年 ROBOCON 机器人竞赛的专业训练小组。点击查看完整参赛指南，了解“武林探秘”、仿生足式、机器人排球三大赛项规则，以及 NEC 往年装车、报到、检录、搬场地的全流程。',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop',
     category: 'competition',
     date: '2025-10-01',
@@ -73,7 +73,7 @@ const mockEvents: Event[] = [
     participants: 8,
     maxParticipants: 8,
     status: 'upcoming',
-    detailsUrl: '/whitepapers/NEC新能源开发者社区-机器人.pdf'
+    detailsUrl: '/docs/events/robocon-2026'
   },
   {
     id: '9',
