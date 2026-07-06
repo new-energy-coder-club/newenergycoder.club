@@ -4,7 +4,7 @@ import { useTranslation } from '@/contexts/LanguageContext'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone } from 'lucide-react'
+import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, Phone, ExternalLink } from 'lucide-react'
 import BonjourIcon from '@/bonjour.ico?url'
 import GithubIcon from '@/github.ico?url'
 import { GiteeIcon } from '@/components/ui/gitee-icon'
@@ -229,6 +229,30 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* 代表作 / 参与项目 */}
+        {member.projects && member.projects.length > 0 && (
+          <div className="mb-5">
+            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center">代表作</h4>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {member.projects.slice(0, 2).map((project) => (
+                <a
+                  key={project.id}
+                  href={project.url || `/projects#project-${project.id}`}
+                  target={project.url?.startsWith('http') ? '_blank' : undefined}
+                  rel={project.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="group/badge inline-flex flex-col items-center px-3 py-1.5 rounded-md bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 border border-primary/30 hover:border-primary/50 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm"
+                >
+                  <span className="text-xs font-medium text-foreground dark:text-white leading-tight flex items-center gap-1">
+                    {project.name}
+                    <ExternalLink className="h-2.5 w-2.5 opacity-60 group-hover/badge:opacity-100 transition-opacity" />
+                  </span>
+                  <span className="text-[10px] text-primary/80 dark:text-primary/90 leading-tight">{project.role}</span>
+                </a>
+              ))}
+            </div>
           </div>
         )}
 

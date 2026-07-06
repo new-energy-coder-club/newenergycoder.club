@@ -6,6 +6,8 @@ export interface TeamMember {
   tags?: string[];
   /** 技能条：name 为技能名，level 为 0-100 */
   skills?: { name: string; level: number }[];
+  /** 成员参与的代表作/项目 */
+  projects?: { id: string; name: string; role: string; url?: string }[];
   gitee?: string;
   github?: string;
   linkedin?: string;

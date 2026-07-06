@@ -13,6 +13,10 @@ export const maintainers: TeamMember[] = [
       { name: '嵌入式', level: 85 },
       { name: '能源监测', level: 90 }
     ],
+    projects: [
+      { id: '3', name: '20241201人形机器人主线', role: '项目发起人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+      { id: '1', name: '20250319流体工作站', role: '技术负责人', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' }
+    ],
     gitee: 'https://gitee.com/darrenpig',
     github: 'https://github.com/Darrenpig',
     bonjour: 'https://bonjour.bio/darrenpig',
@@ -30,6 +34,10 @@ export const maintainers: TeamMember[] = [
       { name: '能源优化', level: 93 },
       { name: '华为云AI', level: 85 }
     ],
+    projects: [
+      { id: '1', name: '20250319流体工作站', role: 'BSP 顾问', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' },
+      { id: '7', name: 'MICA混合关键系统验证', role: '系统验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
+    ],
     github: 'https://github.com/yintongchuang'
   },
   {
@@ -44,6 +52,10 @@ export const maintainers: TeamMember[] = [
       { name: '算法部署', level: 90 },
       { name: 'ROBOCON', level: 86 }
     ],
+    projects: [
+      { id: '3', name: '20241201人形机器人主线', role: '算法负责人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+      { id: '6', name: '人形机器人UMI低成本灵巧手', role: '算法部署', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
+    ],
     github: 'https://github.com/xulongyi'
   },
   {
@@ -57,6 +69,10 @@ export const maintainers: TeamMember[] = [
       { name: '运行时', level: 91 },
       { name: '嵌入式', level: 87 },
       { name: '系统稳定性', level: 92 }
+    ],
+    projects: [
+      { id: '3', name: '20241201人形机器人主线', role: '电控/运行时', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+      { id: '4', name: '20241115飞控通讯', role: '飞控通讯开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/aerospace/flight-control-comm' }
     ],
     github: 'https://github.com/zhangwangwang'
   }
@@ -77,6 +93,9 @@ export const developers: TeamMember[] = [
     bio: '机器人行业电控驱动开发以及硬件电路设计。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/单广志.jpg',
     tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
+    projects: [
+      { id: '2', name: '20250426星闪手柄', role: '电控驱动开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
+    ],
     github: 'https://github.com/shanguangzhi'
   },
   {
@@ -85,6 +104,9 @@ export const developers: TeamMember[] = [
     bio: '具备前后端开发能力，致力于端到端的解决方案开发。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/周志.png',
     tags: ['全栈开发', 'JavaScript', 'Python', 'React', 'Node.js', '项目管理'],
+    projects: [
+      { id: '5', name: 'NEC 横向项目', role: '全栈开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」' }
+    ],
     github: 'https://github.com/zhouzhi'
   },
   {
@@ -93,6 +115,9 @@ export const developers: TeamMember[] = [
     bio: '专注于硬件系统架构设计和技术选型，为项目提供技术指导。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/李硕.png',
     tags: ['系统架构', '技术选型', '分布式系统', '性能优化', '云原生', 'Kubernetes'],
+    projects: [
+      { id: '6', name: '人形机器人UMI低成本灵巧手', role: '硬件架构', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
+    ],
     github: 'https://github.com/lishuo'
   },
   {
@@ -101,6 +126,9 @@ export const developers: TeamMember[] = [
     bio: '负责项目的持续集成和部署，保障开发流程的高效运行。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/牛良旭.jpg',
     tags: ['DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'GitHub Actions', '自动化部署'],
+    projects: [
+      { id: '7', name: 'MICA混合关键系统验证', role: 'DevOps/验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
+    ],
     github: 'https://github.com/niuliangxu'
   },
   {
@@ -109,6 +137,9 @@ export const developers: TeamMember[] = [
     bio: '专注于机电设计开发，为用户提供优质的移动端体验。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/郑钦文.jpg',
     tags: ['React Native', 'Flutter', 'iOS', 'Android', '移动端优化', '跨平台开发'],
+    projects: [
+      { id: '6', name: '人形机器人UMI低成本灵巧手', role: '机电一体化', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
+    ],
     github: 'https://github.com/zhengqinwen'
   },
   {
@@ -117,6 +148,9 @@ export const developers: TeamMember[] = [
     bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/杨力滔.JPG',
     tags: ['星闪手柄', 'STM32', 'RTOS', 'C语言', '嵌入式开发', '硬件控制'],
+    projects: [
+      { id: '2', name: '20250426星闪手柄', role: '核心开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
+    ],
     github: 'https://github.com/yanglitao'
   },
   {
@@ -125,6 +159,9 @@ export const developers: TeamMember[] = [
     bio: '新加入的开发团队成员，积极参与机器人项目开发，学习新技术。',
     image: 'https://cdn.newenergycoder.club/images/src/image/developer/彭柯颖.jpg',
     tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
+    projects: [
+      { id: '3', name: '20241201人形机器人主线', role: '机械开发', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' }
+    ],
     github: 'https://github.com/pengkeying'
   }
 ];
