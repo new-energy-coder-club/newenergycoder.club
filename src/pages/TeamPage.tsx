@@ -361,33 +361,82 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
   )
 }
 
-// 小型成员条：小圆头像 + @姓名
-function MemberStrip({ members }: { members: TeamMemberType[] }) {
+// 成员徽章（头像 + @姓名）
+function MemberBadge({ member }: { member: TeamMemberType }) {
   return (
-    <div className="w-full overflow-x-auto pb-4 hide-scrollbar">
-      <div className="flex items-center gap-2 px-4 min-w-max">
+    <a
+      href={member.github || member.gitee || '#'}
+      target={member.github || member.gitee ? '_blank' : undefined}
+      rel={member.github || member.gitee ? 'noopener noreferrer' : undefined}
+      className="group flex items-center gap-2 pl-1 pr-3 py-1 rounded-md bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 hover:bg-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md shrink-0"
+    >
+      <div className="relative w-7 h-7 rounded-full overflow-hidden bg-muted shrink-0">
+        <ImageProxy
+          src={member.image}
+          alt={member.name}
+          className="w-full h-full object-cover"
+          fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
+        />
+      </div>
+      <span className="text-sm font-medium text-foreground whitespace-nowrap">
+        @{member.name}
+      </span>
+    </a>
+  )
+}
+
+// 单行无限滚动 marquee
+function MarqueeRow({
+  members,
+  reverse = false,
+  duration = 40,
+}: {
+  members: TeamMemberType[]
+  reverse?: boolean
+  duration?: number
+}) {
+  const animationName = reverse ? 'marquee-right' : 'marquee-left'
+  return (
+    <div className="overflow-hidden py-1">
+      <div
+        className="flex w-max gap-2"
+        style={{
+          animation: `${animationName} ${duration}s linear infinite`,
+          transform: reverse ? 'translateX(-50%)' : undefined,
+        }}
+      >
         {members.map((member, index) => (
-          <a
-            key={`${member.name}-${index}`}
-            href={member.github || member.gitee || '#'}
-            target={member.github || member.gitee ? '_blank' : undefined}
-            rel={member.github || member.gitee ? 'noopener noreferrer' : undefined}
-            className="group flex items-center gap-2 pl-1 pr-3 py-1 rounded-md bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 hover:bg-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
-          >
-            <div className="relative w-7 h-7 rounded-full overflow-hidden bg-muted shrink-0">
-              <ImageProxy
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover"
-                fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
-              />
-            </div>
-            <span className="text-sm font-medium text-foreground whitespace-nowrap">
-              @{member.name}
-            </span>
-          </a>
+          <MemberBadge key={`a-${member.name}-${index}`} member={member} />
+        ))}
+        {members.map((member, index) => (
+          <MemberBadge key={`b-${member.name}-${index}`} member={member} />
         ))}
       </div>
+    </div>
+  )
+}
+
+// 3 行交错滚动的成员条
+function MemberStrip({ members }: { members: TeamMemberType[] }) {
+  const row1 = members.filter((_, i) => i % 3 === 0)
+  const row2 = members.filter((_, i) => i % 3 === 1)
+  const row3 = members.filter((_, i) => i % 3 === 2)
+
+  return (
+    <div className="w-full pb-4">
+      <style>{`
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+      `}</style>
+      <MarqueeRow members={row1} duration={45} />
+      <MarqueeRow members={row2} reverse duration={55} />
+      <MarqueeRow members={row3} duration={50} />
     </div>
   )
 }
