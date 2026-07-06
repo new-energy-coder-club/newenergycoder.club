@@ -638,16 +638,15 @@ export function TeamPage() {
   // 过滤后的成员
   const filteredMembers = useMemo(() => {
     switch (filter) {
-      case 'maintainers': return { maintainers: t.team.maintainers, developers: [], designers: [], contributors: [], sponsors: [] }
-      case 'developers': return { maintainers: [], developers: t.team.developers, designers: [], contributors: [], sponsors: [] }
-      case 'designers': return { maintainers: [], developers: [], designers: t.team.designers, contributors: [], sponsors: [] }
-      case 'contributors': return { maintainers: [], developers: [], designers: [], contributors: t.team.contributors, sponsors: [] }
+      case 'maintainers': return { maintainers: t.team.maintainers, developers: [], designers: [], contributors: [] }
+      case 'developers': return { maintainers: [], developers: t.team.developers, designers: [], contributors: [] }
+      case 'designers': return { maintainers: [], developers: [], designers: t.team.designers, contributors: [] }
+      case 'contributors': return { maintainers: [], developers: [], designers: [], contributors: t.team.contributors }
       default: return {
         maintainers: t.team.maintainers,
         developers: t.team.developers,
         designers: t.team.designers,
-        contributors: t.team.contributors,
-        sponsors: t.team.sponsors
+        contributors: t.team.contributors
       }
     }
   }, [filter, t.team])
@@ -943,7 +942,6 @@ export function TeamPage() {
         <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} />
         <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} />
         <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} />
-        <TeamSection title={t.team.sponsorTitle} members={filteredMembers.sponsors} selectedRatio={selectedRatio} />
 
         {/* Team Analytics Section */}
         <div className="mt-16 mb-12">
