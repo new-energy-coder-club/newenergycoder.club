@@ -150,12 +150,12 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
     <Card ref={cardRef} className={CARD_STYLES.base}>
       <div className="relative overflow-hidden">
         <div className={isSponsors ? "h-[88px] w-auto" : `${selectedRatio} overflow-hidden relative`}>
-          <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none"}>
+          <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none bg-muted/40 dark:bg-muted/20"}>
             <div ref={avatarRef} className="w-full h-full">
               <ImageProxy
                 src={member.image}
                 alt={member.name}
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+                className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
                 fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
               />
             </div>
