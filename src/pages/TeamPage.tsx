@@ -179,22 +179,9 @@ interface TeamMemberCardProps {
 function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', compact = false }: TeamMemberCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const avatarRef = useRef<HTMLDivElement>(null)
-  const barsRef = useRef<HTMLDivElement[]>([])
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
 
-  // 技能条数据：优先使用 skills，否则基于 tags 生成
-  const skills = useMemo(() => {
-    if (member.skills && member.skills.length > 0) return member.skills.slice(0, 4)
-    if (member.tags && member.tags.length > 0) {
-      return member.tags.slice(0, 4).map((tag, i) => ({
-        name: tag,
-        level: [78, 85, 70, 92][i % 4]
-      }))
-    }
-    return []
-  }, [member.skills, member.tags])
-
-  // Hover timeline：头像放大 + 浮动 + 卡片上浮 + 技能条高亮
+  // Hover timeline：头像放大 + 浮动 + 卡片上浮
   useLayoutEffect(() => {
     const card = cardRef.current
     const avatar = avatarRef.current
@@ -227,20 +214,6 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
       }, 0.35)
     }
 
-    if (barsRef.current.length > 0) {
-      tl.fromTo(
-        barsRef.current,
-        { filter: 'brightness(1)' },
-        {
-          filter: 'brightness(1.3) drop-shadow(0 0 8px hsl(var(--primary) / 0.7))',
-          duration: 0.4,
-          stagger: 0.05,
-          ease: 'expo.out',
-        },
-        0
-      )
-    }
-
     timelineRef.current = tl
 
     const onEnter = () => tl.play()
@@ -253,9 +226,8 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
       card.removeEventListener('mouseenter', onEnter)
       card.removeEventListener('mouseleave', onLeave)
       tl.kill()
-      barsRef.current = []
     }
-  }, [skills.length])
+  }, [])
 
   return (
     <Card ref={cardRef} className={CARD_STYLES.base}>
@@ -319,28 +291,6 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
                 </Badge>
               ))}
             </div>
-          </div>
-        )}
-
-        {/* 技能条：绿色能量注入 */}
-        {skills.length > 0 && (
-          <div className="mb-5 space-y-2">
-            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 text-center">能力矩阵</h4>
-            {skills.map((skill, index) => (
-              <div key={index} className="space-y-1">
-                <div className="flex justify-between text-[10px] text-muted-foreground dark:text-gray-400">
-                  <span>{skill.name}</span>
-                  <span>{skill.level}%</span>
-                </div>
-                <div className="h-1.5 w-full rounded-full bg-muted/50 overflow-hidden">
-                  <div
-                    ref={(el) => { if (el) barsRef.current[index] = el }}
-                    className="skill-bar h-full rounded-full bg-gradient-to-r from-primary to-accent origin-left"
-                    style={{ width: `${skill.level}%`, transform: 'scaleX(0)' }}
-                  />
-                </div>
-              </div>
-            ))}
           </div>
         )}
 
@@ -459,7 +409,6 @@ function TeamSection({ title, members, selectedRatio, gridCols = 4 }: TeamSectio
     const ctx = gsap.context(() => {
       const titleEl = sectionRef.current?.querySelector('h2')
       const cards = gridRef.current?.querySelectorAll('.team-card')
-      const skillBars = sectionRef.current?.querySelectorAll('.skill-bar')
       const splits: SplitText[] = []
 
       if (titleEl) {
@@ -500,30 +449,8 @@ function TeamSection({ title, members, selectedRatio, gridCols = 4 }: TeamSectio
               toggleActions: 'play none none reverse',
             },
             onComplete: () => {
-              // 入场完成后将技能条恢复为可交互状态
-              if (skillBars) {
-                gsap.set(skillBars, { scaleX: 1 })
-              }
+              // 入场动画完成
             }
-          }
-        )
-      }
-
-      // 技能条从 0 生长到目标值
-      if (skillBars && skillBars.length > 0) {
-        gsap.fromTo(
-          skillBars,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 0.9,
-            stagger: 0.04,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse',
-            },
           }
         )
       }
@@ -940,7 +867,7 @@ export function TeamPage() {
         {/* Team Sections */}
         <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} />
         <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} />
-        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} />
+        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} gridCols={6} />
         <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} />
 
         {/* Team Analytics Section */}
