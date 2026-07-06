@@ -433,59 +433,66 @@ export const zhTranslations: Translations = {
     sponsors: [
       {
         name: '开源之夏',
-        role: 'Gold Sponsor - ¥12,000',
-        bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办的开源活动。',
+        role: '战略合作伙伴',
+        bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办，专注开源人才培养。',
         image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/开源之夏Logo.png',
-        tags: ['开源软件', '供应链点亮', '学生项目', '技术孵化', '创新推动', '人才培养'],
-        github: 'https://summer-ospp.ac.cn/'
+        tags: ['学生项目', '技术孵化']
       },
       {
         name: '立创开源硬件平台',
-        role: 'Silver Sponsor - ¥8,000',
-        bio: '专业的开源硬件开发平台，提供丰富的开发板和技术资源。',
+        role: '金牌赞助商',
+        bio: '专业开源硬件开发平台，提供PCB打样、元器件采购一站式服务。',
         image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/立创开源广场.png',
-        tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
-        github: 'https://oshwhub.com/explore'
+        tags: ['开源硬件', 'PCB打样']
       },
       {
-        name: '艾迈斯',
-        role: 'Bronze Sponsor - ¥800',
-        bio: '全球领先的连接器解决方案提供商，专注于高性能连接器技术和创新应用。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=ams%20logo%20sensor%20technology%20company%20professional%20corporate%20design&image_size=square',
-        tags: ['传感器技术', '光学传感器', '环境传感器', '汽车传感器', '工业4.0', '物联网'],
-        github: 'https://ams.com/'
+        name: 'CubeMars',
+        role: '金牌合作伙伴',
+        bio: '专业电机解决方案提供商，专注高性能无刷电机及驱动系统。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/CubeMars.png',
+        tags: ['电机', '驱动系统']
       },
       {
-        name: '明基',
-        role: 'Product Sponsor - 显示器',
-        bio: '专业显示器设备解决方案提供商，为俱乐部提供高质量显示器支持，致力于提升视觉体验和工作效率。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=benq%20logo%20display%20technology%20monitor%20projector%20professional%20brand&image_size=square',
-        tags: ['显示技术', '投影设备', '专业显示器', '视觉解决方案', '办公设备', '教育科技'],
-        github: 'https://www.benq.com/'
+        name: '留形科技',
+        role: '金牌赞助商',
+        bio: '专注于智能空间感知与三维重建技术的研发与应用。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/留形科技.png',
+        tags: ['3D打印', '创新科技']
       },
       {
-        name: '易百纳社区',
-        role: 'Silver Sponsor - ¥4,500',
-        bio: '专业的技术开发者社区平台，为俱乐部提供开发板支持，汇聚众多技术专家，提供丰富的学习资源和交流机会。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=developer%20community%20logo%20technology%20learning%20platform%20modern%20design&image_size=square',
-        tags: ['开发者社区', '技术交流', '在线学习', '项目分享', '技术文档', '编程教育'],
-        github: 'https://www.ebaina.com/'
+        name: '萝卜小酱',
+        role: '银牌合作伙伴',
+        bio: '专业精密工具品牌，专注电子维修与机器人组装工具。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/萝卜小酱.png',
+        tags: ['精密工具', '螺丝刀']
       },
       {
-        name: 'Gitee',
-        role: 'Platform Partner',
-        bio: '中国领先的代码托管平台，为开发者提供安全、稳定、高效的代码管理服务。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=gitee%20logo%20code%20hosting%20platform%20git%20repository%20red%20chinese&image_size=square',
-        tags: ['代码托管', 'Git仓库', '项目管理', '持续集成', '开源项目', '团队协作'],
-        github: 'https://gitee.com/'
+        name: '华艺塑业',
+        role: '铜牌合作伙伴',
+        bio: '专业碳纤维及工程塑料加工，提供机器人结构件定制服务。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/华艺塑业.png',
+        tags: ['碳纤维', '结构加工']
       },
       {
-        name: '飞书',
-        role: 'Communication Partner',
-        bio: '字节跳动旗下的新一代企业协作与管理平台，为团队提供高效的沟通与协作解决方案。',
-        image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=feishu%20lark%20logo%20enterprise%20collaboration%20platform%20blue%20modern&image_size=square',
-        tags: ['团队协作', '即时通讯', '文档协作', '项目管理', '视频会议', '企业服务'],
-        github: 'https://www.feishu.cn/'
+        name: 'GPUfree 算力自由',
+        role: '算力合作伙伴',
+        bio: '提供GPU算力资源，助力AI模型训练与科研探索。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/logo_GPU_Free.png',
+        tags: ['GPU算力', 'AI训练']
+      },
+      {
+        name: '脉塔智能',
+        role: '银牌合作伙伴',
+        bio: '专业RMD电机及驱动解决方案提供商，专注高性能伺服系统。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/麦塔智能.png',
+        tags: ['RMD电机', '伺服系统']
+      },
+      {
+        name: '华为云',
+        role: '云计算合作伙伴',
+        bio: '华为云提供开发板及云计算资源支持，助力嵌入式开发与边缘计算。',
+        image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/华为云.png',
+        tags: ['开发板', '云计算']
       }
     ]
   },
