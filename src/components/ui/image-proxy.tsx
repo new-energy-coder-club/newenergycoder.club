@@ -121,6 +121,8 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
         onError={handleError}
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
+        loading={props.loading ?? 'lazy'}
+        decoding={props.decoding ?? 'async'}
         {...props}
       />
     </>

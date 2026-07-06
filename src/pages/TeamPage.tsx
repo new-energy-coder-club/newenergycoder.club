@@ -1,13 +1,9 @@
 import { AspectRatio } from '@/types/ui'
-import React, { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { useTranslation } from '@/contexts/LanguageContext'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Linkedin, Mail, BarChart3, Users, Code, Palette, Heart, ExternalLink, Building2 } from 'lucide-react'
-import BonjourIcon from '@/bonjour.ico?url'
-import GithubIcon from '@/github.ico?url'
-import { GiteeIcon } from '@/components/ui/gitee-icon'
+import { BarChart3, Users, Code, Palette, Heart, ExternalLink, Building2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -29,8 +25,8 @@ import { Flip } from 'gsap/Flip'
 import type { TeamMember as TeamMemberType } from '@/lib/i18n/types/translations'
 import type { Sponsor } from '@/lib/i18n/constants/team'
 import { maintainers, developers, designers, contributors, sponsors } from '@/lib/i18n/constants/team'
-import { getProjectById } from '@/data/projects'
 import { MemberTechDetail } from '@/components/team/MemberTechDetail'
+import { MemberCard } from '@/components/team/MemberCard'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -88,6 +84,8 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
               src={sponsor.image}
               alt={`${sponsor.name} logo`}
               className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+              loading="lazy"
+              decoding="async"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none'
                 ;(e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden')
@@ -166,226 +164,6 @@ const FILTER_LABELS: Record<FilterCategory, string> = {
   designers: 'UI/UX',
   contributors: '贡献者'
 }
-
-// 团队成员卡片组件属性
-interface TeamMemberCardProps {
-  member: TeamMemberType
-  isSponsors?: boolean
-  selectedRatio?: AspectRatio
-  compact?: boolean
-  onClick?: () => void
-}
-
-function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', compact = false, onClick }: TeamMemberCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const avatarRef = useRef<HTMLDivElement>(null)
-  const timelineRef = useRef<gsap.core.Timeline | null>(null)
-
-  // Hover timeline：头像放大 + 浮动 + 卡片上浮
-  useLayoutEffect(() => {
-    const card = cardRef.current
-    const avatar = avatarRef.current
-    if (!card) return
-
-    const tl = gsap.timeline({ paused: true })
-    tl.to(card, {
-      y: -10,
-      scale: 1.015,
-      boxShadow: '0 24px 48px -12px rgba(0,0,0,0.35), 0 0 40px hsl(var(--primary) / 0.35)',
-      borderColor: 'hsl(var(--primary) / 0.6)',
-      duration: 0.35,
-      ease: 'power2.out',
-    })
-
-    if (avatar) {
-      tl.to(avatar, {
-        scale: 1.05,
-        y: -4,
-        duration: 0.35,
-        ease: 'power2.out',
-      }, 0)
-      // 持续轻微浮动
-      tl.to(avatar, {
-        y: -8,
-        duration: 0.8,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      }, 0.35)
-    }
-
-    timelineRef.current = tl
-
-    const onEnter = () => tl.play()
-    const onLeave = () => tl.reverse()
-
-    card.addEventListener('mouseenter', onEnter)
-    card.addEventListener('mouseleave', onLeave)
-
-    return () => {
-      card.removeEventListener('mouseenter', onEnter)
-      card.removeEventListener('mouseleave', onLeave)
-      tl.kill()
-    }
-  }, [])
-
-  return (
-    <Card
-      ref={cardRef}
-      className={cn(
-        CARD_STYLES.base,
-        onClick ? 'cursor-pointer' : ''
-      )}
-      onClick={e => {
-        // 点击链接、按钮等交互元素时不触发卡片详情弹窗
-        const target = e.target as HTMLElement
-        if (target.closest('a, button')) return
-        onClick?.()
-      }}
-    >
-      <div className="relative overflow-hidden">
-        <div className={isSponsors ? "h-[88px] w-auto" : compact ? "aspect-square overflow-hidden relative" : `${selectedRatio} overflow-hidden relative`}>
-          <Avatar className={isSponsors ? "h-[88px] w-auto rounded-none" : "w-full h-full rounded-none bg-muted/40 dark:bg-muted/20"}>
-            <div ref={avatarRef} className="w-full h-full">
-              <ImageProxy
-                src={member.image}
-                alt={member.name}
-                className={cn(
-                  compact || isSponsors ? 'object-contain' : 'object-cover',
-                  'w-full h-full group-hover:scale-105 transition-transform duration-500',
-                  member.avatarStyle === 'bilevel' && 'avatar-bilevel'
-                )}
-                fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
-              />
-            </div>
-            <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
-              {member.name.slice(0, 2)}
-            </AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </div>
-      <CardHeader className={compact ? "text-center relative z-10 py-3 px-2" : "text-center relative z-10"}>
-         <CardTitle className={compact ? "text-sm text-foreground dark:text-white drop-shadow-md truncate" : "text-xl text-foreground dark:text-white drop-shadow-md"}>
-           {member.github ? (
-             <a
-               href={member.github}
-               target="_blank"
-               rel="noopener noreferrer"
-               className="hover:underline"
-             >
-               {member.name}
-             </a>
-           ) : (
-             member.name
-           )}
-         </CardTitle>
-         <div className={compact ? "text-xs font-medium flex justify-center mt-1" : "text-base font-medium flex justify-center"}>
-           <Badge variant="secondary" className={compact ? "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors text-[10px] px-1.5 py-0.5 truncate max-w-full" : "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"}>
-             {member.role}
-           </Badge>
-         </div>
-       </CardHeader>
-      {!compact && (
-      <CardContent>
-        <p className="text-sm text-muted-foreground dark:text-gray-200 text-center mb-4 leading-relaxed drop-shadow-sm">
-          {member.bio}
-        </p>
-
-        {/* 技术栈标签 */}
-        {member.tags && member.tags.length > 0 && (
-          <div className="mb-4">
-            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center drop-shadow-sm">技能标签</h4>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {member.tags.map((tag, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className="text-xs px-3 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 border-primary/30 hover:border-primary/50 hover:scale-105 hover:shadow-lg backdrop-blur-sm bg-white/20 font-medium cursor-default shadow-sm hover:shadow-md"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 代表作 / 参与项目 */}
-        {member.projects && member.projects.length > 0 && (
-          <div className="mb-5">
-            <h4 className="text-xs font-semibold text-muted-foreground dark:text-gray-300 mb-2 text-center">代表作</h4>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {member.projects.slice(0, 2).map((project) => {
-                const fullProject = getProjectById(project.id)
-                return (
-                  <a
-                    key={project.id}
-                    href={project.url || fullProject?.projectUrl || fullProject?.githubUrl || `/projects#project-${project.id}`}
-                    target={project.url?.startsWith('http') || fullProject?.githubUrl?.startsWith('http') ? '_blank' : undefined}
-                    rel={project.url?.startsWith('http') || fullProject?.githubUrl?.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    onClick={e => e.stopPropagation()}
-                    className="group/badge inline-flex flex-col items-center px-3 py-1.5 rounded-md bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 border border-primary/30 hover:border-primary/50 hover:from-primary/30 hover:via-secondary/30 hover:to-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm"
-                  >
-                    <span className="text-xs font-medium text-foreground dark:text-white leading-tight flex items-center gap-1">
-                      {project.name}
-                      <ExternalLink className="h-2.5 w-2.5 opacity-60 group-hover/badge:opacity-100 transition-opacity" />
-                    </span>
-                    <span className="text-[10px] text-primary/80 dark:text-primary/90 leading-tight">{project.role}</span>
-                  </a>
-                )
-              })}
-              {member.projects.length > 2 && (
-                <span className="inline-flex items-center px-2 py-1 rounded-md text-[10px] text-muted-foreground bg-muted/50 border border-border/50">
-                  +{member.projects.length - 2}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
-
-        <div className="flex justify-center gap-2">
-          {member.gitee && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={member.gitee} target="_blank" rel="noopener noreferrer">
-                <GiteeIcon className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-          {member.github && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={member.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                <img src={GithubIcon} alt="GitHub" className="h-4 w-4 object-contain dark:invert" />
-              </a>
-            </Button>
-          )}
-          {member.bonjour && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={member.bonjour} target="_blank" rel="noopener noreferrer" aria-label="Bonjour profile">
-                <img src={BonjourIcon} alt="Bonjour" className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-          {member.linkedin && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <Linkedin className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-          {member.email && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-              <a href={`mailto:${member.email}`}>
-                <Mail className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-        </div>
-      </CardContent>
-      )}
-    </Card>
-  )
-}
-
 
 // 成员徽章（头像 + @姓名）
 function MemberBadge({ member }: { member: TeamMemberType }) {
@@ -471,13 +249,12 @@ interface TeamSectionProps {
   title: string
   members: TeamMemberType[]
   selectedRatio?: AspectRatio
-  gridCols?: 4 | 6 | 8
+  variant?: 'featured' | 'compact'
   onMemberClick?: (member: TeamMemberType) => void
 }
 
-function TeamSection({ title, members, selectedRatio, gridCols = 4, onMemberClick }: TeamSectionProps) {
-  const isSponsors = title.includes('Sponsor') || title.includes('赞助')
-  const compact = gridCols === 6 || gridCols === 8
+function TeamSection({ title, members, selectedRatio, variant = 'compact', onMemberClick }: TeamSectionProps) {
+  const isFeatured = variant === 'featured'
   const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
@@ -545,21 +322,23 @@ function TeamSection({ title, members, selectedRatio, gridCols = 4, onMemberClic
         <h2 className="text-3xl font-bold tracking-tight mb-2 text-foreground drop-shadow-lg dark:text-white dark:drop-shadow-2xl">{title}</h2>
         <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-sm"></div>
       </div>
-      <div ref={gridRef} className={`grid ${
-        gridCols === 6
-          ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3'
-          : gridCols === 8
-            ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2'
-            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-      }`}>
+      <div
+        ref={gridRef}
+        className={cn(
+          'grid',
+          isFeatured
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+            : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5'
+        )}
+      >
         {members.map((member, index) => (
-          <TeamMemberCard
+          <MemberCard
             key={`${member.name}-${index}`}
             member={member}
-            isSponsors={isSponsors}
-            selectedRatio={selectedRatio}
-            compact={compact}
+            variant={isFeatured ? 'featured' : 'compact'}
+            aspectRatio={selectedRatio}
             onClick={onMemberClick ? () => onMemberClick(member) : undefined}
+            priority={isFeatured && index < 4}
           />
         ))}
       </div>
@@ -949,10 +728,10 @@ export function TeamPage() {
         </div>
 
         {/* Team Sections */}
-        <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} onMemberClick={setSelectedMember} />
-        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} gridCols={6} onMemberClick={setSelectedMember} />
-        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} gridCols={6} onMemberClick={setSelectedMember} />
-        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} gridCols={8} onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.maintainerTitle} members={filteredMembers.maintainers} selectedRatio={selectedRatio} variant="featured" onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.developerTitle} members={filteredMembers.developers} selectedRatio={selectedRatio} variant="compact" onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.designerTitle} members={filteredMembers.designers} selectedRatio={selectedRatio} variant="compact" onMemberClick={setSelectedMember} />
+        <TeamSection title={t.team.contributorTitle} members={filteredMembers.contributors} selectedRatio={selectedRatio} variant="compact" onMemberClick={setSelectedMember} />
 
         <MemberTechDetail
           member={selectedMember}
