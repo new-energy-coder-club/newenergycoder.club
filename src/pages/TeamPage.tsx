@@ -238,7 +238,7 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]', co
               <ImageProxy
                 src={member.image}
                 alt={member.name}
-                className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500"
+                className={`${compact || isSponsors ? 'object-contain' : 'object-cover'} w-full h-full group-hover:scale-105 transition-transform duration-500`}
                 fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
               />
             </div>
