@@ -408,11 +408,11 @@ export const contributors: TeamMember[] = [
 export const sponsors: Sponsor[] = [
   {
     name: '开源之夏',
-    role: 'Gold Sponsor - ¥12,000',
-    level: 'gold',
-    bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办的开源活动。',
+    role: '战略合作伙伴',
+    level: 'strategic',
+    bio: '中国科学院软件研究所、华为技术有限公司、中科南京软件技术研究院联合主办，专注开源人才培养。',
     image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/开源之夏Logo.png',
-    tags: ['开源软件', '供应链点亮', '学生项目', '技术孵化', '创新推动', '人才培养'],
+    tags: ['学生项目', '技术孵化'],
     supports: [
       { item: '开源项目资助', quantity: '年度项目名额' },
       { item: '导师资源对接' },
@@ -422,17 +422,114 @@ export const sponsors: Sponsor[] = [
   },
   {
     name: '立创开源硬件平台',
-    role: 'Silver Sponsor - ¥8,000',
-    level: 'silver',
-    bio: '专业的开源硬件开发平台，提供丰富的开发板和技术资源。',
+    role: 'Gold Sponsor',
+    level: 'gold',
+    bio: '专业开源硬件开发平台，提供PCB打样、元器件采购一站式服务。',
     image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/立创开源广场.png',
-    tags: ['开源硬件', '开发板', '技术资源', '硬件开发', '创客平台', '技术支持'],
+    tags: ['开源硬件', 'PCB打样'],
     supports: [
       { item: 'PCB打样券', quantity: '年度额度' },
       { item: '元器件采购支持' },
-      { item: '开源硬件推广' }
+      { item: '开源广场曝光推荐' }
     ],
     website: 'https://oshwhub.com/explore'
+  },
+  {
+    name: 'CubeMars',
+    role: 'Motor Partner',
+    level: 'gold',
+    bio: '专业电机解决方案提供商，专注高性能无刷电机及驱动系统。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/CubeMars.png',
+    tags: ['电机', '驱动系统'],
+    supports: [
+      { item: 'AK系列电机', quantity: '竞赛项目支持' },
+      { item: '驱动器套件' },
+      { item: '技术咨询支持' }
+    ],
+    website: 'https://www.cubemars.com/'
+  },
+  {
+    name: '留形科技',
+    role: 'Gold Sponsor',
+    level: 'gold',
+    bio: '专注于智能空间感知与三维重建技术的研发与应用。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/留形科技.png',
+    tags: ['3D打印', '创新科技'],
+    supports: [
+      { item: '空间记忆模组' },
+      { item: '技术咨询支持' }
+    ],
+    website: 'https://www.manifoldtech.cn/'
+  },
+  {
+    name: '萝卜小酱',
+    role: 'Tool Partner',
+    level: 'silver',
+    bio: '专业精密工具品牌，专注电子维修与机器人组装工具。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/萝卜小酱.png',
+    tags: ['精密工具', '螺丝刀'],
+    supports: [
+      { item: '精密螺丝刀套装', quantity: '团队标配' },
+      { item: '焊接工具套件' },
+      { item: '维修工作台' }
+    ],
+    website: '#'
+  },
+  {
+    name: '华艺塑业',
+    role: 'Hardware Partner',
+    level: 'bronze',
+    bio: '专业碳纤维及工程塑料加工，提供机器人结构件定制服务。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/华艺塑业.png',
+    tags: ['碳纤维', '结构加工'],
+    supports: [
+      { item: '碳纤维板加工' },
+      { item: '亚克力切割' },
+      { item: '结构件打样' }
+    ],
+    website: 'https://m.tb.cn/h.7C6uKBnRQ1NxAMB'
+  },
+  {
+    name: 'GPUfree 算力自由',
+    role: 'Computing Partner',
+    level: 'partner',
+    bio: '提供GPU算力资源，助力AI模型训练与科研探索。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/logo_GPU_Free.png',
+    tags: ['GPU算力', 'AI训练'],
+    supports: [
+      { item: 'GPU算力代金券', quantity: '1000元额度' },
+      { item: '模型训练资源' },
+      { item: '科研算力支持' }
+    ],
+    website: 'https://gpufree.org/'
+  },
+  {
+    name: '脉塔智能',
+    role: 'Motor Partner',
+    level: 'silver',
+    bio: '专业RMD电机及驱动解决方案提供商，专注高性能伺服系统。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/麦塔智能.png',
+    tags: ['RMD电机', '伺服系统'],
+    supports: [
+      { item: 'RMD电机采购额度', quantity: '1万元' },
+      { item: '驱动器技术支持' },
+      { item: '批量采购优惠' }
+    ],
+    website: '#'
+  },
+  {
+    name: '华为云',
+    role: 'Cloud Partner',
+    level: 'partner',
+    bio: '华为云提供开发板及云计算资源支持，助力嵌入式开发与边缘计算。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/sponsor/华为云.png',
+    tags: ['开发板', '云计算'],
+    supports: [
+      { item: '香橙派开发板', quantity: '项目支持' },
+      { item: '云服务器资源' },
+      { item: '技术文档支持' }
+    ],
+    website: 'https://www.huaweicloud.com/'
   }
 ];
 
