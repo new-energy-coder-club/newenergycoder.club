@@ -21,14 +21,14 @@ export const maintainers: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/DarrenPig.jpg',
     tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
     skills: [
-      { name: 'AI', level: 92 },
-      { name: 'BSP', level: 88 },
-      { name: '嵌入式', level: 85 },
-      { name: '能源监测', level: 90 }
+  { name: 'AI', level: 92 },
+  { name: 'BSP', level: 88 },
+  { name: '嵌入式', level: 85 },
+  { name: '能源监测', level: 90 }
     ],
     projects: [
-      { id: '3', name: '20241201人形机器人主线', role: '项目发起人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
-      { id: '1', name: '20250319流体工作站', role: '技术负责人', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' }
+  { id: '3', name: '20241201人形机器人主线', role: '项目发起人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+  { id: '1', name: '20250319流体工作站', role: '技术负责人', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' }
     ],
     gitee: 'https://gitee.com/darrenpig',
     github: 'https://github.com/Darrenpig',
@@ -42,14 +42,14 @@ export const maintainers: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/殷统创.jpg',
     tags: ['AI', 'BSP', '能源优化', '可再生能源', '华为云AI'],
     skills: [
-      { name: 'AI', level: 90 },
-      { name: 'BSP', level: 95 },
-      { name: '能源优化', level: 93 },
-      { name: '华为云AI', level: 85 }
+  { name: 'AI', level: 90 },
+  { name: 'BSP', level: 95 },
+  { name: '能源优化', level: 93 },
+  { name: '华为云AI', level: 85 }
     ],
     projects: [
-      { id: '1', name: '20250319流体工作站', role: 'BSP 顾问', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' },
-      { id: '7', name: 'MICA混合关键系统验证', role: '系统验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
+  { id: '1', name: '20250319流体工作站', role: 'BSP 顾问', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/ai/energy-monitoring/20250319流体工作站' },
+  { id: '7', name: 'MICA混合关键系统验证', role: '系统验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
     ],
     github: 'https://github.com/yintongchuang'
   },
@@ -60,14 +60,14 @@ export const maintainers: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/许珑译.jpg',
     tags: ['机器人算法', 'ROBOCON', '人形机器人', '算法部署', 'ROS'],
     skills: [
-      { name: '机器人算法', level: 94 },
-      { name: 'ROS', level: 88 },
-      { name: '算法部署', level: 90 },
-      { name: 'ROBOCON', level: 86 }
+  { name: '机器人算法', level: 94 },
+  { name: 'ROS', level: 88 },
+  { name: '算法部署', level: 90 },
+  { name: 'ROBOCON', level: 86 }
     ],
     projects: [
-      { id: '3', name: '20241201人形机器人主线', role: '算法负责人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
-      { id: '6', name: '人形机器人UMI低成本灵巧手', role: '算法部署', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
+  { id: '3', name: '20241201人形机器人主线', role: '算法负责人', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+  { id: '6', name: '人形机器人UMI低成本灵巧手', role: '算法部署', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
     ],
     github: 'https://github.com/xulongyi'
   },
@@ -78,14 +78,14 @@ export const maintainers: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/张旺旺.png',
     tags: ['电控系统', '运行时', 'ROBOCON', '嵌入式', '系统稳定性'],
     skills: [
-      { name: '电控系统', level: 93 },
-      { name: '运行时', level: 91 },
-      { name: '嵌入式', level: 87 },
-      { name: '系统稳定性', level: 92 }
+  { name: '电控系统', level: 93 },
+  { name: '运行时', level: 91 },
+  { name: '嵌入式', level: 87 },
+  { name: '系统稳定性', level: 92 }
     ],
     projects: [
-      { id: '3', name: '20241201人形机器人主线', role: '电控/运行时', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
-      { id: '4', name: '20241115飞控通讯', role: '飞控通讯开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/aerospace/flight-control-comm' }
+  { id: '3', name: '20241201人形机器人主线', role: '电控/运行时', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' },
+  { id: '4', name: '20241115飞控通讯', role: '飞控通讯开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/aerospace/flight-control-comm' }
     ],
     github: 'https://github.com/zhangwangwang'
   }
@@ -93,34 +93,51 @@ export const maintainers: TeamMember[] = [
 
 export const developers: TeamMember[] = [
   {
-    name: '刘英琪',
-    role: '嵌入式开发工程师',
-    bio: '专注于现代机器人技术栈，致力于构建高性能的机器人界面。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/刘英琪.png',
-    tags: ['React', 'TypeScript', 'Vue', '前端架构', 'UI/UX', 'Vite'],
-    github: 'https://github.com/liuyingqi'
+    name: '卢王淳',
+    role: '25RC项管&机械&电控小白',
+    bio: '25RC项目管理，机械和电控领域的学习者，负责项目协调工作。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卢王淳.jpg',
+    tags: ['项目管理', '机械设计', '电控学习', 'ROBOCON', '团队协调', '25RC'],
+    github: 'https://github.com/luwangchun'
   },
   {
-    name: '单广志',
-    role: '嵌入式开发工程师',
-    bio: '机器人行业电控驱动开发以及硬件电路设计。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/单广志.jpg',
-    tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
-    projects: [
-      { id: '2', name: '20250426星闪手柄', role: '电控驱动开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
-    ],
-    github: 'https://github.com/shanguangzhi'
+    name: '卢永杰',
+    role: '嵌入式&运控算法专家',
+    bio: '专注算法部署优化及BSP逻辑协同设计，在嵌入式和运控算法领域有深入研究。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卢永杰.jpg',
+    tags: ['嵌入式开发', '运控算法', '算法部署', '协同设计', '算法优化'],
+    github: 'https://github.com/luyongjie'
   },
   {
-    name: '周志',
-    role: '全栈开发工程师',
-    bio: '具备前后端开发能力，致力于端到端的解决方案开发。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/周志.png',
-    tags: ['全栈开发', 'JavaScript', 'Python', 'React', 'Node.js', '项目管理'],
-    projects: [
-      { id: '5', name: 'NEC 横向项目', role: '全栈开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」' }
-    ],
-    github: 'https://github.com/zhouzhi'
+    name: '闻志伟',
+    role: 'Bronze Sponsor',
+    bio: '致力于推动可持续技术发展的个人赞助者。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/闻志伟.jpg',
+    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
+  },
+  {
+    name: '卞乐凌',
+    role: '嵌入式学习贡献者',
+    bio: '嵌入式学习中，积极参与开源项目和社区建设。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卞乐凌.jpg',
+    tags: ['嵌入式学习', '开源贡献', '社区建设', 'STM32', '硬件开发'],
+    github: 'https://github.com/bianleiling'
+  },
+  {
+    name: '郭童童',
+    role: '场控FD',
+    bio: '专注于嵌入式、机器视觉与硬件研发。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/郭童童.jpg',
+    tags: ['场控FD', '嵌入式', '机器视觉', '硬件'],
+    gitee: 'https://gitee.com/guo--tongtong'
+  },
+  {
+    name: '孙诗睿',
+    role: 'Contributor',
+    bio: 'AIC工业视觉SIG 嵌硬-单片机专家，专注于嵌入式硬件和单片机开发。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/孙诗睿.jpg',
+    tags: ['嵌入式硬件', '单片机', 'AIC', '工业视觉', 'SIG', '硬件开发'],
+    github: 'https://github.com/sunshirui'
   },
   {
     name: '李硕',
@@ -132,50 +149,6 @@ export const developers: TeamMember[] = [
       { id: '6', name: '人形机器人UMI低成本灵巧手', role: '硬件架构', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
     ],
     github: 'https://github.com/lishuo'
-  },
-  {
-    name: '牛良旭',
-    role: 'DevOps电池管理工程师',
-    bio: '负责项目的持续集成和部署，保障开发流程的高效运行。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/牛良旭.jpg',
-    tags: ['DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'GitHub Actions', '自动化部署'],
-    projects: [
-      { id: '7', name: 'MICA混合关键系统验证', role: 'DevOps/验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
-    ],
-    github: 'https://github.com/niuliangxu'
-  },
-  {
-    name: '郑钦文',
-    role: '机电一体化开发工程师',
-    bio: '专注于机电设计开发，为用户提供优质的移动端体验。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/郑钦文.jpg',
-    tags: ['React Native', 'Flutter', 'iOS', 'Android', '移动端优化', '跨平台开发'],
-    projects: [
-      { id: '6', name: '人形机器人UMI低成本灵巧手', role: '机电一体化', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
-    ],
-    github: 'https://github.com/zhengqinwen'
-  },
-  {
-    name: '杨力滔',
-    role: '星闪手柄开发工程师',
-    bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/杨力滔.JPG',
-    tags: ['星闪手柄', 'STM32', 'RTOS', 'C语言', '嵌入式开发', '硬件控制'],
-    projects: [
-      { id: '2', name: '20250426星闪手柄', role: '核心开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
-    ],
-    github: 'https://github.com/yanglitao'
-  },
-  {
-    name: '彭柯颖',
-    role: '机械R1机器人开发者',
-    bio: '新加入的开发团队成员，积极参与机器人项目开发，学习新技术。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/彭柯颖.jpg',
-    tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
-    projects: [
-      { id: '3', name: '20241201人形机器人主线', role: '机械开发', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' }
-    ],
-    github: 'https://github.com/pengkeying'
   }
 ];
 
@@ -240,22 +213,6 @@ export const designers: TeamMember[] = [
 
 export const contributors: TeamMember[] = [
   {
-    name: '卢永杰',
-    role: '嵌入式&运控算法专家',
-    bio: '专注算法部署优化及BSP逻辑协同设计，在嵌入式和运控算法领域有深入研究。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卢永杰.jpg',
-    tags: ['嵌入式开发', '运控算法', '算法部署', '协同设计', '算法优化'],
-    github: 'https://github.com/luyongjie'
-  },
-  {
-    name: '卢王淳',
-    role: '25RC项管&机械&电控小白',
-    bio: '25RC项目管理，机械和电控领域的学习者，负责项目协调工作。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卢王淳.jpg',
-    tags: ['项目管理', '机械设计', '电控学习', 'ROBOCON', '团队协调', '25RC'],
-    github: 'https://github.com/luwangchun'
-  },
-  {
     name: '韩祺冉',
     role: 'Contributor',
     bio: '数据分析师，专注于数据处理和可视化分析工作。',
@@ -278,13 +235,6 @@ export const contributors: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/contributer/王于豪.jpg',
     tags: ['3D打印', '成型技术', '团队管理', '技术支持', '设备调试', '物品制作'],
     github: 'https://github.com/wangyuhao'
-  },
-  {
-    name: '闻志伟',
-    role: 'Bronze Sponsor',
-    bio: '致力于推动可持续技术发展的个人赞助者。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/developer/闻志伟.jpg',
-    tags: ['技术赞助', '项目支持', '可持续发展', '创新资助', '社区建设', '人才培养']
   },
   {
     name: '张旺旺',
@@ -319,14 +269,6 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/xuzihan'
   },
   {
-    name: '卞乐凌',
-    role: '嵌入式学习贡献者',
-    bio: '嵌入式学习中，积极参与开源项目和社区建设。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/卞乐凌.jpg',
-    tags: ['嵌入式学习', '开源贡献', '社区建设', 'STM32', '硬件开发'],
-    github: 'https://github.com/bianleiling'
-  },
-  {
     name: '徐海婷',
     role: '财务管理专员',
     bio: '聚焦财务流程优化与数据支撑，通过合理预算、风险防控，助力技术实践、行稳致远。',
@@ -340,14 +282,6 @@ export const contributors: TeamMember[] = [
     image: 'https://cdn.newenergycoder.club/images/src/image/contributer/郑邵凯.png',
     tags: ['算法研究', '最优化', '竞赛选手', '问题求解', '算法优化', '数学建模'],
     github: 'https://github.com/zhengshaokai'
-  },
-  {
-    name: '郭童童',
-    role: '场控FD',
-    bio: '专注于嵌入式、机器视觉与硬件研发。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/郭童童.jpg',
-    tags: ['场控FD', '嵌入式', '机器视觉', '硬件'],
-    gitee: 'https://gitee.com/guo--tongtong'
   },
   {
     name: '杨鑫海',
@@ -382,14 +316,6 @@ export const contributors: TeamMember[] = [
     github: 'https://github.com/yangcaini'
   },
   {
-    name: '孙诗睿',
-    role: 'Contributor',
-    bio: 'AIC工业视觉SIG 嵌硬-单片机专家，专注于嵌入式硬件和单片机开发。',
-    image: 'https://cdn.newenergycoder.club/images/src/image/contributer/孙诗睿.jpg',
-    tags: ['嵌入式硬件', '单片机', 'AIC', '工业视觉', 'SIG', '硬件开发'],
-    github: 'https://github.com/sunshirui'
-  },
-  {
     name: '凌敏菲',
     role: 'Contributor',
     bio: '硬件组成员，积极参与NEC社区建设与项目贡献。',
@@ -402,6 +328,80 @@ export const contributors: TeamMember[] = [
     bio: 'NEC新人，正在练习，期待在可持续能源与机器人领域持续成长。',
     image: 'https://cdn.newenergycoder.club/images/src/image/contributer/崇瑶.jpg',
     tags: ['NEC新人', 'Contributor', '学习成长', '可持续能源']
+  },
+  {
+    name: '刘英琪',
+    role: '嵌入式开发工程师',
+    bio: '专注于现代机器人技术栈，致力于构建高性能的机器人界面。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/刘英琪.png',
+    tags: ['React', 'TypeScript', 'Vue', '前端架构', 'UI/UX', 'Vite'],
+    github: 'https://github.com/liuyingqi'
+  },
+  {
+    name: '单广志',
+    role: '嵌入式开发工程师',
+    bio: '机器人行业电控驱动开发以及硬件电路设计。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/单广志.jpg',
+    tags: ['嵌入式开发', '电控驱动', '硬件电路设计', '机器人', 'STM32', 'PCB设计'],
+    projects: [
+  { id: '2', name: '20250426星闪手柄', role: '电控驱动开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
+    ],
+    github: 'https://github.com/shanguangzhi'
+  },
+  {
+    name: '周志',
+    role: '全栈开发工程师',
+    bio: '具备前后端开发能力，致力于端到端的解决方案开发。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/周志.png',
+    tags: ['全栈开发', 'JavaScript', 'Python', 'React', 'Node.js', '项目管理'],
+    projects: [
+  { id: '5', name: 'NEC 横向项目', role: '全栈开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」' }
+    ],
+    github: 'https://github.com/zhouzhi'
+  },
+  {
+    name: '牛良旭',
+    role: 'DevOps电池管理工程师',
+    bio: '负责项目的持续集成和部署，保障开发流程的高效运行。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/牛良旭.jpg',
+    tags: ['DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'GitHub Actions', '自动化部署'],
+    projects: [
+  { id: '7', name: 'MICA混合关键系统验证', role: 'DevOps/验证', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/system/mica-verification' }
+    ],
+    github: 'https://github.com/niuliangxu'
+  },
+  {
+    name: '郑钦文',
+    role: '机电一体化开发工程师',
+    bio: '专注于机电设计开发，为用户提供优质的移动端体验。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/郑钦文.jpg',
+    tags: ['React Native', 'Flutter', 'iOS', 'Android', '移动端优化', '跨平台开发'],
+    projects: [
+  { id: '6', name: '人形机器人UMI低成本灵巧手', role: '机电一体化', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/robotics/umi-dexterous-hand' }
+    ],
+    github: 'https://github.com/zhengqinwen'
+  },
+  {
+    name: '杨力滔',
+    role: '星闪手柄开发工程师',
+    bio: '星闪手柄开发专家，熟悉STM32+RTOS C语言开发。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/杨力滔.JPG',
+    tags: ['星闪手柄', 'STM32', 'RTOS', 'C语言', '嵌入式开发', '硬件控制'],
+    projects: [
+  { id: '2', name: '20250426星闪手柄', role: '核心开发', url: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/embedded/nearlink/20250426星闪手柄' }
+    ],
+    github: 'https://github.com/yanglitao'
+  },
+  {
+    name: '彭柯颖',
+    role: '机械R1机器人开发者',
+    bio: '新加入的开发团队成员，积极参与机器人项目开发，学习新技术。',
+    image: 'https://cdn.newenergycoder.club/images/src/image/developer/彭柯颖.jpg',
+    tags: ['新成员', '项目开发', '学习成长', 'Web开发', 'JavaScript', '团队协作'],
+    projects: [
+  { id: '3', name: '20241201人形机器人主线', role: '机械开发', url: '/whitepapers/NEC新能源开发者社区-机器人.pdf' }
+    ],
+    github: 'https://github.com/pengkeying'
   }
 ];
 
