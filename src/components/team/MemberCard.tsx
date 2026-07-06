@@ -1,7 +1,7 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef, useLayoutEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Linkedin, Mail, ExternalLink } from 'lucide-react'
 import BonjourIcon from '@/bonjour.ico?url'
@@ -83,26 +83,28 @@ function MemberAvatar({
   aspectRatio?: AspectRatio
   priority?: boolean
 }) {
+  const [hasError, setHasError] = useState(false);
+
   return (
-    <div className={`relative overflow-hidden ${aspectRatio}`}>
-      <Avatar className="w-full h-full rounded-none bg-muted/40 dark:bg-muted/20">
-        <div className="w-full h-full">
-          <ImageProxy
-            src={member.image}
-            alt={member.name}
-            className={cn(
-              'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500',
-              member.avatarStyle === 'bilevel' && 'avatar-bilevel'
-            )}
-            fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
-            loading={priority ? 'eager' : 'lazy'}
-            decoding="async"
-          />
-        </div>
+    <div className={cn('relative overflow-hidden bg-muted/40 dark:bg-muted/20', aspectRatio)}>
+      {!hasError ? (
+        <ImageProxy
+          src={member.image}
+          alt={member.name}
+          className={cn(
+            'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500',
+            member.avatarStyle === 'bilevel' && 'avatar-bilevel'
+          )}
+          fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          onError={() => setHasError(true)}
+        />
+      ) : (
         <AvatarFallback className="w-full h-full rounded-none text-2xl font-bold bg-gradient-to-br from-primary/20 to-secondary/20">
           {member.name.slice(0, 2)}
         </AvatarFallback>
-      </Avatar>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   )
