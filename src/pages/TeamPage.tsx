@@ -31,7 +31,7 @@ import { SplitText } from 'gsap/SplitText'
 import { Flip } from 'gsap/Flip'
 import type { TeamMember as TeamMemberType } from '@/lib/i18n/types/translations'
 import type { Sponsor } from '@/lib/i18n/constants/team'
-import { sponsors } from '@/lib/i18n/constants/team'
+import { maintainers, developers, designers, contributors, sponsors } from '@/lib/i18n/constants/team'
 
 // 样式常量定义
 const CARD_STYLES = {
@@ -405,6 +405,37 @@ function TeamMemberCard({ member, isSponsors, selectedRatio = 'aspect-[3/4]' }: 
         </div>
       </CardContent>
     </Card>
+  )
+}
+
+// 小型成员条：小圆头像 + @姓名
+function MemberStrip({ members }: { members: TeamMemberType[] }) {
+  return (
+    <div className="w-full overflow-x-auto pb-4 hide-scrollbar">
+      <div className="flex items-center gap-2 px-4 min-w-max">
+        {members.map((member, index) => (
+          <a
+            key={`${member.name}-${index}`}
+            href={member.github || member.gitee || '#'}
+            target={member.github || member.gitee ? '_blank' : undefined}
+            rel={member.github || member.gitee ? 'noopener noreferrer' : undefined}
+            className="group flex items-center gap-2 pl-1 pr-3 py-1 rounded-md bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 hover:bg-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div className="relative w-7 h-7 rounded-full overflow-hidden bg-muted shrink-0">
+              <ImageProxy
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
+                fallbackSrc={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`}
+              />
+            </div>
+            <span className="text-sm font-medium text-foreground whitespace-nowrap">
+              @{member.name}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -788,6 +819,14 @@ export function TeamPage() {
     return { counts, percentages, total }
   }, [t.team.maintainers, t.team.developers, t.team.designers, t.team.contributors])
 
+  // 所有成员合并（用于顶部成员条）
+  const allMembers = useMemo(() => [
+    ...maintainers,
+    ...developers,
+    ...designers,
+    ...contributors
+  ], [])
+
   // 赞助商按等级分组
   const sponsorsByLevel = useMemo(() => ({
     strategic: sponsors.filter(s => s.level === 'strategic'),
@@ -852,6 +891,11 @@ export function TeamPage() {
               }}
             />
           </div>
+        </div>
+
+        {/* Members Strip */}
+        <div className="mb-8">
+          <MemberStrip members={allMembers} />
         </div>
 
         {/* Team Title */}
