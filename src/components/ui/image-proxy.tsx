@@ -1,10 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface ImageProxyProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   fallbackSrc?: string;
   className?: string;
+}
+
+/**
+ * 对图片 URL 进行安全编码，避免中文/特殊字符路径导致 400 Bad Request
+ * 仅编码 pathname 中的每一段，保留协议、域名、查询参数
+ */
+function encodeImageUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.pathname = parsed.pathname
+      .split('/')
+      .map((segment) => {
+        if (!segment) return segment;
+        // 如果段已经包含 percent-encoding，跳过避免双重编码
+        if (/%[0-9A-Fa-f]{2}/.test(segment)) return segment;
+        return encodeURIComponent(segment);
+      })
+      .join('/');
+    return parsed.toString();
+  } catch {
+    return url;
+  }
 }
 
 /**
@@ -18,14 +40,18 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
   alt = '',
   ...props
 }) => {
-  const [imageSrc, setImageSrc] = useState(src);
+  const encodedSrc = useMemo(() => encodeImageUrl(src), [src]);
+  const [imageSrc, setImageSrc] = useState(encodedSrc);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [triedEncoded, setTriedEncoded] = useState(false);
 
   useEffect(() => {
-    setImageSrc(src);
+    const nextSrc = encodeImageUrl(src);
+    setImageSrc(nextSrc);
     setIsLoading(true);
     setHasError(false);
+    setTriedEncoded(false);
   }, [src]);
 
   const handleLoad = () => {
@@ -36,18 +62,31 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
   const handleError = () => {
     setIsLoading(false);
     setHasError(true);
-    
-    // 如果有fallback图片，尝试使用fallback
+
+    // 首次出错且当前不是编码后的 URL，尝试编码后重试
+    // 这对 R2 + Cloudflare 场景特别重要：中文路径未编码会返回 400
+    if (!triedEncoded && imageSrc === src) {
+      const encoded = encodeImageUrl(src);
+      if (encoded !== imageSrc) {
+        setImageSrc(encoded);
+        setHasError(false);
+        setIsLoading(true);
+        setTriedEncoded(true);
+        return;
+      }
+    }
+
+    // 如果有 fallback 图片，尝试使用 fallback
     if (fallbackSrc && imageSrc !== fallbackSrc) {
       setImageSrc(fallbackSrc);
       setHasError(false);
       setIsLoading(true);
       return;
     }
-    
-    // 尝试多种图片代理服务来解决ORB问题
+
+    // 尝试多种图片代理服务来解决 ORB 问题
     const proxyServices = [
-      // GitHub raw链接的CDN替代方案
+      // GitHub raw 链接的 CDN 替代方案
       (url: string) => {
         if (url.includes('raw.githubusercontent.com')) {
           return url
@@ -56,25 +95,17 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
         }
         return null;
       },
-      // Unsplash图片的优化
+      // Unsplash 图片的优化
       (url: string) => {
         if (url.includes('images.unsplash.com')) {
-          // 移除可能导致CORS问题的参数，使用基础URL
+          // 移除可能导致 CORS 问题的参数，使用基础 URL
           const baseUrl = url.split('?')[0];
           return `${baseUrl}?auto=format&fit=crop&w=400&h=250&q=80`;
         }
         return null;
       },
-      // 通用图片代理服务
-      (url: string) => {
-        // 使用图片代理服务（注意：生产环境中应该使用自己的代理服务）
-        if (url.startsWith('http') && !url.includes('localhost')) {
-          return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=400&h=250&fit=cover&a=attention`;
-        }
-        return null;
-      }
     ];
-    
+
     // 尝试每个代理服务
     for (const proxyService of proxyServices) {
       const proxyUrl = proxyService(src);
@@ -89,7 +120,7 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
 
   if (hasError && (!fallbackSrc || imageSrc === fallbackSrc)) {
     return (
-      <div 
+      <div
         className={cn(
           'flex items-center justify-center bg-gray-100 text-gray-400 text-sm',
           className
@@ -104,7 +135,7 @@ export const ImageProxy: React.FC<ImageProxyProps> = ({
   return (
     <>
       {isLoading && (
-        <div 
+        <div
           className={cn(
             'flex items-center justify-center bg-gray-100 animate-pulse',
             className
