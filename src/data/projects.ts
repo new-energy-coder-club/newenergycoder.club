@@ -137,6 +137,19 @@ export const projects: Project[] = [
     githubUrl:
       'https://gitee.com/darrenpig/new_energy_coder_club/tree/master/projects/科研「横向项目」/3d-printing-team',
   },
+  {
+    id: '9',
+    title: 'SolarGlyph 光伏排布与图纸生成工作台',
+    description:
+      '面向工商业与分布式光伏项目的 Web 端设计工具，提供屋顶选区、组件智能排布、三维可视化、8760 小时时序仿真、IRR 投决报告与 PDF/DXF/JSON 工程导出，实现从现场勘测到交付报告的一站式光伏设计闭环。',
+    image:
+      'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop&crop=center',
+    category: 'web',
+    technologies: ['光伏设计', 'WebGIS', '三维可视化', '8760 仿真', 'ROI 分析', 'DXF/PDF 导出'],
+    author: '新能源编程俱乐部',
+    date: '2026-07-06',
+    projectUrl: 'https://solarglyph.newenergycoder.club/',
+  },
 ]
 
 export function getProjectById(id: string): Project | undefined {
