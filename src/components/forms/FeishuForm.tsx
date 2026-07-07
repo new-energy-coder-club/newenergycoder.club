@@ -2,56 +2,37 @@ import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { ExternalLink, Calendar } from 'lucide-react'
-import { eventApi, feishuApi } from '@/services/api'
 import { useAuthStore } from '@/store/auth-store'
 
 interface FeishuFormProps {
   eventId: string
   eventTitle: string
+  formUrl?: string
   children: React.ReactNode
   className?: string
 }
 
-export function FeishuForm({ eventId, eventTitle, children, className }: FeishuFormProps) {
+const DEFAULT_FEISHU_FORM_URL = 'https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh'
+
+export function FeishuForm({ eventId, eventTitle, formUrl, children, className }: FeishuFormProps) {
   const [open, setOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { user } = useAuthStore()
 
-  // 飞书表单URL - 这里使用示例URL，实际使用时需要替换为真实的飞书表单链接
-  const feishuFormUrl = `https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh?prefill_event_id=${eventId}&prefill_event_title=${encodeURIComponent(eventTitle)}&prefill_user_name=${user?.name || ''}&prefill_user_email=${user?.email || ''}`
+  // Prefer the event-specific form URL, fall back to the default Feishu form
+  const feishuFormUrl = formUrl
+    ? `${formUrl}?prefill_event_id=${eventId}&prefill_event_title=${encodeURIComponent(eventTitle)}&prefill_user_name=${encodeURIComponent(user?.name || '')}&prefill_user_email=${encodeURIComponent(user?.email || '')}`
+    : `${DEFAULT_FEISHU_FORM_URL}?prefill_event_id=${eventId}&prefill_event_title=${encodeURIComponent(eventTitle)}&prefill_user_name=${encodeURIComponent(user?.name || '')}&prefill_user_email=${encodeURIComponent(user?.email || '')}`
 
   const handleFormSubmit = async () => {
     setIsLoading(true)
     try {
-      // 使用API服务记录注册信息
-      const registrationResult = await eventApi.registerEvent({
-        eventId,
-        eventTitle,
-        userId: user?.id,
-        userEmail: user?.email,
-        userName: user?.name,
-        timestamp: new Date().toISOString(),
-      })
-      
-      if (registrationResult.success) {
-        // 获取飞书表单配置
-        const formConfig = await feishuApi.getFormConfig(eventId)
-        
-        if (formConfig.success && formConfig.data) {
-          // 打开飞书表单
-          window.open(formConfig.data.formUrl || feishuFormUrl, '_blank')
-        } else {
-          // 使用默认表单URL
-          window.open(feishuFormUrl, '_blank')
-        }
-        
-        setOpen(false)
-      } else {
-        throw new Error(registrationResult.error || '注册失败')
-      }
+      // 直接打开飞书报名表单
+      window.open(feishuFormUrl, '_blank')
+      setOpen(false)
     } catch (error) {
       console.error('Registration failed:', error)
-      alert('注册失败，请稍后重试')
+      alert('打开报名表失败，请稍后重试')
     } finally {
       setIsLoading(false)
     }

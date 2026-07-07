@@ -137,6 +137,12 @@ ROBOCON 竞赛是工程与科技创新的高水平舞台，参赛学生需要完
 - [🔗 NEC Gitee 仓库](https://gitee.com/darrenpig/new_energy_coder_club)
 - [📱 ROBOCON 公众号：CURC-RCer](https://mp.weixin.qq.com/s/Sli2YxcZYnV3602IS9dzdQ)
 
+## 七、报名参加
+
+如果你想加入 NEC ROBOCON 2026 备赛团队，请填写下方飞书报名表。提交后我们会尽快与你联系，安排面试与分组。
+
+<a href="https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 24px;background:#0ea5e9;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">📝 填写飞书报名表</a>
+
 ---
 
 > 本文档由 NEC 俱乐部根据公开赛事资料与往年参赛经历整理，具体规则以组委会最新通知为准。欢迎俱乐部成员在 Gitee 仓库提交补充与修正。

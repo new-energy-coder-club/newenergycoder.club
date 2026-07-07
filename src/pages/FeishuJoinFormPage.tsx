@@ -69,8 +69,8 @@ export function FeishuJoinFormPage() {
     setIsSubmitting(true)
 
     try {
-      // 模拟发送到飞书多维表
-      const response = await fetch('https://hooks.feishu.cn/your-webhook-url', {
+      // 提交到服务端，由服务端写入飞书多维表
+      const response = await fetch('/api/join', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,13 +82,15 @@ export function FeishuJoinFormPage() {
         })
       })
 
-      if (response.ok) {
+      const result = await response.json()
+
+      if (response.ok && result.success) {
         toast({
           title: t.join.form.submit.success,
           description: t.join.form.submit.successMessage,
           duration: 5000
         })
-        
+
         // 重置表单
         setFormData({
           name: '',
@@ -104,12 +106,13 @@ export function FeishuJoinFormPage() {
           expectations: ''
         })
       } else {
-        throw new Error('提交失败')
+        throw new Error(result.error || '提交失败')
       }
     } catch (error) {
+      const message = error instanceof Error ? error.message : '提交失败'
       toast({
           title: t.join.form.submit.error,
-          description: t.join.form.submit.errorMessage,
+          description: message || t.join.form.submit.errorMessage,
           variant: "destructive"
         })
     } finally {

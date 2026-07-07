@@ -73,7 +73,8 @@ const mockEvents: Event[] = [
     participants: 8,
     maxParticipants: 8,
     status: 'upcoming',
-    detailsUrl: '/docs/events/robocon-2026'
+    detailsUrl: '/docs/events/robocon-2026',
+    registrationUrl: 'https://scn0bdoc8zxg.feishu.cn/share/base/form/shrcnmi2o0DhzfL6dAi2fTQYTvh'
   },
   {
     id: '9',
@@ -273,6 +274,7 @@ export function EventsPage() {
                 <FeishuForm 
                   eventId={event.id}
                   eventTitle={event.title}
+                  formUrl={event.registrationUrl}
                   className="bg-primary/90 backdrop-blur-sm hover:bg-primary text-sm h-8 px-3"
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
