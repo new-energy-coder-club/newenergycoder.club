@@ -15,3 +15,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .vercel
+
+# Generated stats temporary files
+src/data/team-gitee-stats.json.backup
+src/data/team-gitee-stats.json.orig
+src/data/team-gitee-stats.json.fallback

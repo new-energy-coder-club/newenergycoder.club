@@ -267,7 +267,7 @@ export const zhTranslations: Translations = {
     teamPhoto: '团队照片',
     analytics: {
       title: '团队分析',
-      description: '基于Gitee项目贡献者数据的团队组成分析',
+      description: '基于 Gitee 与 GitHub 仓库全分支提交数据的团队组成分析',
       totalMembers: '总成员数',
       activeContributors: '活跃贡献者',
       giteeReference: '参考：Gitee项目贡献者页面',

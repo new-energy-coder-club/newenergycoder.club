@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useTranslation } from '@/contexts/LanguageContext'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { BarChart3, Users, Code2, GitCommit, Trophy } from 'lucide-react'
+import { BarChart3, Users, Code2, GitCommit, Trophy, Github } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
@@ -144,7 +144,7 @@ export function TeamAnalysisSection() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <StatItem
                   value={giteeStats.commits.total}
                   suffix="+"
@@ -152,7 +152,7 @@ export function TeamAnalysisSection() {
                   icon={GitCommit}
                 />
                 <StatItem
-                  value={giteeStats.contributors.humans}
+                  value={(giteeStats.contributors as { uniqueHumans?: number; humans?: number }).uniqueHumans ?? 0}
                   suffix="+"
                   label={t.team.analytics.activeContributors}
                   icon={Users}
@@ -160,8 +160,14 @@ export function TeamAnalysisSection() {
                 <StatItem
                   value={giteeStats.repo.stars}
                   suffix=""
-                  label="Stars"
+                  label="Gitee Stars"
                   icon={Trophy}
+                />
+                <StatItem
+                  value={giteeStats.githubRepo?.stars ?? 0}
+                  suffix=""
+                  label="GitHub Stars"
+                  icon={Github}
                 />
               </div>
 

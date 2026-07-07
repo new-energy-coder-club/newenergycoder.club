@@ -203,7 +203,7 @@ export const enTranslations: Translations = {
     teamPhoto: 'Team Photo',
     analytics: {
       title: 'Team Analytics',
-      description: 'Team composition analysis based on Gitee project contributor data',
+      description: 'Team composition analysis based on commits across all Gitee and GitHub branches',
       totalMembers: 'Total Members',
       activeContributors: 'Active Contributors',
       giteeReference: 'Reference: Gitee project contributor page',

@@ -1,5 +1,6 @@
 {
-  "generatedAt": "2026-07-06T17:46:32.452Z",
+  "generatedAt": "2026-07-06T20:24:07.004Z",
+  "dataSource": "git+gitee+github",
   "repo": {
     "owner": "Darrenpig",
     "name": "new_energy_coder_club",
@@ -10,33 +11,178 @@
     "watches": 138,
     "openIssues": 15
   },
+  "githubRepo": {
+    "owner": "new-energy-coder-club",
+    "name": "new_energy_coder_club",
+    "fullName": "new-energy-coder-club/new_energy_coder_club",
+    "url": "https://github.com/new-energy-coder-club/new_energy_coder_club",
+    "stars": 41,
+    "forks": 2,
+    "openIssues": 3
+  },
   "commits": {
-    "total": 1351,
-    "human": 90
+    "total": 1856,
+    "bot": 120,
+    "human": 1736
   },
   "contributors": {
-    "totalOnGitee": 10,
-    "humans": 5,
+    "uniqueHumans": 76,
     "top": [
       {
         "name": "DarrenPig",
-        "contributions": 80
+        "contributions": 967,
+        "emails": [
+          "121377489+Darrenpig@users.noreply.github.com",
+          "22230635@czu.cn",
+          "2971134146@qq.com",
+          "darrenpig@foxmail.com",
+          "m0_74037814@example.com"
+        ],
+        "aliases": [
+          "DarrenPig"
+        ]
+      },
+      {
+        "name": "卢王淳",
+        "contributions": 169,
+        "emails": [
+          "15032909+lu-wangchun@user.noreply.gitee.com",
+          "1824531269@qq.com"
+        ],
+        "aliases": [
+          "卢王淳"
+        ]
+      },
+      {
+        "name": "许子涵",
+        "contributions": 61,
+        "emails": [
+          "14446840+xu-zihanhan@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "许子涵涵"
+        ]
       },
       {
         "name": "单广志",
-        "contributions": 6
+        "contributions": 44,
+        "emails": [
+          "2107997753@qq.com"
+        ],
+        "aliases": [
+          "单广志"
+        ]
       },
       {
-        "name": "7.",
-        "contributions": 2
+        "name": "郑绍恺",
+        "contributions": 39,
+        "emails": [
+          "15174317+zheng-shaokai@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "郑绍恺"
+        ]
       },
       {
-        "name": "韩祺冉",
-        "contributions": 1
+        "name": "彭柯尹",
+        "contributions": 29,
+        "emails": [
+          "15601629+peng-keyin@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "彭柯尹"
+        ]
       },
       {
-        "name": "王欣怡",
-        "contributions": 1
+        "name": "夏汪禧",
+        "contributions": 28,
+        "emails": [
+          "14654084+xia-wangxi@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "夏汪禧"
+        ]
+      },
+      {
+        "name": "殷子豪",
+        "contributions": 26,
+        "emails": [
+          "15125077+yinzihao-pika-pikaqiu@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "殷子豪"
+        ]
+      },
+      {
+        "name": "吴洛斌",
+        "contributions": 24,
+        "emails": [
+          "342297745@qq.com"
+        ],
+        "aliases": [
+          "吴洛斌"
+        ]
+      },
+      {
+        "name": "Pony17",
+        "contributions": 24,
+        "emails": [
+          "14913760+pony17@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "Pony17"
+        ]
+      },
+      {
+        "name": "Elowen",
+        "contributions": 21,
+        "emails": [
+          "2142088244@qq.com"
+        ],
+        "aliases": [
+          "Elowen"
+        ]
+      },
+      {
+        "name": "徐海婷",
+        "contributions": 20,
+        "emails": [
+          "15989091+xu-haiting@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "徐海婷"
+        ]
+      },
+      {
+        "name": "qingmeijiupiao",
+        "contributions": 20,
+        "emails": [
+          "2368357055@qq.com"
+        ],
+        "aliases": [
+          "qingmeijiupiao"
+        ]
+      },
+      {
+        "name": "郭童童",
+        "contributions": 18,
+        "emails": [
+          "15726950+guo--tongtong@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "郭童童"
+        ]
+      },
+      {
+        "name": "杨力滔",
+        "contributions": 18,
+        "emails": [
+          "1339646058@qq.com",
+          "14948512+ylt123456789@user.noreply.gitee.com"
+        ],
+        "aliases": [
+          "22021530杨力滔"
+        ]
       }
     ]
   },
