@@ -109,23 +109,6 @@ export interface Translations {
     };
   };
   
-  // Features Section
-  features: {
-    title: string;
-    subtitle: string;
-    weeklyWorkshops: string;
-    weeklyWorkshopsDesc: string;
-    openSource: string;
-    openSourceDesc: string;
-    hackathons: string;
-    hackathonsDesc: string;
-    guestSpeakers: string;
-    guestSpeakersDesc: string;
-    networking: string;
-    networkingDesc: string;
-    conferences: string;
-    conferencesDesc: string;
-  };
   
   // Team Section
   team: {

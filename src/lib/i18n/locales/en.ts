@@ -175,22 +175,6 @@ export const enTranslations: Translations = {
       ]
     }
   },
-  features: {
-    title: 'Why Join Our Community?',
-    subtitle: 'Discover the benefits of being part of our sustainable coding community',
-    weeklyWorkshops: 'Weekly Coding Workshops',
-    weeklyWorkshopsDesc: 'Hands-on sessions covering sustainable tech development and green coding practices',
-    openSource: 'Open Source Projects',
-    openSourceDesc: 'Collaborate on real-world projects that make a positive environmental impact',
-    hackathons: 'Green Tech Hackathons',
-    hackathonsDesc: 'Participate in exciting competitions focused on solving environmental challenges',
-    guestSpeakers: 'Industry Guest Speakers',
-    guestSpeakersDesc: 'Learn from experts in renewable energy and sustainable technology sectors',
-    networking: 'Professional Networking',
-    networkingDesc: 'Connect with like-minded developers and industry professionals',
-    conferences: 'Tech Conferences',
-    conferencesDesc: 'Attend exclusive events and conferences on sustainable technology trends',
-  },
   team: {
     title: 'Who Are We?',
     description: 'We are a group meeting at the intersection of code and dreams. There are students debugging late at night, developers chasing elegance, and sustainability believers obsessed with "how to make the world more efficient and cleaner". We differ — in majors, backgrounds, and even the programming languages we love. Yet we are the same — we believe in technology for good, in the power of youth, and that sustainability is not a choice but a necessity. Here, curiosity is a passport and practice is the common language. We are not only building products; we are building a greener, fairer, and smarter future. We are a verb in action.',

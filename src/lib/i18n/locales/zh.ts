@@ -239,22 +239,6 @@ export const zhTranslations: Translations = {
       conditions: ['许可证和版权声明']
     }
   },
-  features: {
-    title: '俱乐部特色',
-    subtitle: '加入我们的社区，享受这些独特的好处',
-    weeklyWorkshops: '每周工作坊',
-    weeklyWorkshopsDesc: '定期举办编程和技术研讨会',
-    openSource: '开源项目',
-    openSourceDesc: '为真实的可持续技术项目做贡献',
-    hackathons: '黑客马拉松',
-    hackathonsDesc: '参加专注的编码挑战',
-    guestSpeakers: '客座演讲者',
-    guestSpeakersDesc: '向行业专家学习',
-    networking: '网络交流',
-    networkingDesc: '与志同道合的人建立联系',
-    conferences: '会议',
-    conferencesDesc: '参加可持续技术活动'
-  },
   team: {
     title: '我们是谁？',
     description: '一群在代码与梦想交汇处相遇的人。这里有深夜调试的学生，有追求优雅的开发者，有痴迷于「如何让世界更高效、更清洁」的可持续技术信徒。 我们不同——专业、背景、甚至喜欢的编程语言都可能不一样。但我们相同——相信技术向善，相信年轻的力量，相信可持续不是选择而是必须。 在这里，好奇心是通行证，实践是通用语。我们不只是构建产品，更是在构建心中那个更绿色、更公平、更智能的未来。 我们，是一个行动动词。',
