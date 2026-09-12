@@ -31,6 +31,9 @@ export const zhTranslations: Translations = {
       copyButton: '复制群名',
       copied: '已复制！',
       qrHint: '扫一扫上方二维码，添加社区伙伴为好友，备注来意即可',
+      memberQrTitle: '新成员微信群',
+      backendQrTitle: '后端组报名表',
+      backendQrHint: '扫码填写飞书收集表，申请加入后端组',
       addTips: '如何加入：',
       addTipsList: [
         '复制上面的群名',

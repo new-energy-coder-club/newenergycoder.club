@@ -386,6 +386,9 @@ export const enTranslations: Translations = {
       copyButton: 'Copy Group Name',
       copied: 'Copied!',
       qrHint: 'Scan the QR code above to add our community buddy on WeChat',
+      memberQrTitle: 'New Member WeChat Group',
+      backendQrTitle: 'Backend Group Sign-up',
+      backendQrHint: 'Scan to fill in the Feishu form and apply for the backend group',
       addTips: 'How to join:',
       addTipsList: [
         'Copy the group name above',

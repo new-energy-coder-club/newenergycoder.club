@@ -119,15 +119,32 @@ export function JoinPage() {
                      </Button>
                   </div>
 
-                  {/* New member WeChat QR code */}
-                  <div className="flex flex-col items-center gap-3">
-                    <img
-                      src="/images/wechat-qr-new-member.jpg"
-                      alt="WeChat QR code for new members"
-                      className="h-64 w-auto rounded-xl border border-muted shadow-sm bg-white p-2"
-                      loading="lazy"
-                    />
-                    <p className="text-sm text-muted-foreground">{t.joinPage.wechat.qrHint}</p>
+                  {/* QR codes: new member WeChat + backend form */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="flex flex-col items-center gap-3">
+                      <img
+                        src="/images/wechat-qr-new-member.jpg"
+                        alt="WeChat QR code for new members"
+                        className="h-56 w-auto rounded-xl border border-muted shadow-sm bg-white p-2"
+                        loading="lazy"
+                      />
+                      <div className="text-center">
+                        <p className="text-sm font-medium">{t.joinPage.wechat.memberQrTitle}</p>
+                        <p className="text-sm text-muted-foreground">{t.joinPage.wechat.qrHint}</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center gap-3">
+                      <img
+                        src="/images/feishu-qr-backend-form.png"
+                        alt="Feishu form QR code for backend group"
+                        className="h-56 w-auto rounded-xl border border-muted shadow-sm bg-white p-2"
+                        loading="lazy"
+                      />
+                      <div className="text-center">
+                        <p className="text-sm font-medium">{t.joinPage.wechat.backendQrTitle}</p>
+                        <p className="text-sm text-muted-foreground">{t.joinPage.wechat.backendQrHint}</p>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="bg-muted/50 p-4 rounded-lg">

@@ -249,6 +249,9 @@ export interface Translations {
       copyButton: string
       copied: string
       qrHint: string
+      memberQrTitle: string
+      backendQrTitle: string
+      backendQrHint: string
       addTips: string
       addTipsList: string[]
     }
