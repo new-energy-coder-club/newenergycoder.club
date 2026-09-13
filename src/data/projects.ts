@@ -149,6 +149,20 @@ export const projects: Project[] = [
     author: '新能源编程俱乐部',
     date: '2026-07-06',
     projectUrl: 'https://solarglyph.newenergycoder.club/',
+    githubUrl: 'https://gitee.com/darrenpig/new_energy_coder_club/tree/SolarGlyph',
+  },
+  {
+    id: '10',
+    title: '416MES 仓储管理系统（单机离线版）',
+    description:
+      '面向 A416 实验室的单文件网页仓储管理应用，双击即用、无需安装联网。覆盖货架库位/容器/工单/盘点全流程，适配汉印 N41 热敏标签打印，内置不可变审计日志与回放校验、Excel 双向模板，并通过飞书多维表云端后端实现本地备份与云端的双向同步。',
+    image:
+      'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=600&fit=crop&crop=center',
+    category: 'web',
+    technologies: ['单文件 Web 应用', 'localStorage', '标签打印', '飞书多维表', 'InvenTree', '审计日志'],
+    author: '新能源编程俱乐部',
+    date: '2026-09-12',
+    githubUrl: 'https://github.com/Darrenpig/416mes',
   },
 ]
 
