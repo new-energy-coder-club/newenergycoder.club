@@ -13,26 +13,27 @@ graph TD
     B --> C[App.tsx 路由分发]
     C --> D[PageLayout]
     D --> E[DocumentPage]
-    C --> F[TechnicalDocsLayout]
-    F --> E
+    D --> F[TechnicalDocsLayout]
     F --> G[TechnicalDocsNavigation]
     F --> H[TechnicalDocsSearch]
-    F --> I[DocumentTOC]
+    F --> I[TechnicalDocsOverview]
+    F --> J[DocumentTOC 预留详情态]
 
-    E --> J[DocumentCache]
-    E --> K[DocumentLoader]
-    K --> L[/public/docs/_meta.json]
-    K --> M[/public/docs/**/*.md]
+    E --> K[resolveDocumentRouteParams]
+    E --> L[DocumentCache]
+    E --> M[DocumentLoader]
+    M --> N[/public/docs/_meta.json]
+    M --> O[/public/docs/**/*.md]
 
-    E --> N[ReactMarkdown]
-    N --> O[remark-gfm]
-    E --> P[HeaderWithAnchor]
-    E --> Q[LinkDetectorComponent]
-    E --> R[ThemeToggle]
+    E --> P[ReactMarkdown]
+    P --> Q[remark-gfm]
+    E --> R[HeaderWithAnchor]
+    E --> S[LinkDetectorComponent]
+    E --> T[ThemeToggle]
 
     subgraph "静态文档仓库"
-        L
-        M
+        N
+        O
     end
 ```
 
@@ -47,6 +48,7 @@ graph TB
         A5[DocumentTOC]
         A6[HeaderWithAnchor]
         A7[LinkDetectorComponent]
+        A8[TechnicalDocsOverview]
     end
 
     subgraph "服务层"
@@ -58,6 +60,8 @@ graph TB
         C1[App.tsx Routes]
         C2[types/document.ts]
         C3[types/routing.ts]
+        C4[utils/documentRoute.js]
+        C5[utils/documentFetch.js]
     end
 
     subgraph "静态资源层"
@@ -67,23 +71,27 @@ graph TB
 
     A1 --> B1
     A1 --> B2
+    A1 --> C4
     A2 --> B1
     A3 --> B1
     A4 --> B1
     A5 --> A1
     B1 --> D1
     B1 --> D2
+    B1 --> C5
     C1 --> A1
     C1 --> A2
     A1 --> A6
     A1 --> A7
+    A2 --> A8
 ```
 
 ### 2.3 架构说明
 
 - 文档系统当前不是基于运行时文件系统扫描或 `import.meta.glob`，而是通过浏览器 `fetch` 直接读取 `public/docs` 下的静态资源。
 - 通用文档页入口为 `DocumentPage`，其内部同时负责数据加载、缓存读取、Markdown 渲染、标题锚点增强以及链接检测结果展示。
-- 技术文档模块在通用文档能力之上增加了独立布局层 `TechnicalDocsLayout`，提供左侧导航、顶部搜索和右侧目录。
+- 技术文档模块在通用文档能力之上增加了独立布局层 `TechnicalDocsLayout`，但当前路由只将其用于 `/docs/technical` 概览页。
+- `/docs/technical/:slug` 当前实际直接进入 `DocumentPage`，并由 `resolveDocumentRouteParams()` 根据路径补全 `technical` 分类上下文。
 - 当前设计已经从“计划中的组件拆分”回收为“以 `DocumentPage` 为核心、局部增强组件围绕其工作”的实现方式。
 
 ## 3. 核心组件设计
@@ -138,12 +146,14 @@ class DocumentLoader {
 - 优先尝试 `/docs/{category}/{subcategory?}/{slug}/index.md`
 - 若不存在，再回退到 `/docs/{category}/{subcategory?}/{slug}.md`
 - 元数据文件路径为 `/docs/{category}/{subcategory?}/_meta.json`
+- 当 `index.md` 请求在开发或托管回退场景下返回 `text/html` 时，借助 `shouldFallbackToDirectMarkdown()` 强制回退到真实的 `slug.md`
 
 实现约束：
 
 - Front Matter 解析器为轻量自定义实现，仅支持基础键值和简单数组
 - `searchDocuments()` 目前仍是占位实现，实际搜索由 `TechnicalDocsSearch` 自行遍历文档完成
 - `baseUrl` 当前初始化为空字符串，系统默认从站点根路径读取 `/docs/...`
+- `loadAllCategories()` 当前仅保留定义，仓库内未见实际调用方
 
 ### 3.2 DocumentCache 服务
 
@@ -184,13 +194,14 @@ class DocumentCache {
 
 `src/components/DocumentPage.tsx` 是当前通用文档渲染页，承担以下职责：
 
-- 从路由参数中解析 `category`、`subcategory`、`slug`
+- 从路由参数和当前路径中解析 `category`、`subcategory`、`slug`
 - 协调 `DocumentCache` 与 `DocumentLoader`
 - 处理加载、成功、失败三种状态
 - 渲染标题、描述、作者、更新时间、难度、标签
 - 使用 `ReactMarkdown + remark-gfm` 渲染正文
 - 将标题节点替换为 `HeaderWithAnchor`
-- 在正文下方渲染 `LinkDetectorComponent`
+- 在正文下方通过 `ErrorBoundary` 包裹渲染 `LinkDetectorComponent`
+- 为 `LinkDetectorComponent` 打开 `autoValidate={true}`，在页面级自动执行链接校验
 
 当前实现不是单纯的内容展示组件，而是文档详情页的“页面级聚合组件”。
 
@@ -210,13 +221,18 @@ const DocumentPage: React.FC = () => {
 
 ### 3.4 TechnicalDocsLayout 组件
 
-`src/components/TechnicalDocsLayout.tsx` 只服务于技术文档模块，负责三栏布局：
+`src/components/TechnicalDocsLayout.tsx` 只服务于技术文档模块，组件本身支持三栏布局：
 
 - 左栏：`TechnicalDocsNavigation`
 - 中栏：`TechnicalDocsOverview` 或 `DocumentPage`
 - 右栏：`DocumentTOC`，仅在加载到具体技术文档且存在 TOC 时展示
 
-它通过再次调用 `DocumentLoader.loadDocument('technical', slug)` 预取当前技术文档的 TOC，以支持右侧目录展示。
+但按当前 `App.tsx` 路由接线：
+
+- `/docs/technical` 才会进入 `TechnicalDocsLayout`
+- `/docs/technical/:slug` 直接进入 `DocumentPage`
+
+因此它内部“详情页 + TOC”这条分支目前是组件级已实现、路由级未接入的预留能力。组件内部仍会在拿到 `slug` 时调用 `DocumentLoader.loadDocument('technical', slug)` 预取 TOC。
 
 ### 3.5 导航与搜索组件
 
@@ -226,6 +242,7 @@ const DocumentPage: React.FC = () => {
   - 读取 `public/docs/technical/_meta.json`
   - 生成技术文档导航项
   - 按 `order` 排序
+  - 代码中仍保留 `deployment` 的图标映射，但该 slug 已不在当前 `_meta.json` 中使用
 - `TechnicalDocsSearch`
   - 仅搜索 `technical` 分类
   - 先读取 `_meta.json` 中的 `items`
@@ -245,33 +262,39 @@ const DocumentPage: React.FC = () => {
   - 对全文中的链接进行解析、统计与验证结果展示
   - 目前作为正文后的辅助检测区块存在
   - 并未直接替换 `ReactMarkdown` 渲染出来的正文超链接
+  - 在当前 `DocumentPage` 中默认开启自动校验
+- `LazyLinkDetector` / `ViewportLazyLinkDetector`
+  - 已在仓库中实现
+  - 当前主文档渲染链路未接入
 
 ## 4. 模块依赖关系图
 
 ```mermaid
 graph LR
-    A[App.tsx] --> B[DocumentPage]
-    A --> C[TechnicalDocsLayout]
+    A[App.tsx] --> B[DocumentPage 路由]
+    A --> C[TechnicalDocsLayout 路由]
 
     C --> D[TechnicalDocsNavigation]
     C --> E[TechnicalDocsSearch]
-    C --> F[DocumentTOC]
-    C --> B
+    C --> F[TechnicalDocsOverview]
+    C -.组件内预留.-> G[DocumentTOC]
+    C -.组件内预留.-> B
 
-    B --> G[DocumentLoader]
-    B --> H[DocumentCache]
-    B --> I[ReactMarkdown]
-    I --> J[remark-gfm]
-    B --> K[HeaderWithAnchor]
-    B --> L[LinkDetectorComponent]
+    B --> H[resolveDocumentRouteParams]
+    B --> I[DocumentLoader]
+    B --> J[DocumentCache]
+    B --> K[ReactMarkdown]
+    K --> L[remark-gfm]
+    B --> M[HeaderWithAnchor]
+    B --> N[LinkDetectorComponent]
 
-    D --> G
-    E --> G
-    C --> G
+    D --> I
+    E --> I
+    C --> I
 
-    G --> M[public/docs/_meta.json]
-    G --> N[public/docs/**/*.md]
-    H --> O[sessionStorage]
+    I --> O[public/docs/_meta.json]
+    I --> P[public/docs/**/*.md]
+    J --> Q[sessionStorage]
 ```
 
 ## 5. 接口契约定义
@@ -383,6 +406,7 @@ sequenceDiagram
     participant U as 用户
     participant R as React Router
     participant DP as DocumentPage
+    participant RP as resolveDocumentRouteParams
     participant DC as DocumentCache
     participant DL as DocumentLoader
     participant FS as public/docs
@@ -390,14 +414,19 @@ sequenceDiagram
 
     U->>R: 访问 /docs/:category/:slug
     R->>DP: 渲染 DocumentPage
+    DP->>RP: 规范化 category/subcategory/slug
     DP->>DC: 读取缓存
 
     alt 缓存命中
         DC-->>DP: 返回 DocumentContent
     else 缓存未命中
         DP->>DL: loadDocument(category, slug, subcategory)
-        DL->>FS: fetch index.md 或 slug.md
-        FS-->>DL: 返回 Markdown 文本
+        DL->>FS: 先 fetch index.md
+        FS-->>DL: 返回 Markdown 或 HTML fallback
+        alt 返回 HTML fallback
+            DL->>FS: 回退 fetch slug.md
+            FS-->>DL: 返回 Markdown 文本
+        end
         DL->>DL: 解析 Front Matter
         DL->>DL: 生成 TOC
         DL-->>DP: 返回 DocumentLoadResult
@@ -417,22 +446,30 @@ sequenceDiagram
     participant TN as TechnicalDocsNavigation
     participant TS as TechnicalDocsSearch
     participant DL as DocumentLoader
-    participant TOC as DocumentTOC
-    participant DP as DocumentPage
-
-    U->>TL: 访问 /docs/technical 或 /docs/technical/:slug
+    U->>TL: 访问 /docs/technical
     TL->>TN: 加载技术文档导航
     TN->>DL: loadMeta('technical')
     TS->>DL: loadMeta('technical')
+    TL-->>U: 显示概览页与搜索入口
+```
 
-    alt 访问具体文档
-        TL->>DL: loadDocument('technical', slug)
-        DL-->>TL: 返回 toc
-        TL->>DP: 渲染正文页
-        TL->>TOC: 渲染右侧目录
-    else 访问索引页
-        TL-->>U: 显示概览页
-    end
+### 6.3 技术文档详情当前运行流程
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant R as React Router
+    participant DP as DocumentPage
+    participant RP as resolveDocumentRouteParams
+    participant DL as DocumentLoader
+    participant LD as LinkDetectorComponent
+
+    U->>R: 访问 /docs/technical/:slug
+    R->>DP: 直接渲染 DocumentPage
+    DP->>RP: 根据 pathname 补全 technical 分类
+    DP->>DL: loadDocument('technical', slug)
+    DL-->>DP: 返回文档内容与 TOC
+    DP->>LD: 在正文后执行链接检测/自动校验
+    DP-->>U: 展示无侧栏的技术文档详情页
 ```
 
 ## 7. 文件系统设计
@@ -533,6 +570,8 @@ difficulty: "beginner"
 设计说明：
 
 - `technical` 分类有独立列表页和增强布局
+- `technical` 详情页当前并未复用 `TechnicalDocsLayout`，而是直接走 `DocumentPage`
+- 为兼容 `/docs/technical/:slug` 缺少显式 `category` 参数的路由形态，`DocumentPage` 通过 `resolveDocumentRouteParams()` 基于 `pathname` 回填 `technical`
 - 通用分类仍然直接走 `DocumentPage`
 - `/getting-started` 当前已改为外部跳转到 `https://docs.newenergycoder.club/start-here`，不再直接进入本地 Markdown 页面
 
@@ -565,22 +604,27 @@ flowchart TD
 
 - `DocumentPage`、`TechnicalDocsLayout` 通过路由级 `React.lazy` 进行按需加载
 - 文档内容采用内存缓存 + `sessionStorage` 双层缓存
-- 右侧 TOC 仅在技术文档详情页中存在且有目录时显示
+- `DocumentLoader` 对 `index.md` 返回 HTML fallback 的情况做了二次回退保护
+- 链接检测具备独立懒加载组件实现，但当前主链路尚未启用
 
 ### 10.2 当前限制
 
 - 搜索仅覆盖 `technical` 分类，且采用前端串行遍历文档内容的方式，成本较高
 - `DocumentPage` 集中了加载、渲染、增强、元信息展示等多种职责，可维护性一般
 - `DocumentLoader.searchDocuments()` 和 `DocumentCache.preload()` 仍为占位实现
+- `DocumentLoader.loadAllCategories()` 当前仅保留定义，未接入实际调用链
 - `LinkDetectorComponent` 目前是文档后的检测区块，不是 Markdown 正文中的统一链接渲染器
+- `TechnicalDocsLayout` 虽然具备详情态与右侧 TOC 能力，但当前技术文档详情路由直接进入 `DocumentPage`，因此用户实际看不到左侧导航、搜索栏和右侧目录的联动布局
 - `DocumentTOC` 的缩进类名使用了动态字符串 `ml-${level * 4}`，依赖 Tailwind 运行结果，存在样式失效风险
 
 ## 11. 测试现状与建议
 
 ### 11.1 当前现状
 
-- 仓库内已有文档系统相关代码，但这套文档渲染链路尚未在本设计范围内看到成体系的自动化测试用例
-- 现有实现更多依赖页面运行时行为验证
+- 仓库中已存在少量基于 `node:test` 的工具级测试，覆盖文档路由补偿、抓取回退判断和 Markdown 链接提取等基础能力
+- 已确认的相关测试文件包括 `build/documentRoute.test.mjs`、`build/documentFetch.test.mjs`、`build/linkExtraction.test.mjs`
+- 但 `DocumentPage`、`TechnicalDocsLayout`、`TechnicalDocsSearch`、`DocumentCache` 等核心页面/组件链路仍缺少成体系的组件测试或集成测试
+- 现有实现仍以页面运行时行为验证为主
 
 ### 11.2 建议补充的测试范围
 

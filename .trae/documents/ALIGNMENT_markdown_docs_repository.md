@@ -18,7 +18,7 @@
 - 文档仓库已存在，实际目录位于 `public/docs/`
 - 通用 Markdown 文档访问已接入 `/docs/...` 路由
 - 核心加载与缓存能力已经落地，分别由 `DocumentLoader` 与 `DocumentCache` 承担
-- 技术文档模块已实现增强布局：`TechnicalDocsLayout + TechnicalDocsNavigation + TechnicalDocsSearch + DocumentTOC`
+- 技术文档模块已实现增强布局组件：`TechnicalDocsLayout + TechnicalDocsNavigation + TechnicalDocsSearch + DocumentTOC`
 - 通用文档页 `DocumentPage` 已支持 Front Matter、TOC、标题锚点、任务列表渲染、链接检测区块
 - `/getting-started` 当前不再直接进入本地文档系统，而是重定向到外部站点 `https://docs.newenergycoder.club/start-here`
 
@@ -29,6 +29,7 @@
 - 现状中 `DocumentPage` 集中了页面加载、数据读取、Markdown 渲染和增强逻辑，没有按最初规划细拆
 - 原需求强调 `/getting-started` 作为本地文档入口，但当前实现已经改为外部跳转
 - 搜索能力只覆盖 `technical` 分类，不是全局文档搜索
+- 技术文档增强布局组件虽已实现，但当前路由只将其接入 `/docs/technical` 概览页，`/docs/technical/:slug` 实际直接进入 `DocumentPage`
 
 ## 3. 现有项目分析
 
@@ -56,8 +57,10 @@
   - 集成 `ReactMarkdown`
   - 集成 `HeaderWithAnchor`
   - 集成 `LinkDetectorComponent`
+  - 通过 `resolveDocumentRouteParams()` 补偿技术文档详情页路由参数
 - `src/components/TechnicalDocsLayout.tsx`
-  - 技术文档三栏布局
+  - 技术文档三栏布局组件
+  - 当前仅用于 `/docs/technical` 概览页
 - `src/components/TechnicalDocsNavigation.tsx`
   - 技术文档左侧导航
 - `src/components/TechnicalDocsSearch.tsx`
@@ -118,13 +121,15 @@
 
 - `DocumentLoader.loadDocument()` 先尝试 `index.md`
 - 若目录型文档不存在，则回退到 `slug.md`
+- 当 `index.md` 请求返回 HTML fallback 时，会进一步强制回退到 `slug.md`
 - `DocumentLoader.loadMeta()` 按分类读取 `_meta.json`
 - Markdown 文件通过浏览器 `fetch('/docs/...')` 读取
 
 ### 5.3 页面集成方式
 
 - 通用文档通过 `DocumentPage` 渲染
-- 技术文档通过 `TechnicalDocsLayout` 提供增强阅读体验
+- 技术文档概览页通过 `TechnicalDocsLayout` 提供增强阅读体验
+- 技术文档详情页当前直接通过 `DocumentPage` 渲染，并不复用 `TechnicalDocsLayout`
 - `/getting-started` 与本地 Markdown 仓库的耦合关系已经弱化
 
 ## 6. 待确认问题
@@ -143,14 +148,14 @@
 1. 已存在分类清晰的 Markdown 文档仓库
 2. 已支持 Markdown 自动渲染
 3. 已支持缓存与错误处理
-4. 已支持技术文档导航、搜索、目录
+4. 已支持技术文档概览页导航、搜索与预留目录能力
 5. 已支持响应式阅读页面
 
 ### 7.2 部分满足
 
 1. 学习入口与文档系统存在关联，但 `/getting-started` 已外跳，不再是本地统一入口
 2. 搜索已存在，但只覆盖 `technical`
-3. 目录能力已存在，但主要服务于技术文档布局
+3. 目录能力已在组件层实现，但当前技术文档详情路由未接入该三栏布局
 
 ### 7.3 未满足或与原规划不同
 

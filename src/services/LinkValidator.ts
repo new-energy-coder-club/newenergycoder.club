@@ -3,7 +3,7 @@
  * 负责验证链接的有效性和可访问性
  */
 
-import { ValidationResult, LinkType } from '../types/link-detection';
+import { ValidationResult } from '../types/link-detection';
 import { globalCacheManager } from './CacheManager';
 
 /**
@@ -276,7 +276,7 @@ export class LinkValidator {
           // 网络错误，尝试使用备用验证方式
           try {
             return await this.validateUrlWithImage(url, timeout);
-          } catch (fallbackError) {
+          } catch {
             return {
               isValid: false,
               error: '网络连接失败，无法验证链接',
@@ -368,7 +368,7 @@ export class LinkValidator {
 
       try {
         img.src = url;
-      } catch (error) {
+      } catch {
         clearTimeout(timeoutId);
         resolveOnce({
           isValid: false,
@@ -453,7 +453,7 @@ export class LinkValidator {
    */
   private validateTelUrl(url: string): ValidationResult {
     const tel = url.replace('tel:', '');
-    const telRegex = /^[+]?[0-9\s\-\(\)]+$/;
+    const telRegex = /^[+]?[0-9\s-()]+$/;
     
     const isValid = telRegex.test(tel) && tel.replace(/\D/g, '').length >= 7;
     
@@ -472,7 +472,7 @@ export class LinkValidator {
       // 将相对URL转换为绝对URL
       const absoluteUrl = new URL(url, window.location.href).href;
       return this.validateInternalUrl(absoluteUrl);
-    } catch (error) {
+    } catch {
       return {
         isValid: false,
         error: '相对URL格式无效',

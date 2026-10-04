@@ -256,8 +256,7 @@ export const LinkDetectorComponent: React.FC<LinkDetectorComponentProps> = ({
     isValidating,
     error,
     processLinks,
-    reprocess,
-    getStats
+    reprocess
   } = useLinkProcessor({
     autoValidate,
     documentContext: {

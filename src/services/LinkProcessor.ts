@@ -13,7 +13,7 @@ import {
   ValidationResult,
   DocumentDifficulty
 } from '../types/link-detection';
-import { getDifficultyConfig } from '../config/DifficultyConfig';
+import { DifficultyLevelConfig, getDifficultyConfig } from '../config/DifficultyConfig';
 import { LinkValidator } from './LinkValidator';
 import { LinkTransformer } from './LinkTransformer';
 import { globalCacheManager } from './CacheManager';
@@ -190,7 +190,6 @@ export class LinkProcessor implements ILinkDetectionService {
    */
   private async doProcessLink(url: string, context: DocumentContext): Promise<ProcessedLink> {
     const config = getDifficultyConfig(context.difficulty);
-    const startTime = Date.now();
 
     try {
       // 转换链接
@@ -367,7 +366,7 @@ export class LinkProcessor implements ILinkDetectionService {
   /**
    * 判断是否需要验证链接
    */
-  private shouldValidateLink(type: LinkType, config: any): boolean {
+  private shouldValidateLink(type: LinkType, config: DifficultyLevelConfig): boolean {
     if (type === LinkType.EXTERNAL) {
       return config.enableExternalLinkValidation;
     }

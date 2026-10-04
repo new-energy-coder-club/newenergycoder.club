@@ -289,7 +289,7 @@ export const zhTranslations: Translations = {
     maintainers: [
       {
         name: 'DarrenPig',
-        role: 'Club Founder & BSP 嵌软工程师',
+        role: '实验室创始人 & BSP 嵌软工程师',
         bio: '专注于将人工智能应用于能源优化的可再生能源研究者。',
         image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/DarrenPig.jpg',
         tags: ['AI', 'BSP', '嵌入式', 'ROBOCON', '能源监测', 'openEuler'],
@@ -300,7 +300,7 @@ export const zhTranslations: Translations = {
       },
       {
         name: '殷统创',
-        role: 'Club Founder & BSP Expert',
+        role: '实验室创始人 & BSP Expert',
         bio: '专注于AI在能源优化应用的可再生能源研究员。',
         image: 'https://cdn.newenergycoder.club/images/src/image/maintainer/殷统创.jpg',
         tags: ['AI', 'BSP', '能源优化', '可再生能源', '华为云AI'],

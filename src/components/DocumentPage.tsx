@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate, useLocation, Link } from 'react-router-dom'
+import React, { useEffect, useMemo, useState } from 'react'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { ArrowLeft, Calendar, User, Tag, Clock, ChevronLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
+import { User, Tag, Clock, ChevronLeft } from 'lucide-react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
-import { FloatingControls } from '@/components/ui/floating-controls'
 import { DocumentContent, DocumentLoadState } from '../types/document';
 import { DocumentRouteParams } from '../types/routing';
 import { DocumentLoader } from '../services/DocumentLoader';
@@ -57,8 +51,8 @@ export const DocumentPage: React.FC = () => {
   const subcategory = resolvedRouteParams?.subcategory;
   const slug = resolvedRouteParams?.slug;
 
-  const documentLoader = DocumentLoader.getInstance();
-  const documentCache = DocumentCache.getInstance();
+  const documentLoader = useMemo(() => DocumentLoader.getInstance(), []);
+  const documentCache = useMemo(() => DocumentCache.getInstance(), []);
 
   useEffect(() => {
     const loadDocument = async () => {
@@ -95,7 +89,7 @@ export const DocumentPage: React.FC = () => {
     if (category && slug) {
       loadDocument();
     }
-  }, [category, subcategory, slug]);
+  }, [category, subcategory, slug, documentCache, documentLoader]);
 
   const handleBack = () => {
     navigate(-1);
@@ -285,7 +279,7 @@ export const DocumentPage: React.FC = () => {
                 components={{
                   li: ({ children, className, ...props }) => {
                     if (className?.includes('task-list-item')) {
-                      const checked = (props as any)['data-checked'] !== undefined;
+                      const checked = Object.prototype.hasOwnProperty.call(props, 'data-checked');
                       return <DocTaskListItem checked={checked}>{children as React.ReactNode}</DocTaskListItem>;
                     }
                     return <li className="ml-4" {...props}>{children as React.ReactNode}</li>;
@@ -352,7 +346,7 @@ export const DocumentPage: React.FC = () => {
                     </HeaderWithAnchor>
                   ),
                   // 自定义代码块样式
-                  code: ({ children, className, ...props }: any) => {
+                  code: ({ children, className, ...props }) => {
                     const isInline = !className || !className.includes('language-');
                     if (isInline) {
                       return (

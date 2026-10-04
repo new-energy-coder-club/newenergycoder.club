@@ -402,7 +402,7 @@ export const contributors: TeamMember[] = [
     tags: ['3D打印', '成型技术', '团队管理', '技术支持', '设备调试', '物品制作'],
     github: 'https://github.com/wangyuhao'
   },
-  { name: '王浩', role: 'Contributor', bio: 'FA社团，睿抗社团在职队员，熟练运用sw', image: 'https://cdn.newenergycoder.club/images/src/image/contributors/王浩.jpg' },
+  { name: '王浩', role: 'Contributor', bio: 'FA、睿抗在职队员，熟练运用 SolidWorks', image: 'https://cdn.newenergycoder.club/images/src/image/contributors/王浩.jpg' },
   { name: '白逸鸣', role: '机器人竞赛贡献者', bio: 'RC 全国机器人大赛', image: 'https://cdn.newenergycoder.club/images/src/image/contributors/白逸鸣.jpg' },
   {
     name: '许子涵',

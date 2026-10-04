@@ -75,8 +75,6 @@ export function useLinkProcessor(options: UseLinkProcessorOptions = {}): UseLink
     autoValidate = true,
     validationDelay = 500,
     maxConcurrentValidations = 5,
-    enableCache = true,
-    cacheExpiry = 5 * 60 * 1000, // 5分钟
     prevalidate = false,
     documentContext
   } = options;
@@ -110,41 +108,6 @@ export function useLinkProcessor(options: UseLinkProcessorOptions = {}): UseLink
       }
     };
   }, []);
-
-  // 处理链接
-  const processLinks = useCallback(async (content: string): Promise<ProcessedLink[]> => {
-    if (!processorRef.current) return [];
-
-    setIsProcessing(true);
-    setError(null);
-    lastContentRef.current = content;
-
-    try {
-      // 使用性能监控包装处理函数
-      const measuredProcessor = PerformanceUtils.measurePerformance(
-        processorRef.current.processDocument.bind(processorRef.current),
-        'linkProcessing'
-      );
-
-      const links = await measuredProcessor(content, documentContext);
-      setProcessedLinks(links);
-
-      // 自动验证
-      if (autoValidate) {
-        const urls = links.map(link => link.originalUrl);
-        scheduleValidation(urls);
-      }
-
-      return links;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : '处理链接时发生错误';
-      setError(errorMessage);
-      console.error('链接处理错误:', err);
-      return [];
-    } finally {
-      setIsProcessing(false);
-    }
-  }, [autoValidate, documentContext]);
 
   // 验证单个链接
   const validateLink = useCallback(async (url: string): Promise<ValidationResult> => {
@@ -244,6 +207,40 @@ export function useLinkProcessor(options: UseLinkProcessorOptions = {}): UseLink
       }
     }, validationDelay);
   }, [validateLinks, validationDelay]);
+
+  // 处理链接
+  const processLinks = useCallback(async (content: string): Promise<ProcessedLink[]> => {
+    if (!processorRef.current) return [];
+
+    setIsProcessing(true);
+    setError(null);
+    lastContentRef.current = content;
+
+    try {
+      // 使用性能监控包装处理函数
+      const measuredProcessor = PerformanceUtils.measurePerformance(
+        processorRef.current.processDocument.bind(processorRef.current),
+        'linkProcessing'
+      );
+
+      const links = await measuredProcessor(content, documentContext);
+      setProcessedLinks(links);
+
+      if (autoValidate) {
+        const urls = links.map(link => link.originalUrl);
+        scheduleValidation(urls);
+      }
+
+      return links;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : '处理链接时发生错误';
+      setError(errorMessage);
+      console.error('链接处理错误:', err);
+      return [];
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [autoValidate, documentContext, scheduleValidation]);
 
   // 清除缓存
   const clearCache = useCallback(() => {
