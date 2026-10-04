@@ -25,5 +25,5 @@ jobs:
 
       - name: Push to AtomGit (newenergycoder.club)
         run: |
-          git push "https://Darrenpig:${{ secrets.ATOMGIT_TOKEN }}@atomgit.com/Darrenpig/newenergycoder.club.git" \
+          git push "https://Darrenpig:${{ secrets.ATOMGIT_TOKEN }}@atomgit.com/cnec/newenergycoder.club.git" \
             --all --tags --force 2>&1 | grep -v "remote:" || true
